@@ -1,4 +1,117 @@
 <?php
+$emailCheck                  =false;
+$passwordCheck               =false;
+$passwordConfirmationCheck   =false;
+$usernameCheck               =false;
+$errors                      =[];
+$validation_array            =[];
+//This the validation function
+/*
+ *   validate_password()
+ * =>validate password A password contains at least eight characters
+    ,including at least one number and includes both lower and uppercase
+     letters and special characters
+ */
+function validate_password($password){
+    global $errors,$passwordCheck,$validation_array;
+    if (preg_match("
+    /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z])/", $password)) {
+        $passwordCheck=true;
+    }
+    else{
+        $passwordCheck=false;
+        $errors["password"]="A password contains at least eight characters,including at least one number and includes both lower and uppercase letters and special characters";
+
+    }
+    //push every validation to the array and check it
+    //using validate_all_parms();
+    $validation_array[]=$passwordCheck;
+    return $passwordCheck;
+
+}
+function validate_email         ($email)                          {
+    global $emailCheck,$errors,$validation_array;
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $emailCheck=true;
+    }
+    else{
+        $emailCheck=false;
+        $errors["email"]="The email is not valid";
+    }
+    $validation_array[]=$emailCheck;
+
+
+}
+function confirm_password       ($password,$password_confirmation){
+    global $passwordConfirmationCheck,$errors,$validation_array;
+    if($password_confirmation!==$password) {
+        $passwordConfirmationCheck = false;
+        $errors["password_confirmation"] = "password doesn't match";
+
+    }
+    else{
+        $passwordConfirmationCheck  = true;
+    }
+    $validation_array[]=$passwordConfirmationCheck;
+    return $passwordConfirmationCheck;
+
+
+}
+function get_date_of_creation            ()                       {
+
+    $date_of_creation  = date('Y-m-d H:i:s');
+
+    return $date_of_creation;
+}
+function encrypt_password            ($password)                  {
+    $hash_format        ="$2y$10$";
+    $salt               ="iusesomecrazystrings98";
+    $hashF_and_salt     = $hash_format.$salt;
+    $password_encrypt   =crypt($password,$hashF_and_salt);
+    return $password_encrypt;
+}
+function validate_all_paramters   (...$parms)                     {
+    //put all the parameters in an array
+    $validate=true;
+    foreach ($parms as $value){
+        //if any of the parms is false it will set $validate false
+        if(!$value){
+            $validate=false;
+        }
+
+    }
+    return $validate;
+
+
+
+}
+//-----------------------------------------------------------------------------------
+/*  checkRepetition_and_showUsers($connection,$repetition,$table_name,$parameters_to_check)
+this function fetch all table data and return it when $repetition is false;
+$url should be relative to the file functions is required into it;
+*/
+function checkRepetition_and_showUsers($connection,$repetition,$table_name,$parameters_name=null,$parameters_to_check=null,$url=null){
+    $statement=$connection->prepare("SELECT * FROM {$table_name}");
+    $statement-> execute();
+    $users=$statement->fetchAll(PDO::FETCH_ASSOC);
+    if(!$repetition){
+        return $users;
+    }
+    if($repetition){
+        $length=count($parameters_name);
+        //loop through all the parameters you want to check
+        for($i=0;$i<$length;$i++){
+            //if there is any parameter repetition return error to url
+            if($users[$parameters_name[$i]]===$parameters_to_check[$i]){
+                header("Location:{$url}?{$parameters_name}={$parameters_name} is repeated");
+                exit();
+            }
+        }
+
+    }
+
+}
+//-------------------------------------------------------------------------------------------------------------
 function crud($connection,$operation,$table_name,$columns,$values){
     // $OPERATION=> INSERT UPDATE DELETE SELECT
     //SELECT SELECTS ALL COLUMUNS

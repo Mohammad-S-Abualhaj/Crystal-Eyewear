@@ -243,18 +243,27 @@
                     <div class="form-group">
                       <label for="username">Username <span class="required">*</span></label>
                       <input id="username" class="form-control" name="username" type="text">
+                        <?php if(isset($_GET["username"])):?>
+                        <span class="text-danger"><?php echo $_GET["usename"]; ?></span>
+                        <?php endif; ?>
                     </div>
                   </div>
                   <div class="col-12">
                     <div class="form-group">
                       <label for="email">Email address <span class="required">*</span></label>
                       <input id="email" class="form-control" name="email" type="email">
+                        <?php if(isset($_GET["email"])):?>
+                            <span class="text-danger"><?php echo $_GET["email"]; ?></span>
+                        <?php endif; ?>
                     </div>
                   </div>
                   <div class="col-12">
                     <div class="form-group">
                       <label for="password">Password <span class="required">*</span></label>
                       <input id="password" class="form-control" name="password" type="password">
+                        <?php if(isset($_GET["password"])):?>
+                            <span class="text-danger"><?php echo $_GET["password"]; ?></span>
+                        <?php endif; ?>
                     </div>
                   </div>
                   <div class="col-12">
@@ -623,7 +632,7 @@
 <!--=== jQuery Custom Js ===-->
 <script src="assets/js/custom.js"></script>
 <!-------   CUSTOM JS   -------->
-<script src="js/script.js"></script>
+<!--<script src="js/script.js"></script>-->
 
 </body>
 
