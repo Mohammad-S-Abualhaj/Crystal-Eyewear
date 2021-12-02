@@ -241,10 +241,10 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="form-group">
-                      <label for="username">Username <span class="required">*</span></label>
+                      <label for="username">name <span class="required">*</span></label>
                       <input id="username" class="form-control" name="username" type="text">
                         <?php if(isset($_GET["username"])):?>
-                        <span class="text-danger"><?php echo $_GET["usename"]; ?></span>
+                        <span class="text-danger"><?php echo $_GET["username"]; ?></span>
                         <?php endif; ?>
                     </div>
                   </div>
@@ -270,6 +270,9 @@
                     <div class="form-group">
                       <label for="password_confirmation">Confirm Password <span class="required">*</span></label>
                       <input id="password_confirmation" class="form-control" name="password_confirmation" type="password">
+                        <?php if(isset($_GET["password_confirmation"])):?>
+                            <span class="text-danger"><?php echo $_GET["password_confirmation"]; ?></span>
+                        <?php endif; ?>
                     </div>
                   </div>
                   <div class="col-12">
@@ -632,7 +635,7 @@
 <!--=== jQuery Custom Js ===-->
 <script src="assets/js/custom.js"></script>
 <!-------   CUSTOM JS   -------->
-<!--<script src="js/script.js"></script>-->
+<script src="js/script.js"></script>
 
 </body>
 

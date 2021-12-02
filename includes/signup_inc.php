@@ -19,4 +19,6 @@ if(!$validate){
     header("Location:../account-register.php?{$query}");
     exit;
 }
+checkRepetition_and_showUsers($connection,true,"users",["username",'email','password'],[$username,$email,$password],"../account-register.php");
+crud($connection,"INSERT","user",['username','email','password'],[$username,$email,$password]);
 

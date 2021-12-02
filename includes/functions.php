@@ -97,14 +97,19 @@ function checkRepetition_and_showUsers($connection,$repetition,$table_name,$para
     if(!$repetition){
         return $users;
     }
+    var_dump($users);
     if($repetition){
         $length=count($parameters_name);
         //loop through all the parameters you want to check
-        for($i=0;$i<$length;$i++){
-            //if there is any parameter repetition return error to url
-            if($users[$parameters_name[$i]]===$parameters_to_check[$i]){
-                header("Location:{$url}?{$parameters_name}={$parameters_name} is repeated");
-                exit();
+        foreach ($users as $user) {
+
+
+            for ($i = 0; $i < $length; $i++) {
+                //if there is any parameter repetition return error to url
+                if ($user[$parameters_name[$i]] === $parameters_to_check[$i]) {
+                    header("Location:{$url}?{$parameters_name[$i]}={$parameters_name[$i]} is repeated");
+                    exit();
+                }
             }
         }
 

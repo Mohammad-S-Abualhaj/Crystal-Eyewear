@@ -1,4 +1,5 @@
 function signupValidation(){
+   
     //define html elements
     const fullName=document.querySelector('#username');
     const password=document.querySelector('#password');
@@ -161,7 +162,7 @@ function submitForm(form) {
 btnRegister.addEventListener('click',(e)=>{
     
     const validate=emailCheck && passwordCheck && fullNameCheck && passwordConfirmationCheck;
-    
+
     if(!validate){
         e.preventDefault();
        
@@ -177,4 +178,21 @@ const signupFormEl=document.querySelector('.signup_form');
 if(signupFormEl){
     signupValidation()
 }
+/*function changeUrl(){
+    var currentURL = window.location.href;
+    var index = currentURL.indexOf("?");
+    window.location.href = currentURL.substring(0, index);
+    console.log("hello");
+
+}
+window.addEventListener("load",()={
+    changeUrl();
+})*/
+
+
+
+
+
+
+
 //?------------------------------END OF SIGNUP LOGIC-----------------------------------
