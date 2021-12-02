@@ -158,12 +158,13 @@ function submitForm(form) {
     submitFormFunction.call(form);
 }
 
-btnRegister.addEventListener('click',()=>{
-    checkEmpty('checkBox',checkInput);
-    const validate=emailCheck && passwordCheck && fullNameCheck && checkInputCheck && passwordConfirmationCheck;
-    if(validate){
-        btnRegister.setAttribute('name', 'submit');
-       submitForm(signupForm);
+btnRegister.addEventListener('click',(e)=>{
+    
+    const validate=emailCheck && passwordCheck && fullNameCheck && passwordConfirmationCheck;
+    
+    if(!validate){
+        e.preventDefault();
+       
 
     }
 

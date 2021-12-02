@@ -2,7 +2,7 @@
 <html lang="zxx">
 
 
-<!-- Mirrored from template.hasthemes.com/shome/shome/account-register.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Dec 2021 14:26:56 GMT -->
+<!-- Mirrored from template.hasthemes.com/shome/shome/account-register.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Dec 2021 14:26:56 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" />
 
     <!--== Google Fonts ==-->
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://   fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400;1,500&amp;display=swap" rel="stylesheet">
 
@@ -141,7 +141,7 @@
                     <ul class="submenu-nav">
                       <li><a href="account.html"><span>Account</span></a></li>
                       <li><a href="account-login.html"><span>Login</span></a></li>
-                      <li><a href="account-register.html"><span>Register</span></a></li>
+                      <li><a href="account-register.php"><span>Register</span></a></li>
                       <li><a href="page-not-found.html"><span>Page Not Found</span></a></li>
                     </ul>
                   </li>
@@ -237,30 +237,30 @@
         <div class="row">
           <div class="col-12">
             <div class="register-form-content">
-              <form action="" method="post" class="signup_form">
+              <form action="includes/signup_inc.php" method="post" class="signup_form">
                 <div class="row">
                   <div class="col-12">
                     <div class="form-group">
                       <label for="username">Username <span class="required">*</span></label>
-                      <input id="username" class="form-control" type="text">
+                      <input id="username" class="form-control" name="username" type="text">
                     </div>
                   </div>
                   <div class="col-12">
                     <div class="form-group">
                       <label for="email">Email address <span class="required">*</span></label>
-                      <input id="email" class="form-control" type="email">
+                      <input id="email" class="form-control" name="email" type="email">
                     </div>
                   </div>
                   <div class="col-12">
                     <div class="form-group">
                       <label for="password">Password <span class="required">*</span></label>
-                      <input id="password" class="form-control" type="password">
+                      <input id="password" class="form-control" name="password" type="password">
                     </div>
                   </div>
                   <div class="col-12">
                     <div class="form-group">
                       <label for="password_confirmation">Confirm Password <span class="required">*</span></label>
-                      <input id="password_confirmation" class="form-control" type="password">
+                      <input id="password_confirmation" class="form-control" name="password_confirmation" type="password">
                     </div>
                   </div>
                   <div class="col-12">
@@ -536,7 +536,7 @@
             <ul class="sub-menu">
               <li><a href="account.html">Account</a></li>
               <li><a href="account-login.html">Login</a></li>
-              <li><a href="account-register.html">Register</a></li>
+              <li><a href="account-register.php">Register</a></li>
               <li><a href="page-not-found.html">Page Not Found</a></li>
             </ul>
           </li>
@@ -628,5 +628,5 @@
 </body>
 
 
-<!-- Mirrored from template.hasthemes.com/shome/shome/account-register.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Dec 2021 14:26:56 GMT -->
+<!-- Mirrored from template.hasthemes.com/shome/shome/account-register.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Dec 2021 14:26:56 GMT -->
 </html>
