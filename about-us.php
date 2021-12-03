@@ -11,7 +11,7 @@
               <h2 class="title" data-aos="fade-down" data-aos-duration="1000">About Us</h2>
               <nav class="breadcrumb-area" data-aos="fade-down" data-aos-duration="1200">
                 <ul class="breadcrumb">
-                  <li><a href="index.html">Home</a></li>
+                  <li><a href="index.php">Home</a></li>
                   <li class="breadcrumb-sep">//</li>
                   <li>About Us</li>
                 </ul>
@@ -42,7 +42,7 @@
                 <h4 class="sub-title">Smart Life</h4>
                 <h3 class="title">With Smart Shoes</h3>
                 <p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmol tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minivel quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidata non proident, sunt in culpa qui officia.</p>
-                <a class="btn-theme" href="contact.html">Contact Us</a>
+                <a class="btn-theme" href="contact.php">Contact Us</a>
               </div>
             </div>
           </div>
@@ -60,7 +60,7 @@
               <h4 class="sub-title">Saving 50%</h4>
               <h2 class="title">All Online Store</h2>
               <p class="desc">Offer Available All Shoes & Products</p>
-              <a class="btn-theme" href="shop.html">Shop Now</a>
+              <a class="btn-theme" href="shop.php">Shop Now</a>
             </div>
           </div>
         </div>
@@ -90,7 +90,7 @@
             <div class="team-item">
               <div class="inner-content">
                 <div class="thumb">
-                  <a href="about-us.html"><img src="assets/img/team/1.webp" width="270" height="270" alt="Image-HasTech"></a>
+                  <a href="about-us.php"><img src="assets/img/team/1.webp" width="270" height="270" alt="Image-HasTech"></a>
                   <div class="member-icons">
                     <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
                     <a href="https://dribbble.com/" target="_blank" rel="noopener"><i class="fa fa-dribbble"></i></a>
@@ -98,7 +98,7 @@
                   </div>
                 </div>
                 <div class="content">
-                  <h4 class="title"><a href="about-us.html">Jander Durham</a></h4>
+                  <h4 class="title"><a href="about-us.php">Jander Durham</a></h4>
                   <p>Team Member</p>
                 </div>
               </div>
@@ -110,7 +110,7 @@
             <div class="team-item">
               <div class="inner-content">
                 <div class="thumb">
-                  <a href="about-us.html"><img src="assets/img/team/2.webp" width="270" height="270" alt="Image-HasTech"></a>
+                  <a href="about-us.php"><img src="assets/img/team/2.webp" width="270" height="270" alt="Image-HasTech"></a>
                   <div class="member-icons">
                     <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
                     <a href="https://dribbble.com/" target="_blank" rel="noopener"><i class="fa fa-dribbble"></i></a>
@@ -118,7 +118,7 @@
                   </div>
                 </div>
                 <div class="content">
-                  <h4 class="title"><a href="about-us.html">Jaren Hammer</a></h4>
+                  <h4 class="title"><a href="about-us.php">Jaren Hammer</a></h4>
                   <p>Team Member</p>
                 </div>
               </div>
@@ -130,7 +130,7 @@
             <div class="team-item">
               <div class="inner-content">
                 <div class="thumb">
-                  <a href="about-us.html"><img src="assets/img/team/3.webp" width="270" height="270" alt="Image-HasTech"></a>
+                  <a href="about-us.php"><img src="assets/img/team/3.webp" width="270" height="270" alt="Image-HasTech"></a>
                   <div class="member-icons">
                     <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
                     <a href="https://dribbble.com/" target="_blank" rel="noopener"><i class="fa fa-dribbble"></i></a>
@@ -138,7 +138,7 @@
                   </div>
                 </div>
                 <div class="content">
-                  <h4 class="title"><a href="about-us.html">Nurdan Denkel</a></h4>
+                  <h4 class="title"><a href="about-us.php">Nurdan Denkel</a></h4>
                   <p>Team Member</p>
                 </div>
               </div>
@@ -150,7 +150,7 @@
             <div class="team-item">
               <div class="inner-content">
                 <div class="thumb">
-                  <a href="about-us.html"><img src="assets/img/team/4.webp" width="270" height="270" alt="Image-HasTech"></a>
+                  <a href="about-us.php"><img src="assets/img/team/4.webp" width="270" height="270" alt="Image-HasTech"></a>
                   <div class="member-icons">
                     <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
                     <a href="https://dribbble.com/" target="_blank" rel="noopener"><i class="fa fa-dribbble"></i></a>
@@ -158,7 +158,7 @@
                   </div>
                 </div>
                 <div class="content">
-                  <h4 class="title"><a href="about-us.html">Monroe Bond</a></h4>
+                  <h4 class="title"><a href="about-us.php">Monroe Bond</a></h4>
                   <p>Team Member</p>
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         <p>Lorem ipsum dolor sit amel adipiscing elit, sed do eiusll tempor incididunt ut laborj et dolore magna.</p>
                         <div class="testi-author">
                           <div class="testi-info">
-                            <span class="name"><a href="about-us.html">Jaren Hammer</a></span>
+                            <span class="name"><a href="about-us.php">Jaren Hammer</a></span>
                           </div>
                         </div>
                         <div class="testi-quote"><img src="assets/img/icons/quote1.webp" width="62" height="44" alt="Image-HasTech"></div>
@@ -218,7 +218,7 @@
                         <p>Lorem ipsum dolor sit amel adipiscing elit, sed do eiusll tempor incididunt ut laborj et dolore magna.</p>
                         <div class="testi-author">
                           <div class="testi-info">
-                            <span class="name"><a href="about-us.html">Dorian Cordova</a></span>
+                            <span class="name"><a href="about-us.php">Dorian Cordova</a></span>
                           </div>
                         </div>
                         <div class="testi-quote"><img src="assets/img/icons/quote1.webp" width="62" height="44" alt="Image-HasTech"></div>
@@ -260,17 +260,17 @@
             <div class="post-item">
               <div class="inner-content">
                 <div class="thumb">
-                  <a href="blog-details.html"><img src="assets/img/blog/1.webp" width="370" height="260" alt="Image-HasTech"></a>
+                  <a href="blog-details.php"><img src="assets/img/blog/1.webp" width="370" height="260" alt="Image-HasTech"></a>
                 </div>
                 <div class="content">
                   <div class="meta-post">
                     <ul>
-                      <li class="post-date"><i class="fa fa-calendar"></i><a href="blog.html">27,Jun 2030</a></li>
-                      <li class="author-info"><i class="fa fa-user"></i><a href="blog.html">Oaklee Odom</a></li>
+                      <li class="post-date"><i class="fa fa-calendar"></i><a href="blog.php">27,Jun 2030</a></li>
+                      <li class="author-info"><i class="fa fa-user"></i><a href="blog.php">Oaklee Odom</a></li>
                     </ul>
                   </div>
-                  <h4 class="title"><a href="blog-details.html">Lorem ipsum dolor ametcons adipisicing elit sed</a></h4>
-                  <a class="post-btn" href="blog.html">Read More</a>
+                  <h4 class="title"><a href="blog-details.php">Lorem ipsum dolor ametcons adipisicing elit sed</a></h4>
+                  <a class="post-btn" href="blog.php">Read More</a>
                 </div>
               </div>
             </div>
@@ -281,17 +281,17 @@
             <div class="post-item">
               <div class="inner-content">
                 <div class="thumb">
-                  <a href="blog-details.html"><img src="assets/img/blog/2.webp" width="370" height="260" alt="Image-HasTech"></a>
+                  <a href="blog-details.php"><img src="assets/img/blog/2.webp" width="370" height="260" alt="Image-HasTech"></a>
                 </div>
                 <div class="content">
                   <div class="meta-post">
                     <ul>
-                      <li class="post-date"><i class="fa fa-calendar"></i><a href="blog.html">27,Jun 2030</a></li>
-                      <li class="author-info"><i class="fa fa-user"></i><a href="blog.html">Oaklee Odom</a></li>
+                      <li class="post-date"><i class="fa fa-calendar"></i><a href="blog.php">27,Jun 2030</a></li>
+                      <li class="author-info"><i class="fa fa-user"></i><a href="blog.php">Oaklee Odom</a></li>
                     </ul>
                   </div>
-                  <h4 class="title"><a href="blog-details.html">Celebrity Daughter Opens About Upto Having Her Eye</a></h4>
-                  <a class="post-btn" href="blog.html">Read More</a>
+                  <h4 class="title"><a href="blog-details.php">Celebrity Daughter Opens About Upto Having Her Eye</a></h4>
+                  <a class="post-btn" href="blog.php">Read More</a>
                 </div>
               </div>
             </div>
@@ -302,17 +302,17 @@
             <div class="post-item">
               <div class="inner-content">
                 <div class="thumb">
-                  <a href="blog-details.html"><img src="assets/img/blog/3.webp" width="370" height="260" alt="Image-HasTech"></a>
+                  <a href="blog-details.php"><img src="assets/img/blog/3.webp" width="370" height="260" alt="Image-HasTech"></a>
                 </div>
                 <div class="content">
                   <div class="meta-post">
                     <ul>
-                      <li class="post-date"><i class="fa fa-calendar"></i><a href="blog.html">27,Jun 2030</a></li>
-                      <li class="author-info"><i class="fa fa-user"></i><a href="blog.html">Oaklee Odom</a></li>
+                      <li class="post-date"><i class="fa fa-calendar"></i><a href="blog.php">27,Jun 2030</a></li>
+                      <li class="author-info"><i class="fa fa-user"></i><a href="blog.php">Oaklee Odom</a></li>
                     </ul>
                   </div>
-                  <h4 class="title"><a href="blog-details.html">Romantic Love Stories Of Hollywood Popular Celebrities</a></h4>
-                  <a class="post-btn" href="blog.html">Read More</a>
+                  <h4 class="title"><a href="blog-details.php">Romantic Love Stories Of Hollywood Popular Celebrities</a></h4>
+                  <a class="post-btn" href="blog.php">Read More</a>
                 </div>
               </div>
             </div>

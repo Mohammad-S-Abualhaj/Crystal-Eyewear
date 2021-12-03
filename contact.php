@@ -11,7 +11,7 @@
               <h2 class="title" data-aos="fade-down" data-aos-duration="1000">Contact Us</h2>
               <nav class="breadcrumb-area" data-aos="fade-down" data-aos-duration="1200">
                 <ul class="breadcrumb">
-                  <li><a href="index.html">Home</a></li>
+                  <li><a href="index.php">Home</a></li>
                   <li class="breadcrumb-sep">//</li>
                   <li>Contact Us</li>
                 </ul>

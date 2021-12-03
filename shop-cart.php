@@ -11,7 +11,7 @@
               <h2 class="title" data-aos="fade-down" data-aos-duration="1000">Shopping Cart</h2>
               <nav class="breadcrumb-area" data-aos="fade-down" data-aos-duration="1200">
                 <ul class="breadcrumb">
-                  <li><a href="index.html">Home</a></li>
+                  <li><a href="index.php">Home</a></li>
                   <li class="breadcrumb-sep">//</li>
                   <li>Shopping Cart</li>
                 </ul>
@@ -47,12 +47,12 @@
                         <a href="#/"><i class="fa fa-trash-o"></i></a>
                       </td>
                       <td class="product-thumb">
-                        <a href="single-product.html">
+                        <a href="single-product.php">
                           <img src="assets/img/shop/product-mini/1.webp" width="90" height="110" alt="Image-HasTech">
                         </a>
                       </td>
                       <td class="product-name">
-                        <h4 class="title"><a href="single-product.html">Leather Mens Slipper</a></h4>
+                        <h4 class="title"><a href="single-product.php">Leather Mens Slipper</a></h4>
                       </td>
                       <td class="product-price">
                         <span class="price">£69.99</span>
@@ -71,12 +71,12 @@
                         <a href="#/"><i class="fa fa-trash-o"></i></a>
                       </td>
                       <td class="product-thumb">
-                        <a href="single-product.html">
+                        <a href="single-product.php">
                           <img src="assets/img/shop/product-mini/2.webp" width="90" height="110" alt="Image-HasTech">
                         </a>
                       </td>
                       <td class="product-name">
-                        <h4 class="title"><a href="single-product.html">Quickiin Mens shoes</a></h4>
+                        <h4 class="title"><a href="single-product.php">Quickiin Mens shoes</a></h4>
                       </td>
                       <td class="product-price">
                         <span class="price">£20.00</span>
@@ -95,12 +95,12 @@
                         <a href="#/"><i class="fa fa-trash-o"></i></a>
                       </td>
                       <td class="product-thumb">
-                        <a href="single-product.html">
+                        <a href="single-product.php">
                           <img src="assets/img/shop/product-mini/3.webp" width="90" height="110" alt="Image-HasTech">
                         </a>
                       </td>
                       <td class="product-name">
-                        <h4 class="title"><a href="single-product.html">Rexpo Womens shoes</a></h4>
+                        <h4 class="title"><a href="single-product.php">Rexpo Womens shoes</a></h4>
                       </td>
                       <td class="product-price">
                         <span class="price">£39.00</span>
@@ -118,7 +118,7 @@
                       <td class="border-0" colspan="6">
                         <button type="submit" class="update-cart" disabled>Update cart</button>
                         <button type="submit" class="clear-cart">Clear Cart</button>
-                        <a href="shop.html" class="btn-theme btn-flat">Continue Shopping</a>
+                        <a href="shop.php" class="btn-theme btn-flat">Continue Shopping</a>
                       </td>
                     </tr>
                   </tbody>
@@ -250,7 +250,7 @@
                   </tbody>
                 </table>
               </div>
-              <a class="btn-theme btn-flat" href="shop-checkout.html">Proceed to checkout</a>
+              <a class="btn-theme btn-flat" href="shop-checkout.php">Proceed to checkout</a>
             </div>
           </div>
         </div>

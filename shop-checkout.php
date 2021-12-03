@@ -11,7 +11,7 @@
               <h2 class="title" data-aos="fade-down" data-aos-duration="1000">Checkout</h2>
               <nav class="breadcrumb-area" data-aos="fade-down" data-aos-duration="1200">
                 <ul class="breadcrumb">
-                  <li><a href="index.html">Home</a></li>
+                  <li><a href="index.php">Home</a></li>
                   <li class="breadcrumb-sep">//</li>
                   <li>Checkout</li>
                 </ul>
@@ -409,7 +409,7 @@
                       <label for="privacy" class="custom-control-label">I have read and agree to the website terms and conditions <span class="required">*</span></label>
                     </div>
                   </div>
-                  <a href="account-login.html" class="btn-theme">Place order</a>
+                  <a href="account-login.php" class="btn-theme">Place order</a>
                 </div>
               </div>
             </div>

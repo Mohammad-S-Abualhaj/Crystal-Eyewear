@@ -11,7 +11,7 @@
               <h2 class="title" data-aos="fade-down" data-aos-duration="1000">Product Details</h2>
               <nav class="breadcrumb-area" data-aos="fade-down" data-aos-duration="1200">
                 <ul class="breadcrumb">
-                  <li><a href="index.html">Home</a></li>
+                  <li><a href="index.php">Home</a></li>
                   <li class="breadcrumb-sep">//</li>
                   <li>Product Details</li>
                 </ul>
@@ -119,7 +119,7 @@
                             <td class="choose"><input type="checkbox"></td>
                             <td class="quantity">1</td>
                             <td class="thumb"><img src="assets/img/shop/product-single/group2.webp" alt="Image"></td>
-                            <td class="title"><a href="single-product.html">Modern Smart Shoes</a></td>
+                            <td class="title"><a href="single-product.php">Modern Smart Shoes</a></td>
                             <td class="price"><span class="pro-price"><span class="old">£120.00</span><span class="new">£96.00</span></span></td>
                           </tr>
                         </tbody>
@@ -131,11 +131,11 @@
                           <input type="text" title="Quantity" value="1">
                         </div>
                       </div>
-                      <a class="btn-theme" href="shop-cart.html">Add to Cart</a>
+                      <a class="btn-theme" href="shop-cart.php">Add to Cart</a>
                     </div>
                     <div class="product-wishlist-compare">
-                      <a href="shop-wishlist.html"><i class="pe-7s-like"></i>Add to Wishlist</a>
-                      <a href="shop-compare.html"><i class="pe-7s-shuffle"></i>Add to Compare</a>
+                      <a href="shop-wishlist.php"><i class="pe-7s-like"></i>Add to Wishlist</a>
+                      <a href="shop-compare.php"><i class="pe-7s-shuffle"></i>Add to Compare</a>
                     </div>
                     <div class="product-info-footer">
                       <h6 class="code"><span>Code :</span>Ch-256xl</h6>
@@ -371,7 +371,7 @@
                     <div class="product-item">
                       <div class="inner-content">
                         <div class="product-thumb">
-                          <a href="single-product.html">
+                          <a href="single-product.php">
                             <img src="assets/img/shop/1.webp" width="270" height="274" alt="Image-HasTech">
                           </a>
                           <div class="product-flag">
@@ -380,24 +380,24 @@
                             </ul>
                           </div>
                           <div class="product-action">
-                    <a class="btn-product-wishlist" href="shop-wishlist.html"><i class="fa fa-heart"></i></a>
-                    <a class="btn-product-cart" href="shop-cart.html"><i class="fa fa-shopping-cart"></i></a>
+                    <a class="btn-product-wishlist" href="shop-wishlist.php"><i class="fa fa-heart"></i></a>
+                    <a class="btn-product-cart" href="shop-cart.php"><i class="fa fa-shopping-cart"></i></a>
                     <button type="button" class="btn-product-quick-view-open">
                       <i class="fa fa-arrows"></i>
                     </button>
-                    <a class="btn-product-compare" href="shop-compare.html"><i class="fa fa-random"></i></a>
+                    <a class="btn-product-compare" href="shop-compare.php"><i class="fa fa-random"></i></a>
                   </div>
-                          <a class="banner-link-overlay" href="shop.html"></a>
+                          <a class="banner-link-overlay" href="shop.php"></a>
                         </div>
                         <div class="product-info">
                           <div class="category">
                     <ul>
-                      <li><a href="shop.html">Men</a></li>
+                      <li><a href="shop.php">Men</a></li>
                               <li class="sep">/</li>
-                              <li><a href="shop.html">Women</a></li>
+                              <li><a href="shop.php">Women</a></li>
                             </ul>
                           </div>
-                          <h4 class="title"><a href="single-product.html">Modern Smart Shoes</a></h4>
+                          <h4 class="title"><a href="single-product.php">Modern Smart Shoes</a></h4>
                           <div class="prices">
                             <span class="price-old">$300</span>
                             <span class="sep">-</span>
@@ -413,28 +413,28 @@
                     <div class="product-item">
                       <div class="inner-content">
                         <div class="product-thumb">
-                          <a href="single-product.html">
+                          <a href="single-product.php">
                             <img src="assets/img/shop/7.webp" width="270" height="274" alt="Image-HasTech">
                           </a>
                           <div class="product-action">
-                    <a class="btn-product-wishlist" href="shop-wishlist.html"><i class="fa fa-heart"></i></a>
-                    <a class="btn-product-cart" href="shop-cart.html"><i class="fa fa-shopping-cart"></i></a>
+                    <a class="btn-product-wishlist" href="shop-wishlist.php"><i class="fa fa-heart"></i></a>
+                    <a class="btn-product-cart" href="shop-cart.php"><i class="fa fa-shopping-cart"></i></a>
                     <button type="button" class="btn-product-quick-view-open">
                       <i class="fa fa-arrows"></i>
                     </button>
-                    <a class="btn-product-compare" href="shop-compare.html"><i class="fa fa-random"></i></a>
+                    <a class="btn-product-compare" href="shop-compare.php"><i class="fa fa-random"></i></a>
                   </div>
-                          <a class="banner-link-overlay" href="shop.html"></a>
+                          <a class="banner-link-overlay" href="shop.php"></a>
                         </div>
                         <div class="product-info">
                           <div class="category">
                     <ul>
-                      <li><a href="shop.html">Men</a></li>
+                      <li><a href="shop.php">Men</a></li>
                               <li class="sep">/</li>
-                              <li><a href="shop.html">Women</a></li>
+                              <li><a href="shop.php">Women</a></li>
                             </ul>
                           </div>
-                          <h4 class="title"><a href="single-product.html">Quickiin Mens shoes</a></h4>
+                          <h4 class="title"><a href="single-product.php">Quickiin Mens shoes</a></h4>
                           <div class="prices">
                             <span class="price">$240.00</span>
                           </div>
@@ -448,7 +448,7 @@
                     <div class="product-item">
                       <div class="inner-content">
                         <div class="product-thumb">
-                          <a href="single-product.html">
+                          <a href="single-product.php">
                             <img src="assets/img/shop/3.webp" width="270" height="274" alt="Image-HasTech">
                           </a>
                           <div class="product-flag">
@@ -457,24 +457,24 @@
                             </ul>
                           </div>
                           <div class="product-action">
-                    <a class="btn-product-wishlist" href="shop-wishlist.html"><i class="fa fa-heart"></i></a>
-                    <a class="btn-product-cart" href="shop-cart.html"><i class="fa fa-shopping-cart"></i></a>
+                    <a class="btn-product-wishlist" href="shop-wishlist.php"><i class="fa fa-heart"></i></a>
+                    <a class="btn-product-cart" href="shop-cart.php"><i class="fa fa-shopping-cart"></i></a>
                     <button type="button" class="btn-product-quick-view-open">
                       <i class="fa fa-arrows"></i>
                     </button>
-                    <a class="btn-product-compare" href="shop-compare.html"><i class="fa fa-random"></i></a>
+                    <a class="btn-product-compare" href="shop-compare.php"><i class="fa fa-random"></i></a>
                   </div>
-                          <a class="banner-link-overlay" href="shop.html"></a>
+                          <a class="banner-link-overlay" href="shop.php"></a>
                         </div>
                         <div class="product-info">
                           <div class="category">
                     <ul>
-                      <li><a href="shop.html">Men</a></li>
+                      <li><a href="shop.php">Men</a></li>
                               <li class="sep">/</li>
-                              <li><a href="shop.html">Women</a></li>
+                              <li><a href="shop.php">Women</a></li>
                             </ul>
                           </div>
-                          <h4 class="title"><a href="single-product.html">Rexpo Womens shoes</a></h4>
+                          <h4 class="title"><a href="single-product.php">Rexpo Womens shoes</a></h4>
                           <div class="prices">
                             <span class="price-old">$300</span>
                             <span class="sep">-</span>
@@ -490,28 +490,28 @@
                     <div class="product-item">
                       <div class="inner-content">
                         <div class="product-thumb">
-                          <a href="single-product.html">
+                          <a href="single-product.php">
                             <img src="assets/img/shop/4.webp" width="270" height="274" alt="Image-HasTech">
                           </a>
                           <div class="product-action">
-                    <a class="btn-product-wishlist" href="shop-wishlist.html"><i class="fa fa-heart"></i></a>
-                    <a class="btn-product-cart" href="shop-cart.html"><i class="fa fa-shopping-cart"></i></a>
+                    <a class="btn-product-wishlist" href="shop-wishlist.php"><i class="fa fa-heart"></i></a>
+                    <a class="btn-product-cart" href="shop-cart.php"><i class="fa fa-shopping-cart"></i></a>
                     <button type="button" class="btn-product-quick-view-open">
                       <i class="fa fa-arrows"></i>
                     </button>
-                    <a class="btn-product-compare" href="shop-compare.html"><i class="fa fa-random"></i></a>
+                    <a class="btn-product-compare" href="shop-compare.php"><i class="fa fa-random"></i></a>
                   </div>
-                          <a class="banner-link-overlay" href="shop.html"></a>
+                          <a class="banner-link-overlay" href="shop.php"></a>
                         </div>
                         <div class="product-info">
                           <div class="category">
                     <ul>
-                      <li><a href="shop.html">Men</a></li>
+                      <li><a href="shop.php">Men</a></li>
                               <li class="sep">/</li>
-                              <li><a href="shop.html">Women</a></li>
+                              <li><a href="shop.php">Women</a></li>
                             </ul>
                           </div>
-                          <h4 class="title"><a href="single-product.html">Leather Mens Slipper</a></h4>
+                          <h4 class="title"><a href="single-product.php">Leather Mens Slipper</a></h4>
                           <div class="prices">
                             <span class="price">$240.00</span>
                           </div>
@@ -525,28 +525,28 @@
                     <div class="product-item">
                       <div class="inner-content">
                         <div class="product-thumb">
-                          <a href="single-product.html">
+                          <a href="single-product.php">
                             <img src="assets/img/shop/5.webp" width="270" height="274" alt="Image-HasTech">
                           </a>
                           <div class="product-action">
-                    <a class="btn-product-wishlist" href="shop-wishlist.html"><i class="fa fa-heart"></i></a>
-                    <a class="btn-product-cart" href="shop-cart.html"><i class="fa fa-shopping-cart"></i></a>
+                    <a class="btn-product-wishlist" href="shop-wishlist.php"><i class="fa fa-heart"></i></a>
+                    <a class="btn-product-cart" href="shop-cart.php"><i class="fa fa-shopping-cart"></i></a>
                     <button type="button" class="btn-product-quick-view-open">
                       <i class="fa fa-arrows"></i>
                     </button>
-                    <a class="btn-product-compare" href="shop-compare.html"><i class="fa fa-random"></i></a>
+                    <a class="btn-product-compare" href="shop-compare.php"><i class="fa fa-random"></i></a>
                   </div>
-                          <a class="banner-link-overlay" href="shop.html"></a>
+                          <a class="banner-link-overlay" href="shop.php"></a>
                         </div>
                         <div class="product-info">
                           <div class="category">
                     <ul>
-                      <li><a href="shop.html">Men</a></li>
+                      <li><a href="shop.php">Men</a></li>
                               <li class="sep">/</li>
-                              <li><a href="shop.html">Women</a></li>
+                              <li><a href="shop.php">Women</a></li>
                             </ul>
                           </div>
-                          <h4 class="title"><a href="single-product.html">Primitive Mens shoes</a></h4>
+                          <h4 class="title"><a href="single-product.php">Primitive Mens shoes</a></h4>
                           <div class="prices">
                             <span class="price-old">$300</span>
                             <span class="sep">-</span>
@@ -562,7 +562,7 @@
                     <div class="product-item">
                       <div class="inner-content">
                         <div class="product-thumb">
-                          <a href="single-product.html">
+                          <a href="single-product.php">
                             <img src="assets/img/shop/6.webp" width="270" height="274" alt="Image-HasTech">
                           </a>
                           <div class="product-flag">
@@ -571,24 +571,24 @@
                             </ul>
                           </div>
                           <div class="product-action">
-                    <a class="btn-product-wishlist" href="shop-wishlist.html"><i class="fa fa-heart"></i></a>
-                    <a class="btn-product-cart" href="shop-cart.html"><i class="fa fa-shopping-cart"></i></a>
+                    <a class="btn-product-wishlist" href="shop-wishlist.php"><i class="fa fa-heart"></i></a>
+                    <a class="btn-product-cart" href="shop-cart.php"><i class="fa fa-shopping-cart"></i></a>
                     <button type="button" class="btn-product-quick-view-open">
                       <i class="fa fa-arrows"></i>
                     </button>
-                    <a class="btn-product-compare" href="shop-compare.html"><i class="fa fa-random"></i></a>
+                    <a class="btn-product-compare" href="shop-compare.php"><i class="fa fa-random"></i></a>
                   </div>
-                          <a class="banner-link-overlay" href="shop.html"></a>
+                          <a class="banner-link-overlay" href="shop.php"></a>
                         </div>
                         <div class="product-info">
                           <div class="category">
                     <ul>
-                      <li><a href="shop.html">Men</a></li>
+                      <li><a href="shop.php">Men</a></li>
                               <li class="sep">/</li>
-                              <li><a href="shop.html">Women</a></li>
+                              <li><a href="shop.php">Women</a></li>
                             </ul>
                           </div>
-                          <h4 class="title"><a href="single-product.html">Simple Fabric Shoe</a></h4>
+                          <h4 class="title"><a href="single-product.php">Simple Fabric Shoe</a></h4>
                           <div class="prices">
                             <span class="price-old">$300</span>
                             <span class="sep">-</span>

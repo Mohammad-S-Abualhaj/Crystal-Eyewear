@@ -11,7 +11,7 @@
               <h2 class="title" data-aos="fade-down" data-aos-duration="1000">Blog Details</h2>
               <nav class="breadcrumb-area" data-aos="fade-down" data-aos-duration="1200">
                 <ul class="breadcrumb">
-                  <li><a href="index.html">Home</a></li>
+                  <li><a href="index.php">Home</a></li>
                   <li class="breadcrumb-sep">//</li>
                   <li>Blog Details</li>
                 </ul>
@@ -35,8 +35,8 @@
                 </div>
                 <div class="blog-meta-post">
                   <ul>
-                    <li class="post-date"><i class="fa fa-calendar"></i><a href="blog.html">22,Jun 2022</a></li>
-                    <li class="author-info"><i class="fa fa-user"></i><a href="blog.html">Hector Lovett</a></li>
+                    <li class="post-date"><i class="fa fa-calendar"></i><a href="blog.php">22,Jun 2022</a></li>
+                    <li class="author-info"><i class="fa fa-user"></i><a href="blog.php">Hector Lovett</a></li>
                   </ul>
                 </div>
                 <h3 class="main-title">Lorem ipsum dolor sit amet conse adipisi elit sed do eiusmod tempor.</h3>
@@ -59,10 +59,10 @@
                 <div class="blog-details-footer">
                   <div class="tage-list">
                     <span>Tages:</span>
-                    <a href="blog.html">Mobile</a>, 
-                    <a href="blog.html">Laptop</a>, 
-                    <a href="blog.html">Smart</a>, 
-                    <a href="blog.html">TV</a>
+                    <a href="blog.php">Mobile</a>, 
+                    <a href="blog.php">Laptop</a>, 
+                    <a href="blog.php">Smart</a>, 
+                    <a href="blog.php">TV</a>
                   </div>
                   <div class="social-icons">
                     <span>Share:</span>
@@ -75,22 +75,22 @@
                 <div class="article-next-previous">
                   <div class="arrow-item previous">
                     <div class="arrow-thumb">
-                      <a href="blog-details.html"><img src="assets/img/blog/s4.webp" width="98" height="101" alt=""></a>
-                      <a class="overlay" href="blog-details.html"><i class="fa fa-angle-left"></i></a>
+                      <a href="blog-details.php"><img src="assets/img/blog/s4.webp" width="98" height="101" alt=""></a>
+                      <a class="overlay" href="blog-details.php"><i class="fa fa-angle-left"></i></a>
                     </div>
                     <div class="arrow-content">
-                      <span class="date"><a href="blog.html"><i class="fa fa-calendar"></i>26 March, 2022</a></span>
-                      <h6 class="title"><a href="blog-details.html">Lorem ipsum dolorl amet conse adip</a></h6>
+                      <span class="date"><a href="blog.php"><i class="fa fa-calendar"></i>26 March, 2022</a></span>
+                      <h6 class="title"><a href="blog-details.php">Lorem ipsum dolorl amet conse adip</a></h6>
                     </div>
                   </div>
                   <div class="arrow-item next">
                     <div class="arrow-thumb">
-                      <a href="blog-details.html"><img src="assets/img/blog/s1.webp" width="98" height="101" alt=""></a>
-                      <a class="overlay" href="blog-details.html"><i class="fa fa-angle-right"></i></a>
+                      <a href="blog-details.php"><img src="assets/img/blog/s1.webp" width="98" height="101" alt=""></a>
+                      <a class="overlay" href="blog-details.php"><i class="fa fa-angle-right"></i></a>
                     </div>
                     <div class="arrow-content">
-                      <span class="date"><a href="blog.html">25 March, 2022<i class="fa fa-calendar"></i></a></span>
-                      <h6 class="title"><a href="blog-details.html">Lorem ipsum dolorl amet conse adip</a></h6>
+                      <span class="date"><a href="blog.php">25 March, 2022<i class="fa fa-calendar"></i></a></span>
+                      <h6 class="title"><a href="blog-details.php">Lorem ipsum dolorl amet conse adip</a></h6>
                     </div>
                   </div>
                 </div>
@@ -102,13 +102,13 @@
                 <div class="comment-view-content">
                   <div class="single-comment">
                     <div class="author-pic">
-                      <a href="blog.html"><img src="assets/img/blog/author1.webp" width="101" height="118" alt="Image-HasTech"></a>
+                      <a href="blog.php"><img src="assets/img/blog/author1.webp" width="101" height="118" alt="Image-HasTech"></a>
                     </div>
                     <div class="author-info">
                       <h4 class="title">
-                        <a href="blog.html">Marie Jensen</a>
+                        <a href="blog.php">Marie Jensen</a>
                         <span> - </span>
-                        <a class="comment-date" href="blog.html">22 August, 2022</a>
+                        <a class="comment-date" href="blog.php">22 August, 2022</a>
                       </h4>
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp labore et dol magna aliqua. Ut enim ad minim veniam.</p>
                       <div class="author-info-footer">
@@ -118,13 +118,13 @@
                   </div>
                   <div class="single-comment reply-comment">
                     <div class="author-pic">
-                      <a href="blog.html"><img src="assets/img/blog/author2.webp" width="101" height="118" alt="Image-HasTech"></a>
+                      <a href="blog.php"><img src="assets/img/blog/author2.webp" width="101" height="118" alt="Image-HasTech"></a>
                     </div>
                     <div class="author-info">
                       <h4 class="title">
-                        <a href="blog.html">Rachel Leonard</a>
+                        <a href="blog.php">Rachel Leonard</a>
                         <span> - </span>
-                        <a class="comment-date" href="blog.html">22 August, 2022</a>
+                        <a class="comment-date" href="blog.php">22 August, 2022</a>
                       </h4>
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sedd labore et dol magna aliqua. Ut enim ad.</p>
                       <div class="author-info-footer">
@@ -134,13 +134,13 @@
                   </div>
                   <div class="single-comment">
                     <div class="author-pic">
-                      <a href="blog.html"><img src="assets/img/blog/author3.webp" width="101" height="118" alt="Image-HasTech"></a>
+                      <a href="blog.php"><img src="assets/img/blog/author3.webp" width="101" height="118" alt="Image-HasTech"></a>
                     </div>
                     <div class="author-info">
                       <h4 class="title">
-                        <a href="blog.html">Amilia Luna</a>
+                        <a href="blog.php">Amilia Luna</a>
                         <span> - </span>
-                        <a class="comment-date" href="blog.html">22 August, 2022</a>
+                        <a class="comment-date" href="blog.php">22 August, 2022</a>
                       </h4>
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp labore et dol magna aliqua. Ut enim ad minim veniam.</p>
                       <div class="author-info-footer">
@@ -206,13 +206,13 @@
                   <h4 class="sidebar-title" data-margin-bottom="23">Categories</h4>
                   <div class="sidebar-category">
                     <ul class="category-list">
-                      <li><a href="shop.html">Accesasories<span> (6)</span></a></li>
-                      <li><a href="shop.html">Computer<span> (4)</span></a></li>
-                      <li><a href="shop.html">Covid-19<span> (2)</span></a></li>
-                      <li><a href="shop.html">Electronics<span> (6)</span></a></li>
-                      <li><a href="shop.html">Frame Sunglasses<span> (12)</span></a></li>
-                      <li><a href="shop.html">Furniture<span> (7)</span></a></li>
-                      <li><a href="shop.html">Genuine Leather<span> (9)</span></a></li>
+                      <li><a href="shop.php">Accesasories<span> (6)</span></a></li>
+                      <li><a href="shop.php">Computer<span> (4)</span></a></li>
+                      <li><a href="shop.php">Covid-19<span> (2)</span></a></li>
+                      <li><a href="shop.php">Electronics<span> (6)</span></a></li>
+                      <li><a href="shop.php">Frame Sunglasses<span> (12)</span></a></li>
+                      <li><a href="shop.php">Furniture<span> (7)</span></a></li>
+                      <li><a href="shop.php">Genuine Leather<span> (9)</span></a></li>
                     </ul>
                   </div>
                 </div>
@@ -222,38 +222,38 @@
                   <div class="sidebar-post">
                     <div class="single-post">
                       <div class="post-thumb">
-                        <a href="blog-details.html"><img src="assets/img/blog/s1.webp" width="98" height="101" alt=""></a>
+                        <a href="blog-details.php"><img src="assets/img/blog/s1.webp" width="98" height="101" alt=""></a>
                       </div>
                       <div class="post-content">
-                        <span class="date"><a href="blog.html"><i class="fa fa-calendar"></i>22,Jun 2022</a></span>
-                        <h6 class="title"><a href="blog-details.html">Lorem ipsum dolorl amet conse adip</a></h6>
+                        <span class="date"><a href="blog.php"><i class="fa fa-calendar"></i>22,Jun 2022</a></span>
+                        <h6 class="title"><a href="blog-details.php">Lorem ipsum dolorl amet conse adip</a></h6>
                       </div>
                     </div>
                     <div class="single-post">
                       <div class="post-thumb">
-                        <a href="blog-details.html"><img src="assets/img/blog/s2.webp" width="98" height="101" alt=""></a>
+                        <a href="blog-details.php"><img src="assets/img/blog/s2.webp" width="98" height="101" alt=""></a>
                       </div>
                       <div class="post-content">
-                        <span class="date"><a href="blog.html"><i class="fa fa-calendar"></i>22,Jun 2022</a></span>
-                        <h6 class="title"><a href="blog-details.html">Lorem ipsum dolorl amet conse adip</a></h6>
+                        <span class="date"><a href="blog.php"><i class="fa fa-calendar"></i>22,Jun 2022</a></span>
+                        <h6 class="title"><a href="blog-details.php">Lorem ipsum dolorl amet conse adip</a></h6>
                       </div>
                     </div>
                     <div class="single-post">
                       <div class="post-thumb">
-                        <a href="blog-details.html"><img src="assets/img/blog/s3.webp" width="98" height="101" alt=""></a>
+                        <a href="blog-details.php"><img src="assets/img/blog/s3.webp" width="98" height="101" alt=""></a>
                       </div>
                       <div class="post-content">
-                        <span class="date"><a href="blog.html"><i class="fa fa-calendar"></i>22,Jun 2022</a></span>
-                        <h6 class="title"><a href="blog-details.html">Lorem ipsum dolorl amet conse adip</a></h6>
+                        <span class="date"><a href="blog.php"><i class="fa fa-calendar"></i>22,Jun 2022</a></span>
+                        <h6 class="title"><a href="blog-details.php">Lorem ipsum dolorl amet conse adip</a></h6>
                       </div>
                     </div>
                     <div class="single-post">
                       <div class="post-thumb">
-                        <a href="blog-details.html"><img src="assets/img/blog/s4.webp" width="98" height="101" alt=""></a>
+                        <a href="blog-details.php"><img src="assets/img/blog/s4.webp" width="98" height="101" alt=""></a>
                       </div>
                       <div class="post-content">
-                        <span class="date"><a href="blog.html"><i class="fa fa-calendar"></i>22,Jun 2022</a></span>
-                        <h6 class="title"><a href="blog-details.html">Lorem ipsum dolorl amet conse adip</a></h6>
+                        <span class="date"><a href="blog.php"><i class="fa fa-calendar"></i>22,Jun 2022</a></span>
+                        <h6 class="title"><a href="blog-details.php">Lorem ipsum dolorl amet conse adip</a></h6>
                       </div>
                     </div>
                   </div>
@@ -263,12 +263,12 @@
                   <h4 class="sidebar-title" data-margin-bottom="23">Archives</h4>
                   <div class="sidebar-category-sub-menu">
                     <ul class="sub-menu-list">
-                      <li><a href="shop.html">March 2018</a></li>
-                      <li><a href="shop.html">February 2018</a></li>
-                      <li><a href="shop.html">January 2021</a></li>
-                      <li><a href="shop.html">September 2019</a></li>
-                      <li><a href="shop.html">March 2018</a></li>
-                      <li><a href="shop.html">July 2021</a></li>
+                      <li><a href="shop.php">March 2018</a></li>
+                      <li><a href="shop.php">February 2018</a></li>
+                      <li><a href="shop.php">January 2021</a></li>
+                      <li><a href="shop.php">September 2019</a></li>
+                      <li><a href="shop.php">March 2018</a></li>
+                      <li><a href="shop.php">July 2021</a></li>
                     </ul>
                   </div>
                 </div>
@@ -277,11 +277,11 @@
                   <h4 class="sidebar-title">Tages</h4>
                   <div class="sidebar-tags">
                     <ul class="tags-list mb--0">
-                      <li><a href="blog.html">Mobile</a></li>
-                      <li><a href="blog.html">Laptop</a></li>
-                      <li><a href="blog.html">Smart TV</a></li>
-                      <li><a href="blog.html">Pendrive</a></li>
-                      <li><a href="blog.html">Smartwatch</a></li>
+                      <li><a href="blog.php">Mobile</a></li>
+                      <li><a href="blog.php">Laptop</a></li>
+                      <li><a href="blog.php">Smart TV</a></li>
+                      <li><a href="blog.php">Pendrive</a></li>
+                      <li><a href="blog.php">Smartwatch</a></li>
                     </ul>
                   </div>
                 </div>

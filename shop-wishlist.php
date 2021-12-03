@@ -11,7 +11,7 @@
               <h2 class="title" data-aos="fade-down" data-aos-duration="1000">Wishlist</h2>
               <nav class="breadcrumb-area" data-aos="fade-down" data-aos-duration="1200">
                 <ul class="breadcrumb">
-                  <li><a href="index.html">Home</a></li>
+                  <li><a href="index.php">Home</a></li>
                   <li class="breadcrumb-sep">//</li>
                   <li>Wishlist</li>
                 </ul>
@@ -46,12 +46,12 @@
                       <a href="#/"><i class="fa fa-trash-o"></i></a>
                     </td>
                     <td class="product-thumb">
-                      <a href="single-product.html">
+                      <a href="single-product.php">
                         <img src="assets/img/shop/product-mini/1.webp" width="90" height="110" alt="Image-HasTech">
                       </a>
                     </td>
                     <td class="product-name">
-                      <h4 class="title"><a href="single-product.html">Leather Mens Slipper</a></h4>
+                      <h4 class="title"><a href="single-product.php">Leather Mens Slipper</a></h4>
                     </td>
                     <td class="product-stock-status">
                       <span class="stock">In Stock</span>
@@ -60,7 +60,7 @@
                       <span class="price">£25.99</span>
                     </td>
                     <td class="product-action">
-                      <a class="btn-cart" href="shop-cart.html">Add to cart</a>
+                      <a class="btn-cart" href="shop-cart.php">Add to cart</a>
                     </td>
                   </tr>
                   <tr class="cart-wishlist-item">
@@ -68,12 +68,12 @@
                       <a href="#/"><i class="fa fa-trash-o"></i></a>
                     </td>
                     <td class="product-thumb">
-                      <a href="single-product.html">
+                      <a href="single-product.php">
                         <img src="assets/img/shop/product-mini/2.webp" width="90" height="110" alt="Image-HasTech">
                       </a>
                     </td>
                     <td class="product-name">
-                      <h4 class="title"><a href="single-product.html">Quickiin Mens shoes</a></h4>
+                      <h4 class="title"><a href="single-product.php">Quickiin Mens shoes</a></h4>
                     </td>
                     <td class="product-stock-status">
                       <span class="stock">In Stock</span>
@@ -82,7 +82,7 @@
                       <span class="price">£69.99</span>
                     </td>
                     <td class="product-action">
-                      <a class="btn-cart" href="shop-cart.html">Add to cart</a>
+                      <a class="btn-cart" href="shop-cart.php">Add to cart</a>
                     </td>
                   </tr>
                   <tr class="cart-wishlist-item">
@@ -90,12 +90,12 @@
                       <a href="#/"><i class="fa fa-trash-o"></i></a>
                     </td>
                     <td class="product-thumb">
-                      <a href="single-product.html">
+                      <a href="single-product.php">
                         <img src="assets/img/shop/product-mini/3.webp" width="90" height="110" alt="Image-HasTech">
                       </a>
                     </td>
                     <td class="product-name">
-                      <h4 class="title"><a href="single-product.html">Rexpo Womens shoes</a></h4>
+                      <h4 class="title"><a href="single-product.php">Rexpo Womens shoes</a></h4>
                     </td>
                     <td class="product-stock-status">
                       <span class="stock">In Stock</span>
@@ -104,7 +104,7 @@
                       <span class="price">£39.99</span>
                     </td>
                     <td class="product-action">
-                      <a class="btn-cart" href="shop-cart.html">Add to cart</a>
+                      <a class="btn-cart" href="shop-cart.php">Add to cart</a>
                     </td>
                   </tr>
                 </tbody>

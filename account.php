@@ -11,7 +11,7 @@
               <h2 class="title" data-aos="fade-down" data-aos-duration="1000">Account</h2>
               <nav class="breadcrumb-area" data-aos="fade-down" data-aos-duration="1200">
                 <ul class="breadcrumb">
-                  <li><a href="index.html">Home</a></li>
+                  <li><a href="index.php">Home</a></li>
                   <li class="breadcrumb-sep">//</li>
                   <li>Account</li>
                 </ul>
@@ -39,7 +39,7 @@
                     <button class="nav-link" id="payment-method-tab" data-bs-toggle="tab" data-bs-target="#payment-method" type="button" role="tab" aria-controls="payment-method" aria-selected="false">Payment Method</button>
                     <button class="nav-link" id="address-edit-tab" data-bs-toggle="tab" data-bs-target="#address-edit" type="button" role="tab" aria-controls="address-edit" aria-selected="false">address</button>
                     <button class="nav-link" id="account-info-tab" data-bs-toggle="tab" data-bs-target="#account-info" type="button" role="tab" aria-controls="account-info" aria-selected="false">Account Details</button>
-                    <button class="nav-link" onclick="window.location.href='account-login.html'" type="button">Logout</button>
+                    <button class="nav-link" onclick="window.location.href='account-login.php'" type="button">Logout</button>
                   </div>
                 </nav>
               </div>
@@ -49,7 +49,7 @@
                     <div class="myaccount-content">
                       <h3>Dashboard</h3>
                       <div class="welcome">
-                        <p>Hello, <strong>Alex Tuntuni</strong> (If Not <strong>Tuntuni !</strong><a href="account-login.html" class="logout"> Logout</a>)</p>
+                        <p>Hello, <strong>Alex Tuntuni</strong> (If Not <strong>Tuntuni !</strong><a href="account-login.php" class="logout"> Logout</a>)</p>
                       </div>
                       <p>From your account dashboard. you can easily check & view your recent orders, manage your shipping and billing addresses and edit your password and account details.</p>
                     </div>
@@ -74,21 +74,21 @@
                               <td>Aug 22, 2018</td>
                               <td>Pending</td>
                               <td>$3000</td>
-                              <td><a href="shop-cart.html" class="check-btn sqr-btn ">View</a></td>
+                              <td><a href="shop-cart.php" class="check-btn sqr-btn ">View</a></td>
                             </tr>
                             <tr>
                               <td>2</td>
                               <td>July 22, 2018</td>
                               <td>Approved</td>
                               <td>$200</td>
-                              <td><a href="shop-cart.html" class="check-btn sqr-btn ">View</a></td>
+                              <td><a href="shop-cart.php" class="check-btn sqr-btn ">View</a></td>
                             </tr>
                             <tr>
                               <td>3</td>
                               <td>June 12, 2017</td>
                               <td>On Hold</td>
                               <td>$990</td>
-                              <td><a href="shop-cart.html" class="check-btn sqr-btn ">View</a></td>
+                              <td><a href="shop-cart.php" class="check-btn sqr-btn ">View</a></td>
                             </tr>
                           </tbody>
                         </table>
