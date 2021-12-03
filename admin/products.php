@@ -1,3 +1,32 @@
+<?php
+   require_once('../includes/db.php');
+   
+   if(isset($_POST['product_submit'])){
+		// $product_image = $_FILES['avatar'];
+		$product_name  = $_POST['product_name'];
+		$product_price  = $_POST['price'];
+		$product_category  = $_POST['category'];
+		$product_sub_category  = $_POST['subcategory'];
+		$rand = rand(1,99999);
+		$product_image=$rand.$_FILES["avatar"]["name"];
+        $destination = "assets/media/avatars/".$rand.$_FILES["avatar"]["name"];
+
+		if(move_uploaded_file($_FILES["avatar"]["tmp_name"],$destination)){
+			echo  "<h1>image uploaded</h1>";
+			}
+			else{
+			echo "<h1>image not uploaded</h1>";
+			}
+        
+			$strt = $connection->prepare("INSERT INTO products (product_name, product_price) 
+			VALUES ('{$product_name}', '{$product_price}')");
+			$strt->execute();
+			header("location:productss.php");
+	}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang=en>
 <?php include_once 'layouts/head.php'; ?>
@@ -56,12 +85,12 @@
 														</div>
 													</div>
 													<div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-														<form id=kt_modal_add_product_form class=form action=#>
+														<form id=kt_modal_add_product_form class=form method="POST">
 															<div class="d-flex flex-column scroll-y me-n7 pe-7" id=kt_modal_add_product_scroll data-kt-scroll=true data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height=auto data-kt-scroll-dependencies=#kt_modal_add_product_header data-kt-scroll-wrappers=#kt_modal_add_product_scroll data-kt-scroll-offset=300px>
 																<div class="fv-row mb-7">
 																	<label class="d-block fw-bold fs-6 mb-5">Image</label>
 																	<div class="image-input image-input-outline" data-kt-image-input=true style="background-image: url(assets/media/avatars/blank.png)">
-																		<div class="image-input-wrapper w-125px h-125px" style="background-image: url(assets/media/avatars/150-1.jpg)"></div>
+																		<div class="image-input-wrapper w-125px h-125px" style="background-image: url(assets/media/avatars/blank.png)"></div>
 																		<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=change data-bs-toggle=tooltip title="Change avatar"><i class="bi bi-pencil-fill fs-7"></i> <input type=file name=avatar accept=".png, .jpg, .jpeg"> <input type=hidden name="avatar_remove"></label><span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=cancel data-bs-toggle=tooltip title="Cancel avatar"><i class="bi bi-x fs-2"></i></span> <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=remove data-bs-toggle=tooltip title="Remove avatar"><i class="bi bi-x fs-2"></i></span>
 																	</div>
 																	<div class=form-text>Allowed file types: png, jpg, jpeg.</div>
@@ -91,7 +120,7 @@
 																	</select>
 																</div>
 															</div>
-															<div class="text-center pt-15"><button type=reset class="btn btn-light me-3" data-kt-products-modal-action=cancel>Discard</button> <button type=submit class="btn btn-primary" data-kt-products-modal-action=submit><span class=indicator-label>Submit</span> <span class=indicator-progress>Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span></button></div>
+															<div class="text-center pt-15"><button type=reset class="btn btn-light me-3" data-kt-products-modal-action=cancel>Discard</button> <button type=submit class="btn btn-primary" name="product_submit"><span class=indicator-label>Submit</span> <span class=indicator-progress>Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span></button></div>
 														</form>
 													</div>
 												</div>
@@ -107,11 +136,12 @@
 													<div class="form-check form-check-sm form-check-custom form-check-solid me-3"><input class=form-check-input type=checkbox data-kt-check=true data-kt-check-target="#kt_table_products .form-check-input" value="1"></div>
 												</th>
 												<th class=min-w-125px>ID</th>
-												<th class=min-w-125px>Thumbnail</th>
 												<th class=min-w-125px>Name</th>
 												<th class=min-w-125px>price</th>
+												<th class=min-w-125px>Image</th>
 												<th class=min-w-125px>Category</th>
-												<th class="text-end min-w-100px">Actions</th>
+												<th class=min-w-125px>Sub-Category</th>
+												<!-- <th class="text-end min-w-100px">Actions</th> -->
 											</tr>
 										</thead>
 										<tbody class="text-gray-600 fw-bold">
