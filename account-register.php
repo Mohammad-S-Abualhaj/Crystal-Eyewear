@@ -69,9 +69,9 @@
                     <div class="form-group">
                       <label for="password_confirmation">Confirm Password <span class="required">*</span></label>
                       <input id="password_confirmation" class="form-control" name="password_confirmation" type="password">
-                        <?php if(isset($_GET["password_confirmation"])):?>
-                            <span class="text-danger"><?php echo $_GET["password_confirmation"]; ?></span>
-                        <?php endif; ?>
+                                <?php if(isset($_GET["password_confirmation"])):?>
+                                    <span class="text-danger"><?php echo $_GET["password_confirmation"]; ?></span>
+                                <?php endif; ?>
                     </div>
                   </div>
                   <div class="col-12">

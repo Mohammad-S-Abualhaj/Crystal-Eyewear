@@ -92,7 +92,7 @@ if(isset($_POST['login_submit'])){
 
 }
     else{
-        header("Location:index.php?username=please enter valid username or email");
+        header("Location:../account-login.php?username=please enter valid username or email");
     }
 }
 //---------------------------------

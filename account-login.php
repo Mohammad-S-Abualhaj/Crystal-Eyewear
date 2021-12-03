@@ -44,12 +44,21 @@
                     <div class="form-group">
                       <label for="username">Name or email address <span class="required">*</span></label>
                       <input id="username" class="form-control" type="text" name="username">
+                        <?php if(isset($_GET["username"])):?>
+                            <span class="text-danger"><?php echo $_GET["username"]; ?></span>
+                        <?php endif; ?>
+                        <?php if(isset($_GET["email"])):?>
+                            <span class="text-danger"><?php echo $_GET["email"]; ?></span>
+                        <?php endif; ?>
                     </div>
                   </div>
                   <div class="col-12">
                     <div class="form-group">
                       <label for="password">Password <span class="required">*</span></label>
                       <input id="password" name="password" class="form-control" type="password">
+                        <?php if(isset($_GET["password"])):?>
+                            <span class="text-danger"><?php echo $_GET["password"]; ?></span>
+                        <?php endif; ?>
                     </div>
                   </div>
                   <div class="col-12">
