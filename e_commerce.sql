@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2021 at 07:29 PM
+-- Generation Time: Dec 03, 2021 at 12:45 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -20,21 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `e_commerce`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `admin`
---
-
-CREATE TABLE `admin` (
-  `id` int(5) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
-  `phone` int(14) NOT NULL,
-  `image` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -111,12 +96,11 @@ CREATE TABLE `sub_category` (
 
 CREATE TABLE `user` (
   `id` int(5) NOT NULL,
+  `username` varchar(32) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `middle_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
-  `phone` int(14) NOT NULL,
-  `image` varchar(255) NOT NULL
+  `image` varchar(255) NOT NULL,
+  `role` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -130,18 +114,13 @@ CREATE TABLE `user_checkout` (
   `street_address` varchar(100) NOT NULL,
   `city` varchar(50) NOT NULL,
   `country` varchar(50) NOT NULL,
+  `phone` int(14) NOT NULL,
   `total_price` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `category`
@@ -177,23 +156,19 @@ ALTER TABLE `sub_category`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indexes for table `user_checkout`
 --
 ALTER TABLE `user_checkout`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `phone` (`phone`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -245,7 +220,8 @@ ALTER TABLE `user_checkout`
 -- Constraints for table `order_summary`
 --
 ALTER TABLE `order_summary`
-  ADD CONSTRAINT `order_summary_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `order_summary_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `order_summary_ibfk_2` FOREIGN KEY (`id`) REFERENCES `user_checkout` (`id`);
 
 --
 -- Constraints for table `products`
