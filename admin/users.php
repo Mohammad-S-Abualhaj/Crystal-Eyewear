@@ -1,3 +1,29 @@
+<?php
+	include_once '../includes/db.php';
+
+	if(isset($_POST["submit"])){
+		$rand = rand(1,99999);
+		$userName  = $_POST["user_name"];
+		$userEmail = $_POST["user_email"];
+		$password = $_POST["password"];
+		$userRole = $_POST["user_role"];
+		$userImage=$rand.$_FILES["image"]["name"];
+		$destination = "assets/media/avatars/".$rand.$_FILES["image"]["name"];
+
+		if(move_uploaded_file($_FILES["image"]["tmp_name"],$destination)){
+			echo  "<h1>image uploaded</h1>";
+			}
+			else{
+			echo "<h1>image not uploaded</h1>";
+			}
+		$strt = $connection->prepare("INSERT INTO user (username,email,password,role,image) 
+		VALUES ('{$userName}','{$userEmail}','{$password}','{$userRole}','{$userImage}')");
+		$strt->execute();
+		header("location:users.php");
+	}
+
+
+?>
 <!DOCTYPE html>
 <html lang=en>
 <?php include_once 'layouts/head.php'; ?>
@@ -71,24 +97,27 @@
 															</span>
 														</div>
 													</div>
+
+													<!-- model starts here for user info -->
 													<div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-														<form id=kt_modal_add_user_form class=form action=#>
+														<form id=kt_modal_add_user_form class=form action=# method="post" enctype="multipart/form-data">
 															<div class="d-flex flex-column scroll-y me-n7 pe-7" id=kt_modal_add_user_scroll data-kt-scroll=true data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height=auto data-kt-scroll-dependencies=#kt_modal_add_user_header data-kt-scroll-wrappers=#kt_modal_add_user_scroll data-kt-scroll-offset=300px>
 																<div class="fv-row mb-7">
 																	<label class="d-block fw-bold fs-6 mb-5">Avatar</label>
 																	<div class="image-input image-input-outline" data-kt-image-input=true style="background-image: url(assets/media/avatars/blank.png)">
-																		<div class="image-input-wrapper w-125px h-125px" style="background-image: url(assets/media/avatars/150-1.jpg)"></div>
-																		<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=change data-bs-toggle=tooltip title="Change avatar"><i class="bi bi-pencil-fill fs-7"></i> <input type=file name=avatar accept=".png, .jpg, .jpeg"> <input type=hidden name="avatar_remove"></label><span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=cancel data-bs-toggle=tooltip title="Cancel avatar"><i class="bi bi-x fs-2"></i></span> <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=remove data-bs-toggle=tooltip title="Remove avatar"><i class="bi bi-x fs-2"></i></span>
+		<!-- ************************************************************--><div class="image-input-wrapper w-125px h-125px" style="background-image: url(<?php ?>)" ></div> 
+																		<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=change data-bs-toggle=tooltip title="Change avatar"><i class="bi bi-pencil-fill fs-7"></i> <input type="file" name="image" accept=".png, .jpg, .jpeg" class="form-control-file"> <input type=hidden name="avatar_remove"></label><span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=cancel data-bs-toggle=tooltip title="Cancel avatar"><i class="bi bi-x fs-2"></i></span> <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=remove data-bs-toggle=tooltip title="Remove avatar"><i class="bi bi-x fs-2"></i></span>
 																	</div>
 																	<div class=form-text>Allowed file types: png, jpg, jpeg.</div>
 																</div>
-																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Full Name</label><input name=user_name class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Full name" value="Emma Smith"></div>
-																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Email</label><input type=email name=user_email class="form-control form-control-solid mb-3 mb-lg-0" placeholder=example@domain.com value="e.smith@kpmg.com.au"></div>
+																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Full Name</label><input name= "user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Full name" ></div>
+																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Email</label><input type=email name=user_email class="form-control form-control-solid mb-3 mb-lg-0" placeholder=example@domain.com ></div>
+																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Password</label><input type=password name=password class="form-control form-control-solid mb-3 mb-lg-0" placeholder=password ></div>
 																<div class=mb-7>
 																	<label class="required fw-bold fs-6 mb-5">Role</label>
 																	<div class="d-flex fv-row">
 																		<div class="form-check form-check-custom form-check-solid">
-																			<input class="form-check-input me-3" name=user_role type=radio value=0 id=kt_modal_update_role_option_0 checked>
+																			<input class="form-check-input me-3" name=user_role type=radio value=1 id=kt_modal_update_role_option_0 checked>
 																			<label class=form-check-label for=kt_modal_update_role_option_0>
 																				<div class="fw-bolder text-gray-800">Administrator</div>
 																				<div class=text-gray-600>Best for business owners and company administrators</div>
@@ -98,7 +127,7 @@
 																	<div class="separator separator-dashed my-5"></div>
 																	<div class="d-flex fv-row">
 																		<div class="form-check form-check-custom form-check-solid">
-																			<input class="form-check-input me-3" name=user_role type=radio value=1 id="kt_modal_update_role_option_1">
+																			<input class="form-check-input me-3" name=user_role type=radio value=0 id="kt_modal_update_role_option_1">
 																			<label class=form-check-label for=kt_modal_update_role_option_1>
 																				<div class="fw-bolder text-gray-800">Member</div>
 																				<div class=text-gray-600>Best for normal user</div>
@@ -107,9 +136,13 @@
 																	</div>
 																</div>
 															</div>
-															<div class="text-center pt-15"><button type=reset class="btn btn-light me-3" data-kt-users-modal-action=cancel>Discard</button> <button type=submit class="btn btn-primary" data-kt-users-modal-action=submit><span class=indicator-label>Submit</span> <span class=indicator-progress>Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span></button></div>
+															<div class="text-center pt-15"><button type=reset class="btn btn-light me-3" data-kt-users-modal-action=cancel>Discard</button> 
+															<button name="submit" type="submit" class="btn btn-primary"><span class=indicator-label>Submit</span> 
+															<span class=indicator-progress>Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span></button></div>
 														</form>
 													</div>
+
+
 												</div>
 											</div>
 										</div>
@@ -119,35 +152,31 @@
 									<table class="table align-middle table-row-dashed fs-6 gy-5" id=kt_table_users>
 										<thead>
 											<tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
-												<th class="w-10px pe-2">
-													<div class="form-check form-check-sm form-check-custom form-check-solid me-3"><input class=form-check-input type=checkbox data-kt-check=true data-kt-check-target="#kt_table_users .form-check-input" value="1"></div>
-												</th>
 												<th class=min-w-125px>ID</th>
-												<th class=min-w-125px>Thumbnail</th>
 												<th class=min-w-125px>Full Name</th>
 												<th class=min-w-125px>Email</th>
+												<th class=min-w-125px>Image</th>
 												<th class=min-w-125px>Role</th>
-												<th class=min-w-125px>Created</th>
-												<th class="text-end min-w-100px">Actions</th>
 											</tr>
 										</thead>
+												<?php
+													$sql = $connection->prepare("SELECT * FROM user");
+													$sql->execute();
+													$result = $sql->fetchAll(PDO::FETCH_ASSOC);
+													foreach ($result as $user) {
+
+												?>			
 										<tbody class="text-gray-600 fw-bold">
 											<tr>
-												<td>
-													<div class="form-check form-check-sm form-check-custom form-check-solid"><input class=form-check-input type=checkbox value="1"></div>
-												</td>
-												<td>1</td>
-												<td class="d-flex align-items-center">
-													<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-														<a href=../../demo1/dist/apps/user-management/users/view.html>
-															<div class=symbol-label><img src=assets/media/avatars/150-1.jpg alt="Emma Smith" class="w-100"></div>
-														</a>
-													</div>
-												</td>
-												<td><a href=../../demo1/dist/apps/user-management/users/view.html>Emma Smith</a></td>
-												<td>e.smith@kpmg.com.au</td>
-												<td>Admin</td>
-												<td>10 Mar 2021, 11:30 am</td>
+												<td><?php echo $user["id"];?></td>
+												<td><?php echo $user["username"];?></td>
+												<td><?php echo $user["email"];?></td>
+												<td> <img src="assets/media/avatars/<?php echo $user["image"] ?>" alt="this is a beautiful image" width="100px" height="100px"></td>
+												<td><?php if($user["role"] == 1){
+																echo "Admin";
+															}else{
+																echo "User";
+															}?></td>
 												<td class="pe-0 text-end">
 													<a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#kt_modal_new_card">
 														<span data-bs-toggle="tooltip" data-bs-trigger="hover" title="" data-bs-original-title="Edit" aria-describedby="tooltip35159">
@@ -178,6 +207,7 @@
 													</a>
 												</td>
 											</tr>
+											<?php }?>
 										</tbody>
 									</table>
 								</div>
