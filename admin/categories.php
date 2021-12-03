@@ -12,6 +12,9 @@ if(isset($_POST['add_category_submit'])){
 	header('location:categories.php');
 }
 
+// for delete a user
+$delete=$connection->prepare("DELETE FROM category WHERE id ={$_GET['category_id']}");
+  $delete->execute();
 ?>
 
 <body id=kt_body class="header-fixed header-tablet-and-mobile-fixed aside-enabled aside-fixed" style=--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px>
@@ -181,7 +184,7 @@ if(isset($_POST['add_category_submit'])){
 															</span>
 														</span>
 													</a>
-													<a href="manageUsers.php?edit_user_id=<?php echo $row ["user_id"]?>" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="tooltip" title="" data-kt-delete="delete_row" data-bs-original-title="Delete">
+													<a href="categories.php?category_id=<?php echo $cat ["id"]?>" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="tooltip" title="" data-kt-delete="delete_row" data-bs-original-title="Delete">
 														<span class="svg-icon svg-icon-3">
 															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 																<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="black"></path>
