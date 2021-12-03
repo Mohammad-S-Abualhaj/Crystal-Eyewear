@@ -1,6 +1,6 @@
   <!--== header master-page ==-->
 <?php
-    include("./includes/public-header.php");
+    include("includes/public-header.php");
 ?>
   <!--== End Header Wrapper ==-->
   
