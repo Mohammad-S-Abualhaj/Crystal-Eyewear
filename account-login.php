@@ -38,7 +38,7 @@
         <div class="row">
           <div class="col-12">
             <div class="login-form-content">
-              <form action="includes/logic.php" method="post">
+              <form class="login_form" action="includes/logic.php" method="post">
                 <div class="row">
                   <div class="col-12">
                     <div class="form-group">

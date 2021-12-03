@@ -1,4 +1,4 @@
-function signupValidation(){
+
    
     //define html elements
     const fullName=document.querySelector('#username');
@@ -7,7 +7,10 @@ function signupValidation(){
     const passwordConfirmation=document.querySelector('#password_confirmation');
    
     const btnRegister=document.querySelector('.btn-register');
+    const btnLogin=document.querySelector('.btn-login');
     const signupForm=document.getElementById('form');
+    const loginForm=document.querySelector('.login_form');
+    
 
     
     
@@ -39,7 +42,7 @@ function signupValidation(){
         return (/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z])/).test(pass)
     }
     function validateUsername(username) {
-        return /^[0-9a-zA-Z_.-]+$/.test(username);
+        return /^[a-zA-Z]+$/.test(username);
     }
     let emailCheck=false;
     //let phoneCheck=false;
@@ -137,63 +140,99 @@ function signupValidation(){
         
 }
 
-fullName.addEventListener('blur',()=>{
-    checkEmpty('username',fullName);
 
-})
-password.addEventListener('blur',()=>{
-    checkEmpty('password',password);
-
-})
-email.addEventListener('blur',()=>{
-    checkEmpty('email',email);
-
-})
-passwordConfirmation.addEventListener('blur',()=>{
-   
-    checkEmpty('passwordConfirmation',passwordConfirmation);
-})
    
 function submitForm(form) {
     var submitFormFunction = Object.getPrototypeOf(form).submit;
     submitFormFunction.call(form);
 }
 
-btnRegister.addEventListener('click',(e)=>{
-    
-    const validate=emailCheck && passwordCheck && fullNameCheck && passwordConfirmationCheck;
 
-    if(!validate){
-        e.preventDefault();
+
+    function signupValidation(){
+        fullName.addEventListener('blur',()=>{
+            checkEmpty('username',fullName);
+
+        })
+        password.addEventListener('blur',()=>{
+            checkEmpty('password',password);
+
+        })
+        email.addEventListener('blur',()=>{
+            checkEmpty('email',email);
+
+        })
+        passwordConfirmation.addEventListener('blur',()=>{
+
+            checkEmpty('passwordConfirmation',passwordConfirmation);
+        })
+        btnRegister.addEventListener('click',(e)=>{
+
+            const validate=emailCheck && passwordCheck && fullNameCheck && passwordConfirmationCheck;
+
+            if(!validate){
+                e.preventDefault();
+            }
+            else{
+                submitForm(signupForm);
+            }
+
+        })
+
     }
-    else{
-        submitForm(signupForm);
-    }
 
-})
-
-
-}
 //initiate the signup logic only when we are in signup page
 const signupFormEl=document.querySelector('.signup_form');
 if(signupFormEl){
     signupValidation()
 }
-/*function changeUrl(){
-    var currentURL = window.location.href;
-    var index = currentURL.indexOf("?");
-    window.location.href = currentURL.substring(0, index);
-    console.log("hello");
+//?------------------------------END OF SIGNUP LOGIC-----------------------------------
+function loginValidation(){
+    fullName.addEventListener('blur',()=>{
+        
+            if(fullName.value===""){
+                fullNameCheck=false;
+                renderError("shouldn't be empty",fullName,'username')
+            }
+            else{
+                fullNameCheck=true
+                removeError(fullName,'username')
+            }
+        
+        
+        
+
+    })
+    password.addEventListener('blur',()=>{
+        checkEmpty('password',password);
+
+    })
+
+    btnLogin.addEventListener('click',(e)=>{
+       
+
+        const validate=(emailCheck || fullNameCheck) && passwordCheck;
+
+        if(!validate){
+            e.preventDefault();
+            if(!passwordCheck){
+                checkEmpty('password',password);
+            }
+            if(!fullNameCheck){
+                renderError("shouldn't be empty",fullName,'username')
+            }
+            
+        
+            
+        }
+        else{
+            submitForm(signupForm);
+        }
+
+    })
 
 }
-window.addEventListener("load",()={
-    changeUrl();
-})*/
 
-
-
-
-
-
-
-//?------------------------------END OF SIGNUP LOGIC-----------------------------------
+if(loginForm){
+    loginValidation();
+}
