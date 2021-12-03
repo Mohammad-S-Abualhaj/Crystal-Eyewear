@@ -9,7 +9,7 @@ if (isset($_POST["submit"])) {
 	$product_category  = $_POST['category'];
 	$product_sub_category  = $_POST['subcategory'];
 	$product_image = $rand . $_FILES["image"]["name"];
-	$destination = "assets/media/avatars/" . $rand . $_FILES["image"]["name"];
+	$destination = "assets/media/products_images/" . $rand . $_FILES["image"]["name"];
 
 	if (move_uploaded_file($_FILES["image"]["tmp_name"], $destination)) {
 		echo  "<h1>image uploaded</h1>";
