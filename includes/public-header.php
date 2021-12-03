@@ -130,10 +130,8 @@
             <div class="header-align">
               <div class="header-navigation-area position-relative">
                 <ul class="main-menu nav">
-                  <li class="has-submenu"><a href="#/"><span>Home</span></a>
+                  <li class="has-submenu"><a href="index.php"><span>Home</span></a>
                     <ul class="submenu-nav">
-                      <li><a href="index.php"><span>Home One</span></a></li>
-                      <li><a href="index-two.php"><span>Home Two</span></a></li>
                     </ul>
                   </li>
                   <li><a href="about-us.php"><span>About</span></a></li>
@@ -170,16 +168,7 @@
                   </li>
                   <li class="has-submenu"><a href="#/"><span>Blog</span></a>
                     <ul class="submenu-nav submenu-nav-mega">
-                      <li class="mega-menu-item"><a href="#/" class="mega-title">Blog Layout</a>
-                        <ul>
-                          <li><a href="blog-left-sidebar.php">Blog Left Sidebar</a></li>
-                        </ul>
-                      </li>
-                      <li class="mega-menu-item"><a href="#/" class="mega-title">Single Blog</a>
-                        <ul>
-                          <li><a href="blog-details-left-sidebar.php">Blog Details Left Sidebar</a></li>
-                        </ul>
-                      </li>
+                      <li class="mega-menu-item"><a href="blog-left-sidebar" class="mega-title">Blog Layout</a></li>
                     </ul>
                   </li>
                   <li><a href="contact.php"><span>Contact</span></a></li>
