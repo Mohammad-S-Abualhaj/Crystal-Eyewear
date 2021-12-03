@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2021 at 12:45 PM
+-- Generation Time: Dec 03, 2021 at 05:18 PM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 7.3.31
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,6 +34,13 @@ CREATE TABLE `category` (
   `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `name`, `description`, `image`) VALUES
+(1, 'sunglasses', 'dfvogbjbklsnfe sd', '');
+
 -- --------------------------------------------------------
 
 --
@@ -60,7 +67,9 @@ CREATE TABLE `products` (
   `price` varchar(50) NOT NULL,
   `image` varchar(255) NOT NULL,
   `on_sale` tinyint(1) NOT NULL,
-  `new_arraival` tinyint(1) NOT NULL
+  `new_arraival` tinyint(1) NOT NULL,
+  `category_id` int(5) NOT NULL,
+  `sub_category_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -103,6 +112,13 @@ CREATE TABLE `user` (
   `role` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `image`, `role`) VALUES
+(1, 'awni', 'awni.rifai1998@gmail.com', '722e7450dc0c64c5e87ed11ed2c0ab99', '', '');
+
 -- --------------------------------------------------------
 
 --
@@ -138,7 +154,9 @@ ALTER TABLE `order_summary`
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `products_ibfk_1` (`category_id`),
+  ADD KEY `sub_category_id` (`sub_category_id`);
 
 --
 -- Indexes for table `product_review`
@@ -174,7 +192,7 @@ ALTER TABLE `user_checkout`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `order_summary`
@@ -204,7 +222,7 @@ ALTER TABLE `sub_category`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user_checkout`
@@ -227,7 +245,8 @@ ALTER TABLE `order_summary`
 -- Constraints for table `products`
 --
 ALTER TABLE `products`
-  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`id`) REFERENCES `sub_category` (`id`);
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
+  ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`sub_category_id`) REFERENCES `sub_category` (`id`);
 
 --
 -- Constraints for table `product_review`
