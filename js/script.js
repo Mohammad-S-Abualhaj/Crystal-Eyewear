@@ -165,8 +165,9 @@ btnRegister.addEventListener('click',(e)=>{
 
     if(!validate){
         e.preventDefault();
-       
-
+    }
+    else{
+        submitForm(signupForm);
     }
 
 })

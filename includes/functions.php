@@ -29,6 +29,22 @@ function validate_password($password){
     return $passwordCheck;
 
 }
+function validate_username($username){
+    global $errors,$usernameCheck,$validation_array;
+    if (preg_match("
+    /^[0-9a-zA-Z_.-]+$/", $username)) {
+        $usernameCheck = true;
+    }
+    else{
+        $usernameCheck=false;
+        $errors['username']='username is not valid';
+    }
+
+        //push every validation to the array and check it
+        //using validate_all_parms();
+        $validation_array[]=$usernameCheck;
+        return $usernameCheck;
+}
 function validate_email         ($email)                          {
     global $emailCheck,$errors,$validation_array;
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -39,6 +55,7 @@ function validate_email         ($email)                          {
         $errors["email"]="The email is not valid";
     }
     $validation_array[]=$emailCheck;
+    return $emailCheck;
 
 
 }

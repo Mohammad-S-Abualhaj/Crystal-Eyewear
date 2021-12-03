@@ -1,6 +1,6 @@
-<?php
-    include("./includes/public-header.php");
-?>
+
+<?php require_once "includes/public-header.php"?>
+  <!--== End Header Wrapper ==-->
   <main class="main-content">
     <!--== Start Page Header Area Wrapper ==-->
     <div class="page-header-area" data-bg-img="assets/img/photos/bg3.webp">
@@ -36,7 +36,7 @@
         <div class="row">
           <div class="col-12">
             <div class="register-form-content">
-              <form action="includes/signup_inc.php" method="post" class="signup_form">
+              <form action="includes/logic.php" method="post" class="signup_form">
                 <div class="row">
                   <div class="col-12">
                     <div class="form-group">
@@ -76,7 +76,7 @@
                   </div>
                   <div class="col-12">
                     <div class="form-group mb--0">
-                      <button class="btn-register" type="submit" name="submit">Register</button>
+                      <button class="btn-register" type="submit" name="register_submit">Register</button>
                     </div>
                   </div>
                 </div>
