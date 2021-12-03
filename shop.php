@@ -1,5 +1,10 @@
 <?php
 include("./includes/public-header.php");
+require_once "includes/db.php";
+$satatement=$connection->prepare("SELECT * FROM products INNER JOIN category ON products.category_id=category.category_id");
+$satatement->execute();
+$products=$satatement->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
     <main class="main-content">
     <!--== Start Page Header Area Wrapper ==-->
@@ -72,12 +77,12 @@ include("./includes/public-header.php");
             <div class="inner-content">
                 <div class="product-thumb">
                     <a href="single-product.php">
-                        <img src="<?php echo $product['image']; ?>" width="270" height="274" alt="Image-HasTech">
+                        <img src="<?php echo $product['product_image']; ?>" width="270" height="274" alt="Image-HasTech">
                     </a>
-                    <?php if ($product['on_sale']): ?>
+                    <?php if ($product['product_on_sale']): ?>
                         <div class="product-flag">
                             <ul>
-                                <li class="discount">-10%</li>
+                                <li class="discount">-<?php echo $product['product_percentage_price']?>%</li>
                             </ul>
                         </div>
                     <?php endif; ?>
@@ -96,17 +101,17 @@ include("./includes/public-header.php");
                 <div class="product-info">
                     <div class="category">
                         <ul>
-                            <li><a href="shop.php"><?php echo $product['category'];?></a></li>
+                            <li><a href="shop.php"><?php echo $product['category_name'];?></a></li>
 
                         </ul>
                     </div>
-                    <h4 class="title"><a href="single-product.php"><?php echo $product['name']; ?>></a></h4>
+                    <h4 class="title"><a href="single-normal-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name']; ?>></a></h4>
                     <div class="prices">
-                        <?php if($product['on_sale']) :?>
-                        <span class="price-old">$300</span>
+                        <?php if($product['product_on_sale']) :?>
+                        <span class="price-old">$<?php echo $product['product_on_sale'] ?></span>
                         <span class="sep">-</span>
                         <?php endif;?>
-                        <span class="price">$240.00</span>
+                        <span class="price">$<?php echo $product['product_sale_price'] ?></span>
 
                     </div>
                 </div>
