@@ -3,7 +3,7 @@
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
         <a href="/Crystal-Eyewear/admin">
-            <img alt="Logo" src="assets/media/logo.svg" class="h-25px logo" />
+            <img alt="Logo" src="../assets/media/logo.svg" class="h-25px logo" />
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggler-->
