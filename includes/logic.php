@@ -1,107 +1,105 @@
-<?php require_once "db.php";?>
-<?php require_once "functions.php"?>
+<?php require_once "db.php"; ?>
+<?php require_once "functions.php" ?>
 <?php
 //here the red line is not actually a red line it's just from the require
-if(isset($_POST["register_submit"])){
-    $dataArr=getPostData($_POST,['username','email','password','password_confirmation']);
-    $username=$dataArr[0];
-    $email=$dataArr[1];
-    $password=$dataArr[2];
-    $password_confirmation=$dataArr[3];
+if (isset($_POST["register_submit"])) {
+    $dataArr = getPostData($_POST, ['username', 'email', 'password', 'password_confirmation']);
+    $username = $dataArr[0];
+    $email = $dataArr[1];
+    $password = $dataArr[2];
+    $password_confirmation = $dataArr[3];
     validate_password($password);
     validate_email($email);
-    confirm_password($password,$password_confirmation);
-    $validate=validate_all_paramters(...$validation_array);
-    if(!$validate){
-        $query="";
-        foreach ($errors as $error_type=>$error) {
-            $query.="{$error_type}={$error} ";
+    confirm_password($password, $password_confirmation);
+    $validate = validate_all_paramters(...$validation_array);
+    if (!$validate) {
+        $query = "";
+        foreach ($errors as $error_type => $error) {
+            $query .= "{$error_type}={$error} ";
         }
         //send all of the errors at the same time
         header("Location:../account-register.php?{$query}");
         exit;
     }
     //encrypt the password
-    $password=md5($password);
-    checkRepetition_and_showUsers($connection,true,"user",['email','password'],[$email,$password],"../account-register.php");
-    crud($connection,"INSERT","user",['username','email','password'],[$username,$email,$password]);
+    $password = md5($password);
+    checkRepetition_and_showUsers($connection, true, "user", ['email', 'password'], [$email, $password], "../account-register.php");
+    crud($connection, "INSERT", "user", ['username', 'email', 'password'], [$username, $email, $password]);
     header("Location:../account-login.php?register=success");
     exit();
 }
 //login logic
-if(isset($_POST['login_submit']) || (isset($_POST['checkout_login'])) ){
-    $url="";
-    if(isset($_POST['checkout_login'])){
-        $url="shop-checkout.php";
+if (isset($_POST['login_submit']) || (isset($_POST['checkout_login']))) {
+    $url = "";
+    if (isset($_POST['checkout_login'])) {
+        $url = "shop-checkout.php";
     }
-    if(isset($_POST['login_submit'])){
-        $url="account-login.php";
+    if (isset($_POST['login_submit'])) {
+        $url = "account-login.php";
     }
 
-    $returned_array=getPostData($_POST,["username",'password']);
-    $password=$returned_array[1];
+    $returned_array = getPostData($_POST, ["username", 'password']);
+    $password = $returned_array[1];
 //check if the user inputs username or email
-    if(validate_email($returned_array[0])){
-        $email=$returned_array[0];
-        $validate= validate_password($password);
-        if(!$validate){
+    if (validate_email($returned_array[0])) {
+        $email = $returned_array[0];
+        $validate = validate_password($password);
+        if (!$validate) {
             //send all of the errors at the same time
             header("Location:../{$url}?password=password not valid");
             exit;
         }
-        $statement=$connection->prepare("SELECT * FROM user WHERE email=:email");
-        $statement->bindValue(':email',$email);
+        $statement = $connection->prepare("SELECT * FROM user WHERE email=:email");
+        $statement->bindValue(':email', $email);
         $statement->execute();
-        $user_data=$statement->fetch(PDO::FETCH_ASSOC);
-    //return error that the email doesn't exist
-    if(!$user_data){
-        header("Location:../{$url}?email=email doesn't exist");
+        $user_data = $statement->fetch(PDO::FETCH_ASSOC);
+        //return error that the email doesn't exist
+        if (!$user_data) {
+            header("Location:../{$url}?email=email doesn't exist");
+            exit();
+        }
+        $password = md5($password);
+        //return error if the password don't match
+        if ($user_data['password'] !== $password) {
+            header("Location:../{$url}?password=password is wrong");
+            exit();
+        }
+        session_start();
+        $_SESSION['user_loggedin'] = true;
+        header("Location:../{$url}");
         exit();
-    }
-    $password=md5($password);
-    //return error if the password don't match
-    if($user_data['password']!==$password){
-        header("Location:../{$url}?password=password is wrong");
-        exit();
-    }
-    session_start();
-    $_SESSION['user_loggedin']=true;
-    header("Location:../{$url}");
-    exit();
-}
-    elseif(validate_username($returned_array[0])){
-        $username=$returned_array[0];
-        $validate= validate_password($password);
-        if(!$validate){
+    } elseif (validate_username($returned_array[0])) {
+        $username = $returned_array[0];
+        $validate = validate_password($password);
+        if (!$validate) {
             //send all of the errors at the same time
             header("Location:../{$url}?password=password not valid");
             exit;
         }
-        $statement=$connection->prepare("SELECT * FROM user WHERE username=:username");
-       $statement->bindValue(':username',$username);
-       $statement->execute();
-       $user_data=$statement->fetch(PDO::FETCH_ASSOC);
-    //return error that the email doesn't exist
-    if(!$user_data){
-        header("Location:../{$url}?username=username doesn't exist");
-        exit();
-    }
-    $password=md5($password);
-    echo $user_data["password"];
-    //return error if the password don't match
-   if($user_data['password']!==$password){
-        header("Location:../account-login.php?password=password is wrong");
-        exit();
-    }
-    session_start();
-    $_SESSION['user_loggedin']=true;
-    //checkout login
+        $statement = $connection->prepare("SELECT * FROM user WHERE username=:username");
+        $statement->bindValue(':username', $username);
+        $statement->execute();
+        $user_data = $statement->fetch(PDO::FETCH_ASSOC);
+        //return error that the email doesn't exist
+        if (!$user_data) {
+            header("Location:../{$url}?username=username doesn't exist");
+            exit();
+        }
+        $password = md5($password);
+        echo $user_data["password"];
+        //return error if the password don't match
+        if ($user_data['password'] !== $password) {
+            header("Location:../account-login.php?password=password is wrong");
+            exit();
+        }
+        session_start();
+        $_SESSION['user_loggedin'] = true;
+        //checkout login
 
-    header("Location:../{$url}");
-    exit();
+        header("Location:../{$url}");
+        exit();
 
-}
-    else{
+    } else {
         header("Location:../{$url}?username=please enter valid username or email");
     }
 }

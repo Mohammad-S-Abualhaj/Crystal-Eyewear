@@ -10,6 +10,8 @@
     <meta name="description" content="Shome - Shoes eCommerce Website Template"/>
     <meta name="keywords" content="footwear, shoes, modern, shop, store, ecommerce, responsive, e-commerce"/>
     <meta name="author" content="codecarnival"/>
+    <!--        RELOAD              -->
+    <meta http-equiv="refresh" content="900" >
 
     <title>Shome - Shoes eCommerce Website Template</title>
 
