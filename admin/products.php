@@ -4,6 +4,7 @@ include_once '../includes/db.php';
 if (isset($_POST["submit"])) {
 	$product_name  = $_POST['product_name'];
 	$product_price  = $_POST['product_price'];
+	$product_percentage_price  = $_POST['product_percentage_price'];
 	$product_description = $_POST['product_description'];
 	$product_category  = $_POST['category'];
 	$product_sub_category  = $_POST['subcategory'];
@@ -18,9 +19,9 @@ if (isset($_POST["submit"])) {
 	}
 
 	$strt = $connection->prepare("INSERT INTO products (product_name, product_price, product_description, 
-	                             product_image, category_id, sub_category_id) 
+	                             product_image,product_percentage_price, category_id, sub_category_id) 
 		                         VALUES ('{$product_name}',{$product_price},'{$product_description}','{$product_image}', 
-								 '{$product_category}', '{$product_sub_category}')");
+								 '{$product_percentage_price}','{$product_category}', '{$product_sub_category}')");
 
 
 	$strt->execute();
@@ -106,7 +107,7 @@ if ($_GET) {
 											<div class="modal-dialog modal-dialog-centered mw-650px">
 												<div class=modal-content>
 													<div class=modal-header id=kt_modal_add_user_header>
-														<h2 class=fw-bolder>Add User</h2>
+														<h2 class=fw-bolder>Add Product</h2>
 														<div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action=close>
 															<span class="svg-icon svg-icon-1">
 																<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -124,17 +125,18 @@ if ($_GET) {
 																<div class="fv-row mb-7">
 																	<label class="d-block fw-bold fs-6 mb-5">Product Image</label>
 																	<div class="image-input image-input-outline" data-kt-image-input=true style="background-image: url(assets/media/avatars/blank.png)">
-																		<div class="image-input-wrapper w-125px h-125px" style="background-image: url(<?php ?>)"></div>
+																		<div class="image-input-wrapper w-125px h-125px" style="background-image: url(assets/media/products_images/)"></div>
 																		<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=change data-bs-toggle=tooltip title="Change avatar"><i class="bi bi-pencil-fill fs-7"></i> <input type="file" name="image" accept=".png, .jpg, .jpeg" class="form-control-file"> <input type=hidden name="avatar_remove"></label><span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=cancel data-bs-toggle=tooltip title="Cancel avatar"><i class="bi bi-x fs-2"></i></span> <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=remove data-bs-toggle=tooltip title="Remove avatar"><i class="bi bi-x fs-2"></i></span>
 																	</div>
 																	<div class=form-text>Allowed file types: png, jpg, jpeg.</div>
 																</div>
 																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Name</label><input name="product_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="sunglasses"></div>
 																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Price </label><input type=number name="product_price" class="form-control form-control-solid mb-3 mb-lg-0" placeholder=90$></div>
+																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Percentage Price </label><input type=number name="product_percentage_price" class="form-control form-control-solid mb-3 mb-lg-0" placeholder=10%></div>
 																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Description</label><input type=text name="product_description" class="form-control form-control-solid mb-3 mb-lg-0" placeholder=add description></div>
 																<div class=mb-7>
 																	<label class="required fs-6 fw-bold mb-2">Category</label>
-																	<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a Team Member" name="category">
+																	<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Category" name="category">
 																		<option value="">Select Category...</option>
 																		<?php
 																		$sql1 = $connection->prepare("SELECT * FROM category");
@@ -148,7 +150,7 @@ if ($_GET) {
 																</div>
 																<div class=mb-7>
 																	<label class="required fs-6 fw-bold mb-2">Subcategory</label>
-																	<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a Team Member" name="subcategory">
+																	<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Sub Category" name="subcategory">
 																		<option value="">Select Category...</option>
 																		<?php
 																		$sql2 = $connection->prepare("SELECT * FROM sub_category");
@@ -179,6 +181,7 @@ if ($_GET) {
 												<th class=min-w-125px>ID</th>
 												<th class=min-w-125px>Name</th>
 												<th class=min-w-125px>price</th>
+												<th class=min-w-125px>percentage_price</th>
 												<th class=min-w-125px>Image</th>
 												<th class=min-w-125px>Description</th>
 												<th class=min-w-125px>Category</th>
@@ -191,10 +194,6 @@ if ($_GET) {
 																	INNER JOIN sub_category ON sub_category.sub_category_id = products.sub_category_id)");
 										$sql->execute();
 										$result = $sql->fetchAll(PDO::FETCH_ASSOC);
-										// echo "<pre>";
-										// print_r($result);
-										// die;
-										// foreach ($result as $product) {
 										for ($i = 0; $i < count($result); $i++) {
 
 										?>
@@ -203,6 +202,7 @@ if ($_GET) {
 													<td><?php echo $result[$i]["product_id"]; ?></td>
 													<td><?php echo $result[$i]["product_name"]; ?></td>
 													<td><?php echo $result[$i]["product_price"]; ?></td>
+													<td><?php echo $result[$i]["product_percentage_price"];?></td>
 													<td> <img src="assets/media/products_images/<?php echo $result[$i]["product_image"] ?>" alt="this is a beautiful image" width="100px" height="100px"></td>
 													<td><?php echo $result[$i]["product_description"]; ?></td>
 													<td><?php echo $result[$i]["category_name"]; ?></td>
