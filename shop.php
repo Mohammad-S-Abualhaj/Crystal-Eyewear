@@ -77,7 +77,7 @@ $products=$satatement->fetchAll(PDO::FETCH_ASSOC);
             <div class="inner-content">
                 <div class="product-thumb">
                     <a href="single-product.php">
-                        <img src="<?php echo $product['product_image']; ?>" width="270" height="274" alt="Image-HasTech">
+                        <img src="admin/assets/media/products_images/<?php echo $product['product_image']; ?>" width="270" height="274" alt="Image-HasTech">
                     </a>
                     <?php if ($product['product_on_sale']): ?>
                         <div class="product-flag">
@@ -108,10 +108,10 @@ $products=$satatement->fetchAll(PDO::FETCH_ASSOC);
                     <h4 class="title"><a href="single-normal-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name']; ?>></a></h4>
                     <div class="prices">
                         <?php if($product['product_on_sale']) :?>
-                        <span class="price-old">$<?php echo $product['product_on_sale'] ?></span>
+                        <span class="price-old">$<?php echo $product['product_price'] ?></span>
                         <span class="sep">-</span>
                         <?php endif;?>
-                        <span class="price">$<?php echo $product['product_sale_price'] ?></span>
+                        <span class="price">$<?php echo $product['product_sale_price']??$product['product_price'] ?></span>
 
                     </div>
                 </div>

@@ -100,6 +100,9 @@ if (isset($_POST['login_submit']) || (isset($_POST['checkout_login']))) {
         $_SESSION['user_loggedin'] = true;
         $_SESSION['user_name']=$user_data['username'];
         $_SESSION['user_id']=$user_data['id'];
+        if (isset($_POST['login_submit'])) {
+            $url = "index.php";
+        }
         header("Location:../{$url}");
         exit();
         //------------------------------------------------------------------

@@ -6,6 +6,7 @@
 		$userName  = $_POST["user_name"];
 		$userEmail = $_POST["user_email"];
 		$password = $_POST["password"];
+        $password=md5($password);
 		$userRole = $_POST["user_role"];
 		$userImage=$rand.$_FILES["image"]["name"];
 		$destination = "assets/media/avatars/".$rand.$_FILES["image"]["name"];
