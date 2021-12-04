@@ -1,7 +1,27 @@
 <?php
-require_once "includes/functions.php";
-session_timeout(30*60);
+require_once  "includes/db.php";
+require_once  "includes/functions.php";
+$SESSION_TIMEOUT_MINUTES  =15;//minutes
+$EMPTY_BASKET_TIME        =30;//minutes
+session_timeout($SESSION_TIMEOUT_MINUTES,$EMPTY_BASKET_TIME);
+if(isset($_POST['submit_order'])){
+    $user_id=$_POST['user_id'];
+    $country=$_POST['country'];
+    $city=$_POST['city'];
+    $phone=$_POST['phone'];
+    $address_line=$_POST['address_line'];
+//insert to user_checkout
+    crud($connection, "INSERT", "user_checkout",
+        ["checkout_street_address","checkout_city","checkout_country"
+            ,"checkout_phone", "checkout_total_price","user_id"],
+        [$address_line,$city,$country,$phone,$_SESSION['order_total'],$user_id]
+         );
+
+}
+$check_login = $_SESSION['user_loggedin'] ?? null;
+$check_cart  =$_SESSION['shopping_cart']  ?? null;
 include("./includes/public-header.php");
+
 ?>
     <main class="main-content">
         <!--== Start Page Header Area Wrapper ==-->
@@ -33,7 +53,7 @@ include("./includes/public-header.php");
                     <div class="col-12">
                         <div class="checkout-page-login-wrap">
                             <!--== Start Checkout Login Accordion ==-->
-                            <?php $check_login = $_SESSION['user_loggedin'] ?? null; ?>
+
                             <?php if (!$check_login): ?>
                                 <div class="login-accordion" id="LoginAccordion">
                                     <div class="card">
@@ -93,6 +113,7 @@ include("./includes/public-header.php");
                                                         </div>
                                                     </div>
                                                 </form>
+
                                             </div>
                                         </div>
 
@@ -104,100 +125,114 @@ include("./includes/public-header.php");
             </div>
           </div>
         </div>
-          <?php if($check_login): ?>
+                <?php if(!$check_cart): ?>
+                    <div class="alert alert-danger" role="alert">
+                      Your Shopping cart is empty please fill it and come back!
+                    </div>
+                    <a href="shop.php" class="d-block w-25 btn btn-outline-danger m-auto">GO back to the shop</a>
+                <?php endif; ?>
+          <?php if($check_login && $check_cart): ?>
         <div class="row">
           <div class="col-lg-6">
             <!--== Start Billing Accordion ==-->
             <div class="checkout-billing-details-wrap">
               <h2 class="title">Billing details</h2>
-              <span class="username" >Hello <b> mohammad abualhaj</b></span>
+              <span class="username fs-4" >Hello <b class="h3"> <?php echo strtoupper($_SESSION['user_name']) ?></b></span>
 
               <div class="billing-form-wrap">
 
-                <form action="#" method="post">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input id="phone" type="text"  class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label for="country">Country</label>
-                        <input id="country" name="country" type="text"  class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label for="city">City</label>
-                        <input id="city" name="city" type="text"  class="form-control">
-                      </div>
-                    </div>
+                  <form class="checkout_form" action="" method="post">
+                      <div class="row">
+                          <div class="col-md-12">
+                              <div class="form-group">
+                                  <label for="phone">Phone</label>
+                                  <input id="phone" type="tel" name="phone"  class="form-control">
+                                  <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']?>">
+                              </div>
+                          </div>
+                          <div class="col-md-12">
+                              <div class="form-group">
+                                  <label for="country">Country</label>
+                                  <input id="country" name="country" type="text"  class="form-control">
+                              </div>
+                          </div>
+                          <div class="col-md-12">
+                              <div class="form-group">
+                                  <label for="city">City</label>
+                                  <input id="city" name="city" type="text"  class="form-control">
+                              </div>
+                          </div>
 
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label for="address_line">Address line</label>
-                        <input id="address_line" name="address_line" type="text"  class="form-control">
+                          <div class="col-md-12">
+                              <div class="form-group">
+                                  <label for="address_line">Address line</label>
+                                  <input id="address_line" name="address_line" type="text"  class="form-control">
+                              </div>
+                          </div>
+
                       </div>
-                    </div>
-     
-                  </div>
-                </form>
+
               </div>
             </div>
-            <!--== End Billing Accordion ==-->
+              <!--== End Billing Accordion ==-->
           </div>
-          <div class="col-lg-6">
-            <!--== Start Order Details Accordion ==-->
-            <div class="checkout-order-details-wrap">
-              <div class="order-details-table-wrap table-responsive">
-                <h2 class="title mb-25">Your order</h2>
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th class="product-name">Product</th>
-                      <th class="product-total">Total</th>
-                    </tr>
-                  </thead>
-                  <tbody class="table-body">
-                    <tr class="cart-item">
-                      <td class="product-name">Satin gown <span class="product-quantity">× 1</span></td>
-                      <td class="product-total">£69.99</td>
-                    </tr>
-                    <tr class="cart-item">
-                      <td class="product-name">Printed cotton t-shirt <span class="product-quantity">× 1</span></td>
-                      <td class="product-total">£20.00</td>
-                    </tr>
-                  </tbody>
-                  <tfoot class="table-foot">
-                    <tr class="order-total">
-                      <th>Total </th>
-                      <td>£91.99</td>
-                    </tr>
-                  </tfoot>
-                </table>
-                <div class="shop-payment-method">
-                  <div id="PaymentMethodAccordion">
-                    <div class="card">
-                      <div class="card-header" id="check_payments3">
-                        <h5 class="title" data-bs-toggle="collapse" data-bs-target="#itemThree" aria-controls="itemTwo" aria-expanded="false">Cash on delivery</h5>
-                      </div>
-                      <div id="itemThree" class="collapse" aria-labelledby="check_payments3" data-bs-parent="#PaymentMethodAccordion">
-                        <div class="card-body">
-                          <p>Pay with cash upon delivery.</p>
-                        </div>
-                        <!--== End Billing Accordion ==-->
-                    </div>
-                  </div>
-            
-                  <a href="account-login.php" class="btn-theme">Place order</a>
-                </div>
+            <div class="col-lg-6">
+                <!--== Start Order Details Accordion ==-->
+                <div class="checkout-order-details-wrap">
+                    <div class="order-details-table-wrap table-responsive">
+                        <h2 class="title mb-25">Your order</h2>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="product-name">Product</th>
+                                <th class="product-total">Total</th>
+                            </tr>
+                            </thead>
+                            <tbody class="table-body">
+                            <?php
+                            $order_total=0;
+                            foreach ($_SESSION['shopping_cart'] as $product):
+                                $order_total+=$product['product_sale_price']??$product['product_price'];
+                                ?>
+                                <tr class="cart-item">
+                                    <td class="product-name"><?php echo $product['product_name'] ?> <span class="product-quantity">× 1</span></td>
+                                    <td class="product-total">$<?php echo $product['product_sale_price']??$product['product_price'] ?></td>
+                                </tr>
+                            <?php endforeach;
+                            $_SESSION['order_total']=$order_total;
+                            ?>
+
+                            </tbody>
+                            <tfoot class="table-foot">
+                            <tr class="order-total">
+                                <th>Total </th>
+                                <td>$<?php echo $order_total ?></td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                        <div class="shop-payment-method">
+                            <div id="PaymentMethodAccordion">
+                                <div class="card">
+                                    <div class="card-header" id="check_payments3">
+                                        <h5 class="title" data-bs-toggle="collapse" data-bs-target="#itemThree" aria-controls="itemTwo" aria-expanded="false">Cash on delivery</h5>
+                                    </div>
+                                    <div id="itemThree" class="collapse" aria-labelledby="check_payments3" data-bs-parent="#PaymentMethodAccordion">
+                                        <div class="card-body">
+                                            <p>Pay with cash upon delivery.</p>
+                                        </div>
+                                        <!--== End Billing Accordion ==-->
+                                    </div>
+                                </div>
+
+                                <button type="submit" name="submit_order" class="btn-theme">Place order</button>
+                            </div>
+                  </form>
+
             </div>
         </section>
         <?php endif; ?>
         <!--== End Shopping Checkout Area Wrapper ==-->
     </main>
 <?php
-include("./includes/public-footer.php");
+include("includes/public-footer.php");
 ?>

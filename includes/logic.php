@@ -66,6 +66,7 @@ if (isset($_POST['login_submit']) || (isset($_POST['checkout_login']))) {
         }
         session_start();
         $_SESSION['user_loggedin'] = true;
+        $_SESSION['user_name']=$user_data['name'];
         header("Location:../{$url}");
         exit();
     } elseif (validate_username($returned_array[0])) {
@@ -80,6 +81,7 @@ if (isset($_POST['login_submit']) || (isset($_POST['checkout_login']))) {
         $statement->bindValue(':username', $username);
         $statement->execute();
         $user_data = $statement->fetch(PDO::FETCH_ASSOC);
+
         //return error that the email doesn't exist
         if (!$user_data) {
             header("Location:../{$url}?username=username doesn't exist");
@@ -92,12 +94,15 @@ if (isset($_POST['login_submit']) || (isset($_POST['checkout_login']))) {
             header("Location:../account-login.php?password=password is wrong");
             exit();
         }
+        //--------------------------------------------------------
+        //LOGIN SUCCEEDED
         session_start();
         $_SESSION['user_loggedin'] = true;
-        //checkout login
-
+        $_SESSION['user_name']=$user_data['username'];
+        $_SESSION['user_id']=$user_data['id'];
         header("Location:../{$url}");
         exit();
+        //------------------------------------------------------------------
 
     } else {
         header("Location:../{$url}?username=please enter valid username or email");

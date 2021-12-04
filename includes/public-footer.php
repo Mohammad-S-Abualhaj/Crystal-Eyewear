@@ -318,6 +318,7 @@
 
 <!--=======================Javascript============================-->
 
+
 <!--=== jQuery Modernizr Min Js ===-->
 <script src="assets/js/modernizr.js"></script>
 <!--=== jQuery Min Js ===-->
@@ -344,7 +345,8 @@
 <!--=== jQuery Custom Js ===-->
 <script src="assets/js/custom.js"></script>
 <!---       MAIN SCRIPT             -->
-  <script src="js/script.js"></script>
+<script src="js/script.js"></script>
+
 </body>
 
 

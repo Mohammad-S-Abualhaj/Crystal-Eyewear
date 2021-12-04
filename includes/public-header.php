@@ -1,3 +1,4 @@
+<?php $RELOAD_TIMEOUT_MINUTES=30;//minutes ?>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -11,7 +12,7 @@
     <meta name="keywords" content="footwear, shoes, modern, shop, store, ecommerce, responsive, e-commerce"/>
     <meta name="author" content="codecarnival"/>
     <!--        RELOAD              -->
-    <meta http-equiv="refresh" content="900" >
+    <meta http-equiv="refresh" content="<?php echo $RELOAD_TIMEOUT_MINUTES ?>" >
 
     <title>Shome - Shoes eCommerce Website Template</title>
 
@@ -38,6 +39,7 @@
 
     <!--== Main Style CSS ==-->
     <link href="assets/css/style.css" rel="stylesheet" />
+    
 
     <!--[if lt IE 9]>
     <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>

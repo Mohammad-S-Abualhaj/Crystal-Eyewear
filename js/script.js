@@ -10,6 +10,8 @@
     const btnLogin=document.querySelector('.btn-login');
     const signupForm=document.getElementById('form');
     const loginForm=document.querySelector('.login_form');
+    const checkoutForm=document.querySelector('.checkout_form');
+    
     
 
     
@@ -31,7 +33,7 @@
         return re.test(String(email).toLowerCase());
     }
     function validateMobile(num){
-        return (/077[0-9]{7}$/gm).test(num)
+        return (/^[077|079|078]+[0-9]{7}$/gm).test(num)
     }
     function validateFullName(name){
         return (/^[a-zA-Z]{4,}(?: [a-zA-Z]+){3}$/gm).test(name)
@@ -91,7 +93,7 @@
 
             }
             //?Orange Mobile check
-           /* if(type==="mobile"){
+           if(type==="mobile"){
                 if(!validateMobile(el.value)){
                     phoneCheck=false;
                     throw new Error ('The mobile should be valid')
@@ -100,7 +102,7 @@
                     phoneCheck=true;
                 }
     
-            }*/
+            }
             if(type==="password"){
                 if(!validatePassword(el.value)){
                     passwordCheck=false;
@@ -236,3 +238,17 @@ function loginValidation(){
 if(loginForm){
     loginValidation();
 }
+//---------------------------------------------------------------------------------
+//?checkout validation
+const checkoutPageValidation=()=>{
+const phone=document.querySelector('#phone');
+phone.addEventListener('blur',()=>{
+    checkEmpty("mobile",phone);
+})
+
+}
+
+if(checkoutForm){
+    checkoutPageValidation();
+}
+

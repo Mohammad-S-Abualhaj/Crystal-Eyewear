@@ -257,15 +257,22 @@ function getPostData($post, $dataArr)
 }
 
 //session started in this function
-function session_timeout($time)
+//automatic logout of the user after $time
+//empty the basket after $basket time
+function session_timeout($time,$basket_time)
 {
     session_start();
     if (!isset($_SESSION['start'])) {
         $_SESSION['start'] = time();
 
     }
-    if (time() > $_SESSION['start'] + $time) {
+    if (time() > $_SESSION['start'] + $time*60) {
         $_SESSION['user_loggedin'] = false;
+        $_SESSION['start'] = time();
+    }
+    if (time() > $_SESSION['start'] + $basket_time*60) {
+        //remove the basket after $basket_time
+       unset($_SESSION['shopping_cart']);
         $_SESSION['start'] = time();
     }
 }
