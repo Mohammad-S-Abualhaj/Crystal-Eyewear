@@ -10,7 +10,7 @@ if (isset($_POST["submit"])) {
 	$rand = rand(1, 99999);
 	$product_image = $rand . $_FILES["image"]["name"];
 	$destination = "assets/media/products_images/" . $rand . $_FILES["image"]["name"];
-	
+
 	if (move_uploaded_file($_FILES["image"]["tmp_name"], $destination)) {
 		echo  "<h1>image uploaded</h1>";
 	} else {
@@ -21,40 +21,57 @@ if (isset($_POST["submit"])) {
 	                             product_image, category_id, sub_category_id) 
 		                         VALUES ('{$product_name}',{$product_price},'{$product_description}','{$product_image}', 
 								 '{$product_category}', '{$product_sub_category}')");
+
+
 	$strt->execute();
+
 	header("location:products.php");
 }
+$stmt = $connection->prepare('SELECT * FROM products');
+$stmt->execute();
+$all_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+if ($_GET) {
+	$id = $_GET['product_id'];
+	$delete = $connection->prepare(
+		"DELETE FROM products WHERE product_id ='{$id}'"
+	);
+	$delete->execute();
+	header('location:products.php');
+}
+// echo "<pre>";
+// print_r($all_products);
+// die();
 ?>
 <!DOCTYPE html>
 <html lang=en>
-	<?php include_once 'layouts/head.php'; ?>
-	
-	<body id=kt_body class="header-fixed header-tablet-and-mobile-fixed aside-enabled aside-fixed" style=--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px>
-		<div class="d-flex flex-column flex-root">
-			<div class="page d-flex flex-row flex-column-fluid">
-				<?php include_once 'layouts/aside.php'; ?>
-				<div class="wrapper d-flex flex-column flex-row-fluid" id=kt_wrapper>
-					<?php include_once 'layouts/header.php'; ?>
-					<div class="content d-flex flex-column flex-column-fluid" id=kt_content>
-						<div class="post d-flex flex-column-fluid" id=kt_post>
-							<div id=kt_content_container class=container-xxl>
-								<div class=card>
-									<div class="card-header border-0 pt-6">
-										<div class=card-title>
-											<div class="d-flex align-items-center position-relative my-1">
-												<span class="svg-icon svg-icon-1 position-absolute ms-6">
-													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-														<rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="black" />
-														<path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="black" />
-													</svg>
-												</span>
-												<input data-kt-user-table-filter=search class="form-control form-control-solid w-250px ps-14" placeholder="Search user">
-											</div>
+<?php include_once 'layouts/head.php'; ?>
+
+<body id=kt_body class="header-fixed header-tablet-and-mobile-fixed aside-enabled aside-fixed" style=--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px>
+	<div class="d-flex flex-column flex-root">
+		<div class="page d-flex flex-row flex-column-fluid">
+			<?php include_once 'layouts/aside.php'; ?>
+			<div class="wrapper d-flex flex-column flex-row-fluid" id=kt_wrapper>
+				<?php include_once 'layouts/header.php'; ?>
+				<div class="content d-flex flex-column flex-column-fluid" id=kt_content>
+					<div class="post d-flex flex-column-fluid" id=kt_post>
+						<div id=kt_content_container class=container-xxl>
+							<div class=card>
+								<div class="card-header border-0 pt-6">
+									<div class=card-title>
+										<div class="d-flex align-items-center position-relative my-1">
+											<span class="svg-icon svg-icon-1 position-absolute ms-6">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+													<rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="black" />
+													<path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="black" />
+												</svg>
+											</span>
+											<input data-kt-user-table-filter=search class="form-control form-control-solid w-250px ps-14" placeholder="Search user">
 										</div>
-										<div class=card-toolbar>
-											<div class="d-flex justify-content-end" data-kt-user-table-toolbar=base>
-												<button type=button class="btn btn-primary" data-bs-toggle=modal data-bs-target=#kt_modal_add_user>
+									</div>
+									<div class=card-toolbar>
+										<div class="d-flex justify-content-end" data-kt-user-table-toolbar=base>
+											<button type=button class="btn btn-primary" data-bs-toggle=modal data-bs-target=#kt_modal_add_user>
 												<span class="svg-icon svg-icon-2">
 													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 														<rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="black" />
@@ -99,7 +116,7 @@ if (isset($_POST["submit"])) {
 															</span>
 														</div>
 													</div>
-													
+
 													<!-- model starts here for user info -->
 													<div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
 														<form id=kt_modal_add_user_form class=form action=# method="post" enctype="multipart/form-data">
@@ -119,35 +136,35 @@ if (isset($_POST["submit"])) {
 																	<label class="required fs-6 fw-bold mb-2">Category</label>
 																	<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a Team Member" name="category">
 																		<option value="">Select Category...</option>
-																		<?php 
+																		<?php
 																		$sql1 = $connection->prepare("SELECT * FROM category");
 																		$sql1->execute();
 																		$result1 = $sql1->fetchAll(PDO::FETCH_ASSOC);
 																		foreach ($result1 as $category) {
-																			?>
-																			<option value = "<?php echo $category['category_id']?>"><?php echo $category['category_name']?></option>;
-																			<?php }?>
-																		</select>
-																	</div>
-																	<div class=mb-7>
+																		?>
+																			<option value="<?php echo $category['category_id'] ?>"><?php echo $category['category_name'] ?></option>;
+																		<?php } ?>
+																	</select>
+																</div>
+																<div class=mb-7>
 																	<label class="required fs-6 fw-bold mb-2">Subcategory</label>
 																	<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a Team Member" name="subcategory">
 																		<option value="">Select Category...</option>
-																		<?php 
+																		<?php
 																		$sql2 = $connection->prepare("SELECT * FROM sub_category");
 																		$sql2->execute();
 																		$result2 = $sql2->fetchAll(PDO::FETCH_ASSOC);
 																		foreach ($result2 as $sub_category) {
-																			?>
-																			<option value = "<?php echo $sub_category['sub_category_id']?>"><?php echo $sub_category['sub_category_name']?></option>;
-																			<?php }?>
-																		</select>
-																	</div>
+																		?>
+																			<option value="<?php echo $sub_category['sub_category_id'] ?>"><?php echo $sub_category['sub_category_name'] ?></option>;
+																		<?php } ?>
+																	</select>
 																</div>
+															</div>
 															<div class="text-center pt-15"><button type=reset class="btn btn-light me-3" data-kt-users-modal-action=cancel>Discard</button>
-															<button name="submit" type="submit" class="btn btn-primary"><span class=indicator-label>Submit</span>
-															<span class=indicator-progress>Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span></button>
-																</div>
+																<button name="submit" type="submit" class="btn btn-primary"><span class=indicator-label>Submit</span>
+																	<span class=indicator-progress>Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span></button>
+															</div>
 														</form>
 													</div>
 												</div>
@@ -178,9 +195,9 @@ if (isset($_POST["submit"])) {
 										// print_r($result);
 										// die;
 										// foreach ($result as $product) {
-											for($i = 0; $i<count($result); $i++){
-											
-											?>
+										for ($i = 0; $i < count($result); $i++) {
+
+										?>
 											<tbody class="text-gray-600 fw-bold">
 												<tr>
 													<td><?php echo $result[$i]["product_id"]; ?></td>
@@ -191,7 +208,7 @@ if (isset($_POST["submit"])) {
 													<td><?php echo $result[$i]["category_name"]; ?></td>
 													<td><?php echo $result[$i]["sub_category_name"]; ?></td>
 													<td class="pe-0 text-end">
-														<a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#kt_modal_new_card">
+														<a href="edit/product.php?product_id=<?php echo $result[$i]["product_id"]; ?>" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
 															<span data-bs-toggle="tooltip" data-bs-trigger="hover" title="" data-bs-original-title="Edit" aria-describedby="tooltip35159">
 																<span class="svg-icon svg-icon-3">
 																	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -201,15 +218,7 @@ if (isset($_POST["submit"])) {
 																</span>
 															</span>
 														</a>
-														<a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="tooltip" title="" data-kt-customer-payment-method="View" data-bs-original-title="View">
-															<span class="svg-icon svg-icon-muted svg-icon-3">
-																<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																	<path d="M13 21H3C2.4 21 2 20.6 2 20V4C2 3.4 2.4 3 3 3H13C13.6 3 14 3.4 14 4V20C14 20.6 13.6 21 13 21Z" fill="black"></path>
-																	<path opacity="0.3" d="M17 21H21C21.6 21 22 20.6 22 20V4C22 3.4 21.6 3 21 3H17C16.4 3 16 3.4 16 4V20C16 20.6 16.4 21 17 21Z" fill="black"></path>
-																</svg>
-															</span>
-														</a>
-														<a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="tooltip" title="" data-kt-delete="delete_row" data-bs-original-title="Delete">
+														<a href="products.php?product_id=<?php echo $result[$i]["product_id"]; ?>" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="tooltip" title="" data-kt-delete="delete_row" data-bs-original-title="Delete" name="delete">
 															<span class="svg-icon svg-icon-3">
 																<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 																	<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="black"></path>
