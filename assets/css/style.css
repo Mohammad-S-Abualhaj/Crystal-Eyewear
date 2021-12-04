@@ -5784,6 +5784,8 @@ table p {
   font-size: 20px;
   position: relative;
   padding-bottom: 12px;
+}
+.username {
   margin-bottom: 45px;
 }
 .shopping-checkout-wrap .title:before {
