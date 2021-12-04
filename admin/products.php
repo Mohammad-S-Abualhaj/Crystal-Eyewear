@@ -2,12 +2,12 @@
 include_once '../includes/db.php';
 
 if (isset($_POST["submit"])) {
-	$rand = rand(1, 99999);
 	$product_name  = $_POST['product_name'];
 	$product_price  = $_POST['product_price'];
 	$product_description = $_POST['product_description'];
 	$product_category  = $_POST['category'];
 	$product_sub_category  = $_POST['subcategory'];
+	$rand = rand(1, 99999);
 	$product_image = $rand . $_FILES["image"]["name"];
 	$destination = "assets/media/products_images/" . $rand . $_FILES["image"]["name"];
 	
@@ -16,29 +16,14 @@ if (isset($_POST["submit"])) {
 	} else {
 		echo "<h1>image not uploaded</h1>";
 	}
-    //Searching for category id
-	// $sql = $connection->prepare("SELECT * FROM category");
-	// $sql->execute();
-	// $result = $sql->fetchAll(PDO::FETCH_ASSOC);
-	// foreach ($result as $category) {
-	// 	if($product_category === $category['category_name'])
-	// 	$category_id = $category['id'];
-	// }
-    //Searching for sub-category id
-	// $sql = $connection->prepare("SELECT * FROM sub_category");
-	// $sql->execute();
-	// $result = $sql->fetchAll(PDO::FETCH_ASSOC);
-	// foreach ($result as $sub_category) {
-	// 	if($product_sub_category === $sub_category['sub_category_name'])
-	// 	$sub_category_id = $sub_category['id'];
-	// }
-	
-	$strt = $connection->prepare("INSERT INTO products (product_name, product_price, product_description, product_image) 
-		VALUES ('{$product_name}',{$product_price},'{$product_description}','{$product_image}')");
+
+	$strt = $connection->prepare("INSERT INTO products (product_name, product_price, product_description, 
+	                             product_image, category_id, sub_category_id) 
+		                         VALUES ('{$product_name}',{$product_price},'{$product_description}','{$product_image}', 
+								 '{$product_category}', '{$product_sub_category}')");
 	$strt->execute();
 	header("location:products.php");
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -184,21 +169,27 @@ if (isset($_POST["submit"])) {
 											</tr>
 										</thead>
 										<?php
-										$sql = $connection->prepare("SELECT * FROM products INNER JOIN category ON category.category_id = products.category_id");
+										$sql = $connection->prepare("SELECT * FROM ((products
+																	INNER JOIN category ON category.category_id = products.category_id)
+																	INNER JOIN sub_category ON sub_category.sub_category_id = products.sub_category_id)");
 										$sql->execute();
 										$result = $sql->fetchAll(PDO::FETCH_ASSOC);
 										// echo "<pre>";
 										// print_r($result);
 										// die;
-										foreach ($result as $product) {
+										// foreach ($result as $product) {
+											for($i = 0; $i<count($result); $i++){
+											
 											?>
 											<tbody class="text-gray-600 fw-bold">
 												<tr>
-													<td><?php echo $product["product_id"]; ?></td>
-													<td><?php echo $product["product_name"]; ?></td>
-													<td><?php echo $product["product_price"]; ?></td>
-													<td> <img src="assets/media/avatars/<?php echo $product["product_image"] ?>" alt="this is a beautiful image" width="100px" height="100px"></td>
-													<td><?php echo $product["product_description"]; ?></td>
+													<td><?php echo $result[$i]["product_id"]; ?></td>
+													<td><?php echo $result[$i]["product_name"]; ?></td>
+													<td><?php echo $result[$i]["product_price"]; ?></td>
+													<td> <img src="assets/media/products_images/<?php echo $result[$i]["product_image"] ?>" alt="this is a beautiful image" width="100px" height="100px"></td>
+													<td><?php echo $result[$i]["product_description"]; ?></td>
+													<td><?php echo $result[$i]["category_name"]; ?></td>
+													<td><?php echo $result[$i]["sub_category_name"]; ?></td>
 													<td class="pe-0 text-end">
 														<a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#kt_modal_new_card">
 															<span data-bs-toggle="tooltip" data-bs-trigger="hover" title="" data-bs-original-title="Edit" aria-describedby="tooltip35159">
