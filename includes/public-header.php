@@ -1,4 +1,4 @@
-<?php $RELOAD_TIMEOUT_MINUTES=30;//minutes ?>
+<?php $RELOAD_TIMEOUT_MINUTES=15*60;//minutes ?>
 <!DOCTYPE html>
 <html lang="zxx">
 

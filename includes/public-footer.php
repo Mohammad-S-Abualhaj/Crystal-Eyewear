@@ -345,7 +345,8 @@
 <!--=== jQuery Custom Js ===-->
 <script src="assets/js/custom.js"></script>
 <!---       MAIN SCRIPT             -->
-<script src="js/script.js"></script>
+<script src="js/main_app.js"></script>
+
 
 </body>
 
