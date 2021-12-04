@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2021 at 04:41 PM
+-- Generation Time: Dec 04, 2021 at 05:51 PM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- PHP Version: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -54,7 +54,13 @@ CREATE TABLE `order_summary` (
   `order_total_price` varchar(50) NOT NULL,
   `cart_after_shopping` varchar(500) NOT NULL,
   `user_checkout` int(5) NOT NULL,
-  `user_id` int(5) NOT NULL
+  `user_id` int(5) NOT NULL,
+  `checkout_street_address` varchar(100) NOT NULL,
+  `checkout_city` varchar(50) NOT NULL,
+  `checkout_country` varchar(50) NOT NULL,
+  `checkout_phone` int(14) NOT NULL,
+  `checkout_total_price` int(10) NOT NULL,
+  `date_of_creation` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -171,22 +177,6 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `username`, `email`, `password`, `image`, `role`) VALUES
 (3, '', '', '', '56767562276_1625201284267.jpg', '');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `user_checkout`
---
-
-CREATE TABLE `user_checkout` (
-  `checkout_id` int(5) NOT NULL,
-  `checkout_street_address` varchar(100) NOT NULL,
-  `checkout_city` varchar(50) NOT NULL,
-  `checkout_country` varchar(50) NOT NULL,
-  `checkout_phone` int(14) NOT NULL,
-  `checkout_total_price` varchar(50) NOT NULL,
-  `user_id` int(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 --
 -- Indexes for dumped tables
 --
@@ -235,14 +225,6 @@ ALTER TABLE `user`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `user_checkout`
---
-ALTER TABLE `user_checkout`
-  ADD PRIMARY KEY (`checkout_id`),
-  ADD UNIQUE KEY `phone` (`checkout_phone`),
-  ADD KEY `user_checkout_ibfk_1` (`user_id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -283,12 +265,6 @@ ALTER TABLE `user`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `user_checkout`
---
-ALTER TABLE `user_checkout`
-  MODIFY `checkout_id` int(5) NOT NULL AUTO_INCREMENT;
-
---
 -- Constraints for dumped tables
 --
 
@@ -296,7 +272,6 @@ ALTER TABLE `user_checkout`
 -- Constraints for table `order_summary`
 --
 ALTER TABLE `order_summary`
-  ADD CONSTRAINT `order_summary_ibfk_1` FOREIGN KEY (`user_checkout`) REFERENCES `user_checkout` (`checkout_id`),
   ADD CONSTRAINT `order_summary_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
@@ -317,12 +292,6 @@ ALTER TABLE `product_review`
 --
 ALTER TABLE `sub_category`
   ADD CONSTRAINT `sub_category_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`);
-
---
--- Constraints for table `user_checkout`
---
-ALTER TABLE `user_checkout`
-  ADD CONSTRAINT `user_checkout_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

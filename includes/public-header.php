@@ -147,19 +147,11 @@
                       <li><a href="page-not-found.php"><span>Page Not Found</span></a></li>
                     </ul>
                   </li>
-                  <li class="has-submenu position-static"><a href="#/"><span>Shop</span></a>
+                  <li class="has-submenu position-static"><a href="shop.php"><span>Shop</span></a>
                     <ul class="submenu-nav submenu-nav-mega column-3">
                       <li class="mega-menu-item"><a href="#/" class="mega-title"><span>Shop Layout</span></a>
-                        <ul>
-                          <li><a href="shop.php"><span>Shop Left Sidebar</span></a></li>
-                          <li><a href="shop-right-sidebar.php"><span>Shop Right Sidebar</span></a></li>
-                        </ul>
                       </li>
-                      <li class="mega-menu-item"><a href="#/" class="mega-title"><span>Single Product</span></a>
-                        <ul>
-                          <li><a href="single-normal-product.php"><span>Single Product Normal</span></a></li>
-                          <li><a href="single-group-product.php"><span>Single Product Group</span></a></li>
-                        </ul>
+                      <li class="mega-menu-item"><a href="single-normal-product.php" class="mega-title"><span>Single Product</span></a>
                       </li>
                       <li class="mega-menu-item"><a href="#/" class="mega-title"><span>Others Pages</span></a>
                         <ul>
@@ -170,10 +162,7 @@
                       </li>
                     </ul>
                   </li>
-                  <li class="has-submenu"><a href="#/"><span>Blog</span></a>
-                    <ul class="submenu-nav submenu-nav-mega">
-                      <li class="mega-menu-item"><a href="blog-left-sidebar" class="mega-title">Blog Layout</a></li>
-                    </ul>
+                  <li class="has-submenu"><a href="blog-left-sidebar"><span>Blog</span></a>
                   </li>
                   <li><a href="contact.php"><span>Contact</span></a></li>
                 </ul>
