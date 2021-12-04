@@ -20,10 +20,7 @@ if (isset($_GET['category_id'])) {
         $id = $_GET['category_id'];
         $cat_name = $_POST['category_name'];
         $cat_desc = $_POST['category_desc'];
-        $destination =
-            'admin/assets/media/avatars/' .
-            $rand .
-            $_FILES['category_image']['name'];
+        $destination ='../assets/media/avatars/' .$rand .$_FILES['category_image']['name'];
         $cat_image = $rand . $_FILES['category_image']['name'];
         if (
             move_uploaded_file(
