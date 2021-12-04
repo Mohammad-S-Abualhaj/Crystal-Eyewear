@@ -3,7 +3,20 @@ require_once  "includes/db.php";
 require_once  "includes/functions.php";
 $SESSION_TIMEOUT_MINUTES  =15;//minutes
 $EMPTY_BASKET_TIME        =30;//minutes
+
 session_timeout($SESSION_TIMEOUT_MINUTES,$EMPTY_BASKET_TIME);
+$cart_after_shopping="";
+$i=count($_SESSION["shopping_cart"] );
+$counter=0;
+$comma=",";
+foreach($_SESSION["shopping_cart"] as $product_arr):
+    if($counter===$i-1){
+        $comma=" ";
+    }
+    $cart_after_shopping.="id:{$product_arr['product_id']} name:{$product_arr['product_name']}
+                  price:{$product_arr['product_price']} price_onsale:{$product_arr['product_sale_price']}{$comma}";
+    $counter++;
+endforeach;
 if(isset($_POST['submit_order'])){
     $user_id=$_POST['user_id'];
     $country=$_POST['country'];
@@ -11,11 +24,13 @@ if(isset($_POST['submit_order'])){
     $phone=$_POST['phone'];
     $address_line=$_POST['address_line'];
 //insert to user_checkout
-    crud($connection, "INSERT", "user_checkout",
+    crud($connection, "INSERT", "order_summary",
         ["checkout_street_address","checkout_city","checkout_country"
-            ,"checkout_phone", "checkout_total_price","user_id"],
-        [$address_line,$city,$country,$phone,$_SESSION['order_total'],$user_id]
+            ,"checkout_phone", "order_total_price","user_id","order_status","cart_after_shopping"],
+        [$address_line,$city,$country,$phone,$_SESSION['order_total'],$user_id,"pending",$cart_after_shopping]
          );
+    unset($_SESSION["shopping_cart"]);
+    header("Location:shop.php");
 
 }
 $check_login = $_SESSION['user_loggedin'] ?? null;
