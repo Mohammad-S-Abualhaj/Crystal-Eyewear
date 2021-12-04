@@ -29,7 +29,15 @@ if(isset($_POST["register_submit"])){
     exit();
 }
 //login logic
-if(isset($_POST['login_submit'])){
+if(isset($_POST['login_submit']) || (isset($_POST['checkout_login'])) ){
+    $url="";
+    if(isset($_POST['checkout_login'])){
+        $url="shop-checkout.php";
+    }
+    if(isset($_POST['login_submit'])){
+        $url="account-login.php";
+    }
+
     $returned_array=getPostData($_POST,["username",'password']);
     $password=$returned_array[1];
 //check if the user inputs username or email
@@ -38,27 +46,27 @@ if(isset($_POST['login_submit'])){
         $validate= validate_password($password);
         if(!$validate){
             //send all of the errors at the same time
-            header("Location:../account-login.php?password=password not valid");
+            header("Location:../{$url}?password=password not valid");
             exit;
         }
         $statement=$connection->prepare("SELECT * FROM user WHERE email=:email");
-    $statement->bindValue(':email',$email);
-    $statement->execute();
-    $user_data=$statement->fetch(PDO::FETCH_ASSOC);
+        $statement->bindValue(':email',$email);
+        $statement->execute();
+        $user_data=$statement->fetch(PDO::FETCH_ASSOC);
     //return error that the email doesn't exist
     if(!$user_data){
-        header("Location:../account-login.php?email=email doesn't exist");
+        header("Location:../{$url}?email=email doesn't exist");
         exit();
     }
     $password=md5($password);
     //return error if the password don't match
     if($user_data['password']!==$password){
-        header("Location:../account-login.php?password=password is wrong");
+        header("Location:../{$url}?password=password is wrong");
         exit();
     }
     session_start();
     $_SESSION['user_loggedin']=true;
-    header("Location:../index.php");
+    header("Location:../{$url}");
     exit();
 }
     elseif(validate_username($returned_array[0])){
@@ -66,7 +74,7 @@ if(isset($_POST['login_submit'])){
         $validate= validate_password($password);
         if(!$validate){
             //send all of the errors at the same time
-            header("Location:../account-login.php?password=password not valid");
+            header("Location:../{$url}?password=password not valid");
             exit;
         }
         $statement=$connection->prepare("SELECT * FROM user WHERE username=:username");
@@ -75,7 +83,7 @@ if(isset($_POST['login_submit'])){
        $user_data=$statement->fetch(PDO::FETCH_ASSOC);
     //return error that the email doesn't exist
     if(!$user_data){
-        header("Location:../account-login.php?username=username doesn't exist");
+        header("Location:../{$url}?username=username doesn't exist");
         exit();
     }
     $password=md5($password);
@@ -87,12 +95,14 @@ if(isset($_POST['login_submit'])){
     }
     session_start();
     $_SESSION['user_loggedin']=true;
-    header("Location:../index.php");
+    //checkout login
+
+    header("Location:../{$url}");
     exit();
 
 }
     else{
-        header("Location:../account-login.php?username=please enter valid username or email");
+        header("Location:../{$url}?username=please enter valid username or email");
     }
 }
 //---------------------------------
