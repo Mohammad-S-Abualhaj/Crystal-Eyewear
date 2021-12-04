@@ -1,5 +1,7 @@
 <?php
+    session_start();
     include("./includes/public-header.php");
+
 ?>
   <main class="main-content">
     <!--== Start Page Header Area Wrapper ==-->
@@ -24,60 +26,71 @@
     <!--== End Page Header Area Wrapper ==-->
 
     <!--== Start Shopping Checkout Area Wrapper ==-->
+
     <section class="shopping-checkout-wrap">
       <div class="container">
         <div class="row">
           <div class="col-12">
             <div class="checkout-page-login-wrap">
               <!--== Start Checkout Login Accordion ==-->
+                <?php  $check_login=$_SESSION['user_loggedin']??null; ?>
+                <?php if(!$check_login): ?>
               <div class="login-accordion" id="LoginAccordion">
                 <div class="card">
                   <h3>
                     <i class="fa fa-info-circle"></i>
-                    Returning customer?
-                    <a href="#/" data-bs-toggle="collapse" data-bs-target="#loginaccordion">Click here to login</a>
+                    you need to log in before placing order
+
                   </h3>
-                  <div id="loginaccordion" class="collapse" data-bs-parent="#LoginAccordion">
+
                     <div class="card-body">
                       <div class="login-wrap">
                         <p>If you have shopped with us before, please enter your details below. If you are a new customer, please proceed to the Billing & Shipping section.</p>
-                        <form action="#" method="post">
+                        <form action="includes/logic.php" method="post">
                           <div class="row">
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label for="logEmail">Username or email <span class="required">*</span></label>
-                                <input id="logEmail" class="form-control" type="email">
+                                <input id="logEmail" class="form-control" name="username" type="text">
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-group left-m">
                                 <label for="logPass">Password <span class="required">*</span></label>
-                                <input id="logPass" class="form-control" type="password">
+                                <input id="logPass" class="form-control" type="password" name="password">
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-group mt-30">
-                                <button class="btn-login">Login</button>
+                                <button name="checkout_login" class="btn-login">Login</button>
                                 <div class="rememberme-account">
                                   <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input visually-hidden" id="remembermePass">
                                     <label class="custom-control-label" for="remembermePass">Remember me</label>
                                   </div>
                                 </div>
-                                <a class="lost-password" href="#">Lost your password?</a>
+                                  <div class="row">
+                                      <div class="col-6"> <a class="lost-password" href="#">Lost your password?</a></div>
+                                      <div class="col-6"> <a href="account-register.php" class="lost-password" href="#">sign up</a></div>
+                                  </div>
+
+
                               </div>
                             </div>
                           </div>
                         </form>
                       </div>
                     </div>
-                  </div>
+
                 </div>
               </div>
+                <?php endif;?>
               <!--== End Checkout Login Accordion ==-->
+
             </div>
           </div>
         </div>
+          <?php if($check_login): ?>
         <div class="row">
           <div class="col-12">
             <div class="checkout-page-coupon-wrap">
@@ -418,6 +431,7 @@
         </div>
       </div>
     </section>
+          <?php endif; ?>
     <!--== End Shopping Checkout Area Wrapper ==-->
   </main>
 <?php
