@@ -29,7 +29,12 @@ if (isset($_GET['product_id'])) {
 		$rand = rand(1, 99999);
 		$product_image = $rand . $_FILES["image"]["name"];
 		$destination = "../assets/media/products_images/" . $rand . $_FILES["image"]["name"];
-	
+	    $image = ",product_image = '{$product_image}'";
+
+        if($_FILES["image"]["size"] == 0){
+			$image = '';
+		}
+
 		if (move_uploaded_file($_FILES["image"]["tmp_name"], $destination)) {
 			echo  "<h1>image uploaded</h1>";
 		} else {
@@ -40,8 +45,7 @@ if (isset($_GET['product_id'])) {
 		                                SET   product_name             ='{$product_name}',
 										      product_price            ='{$product_price}',
 											  product_percentage_price = '{$product_percentage_price}',
-											  product_description      ='{$product_description}',
-											  product_image            =  '{$product_image}',
+											  product_description      ='{$product_description}'{$image},
 											  category_id              = '{$product_category}',
 											 sub_category_id           = '{$product_sub_category}'
 										WHERE product_id               =  {$id}");

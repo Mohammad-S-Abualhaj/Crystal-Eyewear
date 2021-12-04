@@ -202,7 +202,7 @@ if ($_GET) {
 													<td><?php echo $result[$i]["product_id"]; ?></td>
 													<td><?php echo $result[$i]["product_name"]; ?></td>
 													<td><?php echo $result[$i]["product_price"]; ?></td>
-													<td><?php echo $result[$i]["product_percentage_price"];?></td>
+													<td><?php echo $result[$i]["product_percentage_price"]; ?></td>
 													<td> <img src="assets/media/products_images/<?php echo $result[$i]["product_image"] ?>" alt="this is a beautiful image" width="100px" height="100px"></td>
 													<td><?php echo $result[$i]["product_description"]; ?></td>
 													<td><?php echo $result[$i]["category_name"]; ?></td>
