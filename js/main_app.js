@@ -15,8 +15,10 @@
     
 
     
-    
+
     const renderError=function(msg,el,type){
+
+
         const err=document.querySelector(`.${type}1`);
         if(err)return;
         const markup=`<span class="mt-2 ${type}1  text-danger text-bold">${msg}</span>`
@@ -28,12 +30,16 @@
         if(!err)return;
         err.remove()
     }
+
     function validateEmail(email) {
         const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
     }
     function validateMobile(num){
         return (/^[077|079|078]+[0-9]{7}$/gm).test(num)
+    }
+    function validateCountry(country){
+        return (/^[a-zA-Z ]/gm).test(country)
     }
     function validateFullName(name){
         return (/^[a-zA-Z]{4,}(?: [a-zA-Z]+){3}$/gm).test(name)
@@ -47,10 +53,11 @@
         return /^[a-zA-Z]+$/.test(username);
     }
     let emailCheck=false;
-    //let phoneCheck=false;
+    let phoneCheck=false;
     let passwordCheck=false;
     let fullNameCheck=false;
     let checkInputCheck=false;
+    let countryCheck=false;
     let passwordConfirmationCheck=false;
     
     const checkEmpty=function(type,el){
@@ -66,11 +73,16 @@
                 }
     
             }*/
-             if(el.value==="")throw new Error(`The ${type} shouldn't be empty`)
+            
+             if(el.value===""){
+                throw new Error(`The ${type} shouldn't be empty`)
+                 
+             }
             if(el.value!==""){
                 removeError(el,type);
                 
             }
+            
             if(type==="email"){
                 if(!validateEmail(el.value)){
                     emailCheck=false;
@@ -79,6 +91,17 @@
                 }
                 else{
                     emailCheck=true;
+                }
+    
+            }
+            if(type==="country"){
+                if(!validateCountry(el.value)){
+                    countryCheck=false;
+                    throw new Error ('The country is not valid');
+    
+                }
+                else{
+                    countryCheck=true;
                 }
     
             }
@@ -125,6 +148,7 @@
                     throw new Error("password must match")
                 }
             }
+            return true;
            
            
         
@@ -242,9 +266,38 @@ if(loginForm){
 //?checkout validation
 const checkoutPageValidation=()=>{
 const phone=document.querySelector('#phone');
+const country=document.querySelector('#country');
+const city=document.querySelector('#city');
+const adressLine=document.querySelector('#address_line');
+const submitBtn=document.querySelector('[name=submit_order]');
 phone.addEventListener('blur',()=>{
     checkEmpty("mobile",phone);
 })
+country.addEventListener('blur',()=>{
+    checkEmpty("country",country);
+    
+})
+city.addEventListener('blur',()=>{
+    checkEmpty("city",city);
+})
+adressLine.addEventListener('blur',()=>{
+    checkEmpty("adressLine",adressLine);
+})
+submitBtn.addEventListener('click',(e)=>{
+    e.preventDefault();
+   const check1=checkEmpty("mobile",phone);
+   const check2=checkEmpty("city",city);
+   const check3=checkEmpty("country",country);
+   const check4=checkEmpty("adressLine",adressLine);
+   const check=check1 && check2 && check4 && check3
+   if(check){
+       submitForm(checkoutForm)
+   }
+    
+    
+
+})
+
 
 }
 

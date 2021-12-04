@@ -2,7 +2,11 @@
 <html lang=en>
 <?php 
 include_once '../includes/db.php';
+// $id = 2;
 
+// echo "<pre>";
+
+// die;
 if (isset($_POST['add_sub_category_submit'])) {
     $rand = rand(1, 9999);
     $sub_cat_name = $_POST['sub_category_name'];
@@ -25,11 +29,22 @@ if (isset($_POST['add_sub_category_submit'])) {
     header('location:subcategorie.php');
 }
 if ($_GET) {
+	
     $id = $_GET['sub_category_id'];
+	$stmt_product = $connection->prepare("SELECT * FROM products WHERE sub_category_id = {$id}");
+	$stmt_product->execute();
+	$product = $stmt_product->fetchAll(PDO::FETCH_COLUMN);
+	$num_of_products=count($product);
+	if($num_of_products>0){
+		
+		$remove_product_erorr=true;
+	}
+	else{
     $delete = $connection->prepare(
-        "DELETE FROM sub_category WHERE sub_category_id ='{$id}'"
-    );
-    $delete->execute();
+        "DELETE FROM sub_category WHERE sub_category_id ={$id}");
+		$delete->execute();
+		}
+    
 }
 $stmt = $connection->prepare('SELECT * FROM sub_category');
 $stmt->execute();
@@ -41,10 +56,16 @@ $stmt_cat->execute();
 $cats = $stmt_cat->fetchAll(PDO::FETCH_ASSOC);
 
 
+
+
 $sql = $connection->prepare(" SELECT * FROM sub_category INNER JOIN category ON category.category_id = sub_category.category_id ");
 										$sql->execute();
-										$result = $sql->fetchAll(PDO::FETCH_ASSOC);
+									$result = $sql->fetchAll(PDO::FETCH_ASSOC);
 
+
+// 		echo "<pre>";							
+// var_dump($result);
+// die;
 
 
 
@@ -167,6 +188,14 @@ include_once 'layouts/head.php';
 									</div>
 								</div>
 								<div class="card-body pt-0">
+								<?php if (isset($remove_product_erorr)) {?>
+														<div class="alert alert-danger" role="alert">
+														<h4 class="alert-heading">You must delete all products from that related sub categores</h4>
+													  </div>
+													<?php } ?>
+													
+														
+													
 									<table class="table align-middle table-row-dashed fs-6 gy-5" id=kt_table_categorys>
 										<thead>
 											<tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
@@ -175,8 +204,8 @@ include_once 'layouts/head.php';
 												</th>
 												<th class=min-w-125px>ID</th>
 												<th class=min-w-125px>Subcategory Image</th>
+												<th class=min-w-125px>Category</th>
 												<th class=min-w-125px>Subcategory </th>
-												<th class=min-w-125px>Category </th>
 												
 
 												<th class="text-end min-w-100px">Actions</th>
@@ -221,9 +250,13 @@ include_once 'layouts/head.php';
 															</svg>
 														</span>
 													</a>
+													<?php }?>
+													<!-- <span class="aleart"></span> -->
+													
+
 												</td>
 											</tr>
-											<?php }?>
+											
 										</tbody>
 									</table>
 								</div>

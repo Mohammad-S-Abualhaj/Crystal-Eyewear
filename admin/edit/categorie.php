@@ -22,6 +22,11 @@ if (isset($_GET['category_id'])) {
         $cat_desc = $_POST['category_desc'];
         $destination ='../assets/media/avatars/' .$rand .$_FILES['category_image']['name'];
         $cat_image = $rand . $_FILES['category_image']['name'];
+
+		if (($_FILES['sub_category_image']["size"])==0) {
+			$img="";
+		}
+
         if (move_uploaded_file($_FILES['category_image']['tmp_name'],$destination)) {
             echo '<h1>yes upload</h1>';
         } 
