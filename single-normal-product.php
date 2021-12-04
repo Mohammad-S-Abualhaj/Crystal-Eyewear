@@ -1,5 +1,16 @@
 <?php
     include("./includes/public-header.php");
+
+    require_once "includes/db.php";
+    if(isset($_GET['id'])){
+        $id=$_GET['id'];
+        $statement=$connection->prepare("SELECT * from products INNER JOIN category ON products.category_id=category.category_id WHERE product_id=:id ");
+        $statement->bindParam(':id',$id);
+        $statement->execute();
+        $product=$statement->fetch(PDO::FETCH_ASSOC);
+
+
+    }
 ?>
   <main class="main-content">
     <!--== Start Page Header Area Wrapper ==-->
@@ -110,7 +121,7 @@
                           <input type="text" title="Quantity" value="1">
                         </div>
                       </div>
-                      <a class="btn-theme" href="shop-cart.php">Add to Cart</a>
+                      <a class="btn-theme" href="shop-cart.php?id=<?php echo $product['product_id'] ?>">Add to Cart</a>
                     </div>
                     <div class="product-wishlist-compare">
                       <a href="shop-wishlist.php"><i class="pe-7s-like"></i>Add to Wishlist</a>
