@@ -29,7 +29,12 @@ if (isset($_GET['product_id'])) {
 		$rand = rand(1, 99999);
 		$product_image = $rand . $_FILES["image"]["name"];
 		$destination = "../assets/media/products_images/" . $rand . $_FILES["image"]["name"];
-	
+		$image = ",product_image = '{$product_image}'";
+
+		if ($_FILES["image"]["size"] == 0) {
+			$image = '';
+		}
+
 		if (move_uploaded_file($_FILES["image"]["tmp_name"], $destination)) {
 			echo  "<h1>image uploaded</h1>";
 		} else {
@@ -40,8 +45,7 @@ if (isset($_GET['product_id'])) {
 		                                SET   product_name             ='{$product_name}',
 										      product_price            ='{$product_price}',
 											  product_percentage_price = '{$product_percentage_price}',
-											  product_description      ='{$product_description}',
-											  product_image            =  '{$product_image}',
+											  product_description      ='{$product_description}'{$image},
 											  category_id              = '{$product_category}',
 											 sub_category_id           = '{$product_sub_category}'
 										WHERE product_id               =  {$id}");
@@ -73,18 +77,28 @@ if (isset($_GET['product_id'])) {
 											<div class="fv-row mb-7">
 												<label class="d-block fw-bold fs-6 mb-5">Product Image</label>
 												<div class="image-input image-input-outline" data-kt-image-input=true style="background-image: url()">
-													<div class="image-input-wrapper w-125px h-125px" style="background-image: url(../assets/media/products_images/<?php echo $product_edited["product_image"];?>);"></div>
-													<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=change data-bs-toggle=tooltip title="Change avatar"><i class="bi bi-pencil-fill fs-7"></i> <input type="file" name="image" value="<?php echo $product_edited['product_image'];?>" accept=".png, .jpg, .jpeg" class="form-control-file"> <input type=hidden name="avatar_remove"></label><span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=cancel data-bs-toggle=tooltip title="Cancel avatar"><i class="bi bi-x fs-2"></i></span> <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=remove data-bs-toggle=tooltip title="Remove avatar"><i class="bi bi-x fs-2"></i></span>
+													<div class="image-input-wrapper w-125px h-125px" style="background-image: url(../assets/media/products_images/<?php echo $product_edited["product_image"]; ?>);"></div>
+													<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=change data-bs-toggle=tooltip title="Change avatar"><i class="bi bi-pencil-fill fs-7"></i> <input type="file" name="image" value="<?php echo $product_edited['product_image']; ?>" accept=".png, .jpg, .jpeg" class="form-control-file"> <input type=hidden name="avatar_remove"></label><span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=cancel data-bs-toggle=tooltip title="Cancel avatar"><i class="bi bi-x fs-2"></i></span> <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=remove data-bs-toggle=tooltip title="Remove avatar"><i class="bi bi-x fs-2"></i></span>
 												</div>
 												<div class=form-text>Allowed file types: png, jpg, jpeg.</div>
 											</div>
-											<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Name</label><input name="product_name" class="form-control form-control-solid mb-3 mb-lg-0" value="<?php echo $product_edited['product_name'];?>"></div>
-											<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Price </label><input type=number name="product_price" class="form-control form-control-solid mb-3 mb-lg-0" value="<?php echo $product_edited['product_price'];?>"></div>
-											<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Percentage Price </label><input type=number name="product_percentage_price" class="form-control form-control-solid mb-3 mb-lg-0" value="<?php echo $product_edited['product_percentage_price'];?>"></div>
-											<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Description</label><input type=text name="product_description" class="form-control form-control-solid mb-3 mb-lg-0" value="<?php echo $product_edited['product_description'];?>" description></div>
+											<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Name</label><input name="product_name" class="form-control form-control-solid mb-3 mb-lg-0" value="<?php echo $product_edited['product_name']; ?>"></div>
+											<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Price </label><input type=number name="product_price" class="form-control form-control-solid mb-3 mb-lg-0" value="<?php echo $product_edited['product_price']; ?>"></div>
+											<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Percentage Price </label><input type=number name="product_percentage_price" class="form-control form-control-solid mb-3 mb-lg-0" value="<?php echo $product_edited['product_percentage_price']; ?>"></div>
+											<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Description</label><input type=text name="product_description" class="form-control form-control-solid mb-3 mb-lg-0" value="<?php echo $product_edited['product_description']; ?>" description></div>
 											<div class=mb-7>
 												<label class="required fs-6 fw-bold mb-2">Category</label>
-												<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="<?php echo $product_edited['category_id'];?>" name="category">
+												<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="" name="category">
+													<option value="<?php echo $product_edited['category_id']; ?>"><?php
+																													$sql1 = $connection->prepare("SELECT * FROM category");
+																													$sql1->execute();
+																													$result1 = $sql1->fetchAll(PDO::FETCH_ASSOC);
+																													foreach ($result1 as $category) {
+																														if ($product_edited['category_id'] === $category['category_id']) {
+																															echo $category['category_name'];
+																														}
+																													}
+																													?></option>
 													<?php
 													$sql1 = $connection->prepare("SELECT * FROM category");
 													$sql1->execute();
@@ -98,7 +112,16 @@ if (isset($_GET['product_id'])) {
 											<div class=mb-7>
 												<label class="required fs-6 fw-bold mb-2">Subcategory</label>
 												<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="" name="subcategory">
-												
+													<option value="<?php echo $product_edited['sub_category_id']; ?>"><?php
+													$sql1 = $connection->prepare("SELECT * FROM sub_category");
+													$sql1->execute();
+													$result1 = $sql1->fetchAll(PDO::FETCH_ASSOC);
+													foreach ($result1 as $category) {
+														if ($product_edited['sub_category_id'] === $category['sub_category_id']) {
+															echo $category['sub_category_name'];
+														}
+													}
+													?></option>
 													<?php
 													$sql2 = $connection->prepare("SELECT * FROM sub_category");
 													$sql2->execute();
