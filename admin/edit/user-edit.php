@@ -15,19 +15,23 @@
    		$userRole = $_POST["role"];
    		$userImage=$rand.$_FILES["image"]["name"];
    		$destination = "../assets/media/avatars/".$rand.$_FILES["image"]["name"];
-   
-   		if(move_uploaded_file($_FILES["image"]["tmp_name"],$destination)){
-   			echo  "<h1>image uploaded</h1>";
-   			}
-   			else{
-   			echo "<h1>image not uploaded</h1>";
-   			}
-   
+
+         $img = ",image = '{$userImage}'";
+
+         if ($_FILES['image']['size'] == 0) {
+               $img = '';
+         }
+         if(move_uploaded_file($_FILES["image"]["tmp_name"],$destination)){
+               echo  "<h1>image uploaded</h1>";
+         }else{
+               echo "<h1>image not uploaded</h1>";
+               }
+      
    
    		$update = $connection->prepare("UPDATE user SET username = '{$userName}' ,
    		email = '{$userEmail}',
-   		role = '{$userRole}',
-   		image = '{$userImage}' WHERE id={$_GET['id']}");
+   		role = '{$userRole}' {$img}
+   		WHERE id={$_GET['id']}");
    		$update->execute();
    		header("location:../users.php");
    	}
