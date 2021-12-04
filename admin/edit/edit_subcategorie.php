@@ -22,11 +22,8 @@ if (isset($_GET['sub_category_id'])) {
         $id = $_GET['sub_category_id'];
         $sub_cat_name = $_POST['sub_category_name'];
         $sub_cat_desc = $_POST['sub_category_desc'];
-		$cat_name=$_POST['sub_category_select'];
+		$cat_id=$_POST['sub_category_select'];
 
-		// echo "<pre>";
-		// var_dump($cat_name);
-		// die;
         $destination ='../assets/media/avatars/' .$rand .$_FILES['sub_category_image']['name'];
         $sub_cat_image = $rand . $_FILES['sub_category_image']['name'];
         if (move_uploaded_file($_FILES['sub_category_image']['tmp_name'],$destination)) {
@@ -40,10 +37,11 @@ if (isset($_GET['sub_category_id'])) {
         $update = $connection->prepare("UPDATE sub_category SET sub_category_name ='{$sub_cat_name}',
 				 						sub_category_description='{$sub_cat_desc}',
 										 sub_category_image ='{$sub_cat_image}',
-										 category_id='{$cat_name}'
+										 category_id='{$cat_id}'
 										  WHERE sub_category_id={$id}");
         $update->execute();
-        // header('location:subcategorie.php');
+        header('location:../Subcategorie.php');
+	
     }
 }
 

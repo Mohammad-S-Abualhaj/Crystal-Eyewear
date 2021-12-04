@@ -200,7 +200,7 @@ include_once 'layouts/head.php';
 												
 
 												<td class="pe-0 text-end">
-													<a href="edit/edit_subcategorie.php?sub_category_id=<?php echo $cat['category_id']; ?>" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+													<a href="edit/edit_subcategorie.php?sub_category_id=<?php echo $sub_cat['sub_category_id']; ?>" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
 														<span data-bs-toggle="tooltip" data-bs-trigger="hover" title="" data-bs-original-title="Edit" aria-describedby="tooltip35159">
 															<span class="svg-icon svg-icon-3">
 																<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
