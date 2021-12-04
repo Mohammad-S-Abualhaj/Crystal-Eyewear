@@ -1,6 +1,61 @@
 <!DOCTYPE html>
 <html lang=en>
-<?php include_once 'layouts/head.php'; ?>
+<?php 
+include_once '../includes/db.php';
+
+if (isset($_POST['add_sub_category_submit'])) {
+    $rand = rand(1, 9999);
+    $sub_cat_name = $_POST['sub_category_name'];
+    $sub_cat_desc = $_POST['sub_category_description'];
+	$cat_id=$_POST['category_id'];
+    $destination =
+        'assets/media/avatars/' . $rand . $_FILES['sub_category_image']['name'];
+    $sub_cat_image = $rand . $_FILES['sub_category_image']['name'];
+    if (
+        move_uploaded_file($_FILES['sub_category_image']['tmp_name'], $destination)
+    ) {
+        echo '<h1>yes upload</h1>';
+    } else {
+        echo '<h1>not upload</h1>';
+    }
+    $strt = $connection->prepare("INSERT INTO sub_category (sub_category_name,sub_category_description,sub_category_image,category_id)
+								 VALUES ('{$sub_cat_name}','{$sub_cat_desc}','{$sub_cat_image}','{$cat_id}')");
+    $strt->execute();
+
+    header('location:subcategorie.php');
+}
+if ($_GET) {
+    $id = $_GET['sub_category_id'];
+    $delete = $connection->prepare(
+        "DELETE FROM sub_category WHERE sub_category_id ='{$id}'"
+    );
+    $delete->execute();
+}
+$stmt = $connection->prepare('SELECT * FROM sub_category');
+$stmt->execute();
+$sub_cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+$stmt_cat = $connection->prepare('SELECT * FROM category');
+$stmt_cat->execute();
+$cats = $stmt_cat->fetchAll(PDO::FETCH_ASSOC);
+
+
+$sql = $connection->prepare(" SELECT * FROM sub_category INNER JOIN category ON category.category_id = sub_category.category_id ");
+										$sql->execute();
+										$result = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+
+include_once 'layouts/head.php';
+
+
+
+
+
+
+?>
 
 <body id=kt_body class="header-fixed header-tablet-and-mobile-fixed aside-enabled aside-fixed" style=--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px>
 	<div class="d-flex flex-column flex-root">
@@ -35,6 +90,7 @@
 												</span>
 												Add Subcategory
 											</button>
+
 										</div>
 										<div class="d-flex justify-content-end align-items-center d-none" data-kt-category-table-toolbar=selected>
 											<div class="fw-bolder me-5"><span class=me-2 data-kt-category-table-select=selected_count></span>Selected</div>
@@ -55,42 +111,54 @@
 														</div>
 													</div>
 													<div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-														<form id=kt_modal_add_category_form class=form action=#>
+
+
+
+
+
+
+
+
+														<!-- _____________________________________adding sub cat form -->
+														<form id=kt_modal_add_category_form class=form method="post" enctype="multipart/form-data">
 															<div class="d-flex flex-column scroll-y me-n7 pe-7" id=kt_modal_add_category_scroll data-kt-scroll=true data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height=auto data-kt-scroll-dependencies=#kt_modal_add_category_header data-kt-scroll-wrappers=#kt_modal_add_category_scroll data-kt-scroll-offset=300px>
 																<div class="fv-row mb-7">
 																	<label class="d-block fw-bold fs-6 mb-5">Avatar</label>
 																	<div class="image-input image-input-outline" data-kt-image-input=true style="background-image: url(assets/media/avatars/blank.png)">
 																		<div class="image-input-wrapper w-125px h-125px" style="background-image: url(assets/media/avatars/150-1.jpg)"></div>
-																		<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=change data-bs-toggle=tooltip title="Change avatar"><i class="bi bi-pencil-fill fs-7"></i> <input type=file name=avatar accept=".png, .jpg, .jpeg"> <input type=hidden name="avatar_remove"></label><span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=cancel data-bs-toggle=tooltip title="Cancel avatar"><i class="bi bi-x fs-2"></i></span> <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=remove data-bs-toggle=tooltip title="Remove avatar"><i class="bi bi-x fs-2"></i></span>
+																		<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action=change data-bs-toggle=tooltip title="Change avatar"><i class="bi bi-pencil-fill fs-7"></i>
+																		 <input type=file name="sub_category_image" accept=".png, .jpg, .jpeg"> 
+																		 <input type=hidden name="avatar_remove"></label>
+																		 <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+																		  data-kt-image-input-action=cancel data-bs-toggle=tooltip title="Cancel avatar">
+																		  <i class="bi bi-x fs-2"></i></span>
+																		   <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" 
+																		   data-kt-image-input-action=remove data-bs-toggle=tooltip title="Remove avatar">
+																		   <i class="bi bi-x fs-2"></i></span>
 																	</div>
 																	<div class=form-text>Allowed file types: png, jpg, jpeg.</div>
-																</div>
-																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Full Name</label><input name=category_name class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Full name" value="Emma Smith"></div>
-																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Email</label><input type=email name=category_email class="form-control form-control-solid mb-3 mb-lg-0" placeholder=example@domain.com value="e.smith@kpmg.com.au"></div>
+																</div>															
+																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Full Name</label>
+																<input name=sub_category_name class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Full name" value="Emma Smith"></div>
+																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Email</label>
+																<input type=text name=sub_category_description class="form-control form-control-solid mb-3 mb-lg-0" placeholder="category description" value="e.smith@kpmg.com.au"></div>
 																<div class=mb-7>
-																	<label class="required fw-bold fs-6 mb-5">Role</label>
-																	<div class="d-flex fv-row">
-																		<div class="form-check form-check-custom form-check-solid">
-																			<input class="form-check-input me-3" name=category_role type=radio value=0 id=kt_modal_update_role_option_0 checked>
-																			<label class=form-check-label for=kt_modal_update_role_option_0>
-																				<div class="fw-bolder text-gray-800">Administrator</div>
-																				<div class=text-gray-600>Best for business owners and company administrators</div>
-																			</label>
-																		</div>
-																	</div>
-																	<div class="separator separator-dashed my-5"></div>
-																	<div class="d-flex fv-row">
-																		<div class="form-check form-check-custom form-check-solid">
-																			<input class="form-check-input me-3" name=category_role type=radio value=1 id="kt_modal_update_role_option_1">
-																			<label class=form-check-label for=kt_modal_update_role_option_1>
-																				<div class="fw-bolder text-gray-800">Member</div>
-																				<div class=text-gray-600>Best for normal category</div>
-																			</label>
-																		</div>
-																	</div>
+																	<label class="required fs-6 fw-bold mb-2">Category</label>
+																	<select name="category_id" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a Team Member" >
+																		<option >Select Category...</option>
+																		<?php 
+																					foreach ($cats as $cat ) {
+																		?>
+																		<option value="<?php echo $cat['category_id'];?>"><?php echo $cat['category_name'];?></option>
+																		<?php }?>
+																	</select>
 																</div>
 															</div>
-															<div class="text-center pt-15"><button type=reset class="btn btn-light me-3" data-kt-categorys-modal-action=cancel>Discard</button> <button type=submit class="btn btn-primary" data-kt-categorys-modal-action=submit><span class=indicator-label>Submit</span> <span class=indicator-progress>Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span></button></div>
+															<div class="text-center pt-15">
+																<button type=reset class="btn btn-light me-3" data-kt-categorys-modal-action=cancel>Discard</button> 
+																<button type=submit class="btn btn-primary"  name="add_sub_category_submit">
+																	<span class=indicator-label>Submit</span> 
+																	<span class=indicator-progress>Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span></button></div>
 														</form>
 													</div>
 												</div>
@@ -106,29 +174,33 @@
 													<div class="form-check form-check-sm form-check-custom form-check-solid me-3"><input class=form-check-input type=checkbox data-kt-check=true data-kt-check-target="#kt_table_categorys .form-check-input" value="1"></div>
 												</th>
 												<th class=min-w-125px>ID</th>
-												<th class=min-w-125px>Thumbnail</th>
-												<th class=min-w-125px>Category </th>
+												<th class=min-w-125px>Subcategory Image</th>
 												<th class=min-w-125px>Subcategory </th>
+												<th class=min-w-125px>Category </th>
+												
 
 												<th class="text-end min-w-100px">Actions</th>
 											</tr>
 										</thead>
 										<tbody class="text-gray-600 fw-bold">
+
+										<?php foreach ($result as $sub_cat) { ?>
 											<tr>
 											<td>
 													<div class="form-check form-check-sm form-check-custom form-check-solid"><input class=form-check-input type=checkbox value="1"></div>
 												</td>
-												<td>1</td>
+												<td><?php echo $sub_cat['sub_category_id'];?></td>
 												<td class="d-flex align-items-center">
-													<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-															<div class=symbol-label><img src=assets/media/avatars/150-1.jpg alt="Emma Smith" class="w-100"></div>
+													<div class="symbol  symbol-50px overflow-hidden me-3">
+															<div ><img src=assets/media/avatars/<?php echo $sub_cat['sub_category_image'];?> alt="Emma Smith" width="75px" height="75px"></div>
 													</div>
 												</td>
-												<td>Emma Smith</td>
-												<td>Emma Smith</td>
+												<td><?php echo $sub_cat['category_name']; ?></td>
+												<td><?php echo $sub_cat['sub_category_name']; ?></td>
+												
 
 												<td class="pe-0 text-end">
-													<a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#kt_modal_new_card">
+													<a href="edit/edit_subcategorie.php?sub_category_id=<?php echo $cat['category_id']; ?>" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
 														<span data-bs-toggle="tooltip" data-bs-trigger="hover" title="" data-bs-original-title="Edit" aria-describedby="tooltip35159">
 															<span class="svg-icon svg-icon-3">
 																<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -138,7 +210,9 @@
 															</span>
 														</span>
 													</a>
-													<a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="tooltip" title="" data-kt-delete="delete_row" data-bs-original-title="Delete">
+													<a href="subcategorie.php?sub_category_id=<?php echo $sub_cat['sub_category_id'];?>" 
+													class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" 
+													data-bs-toggle="tooltip" title="" data-kt-delete="delete_row" data-bs-original-title="Delete">
 														<span class="svg-icon svg-icon-3">
 															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 																<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="black"></path>
@@ -149,6 +223,7 @@
 													</a>
 												</td>
 											</tr>
+											<?php }?>
 										</tbody>
 									</table>
 								</div>

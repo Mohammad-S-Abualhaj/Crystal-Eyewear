@@ -22,16 +22,11 @@ if (isset($_GET['category_id'])) {
         $cat_desc = $_POST['category_desc'];
         $destination ='../assets/media/avatars/' .$rand .$_FILES['category_image']['name'];
         $cat_image = $rand . $_FILES['category_image']['name'];
-        if (
-            move_uploaded_file(
-                $_FILES['category_image']['tmp_name'],
-                $destination
-            )
-        ) {
+        if (move_uploaded_file($_FILES['category_image']['tmp_name'],$destination)) {
             echo '<h1>yes upload</h1>';
-        } else {
-            echo '<h1>not upload</h1>';
-        }
+        } 
+		else 
+		{echo '<h1>not upload</h1>';}
 
         $update = $connection->prepare("UPDATE category SET category_name ='{$cat_name}',
 				 						category_description='{$cat_desc}',category_image ='{$cat_image}' WHERE category_id={$id}");
@@ -74,9 +69,7 @@ if (isset($_GET['category_id'])) {
 													<label class="col-lg-4 col-form-label fw-bold fs-6">Avatar</label>
 													<div class="col-lg-8">
 														<div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url(../assets/media/avatars/blank.png)">
-															<div class="image-input-wrapper w-125px h-125px" style="background-image: url(../assets/media/avatars/<?php echo $edit_category[
-                   'category_image'
-               ]; ?>)"></div>
+															<div class="image-input-wrapper w-125px h-125px" style="background-image: url(../assets/media/avatars/<?php echo $edit_category['category_image']; ?>)"></div>
 															<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="" data-bs-original-title="Change avatar">
 																<i class="bi bi-pencil-fill fs-7"></i>
 																<input type="file" name="category_image" accept=".png, .jpg, .jpeg">
@@ -98,9 +91,7 @@ if (isset($_GET['category_id'])) {
 														<input type="text" name="category_name" 
 														class="form-control form-control-lg form-control-solid"
 														 placeholder="Company name" 
-														 value="<?php echo isset($edit_category['category_name'])
-                   ? $edit_category['category_name']
-                   : ''; ?>">
+														 value="<?php echo isset($edit_category['category_name']) ? $edit_category['category_name'] : ''; ?>">
 													<div class="fv-plugins-message-container invalid-feedback"></div></div>
 												</div>
 
