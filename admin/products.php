@@ -10,31 +10,31 @@ if (isset($_POST["submit"])) {
 	$product_sub_category  = $_POST['subcategory'];
 	$product_image = $rand . $_FILES["image"]["name"];
 	$destination = "assets/media/products_images/" . $rand . $_FILES["image"]["name"];
-
+	
 	if (move_uploaded_file($_FILES["image"]["tmp_name"], $destination)) {
 		echo  "<h1>image uploaded</h1>";
 	} else {
 		echo "<h1>image not uploaded</h1>";
 	}
-    // Searching for category id
-	$sql = $connection->prepare("SELECT * FROM category");
-	$sql->execute();
-	$result = $sql->fetchAll(PDO::FETCH_ASSOC);
-	foreach ($result as $category) {
-		if($product_category === $category['category_name'])
-           $category_id = $category['id'];
-	}
-    // Searching for sub-category id
-	$sql = $connection->prepare("SELECT * FROM sub_category");
-	$sql->execute();
-	$result = $sql->fetchAll(PDO::FETCH_ASSOC);
-	foreach ($result as $sub_category) {
-		if($product_sub_category === $sub_category['sub_category_name'])
-           $sub_category_id = $sub_category['id'];
-	}
-
-	$strt = $connection->prepare("INSERT INTO products (product_name, product_price, product_description, product_image, category_id, sub_category_id) 
-		VALUES ('{$userName}','{$userEmail}','{$password}','{$userRole}','{$product_image}', '{$category_id}', '{$sub_category_id}')");
+    //Searching for category id
+	// $sql = $connection->prepare("SELECT * FROM category");
+	// $sql->execute();
+	// $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+	// foreach ($result as $category) {
+	// 	if($product_category === $category['category_name'])
+	// 	$category_id = $category['id'];
+	// }
+    //Searching for sub-category id
+	// $sql = $connection->prepare("SELECT * FROM sub_category");
+	// $sql->execute();
+	// $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+	// foreach ($result as $sub_category) {
+	// 	if($product_sub_category === $sub_category['sub_category_name'])
+	// 	$sub_category_id = $sub_category['id'];
+	// }
+	
+	$strt = $connection->prepare("INSERT INTO products (product_name, product_price, product_description, product_image) 
+		VALUES ('{$product_name}',{$product_price},'{$product_description}','{$product_image}')");
 	$strt->execute();
 	header("location:products.php");
 }
@@ -43,33 +43,33 @@ if (isset($_POST["submit"])) {
 ?>
 <!DOCTYPE html>
 <html lang=en>
-<?php include_once 'layouts/head.php'; ?>
-
-<body id=kt_body class="header-fixed header-tablet-and-mobile-fixed aside-enabled aside-fixed" style=--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px>
-	<div class="d-flex flex-column flex-root">
-		<div class="page d-flex flex-row flex-column-fluid">
-			<?php include_once 'layouts/aside.php'; ?>
-			<div class="wrapper d-flex flex-column flex-row-fluid" id=kt_wrapper>
-				<?php include_once 'layouts/header.php'; ?>
-				<div class="content d-flex flex-column flex-column-fluid" id=kt_content>
-					<div class="post d-flex flex-column-fluid" id=kt_post>
-						<div id=kt_content_container class=container-xxl>
-							<div class=card>
-								<div class="card-header border-0 pt-6">
-									<div class=card-title>
-										<div class="d-flex align-items-center position-relative my-1">
-											<span class="svg-icon svg-icon-1 position-absolute ms-6">
-												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-													<rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="black" />
-													<path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="black" />
-												</svg>
-											</span>
-											<input data-kt-user-table-filter=search class="form-control form-control-solid w-250px ps-14" placeholder="Search user">
+	<?php include_once 'layouts/head.php'; ?>
+	
+	<body id=kt_body class="header-fixed header-tablet-and-mobile-fixed aside-enabled aside-fixed" style=--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px>
+		<div class="d-flex flex-column flex-root">
+			<div class="page d-flex flex-row flex-column-fluid">
+				<?php include_once 'layouts/aside.php'; ?>
+				<div class="wrapper d-flex flex-column flex-row-fluid" id=kt_wrapper>
+					<?php include_once 'layouts/header.php'; ?>
+					<div class="content d-flex flex-column flex-column-fluid" id=kt_content>
+						<div class="post d-flex flex-column-fluid" id=kt_post>
+							<div id=kt_content_container class=container-xxl>
+								<div class=card>
+									<div class="card-header border-0 pt-6">
+										<div class=card-title>
+											<div class="d-flex align-items-center position-relative my-1">
+												<span class="svg-icon svg-icon-1 position-absolute ms-6">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+														<rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="black" />
+														<path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="black" />
+													</svg>
+												</span>
+												<input data-kt-user-table-filter=search class="form-control form-control-solid w-250px ps-14" placeholder="Search user">
+											</div>
 										</div>
-									</div>
-									<div class=card-toolbar>
-										<div class="d-flex justify-content-end" data-kt-user-table-toolbar=base>
-											<button type=button class="btn btn-primary" data-bs-toggle=modal data-bs-target=#kt_modal_add_user>
+										<div class=card-toolbar>
+											<div class="d-flex justify-content-end" data-kt-user-table-toolbar=base>
+												<button type=button class="btn btn-primary" data-bs-toggle=modal data-bs-target=#kt_modal_add_user>
 												<span class="svg-icon svg-icon-2">
 													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 														<rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="black" />
@@ -114,7 +114,7 @@ if (isset($_POST["submit"])) {
 															</span>
 														</div>
 													</div>
-
+													
 													<!-- model starts here for user info -->
 													<div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
 														<form id=kt_modal_add_user_form class=form action=# method="post" enctype="multipart/form-data">
@@ -134,33 +134,37 @@ if (isset($_POST["submit"])) {
 																	<label class="required fs-6 fw-bold mb-2">Category</label>
 																	<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a Team Member" name="category">
 																		<option value="">Select Category...</option>
-																		<option value="1">Karina Clark</option>
-																		<option value="2">Robert Doe</option>
-																		<option value="3">Niel Owen</option>
-																		<option value="4">Olivia Wild</option>
-																		<option value="5">Sean Bean</option>
-																	</select>
-																</div>
-																<div class=mb-7>
+																		<?php 
+																		$sql1 = $connection->prepare("SELECT * FROM category");
+																		$sql1->execute();
+																		$result1 = $sql1->fetchAll(PDO::FETCH_ASSOC);
+																		foreach ($result1 as $category) {
+																			?>
+																			<option value = "<?php echo $category['category_id']?>"><?php echo $category['category_name']?></option>;
+																			<?php }?>
+																		</select>
+																	</div>
+																	<div class=mb-7>
 																	<label class="required fs-6 fw-bold mb-2">Subcategory</label>
 																	<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a Team Member" name="subcategory">
 																		<option value="">Select Category...</option>
-																		<option value="1">Karina Clark</option>
-																		<option value="2">Robert Doe</option>
-																		<option value="3">Niel Owen</option>
-																		<option value="4">Olivia Wild</option>
-																		<option value="5">Sean Bean</option>
-																	</select>
+																		<?php 
+																		$sql2 = $connection->prepare("SELECT * FROM sub_category");
+																		$sql2->execute();
+																		$result2 = $sql2->fetchAll(PDO::FETCH_ASSOC);
+																		foreach ($result2 as $sub_category) {
+																			?>
+																			<option value = "<?php echo $sub_category['sub_category_id']?>"><?php echo $sub_category['sub_category_name']?></option>;
+																			<?php }?>
+																		</select>
+																	</div>
 																</div>
-															</div>
 															<div class="text-center pt-15"><button type=reset class="btn btn-light me-3" data-kt-users-modal-action=cancel>Discard</button>
-																<button name="submit" type="submit" class="btn btn-primary"><span class=indicator-label>Submit</span>
-																	<span class=indicator-progress>Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span></button>
-															</div>
+															<button name="submit" type="submit" class="btn btn-primary"><span class=indicator-label>Submit</span>
+															<span class=indicator-progress>Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span></button>
+																</div>
 														</form>
 													</div>
-
-
 												</div>
 											</div>
 										</div>
@@ -174,24 +178,27 @@ if (isset($_POST["submit"])) {
 												<th class=min-w-125px>Name</th>
 												<th class=min-w-125px>price</th>
 												<th class=min-w-125px>Image</th>
+												<th class=min-w-125px>Description</th>
 												<th class=min-w-125px>Category</th>
 												<th class=min-w-125px>Sub-Category</th>
 											</tr>
 										</thead>
 										<?php
-										$sql = $connection->prepare("SELECT * FROM products");
+										$sql = $connection->prepare("SELECT * FROM products INNER JOIN category ON category.category_id = products.category_id");
 										$sql->execute();
 										$result = $sql->fetchAll(PDO::FETCH_ASSOC);
+										// echo "<pre>";
+										// print_r($result);
+										// die;
 										foreach ($result as $product) {
-
-										?>
+											?>
 											<tbody class="text-gray-600 fw-bold">
 												<tr>
-													<td><?php echo $product["id"]; ?></td>
+													<td><?php echo $product["product_id"]; ?></td>
 													<td><?php echo $product["product_name"]; ?></td>
-													<td><?php echo $product["product_description"]; ?></td>
 													<td><?php echo $product["product_price"]; ?></td>
 													<td> <img src="assets/media/avatars/<?php echo $product["product_image"] ?>" alt="this is a beautiful image" width="100px" height="100px"></td>
+													<td><?php echo $product["product_description"]; ?></td>
 													<td class="pe-0 text-end">
 														<a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="modal" data-bs-target="#kt_modal_new_card">
 															<span data-bs-toggle="tooltip" data-bs-trigger="hover" title="" data-bs-original-title="Edit" aria-describedby="tooltip35159">
