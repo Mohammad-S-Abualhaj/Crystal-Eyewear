@@ -171,12 +171,12 @@
                           </div>
                           <div class="single-input-item">
                             <label for="display-name" class="required">Display Name</label>
-                            <input name= "name" type="text" id="display-name" value="<?php echo $edit_user['username']; ?>"/>
+                            <input name= "name" type="text" id="display-name" value="<?php echo $edit_user["username"]; ?>"/>
                             <div><?php echo $nameError?? "" ;?></div>
                           </div>
                           <div class="single-input-item">
                             <label for="email" class="required">Email Addres</label>
-                            <input  name= "email" type="email" id="email" value="<?php echo $edit_user['email']; ?>"/>
+                            <input  name= "email" type="email" id="email" value="<?php echo $edit_user["email"]; ?>"/>
                             <div><?php echo $emailError?? "" ;?></div>
                           </div>
                           <fieldset>
