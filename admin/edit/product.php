@@ -82,13 +82,13 @@ if (isset($_GET['product_id'])) {
 												</div>
 												<div class=form-text>Allowed file types: png, jpg, jpeg.</div>
 											</div>
-											<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Name</label><input name="product_name" class="form-control form-control-solid mb-3 mb-lg-0" value="<?php echo $product_edited['product_name']; ?>"></div>
-											<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Price </label><input type=number name="product_price" class="form-control form-control-solid mb-3 mb-lg-0" value="<?php echo $product_edited['product_price']; ?>"></div>
-											<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Percentage Price </label><input type=number name="product_percentage_price" class="form-control form-control-solid mb-3 mb-lg-0" value="<?php echo $product_edited['product_percentage_price']; ?>"></div>
-											<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Description</label><input type=text name="product_description" class="form-control form-control-solid mb-3 mb-lg-0" value="<?php echo $product_edited['product_description']; ?>" description></div>
+											<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Name</label><input name="product_name" class="form-control form-control-solid mb-3 mb-lg-0" value="<?php echo $product_edited['product_name']; ?>" required></div>
+											<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Price </label><input type=number name="product_price" class="form-control form-control-solid mb-3 mb-lg-0" value="<?php echo $product_edited['product_price']; ?>" required></div>
+											<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Percentage Price </label><input type=number name="product_percentage_price" class="form-control form-control-solid mb-3 mb-lg-0" value="<?php echo $product_edited['product_percentage_price']; ?>" required></div>
+											<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Description</label><input type=text name="product_description" class="form-control form-control-solid mb-3 mb-lg-0" value="<?php echo $product_edited['product_description']; ?>" description required></div>
 											<div class=mb-7>
 												<label class="required fs-6 fw-bold mb-2">Category</label>
-												<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="" name="category">
+												<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="" name="category" required>
 													<option value="<?php echo $product_edited['category_id']; ?>"><?php
 																													$sql1 = $connection->prepare("SELECT * FROM category");
 																													$sql1->execute();
@@ -111,7 +111,7 @@ if (isset($_GET['product_id'])) {
 											</div>
 											<div class=mb-7>
 												<label class="required fs-6 fw-bold mb-2">Subcategory</label>
-												<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="" name="subcategory">
+												<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="" name="subcategory" required>
 													<option value="<?php echo $product_edited['sub_category_id']; ?>"><?php
 													$sql1 = $connection->prepare("SELECT * FROM sub_category");
 													$sql1->execute();
