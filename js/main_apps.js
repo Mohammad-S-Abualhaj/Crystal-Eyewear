@@ -10,12 +10,6 @@ const signupForm = document.getElementById('form');
 const loginForm = document.querySelector('.login_form');
 const checkoutForm = document.querySelector('.checkout_form');
 
-function search(key) {
-    console.log(key);
-}
-
-
-
 const renderError = function(msg, el, type) {
 
 
