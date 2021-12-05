@@ -71,7 +71,7 @@
                           <i class="fa fa-user"></i><a class="account" href="account.php"><?php echo $_SESSION['user_name']?? ""  ?></a>
                           <?php }else{?>
                           <i class="fa fa-user"></i><a href="account-login.php">Log in</a>
-                          <?php }?>
+                          <?php } ?>
                       </li>
                     </ul>
                   </div>

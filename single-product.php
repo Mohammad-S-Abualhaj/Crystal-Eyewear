@@ -119,11 +119,16 @@ include("./includes/public-header.php");
                     <div class="product-quick-action">
                       <div class="qty-wrap">
                         <div class="pro-qty">
-                          <input type="text" title="Quantity" value="1">
+                            <form action="shop-cart.php" method="get">
+                                <input type="text" name="quantity" title="Quantity" value="1">
+                                <input type="hidden" name="id" value="<?php echo $product['product_id'] ?>">
+
+
                         </div>
                       </div>
-                      <a class="btn-theme" href="shop-cart.php?id=<?php echo $product['product_id'] ?>">Add to Cart</a>
+                      <button type="submit" class="btn-theme" >Add to Cart</button>
                     </div>
+                      </form>
                     <div class="product-wishlist-compare">
                       <a href="shop-wishlist.php"><i class="pe-7s-like"></i>Add to Wishlist</a>
                       <a href="shop-compare.php"><i class="pe-7s-shuffle"></i>Add to Compare</a>
