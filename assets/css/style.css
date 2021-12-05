@@ -354,7 +354,7 @@ table p {
 }
 
 /*-------- Page Header Style Css --------*/
-.page-header-area {
+.page-header-area2 {
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -362,6 +362,18 @@ table p {
   background-repeat: no-repeat;
   background-position: top right;
   padding: 80px 0 170px;
+}
+
+.page-header-area {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top right;
+  padding: 70px 0;
+  background: #f1f1e2;
+  margin-bottom: 50px;
 }
 @media only screen and (max-width: 1199px) {
   .page-header-area {
@@ -378,7 +390,6 @@ table p {
   text-align: center;
 }
 .page-header-content .title {
-  color: #fff;
   font-weight: 400;
   text-transform: uppercase;
   font-size: 58px;
@@ -428,11 +439,12 @@ table p {
   padding: 0;
 }
 .breadcrumb-area .breadcrumb li {
-  color: #ff6600;
-  font-size: 24px;
+  color: #000000;
+  font-size: 18px;
   line-height: 1;
   text-transform: uppercase;
 }
+
 @media only screen and (max-width: 1199px) {
   .breadcrumb-area .breadcrumb li {
     font-size: 20px;
@@ -449,10 +461,10 @@ table p {
   }
 }
 .breadcrumb-area .breadcrumb li a {
-  color: #fff;
+  color: #fd7d24;
 }
 .breadcrumb-area .breadcrumb li a:hover {
-  color: #ff6600;
+  color: rgb(44, 43, 43);
 }
 .breadcrumb-area .breadcrumb .breadcrumb-sep {
   letter-spacing: -2.5px;
@@ -5226,16 +5238,14 @@ table p {
 .shopping-cart-form .table tbody .actions button {
   border: 1px solid #e8e8e8;
   background-color: transparent;
-  border-radius: 8px;
   -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
   cursor: pointer;
   color: #333131;
   font-weight: 700;
   font-size: 12px;
   float: right;
-  height: 54px;
-  line-height: 52px;
+  height: 40px;
   letter-spacing: 0.5px;
   min-width: 180px;
   outline: none;
@@ -5245,6 +5255,11 @@ table p {
   -moz-transition: all 0.4s ease-out;
   -ms-transition: all 0.4s ease-out;
   -o-transition: all 0.4s ease-out;
+}
+.center-cart {
+  margin: 0 auto;
+  display: table;
+  margin-bottom: 50px;
 }
 @media only screen and (max-width: 991px) {
   .shopping-cart-form .table tbody .actions button {
@@ -7588,17 +7603,6 @@ table p {
 .login-form-content .rememberme-account .form-check .form-check-label:hover {
   color: #ff6600;
 }
-.login-form-content .lost-password {
-  color: #8c8c8c;
-  font-size: 15px;
-  margin-bottom: 0;
-  cursor: pointer;
-  font-weight: 500;
-  letter-spacing: 0.6px;
-}
-.login-form-content .lost-password:hover {
-  color: #ff6600;
-}
 
 .register-form-content {
   max-width: 570px;
@@ -9656,4 +9660,10 @@ table p {
   color: #ff6600;
   font-size: 16px;
   margin: 0 2px;
+}
+.shopping-cart-form .table tbody .actions .btn-flat22 {
+  float: right;
+  background-color: #e6630b ;
+    border-color: #e6630b ;
+    color: #fff;
 }

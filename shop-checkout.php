@@ -20,8 +20,10 @@ include("./includes/public-header.php");
 ?>
     <main class="main-content">
         <!--== Start Page Header Area Wrapper ==-->
-        <div class="page-header-area" data-bg-img="assets/img/photos/bg3.webp">
-            <div class="container pt--0 pb--0">
+        <div class="container">
+
+        <div class="page-header-area">
+            <div class=" pt--0 pb--0">
                 <div class="row">
                     <div class="col-12">
                         <div class="page-header-content">
@@ -38,6 +40,8 @@ include("./includes/public-header.php");
                 </div>
             </div>
         </div>
+        </div>
+
         <!--== End Page Header Area Wrapper ==-->
 
         <!--== Start Shopping Checkout Area Wrapper ==-->
@@ -58,7 +62,7 @@ include("./includes/public-header.php");
 
                                         </h3>
 
-                                        <div class="card-body">
+                                        <div class="card-body mb-5">
                                             <div class="login-wrap">
                                                 <p>If you have shopped with us before, please enter your details below.
                                                     If you are a new customer, please proceed to the Billing & Shipping
@@ -85,25 +89,7 @@ include("./includes/public-header.php");
                                                             <div class="form-group mt-30">
                                                                 <button name="checkout_login" class="btn-login">Login
                                                                 </button>
-                                                                <div class="rememberme-account">
-                                                                    <div class="custom-control custom-checkbox">
-                                                                        <input type="checkbox"
-                                                                               class="custom-control-input visually-hidden"
-                                                                               id="remembermePass">
-                                                                        <label class="custom-control-label"
-                                                                               for="remembermePass">Remember me</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-6"><a class="lost-password"
-                                                                                          href="#">Lost your
-                                                                            password?</a></div>
-                                                                    <div class="col-6"><a href="account-register.php"
-                                                                                          class="lost-password"
-                                                                                          href="#">sign up</a></div>
-                                                                </div>
-
-
+                                                                <a href='account-register.php' >sign up</a>
                                                             </div>
                                                         </div>
                                                     </div>
