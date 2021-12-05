@@ -112,3 +112,31 @@ if (isset($_POST['login_submit']) || (isset($_POST['checkout_login']))) {
     }
 }
 //---------------------------------
+if(isset($_POST['country'])){
+    session_start();
+    $user_id=$_POST['user_id'];
+    $country=$_POST['country'];
+    $city=$_POST['city'];
+    $phone=$_POST['phone'];
+    $address_line=$_POST['address_line'];
+    $counter=0;
+    $comma=",";
+    foreach($_SESSION["shopping_cart"] as $product_arr):
+        if($counter===$i-1){
+            $comma=" ";
+        }
+        $cart_after_shopping.="id:{$product_arr['product_id']} name:{$product_arr['product_name']}
+                  price:{$product_arr['product_price']} price_onsale:{$product_arr['product_sale_price']}{$comma}";
+        $counter++;
+    endforeach;
+
+//insert to user_checkout
+    crud($connection, "INSERT", "order_summary",
+        ["checkout_street_address","checkout_city","checkout_country"
+            ,"checkout_phone", "order_total_price","user_id","order_status","cart_after_shopping"],
+        [$address_line,$city,$country,$phone,$_SESSION['order_total'],$user_id,"pending",$cart_after_shopping]
+         );
+    unset($_SESSION["shopping_cart"]);
+    header("Location:../shop.php");
+
+}

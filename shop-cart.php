@@ -95,7 +95,12 @@ include("./includes/public-header.php");
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <?php if(!isset($_SESSION['shopping_cart'])): ?>
+                                        <h1>Your cart is empty</h1>
+                                    <?php endif;?>
+
                                     <?php
+
                                     if(isset($_SESSION["shopping_cart"])):
                                     foreach ($_SESSION["shopping_cart"] as $product):?>
                                     <tr class="cart-product-item">
@@ -112,7 +117,7 @@ include("./includes/public-header.php");
                                             <h4 class="title"><a href="single-normal-product.php?id=<?php echo $product['product_id']?>"><?php echo $product['product_name'] ?></a></h4>
                                         </td>
                                         <td class="product-price">
-                                            <span class="price"><?php echo $product['product_sale_price']??$product['product_price'] ?></span>
+                                            <span class="price">$<?php echo $product['product_sale_price']??$product['product_price'] ?></span>
                                         </td>
                                         <td class="product-quantity">
                                             <div class="pro-qty">
@@ -120,7 +125,7 @@ include("./includes/public-header.php");
                                             </div>
                                         </td>
                                         <td class="product-subtotal">
-                                            <span class="price"><?php echo $product['product_sale_price']??$product['product_price'] ?></span>
+                                            <span class="price">$<?php echo $product['product_sale_price']??$product['product_price'] ?></span>
                                         </td>
                                     </tr>
                                     <?php endforeach;
