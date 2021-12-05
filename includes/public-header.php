@@ -9,8 +9,6 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
-
-<!-- Mirrored from template.hasthemes.com/shome/shome/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Dec 2021 14:25:42 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,12 +44,7 @@
 
     <!--== Main Style CSS ==-->
     <link href="assets/css/style.css" rel="stylesheet" />
-    
 
-    <!--[if lt IE 9]>
-    <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>
@@ -78,8 +71,8 @@
                       <li class="number"><i class="fa fa-phone"></i><a href="tel://0123456789">+00 123 456 789</a></li>
                       <li class="email"><i class="fa fa-envelope"></i><a href="mailto://demo@example.com">demo@example.com</a></li>
                       <li class="account">
-                          <?php if(isset( $_SESSION["user_loggedin"])){?>
-                          <i class="fa fa-user"></i><a href="account-login.php"><?php echo $_SESSION["user_name"]?? ""  ?></a>
+                          <?php if(isset( $_SESSION['user_loggedin'])){?>
+                          <i class="fa fa-user"></i><a class="account" href="account.php"><?php echo $_SESSION['user_name']?? ""  ?></a>
                           <?php }else{?>
                           <i class="fa fa-user"></i><a href="account-login.php">Log in</a>
                           <?php } ?>
@@ -147,37 +140,10 @@
             <div class="header-align">
               <div class="header-navigation-area position-relative">
                 <ul class="main-menu nav">
-                  <li class="has-submenu"><a href="index.php"><span>Home</span></a>
-                    <ul class="submenu-nav">
-                    </ul>
-                  </li>
+                  <li><a href="index.php"><span>Home</span></a></li>
+                  <li><a href="Shop.php"><span>Shop</span></a></li>
                   <li><a href="about-us.php"><span>About</span></a></li>
-                  <li class="has-submenu"><a href="#/"><span>Pages</span></a>
-                    <ul class="submenu-nav">
-                      <li><a href="account.php"><span>Account</span></a></li>
-                      <li><a href="account-login.php"><span>Login</span></a></li>
-                      <li><a href="account-register.php"><span>Register</span></a></li>
-                      <li><a href="page-not-found.php"><span>Page Not Found</span></a></li>
-                    </ul>
-                  </li>
-                  <li class="has-submenu position-static"><a href="shop.php"><span>Shop</span></a>
-                    <ul class="submenu-nav submenu-nav-mega column-3">
-                      <li class="mega-menu-item"><a href="#/" class="mega-title"><span>Shop Layout</span></a>
-                      </li>
-                      <li class="mega-menu-item"><a href="single-normal-product.php" class="mega-title"><span>Single Product</span></a>
-                      </li>
-                      <li class="mega-menu-item"><a href="#/" class="mega-title"><span>Others Pages</span></a>
-                        <ul>
-                          <li><a href="shop-cart.php"><span>Shopping Cart</span></a></li>
-                          <li><a href="shop-checkout.php"><span>Checkout</span></a></li>
-                          <li><a href="shop-wishlist.php"><span>Wishlist</span></a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="has-submenu"><a href="blog-left-sidebar"><span>Blog</span></a>
-                  </li>
-                  <li><a href="contact.php"><span>Contact</span></a></li>
+                  <li><a href="shop-cart.php"><span>Shopping Cart</span></a></li>
                 </ul>
               </div>
             </div>

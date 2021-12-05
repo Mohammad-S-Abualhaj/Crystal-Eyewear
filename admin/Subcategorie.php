@@ -141,10 +141,10 @@ include_once 'layouts/head.php';
 																	</div>
 																	<div class=form-text>Allowed file types: png, jpg, jpeg.</div>
 																</div>															
-																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Full Name</label>
-																<input name=sub_category_name class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Full name" value="Emma Smith"></div>
-																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Email</label>
-																<input type=text name=sub_category_description class="form-control form-control-solid mb-3 mb-lg-0" placeholder="category description" value="e.smith@kpmg.com.au"></div>
+																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Subcategory Name</label>
+																<input name=sub_category_name class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Subcategory Name" ></div>
+																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Subcategory Description</label>
+																<input type=text name=sub_category_description class="form-control form-control-solid mb-3 mb-lg-0" placeholder="subcategory description" ></div>
 																<div class=mb-7>
 																	<label class="required fs-6 fw-bold mb-2">Category</label>
 																	<select name="category_id" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select a Team Member" >
