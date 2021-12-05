@@ -1,22 +1,22 @@
 <?php
-session_start();
-include("./includes/public-header.php");
-
-require_once "includes/db.php";
-if (isset($_GET['id'])) {
-   $id = $_GET['id'];
-   $statement = $connection->prepare("SELECT * from products INNER JOIN category ON products.category_id=category.category_id WHERE product_id=:id ");
-   $statement->bindParam(':id', $id);
-   $statement->execute();
-   $product = $statement->fetch(PDO::FETCH_ASSOC);
-}
-
-$satatement = $connection->prepare("SELECT * FROM products INNER JOIN category ON products.category_id=category.category_id
+   session_start();
+   include("./includes/public-header.php");
+   
+       require_once "includes/db.php";
+       if(isset($_GET['id'])){
+           $id=$_GET['id'];
+           $statement=$connection->prepare("SELECT * from products INNER JOIN category ON products.category_id=category.category_id WHERE product_id=:id ");
+           $statement->bindParam(':id',$id);
+           $statement->execute();
+           $product=$statement->fetch(PDO::FETCH_ASSOC);
+       }
+   
+   $satatement = $connection->prepare("SELECT * FROM products INNER JOIN category ON products.category_id=category.category_id
    INNER JOIN sub_category ON products.sub_category_id = sub_category.sub_category_id");
-$satatement->execute();
-$products = $satatement->fetchAll(PDO::FETCH_ASSOC);
-
-?>
+   $satatement->execute();
+   $products = $satatement->fetchAll(PDO::FETCH_ASSOC);
+   
+   ?>
 <main class="main-content">
    <!--== Start Page Header Area Wrapper ==-->
    <!--== End Page Header Area Wrapper ==-->
@@ -34,7 +34,7 @@ $products = $satatement->fetchAll(PDO::FETCH_ASSOC);
                               <div class="swiper-wrapper">
                                  <div class="swiper-slide">
                                     <a class="lightbox-image" data-fancybox="gallery" href="admin/assets/media/products_images/<?php echo $product['product_image']; ?>">
-                                       <img src="admin/assets/media/products_images/<?php echo $product['product_image']; ?>" width="570" height="541" alt="<?php echo $product['product_description'] ?>">
+                                    <img src="admin/assets/media/products_images/<?php echo $product['product_image']; ?>" width="570" height="541" alt="<?php echo $product['product_description'] ?>">
                                     </a>
                                  </div>
                               </div>
@@ -59,28 +59,30 @@ $products = $satatement->fetchAll(PDO::FETCH_ASSOC);
                               </div>
                            </div>
                         </div>
+                        <!--== End Product Thumbnail Area ==-->
                      </div>
-                  </div>
-               </div>
-               <!--== End Product Thumbnail Area ==-->
-            </div>
-            <div class="col-xl-6">
-               <!--== Start Product Info Area ==-->
-               <div class="product-single-info">
-                  <h3 class="main-title"><?php echo $product['product_name'] ?></h3>
-                  <div class="prices">
-                     <span class="price">$<?php echo $product['product_price'] ?></span>
-                  </div>
-                  <form action="shop-cart.php" method="get">
-                     <input type="hidden" name="id" value="<?php echo $product['product_id'] ?>">
-                     <div class="product-quick-action">
-                        <div class="qty-wrap">
-                           <div class="pro-qty">
-                              <input type="text" name="quantity" title="Quantity" value="1">
+                     <div class="col-xl-6">
+                        <!--== Start Product Info Area ==-->
+                        <div class="product-single-info">
+                           <h3 class="main-title"><?php echo $product['product_name'] ?></h3>
+                           <div class="prices">
+                              <span class="price">$<?php echo $product['product_price'] ?></span>
                            </div>
-                           <!--== End Product Info Area ==-->
+                           <form action="shop-cart.php" method="get">
+                           <input type="hidden" name="id" value="<?php echo $product['product_id'] ?>">
+                           <div class="product-quick-action">
+                              <div class="qty-wrap">
+                                 <div class="pro-qty">
+                                       <input type="text" name="quantity" title="Quantity" value="1">
+                                 </div>
+                              </div>
+                              <button type="submit" class="btn-theme" >Add to Cart</button>
+                           </div>
+                           </form>
                         </div>
+                        <!--== End Product Info Area ==-->
                      </div>
+                  </div>
                </div>
             </div>
          </div>
@@ -181,7 +183,7 @@ $products = $satatement->fetchAll(PDO::FETCH_ASSOC);
                <div class="section-title text-center">
                   <h3 class="title">Related Products</h3>
                   <div class="desc">
-                     <p>Millions of happy customers have found their perfect pair</p>
+                     <p>Millions of happy customers have found their perfect pair.</p>
                   </div>
                </div>
             </div>
@@ -192,50 +194,50 @@ $products = $satatement->fetchAll(PDO::FETCH_ASSOC);
                   <div class="swiper-container product-slider-col4-container">
                      <div class="swiper-wrapper">
 
-                        <?php
-                        foreach ($products as $product) { ?>
+                     <?php
+                       foreach ($products as $product) { ?>
 
-                           <div class="swiper-slide">
-                              <!--== Start Product Item ==-->
-                              <div class="product-item">
-                                 <div class="inner-content">
-                                    <div class="product-thumb">
-                                       <a href="single-product.php?id=<?php echo $product['product_id']; ?>">
-                                          <img src="admin/assets/media/products_images/<?php echo $product['product_image']; ?>" width="270" height="274" alt="Image-HasTech">
-                                       </a>
-                                       <?php if ($product['product_percentage_price'] > 0) : ?>
-                                          <div class="product-flag">
-                                             <ul>
-                                                <li class="discount">-<?php echo $product['product_percentage_price'] ?>%</li>
-                                             </ul>
+                        <div class="swiper-slide">
+                           <!--== Start Product Item ==-->
+                           <div class="product-item">
+                                       <div class="inner-content">
+                                          <div class="product-thumb">
+                                             <a href="single-product.php?id=<?php echo $product['product_id']; ?>">
+                                                <img src="admin/assets/media/products_images/<?php echo $product['product_image']; ?>" width="270" height="274" alt="Image-HasTech">
+                                             </a>
+                                             <?php if ($product['product_percentage_price'] > 0) : ?>
+                                                <div class="product-flag">
+                                                   <ul>
+                                                      <li class="discount">-<?php echo $product['product_percentage_price'] ?>%</li>
+                                                   </ul>
+                                                </div>
+                                             <?php endif; ?>
+                                             <div class="product-action">
+                                                <a class="btn-product-cart" href="shop-cart.php"><i class="fa fa-shopping-cart"></i></a>
+                                             </div>
+                                             <a class="banner-link-overlay" href="shop.php"></a>
                                           </div>
-                                       <?php endif; ?>
-                                       <div class="product-action">
-                                          <a class="btn-product-cart" href="shop-cart.php"><i class="fa fa-shopping-cart"></i></a>
-                                       </div>
-                                       <a class="banner-link-overlay" href="shop.php"></a>
-                                    </div>
-                                    <div class="product-info">
-                                       <div class="category">
-                                          <ul>
-                                             <li><a href="shop.php?category_name=<?php echo $product['category_name']; ?>"><?php echo $product['category_name']; ?></a>/<a href="shop.php?sub_category_name=<?php echo $product['sub_category_name']; ?>"><?php echo $product['sub_category_name']; ?></a></li>
-                                          </ul>
-                                       </div>
-                                       <h4 class="title"><a href="single-normal-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name']; ?></a></h4>
-                                       <div class="prices">
-                                          <?php if ($product['product_percentage_price'] > 0) { ?>
-                                             <span class="price-old">$<?php echo $product['product_price'] ?></span>
-                                             <span class="sep">-</span>
-                                             <span class="price">$
-                                             <?php echo ($product['product_price']) * (100 - $product['product_percentage_price']) / 100;
-                                          } else { ?><span class="price">$ <?php echo $product['product_price'];
-                                                                              } ?></span>
+                                          <div class="product-info">
+                                             <div class="category">
+                                                <ul>
+                                                   <li><a href="shop.php?category_name=<?php echo $product['category_name']; ?>"><?php echo $product['category_name']; ?></a>/<a href="shop.php?sub_category_name=<?php echo $product['sub_category_name']; ?>"><?php echo $product['sub_category_name']; ?></a></li>
+                                                </ul>
+                                             </div>
+                                             <h4 class="title"><a href="single-normal-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name']; ?></a></h4>
+                                             <div class="prices">
+                                                <?php if ($product['product_percentage_price'] > 0) { ?>
+                                                   <span class="price-old">$<?php echo $product['product_price'] ?></span>
+                                                   <span class="sep">-</span>
+                                                   <span class="price">$
+                                                   <?php echo  ($product['product_price'])*(100- $product['product_percentage_price']) / 100;
+                                                } else { ?><span class="price">$ <?php echo $product['product_price'];
+                                                                                 } ?></span>
+                                             </div>
+                                          </div>
                                        </div>
                                     </div>
-                                 </div>
-                              </div>
-                              <!--== End prPduct Item ==-->
-                           </div>
+                           <!--== End prPduct Item ==-->
+                        </div>
                         <?php } ?>
 
                      </div>
@@ -257,5 +259,5 @@ $products = $satatement->fetchAll(PDO::FETCH_ASSOC);
    <!--== End Product Area Wrapper ==-->
 </main>
 <?php
-include("./includes/public-footer.php");
-?>
+   include("./includes/public-footer.php");
+   ?>
