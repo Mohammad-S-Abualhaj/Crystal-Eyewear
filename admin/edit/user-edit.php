@@ -7,8 +7,21 @@
    	$stmt = $connection->prepare("SELECT * FROM user WHERE id={$_GET['id']}");
    	$stmt->execute();
    	$edit_user = $stmt->fetch(PDO::FETCH_ASSOC);
-   
+
+      $emailError ="";
+      $nameError ="";
+
    	if(isset($_POST["submit"])){
+         $check = true;
+         if(empty($_POST["username"])){
+            $check = false;
+            $nameError = "<span style='color:red'> Name cannot be empty </span>";
+         }
+         if(empty($_POST["email"])){
+            $check = false;
+            $emailError = "<span style='color:red'> Email cannot be empty </span>";
+         }
+         if($check == true){
    		$rand = rand(1,99999);
    		$userName  = $_POST["username"];
    		$userEmail = $_POST["email"];
@@ -23,7 +36,7 @@
          }
          if(move_uploaded_file($_FILES["image"]["tmp_name"],$destination)){
                echo  "<h1>image uploaded</h1>";
-         }else{
+         } else{
                echo "<h1>image not uploaded</h1>";
                }
       
@@ -34,9 +47,9 @@
    		WHERE id={$_GET['id']}");
    		$update->execute();
    		header("location:../users.php");
-   	}
-   
+      }
    }
+}
    
    ?>
 <!DOCTYPE html>
@@ -86,6 +99,7 @@
                                        <label class="col-lg-4 col-form-label required fw-bold fs-6">Full Name</label>
                                        <div class="col-lg-8 fv-row fv-plugins-icon-container">
                                           <input type="text" name="username" class="form-control form-control-lg form-control-solid" placeholder="full name" value="<?php echo $edit_user['username']; ?>">
+                                          <div><?php echo $nameError?></div>
                                           <div class="fv-plugins-message-container invalid-feedback"></div>
                                        </div>
                                     </div>
@@ -95,6 +109,7 @@
                                        <div class="col-lg-8 fv-row fv-plugins-icon-container">
                                           <input type="email" name="email" class="form-control form-control-lg form-control-solid" placeholder="email" value="<?php echo $edit_user['email']; ?>">
                                           <div class="fv-plugins-message-container invalid-feedback"></div>
+                                          <div><?php echo $emailError?></div>
                                        </div>
                                     </div>
                                     <div class="row mb-6">

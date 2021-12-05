@@ -1,6 +1,5 @@
 <?php
 require_once "includes/db.php";
-
 session_start();
 if(isset($_GET['delete'])){
     $id=$_GET['delete'];

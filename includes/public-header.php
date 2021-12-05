@@ -70,7 +70,13 @@
                     <ul>
                       <li class="number"><i class="fa fa-phone"></i><a href="tel://0123456789">+00 123 456 789</a></li>
                       <li class="email"><i class="fa fa-envelope"></i><a href="mailto://demo@example.com">demo@example.com</a></li>
-                      <li class="account"><i class="fa fa-user"></i><a href="account-login.php">Account</a></li>
+                      <li class="account">
+                          <?php if(isset( $_SESSION['user_loggedin'])){?>
+                          <i class="fa fa-user"></i><a href="account-login.php"><?php echo $_SESSION['user_name']?? ""  ?></a>
+                          <?php }else{?>
+                          <i class="fa fa-user"></i><a href="account-login.php">Log in</a>
+                          <?php } ?>
+                      </li>
                     </ul>
                   </div>
                 </div>

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2021 at 05:51 PM
+-- Generation Time: Dec 05, 2021 at 10:20 AM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 7.3.31
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,15 +53,30 @@ CREATE TABLE `order_summary` (
   `order_status` varchar(255) NOT NULL,
   `order_total_price` varchar(50) NOT NULL,
   `cart_after_shopping` varchar(500) NOT NULL,
-  `user_checkout` int(5) NOT NULL,
   `user_id` int(5) NOT NULL,
   `checkout_street_address` varchar(100) NOT NULL,
   `checkout_city` varchar(50) NOT NULL,
   `checkout_country` varchar(50) NOT NULL,
   `checkout_phone` int(14) NOT NULL,
-  `checkout_total_price` int(10) NOT NULL,
   `date_of_creation` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `order_summary`
+--
+
+INSERT INTO `order_summary` (`order_id`, `order_status`, `order_total_price`, `cart_after_shopping`, `user_id`, `checkout_street_address`, `checkout_city`, `checkout_country`, `checkout_phone`, `date_of_creation`) VALUES
+(1, 'pending', '311', 'id:1 name:optics\r\n                  price:50 price_onsale:30,id:45 name:SmartBuy Collection Brette SB-928D\r\n                  price:39 price_onsale:,id:44 name:Tom Ford FT0371 ANOUSHKA 01B\r\n                  price:242 price_onsale: ', 4, 'Shafa', 'Amman', 'Jordan', 795102339, '2021-12-04 19:19:40'),
+(5, 'pending', '379', 'id:45 name:SmartBuy Collection Brette SB-928D\n                  price:39 price_onsale:,id:50 name:Arise Collective Thiva 95249 C1\n                  price:59 price_onsale:,id:44 name:Tom Ford FT0371 ANOUSHKA 01B\n                  price:242 price_onsale:,id:49 name:SmartBuy Collection Reeses SS-915E\n                  price:39 price_onsale:,', 4, 'Shafa', 'Amman', 'Jordan', 795102339, '2021-12-04 21:13:07'),
+(6, 'pending', '39', 'id:45 name:SmartBuy Collection Brette SB-928D\r\n                  price:39 price_onsale:,', 4, 'Shafa', 'Amman', 'Jordan', 795102339, '2021-12-05 07:37:18'),
+(7, 'pending', '39', 'id:45 name:SmartBuy Collection Brette SB-928D\r\n                  price:39 price_onsale:,', 4, 'Shafa', 'Amman', 'Jordan', 795102339, '2021-12-05 07:37:47'),
+(8, 'pending', '39', 'id:49 name:SmartBuy Collection Reeses SS-915E\r\n                  price:39 price_onsale:,', 4, 'Shafa', 'Amman', 'Jordan', 795102339, '2021-12-05 07:38:03'),
+(9, 'pending', '242', 'id:44 name:Tom Ford FT0371 ANOUSHKA 01B\r\n                  price:242 price_onsale:,', 4, 'Shafa', 'Amman', 'Jordan', 795102339, '2021-12-05 07:44:09'),
+(10, 'pending', '39', 'id:45 name:SmartBuy Collection Brette SB-928D\r\n                  price:39 price_onsale:,', 4, 'Shafa', 'Amman', 'Jordan', 795102339, '2021-12-05 07:49:10'),
+(11, 'pending', '242', 'id:44 name:Tom Ford FT0371 ANOUSHKA 01B\r\n                  price:242 price_onsale: ', 4, 'Shafa', 'Amman', 'Jordan', 795102339, '2021-12-05 08:20:01'),
+(12, 'pending', '39', 'id:48 name:SmartBuy Collection Skye SS-CP121E\r\n                  price:39 price_onsale: ', 5, ' صهيتبىثم', 'Amman', 'Jordan', 795102339, '2021-12-05 08:30:33'),
+(13, 'pending', '39', 'id:45 name:SmartBuy Collection Brette SB-928D\r\n                  price:39 price_onsale: ', 5, 'Shafa', 'Amman', 'Jordan', 795102339, '2021-12-05 08:35:30'),
+(14, 'pending', '242', 'id:44 name:Tom Ford FT0371 ANOUSHKA 01B\r\n                  price:242 price_onsale: ', 4, 'Shafa', 'Amman', 'Jordan', 795102339, '2021-12-05 08:49:32');
 
 -- --------------------------------------------------------
 
@@ -167,15 +182,18 @@ CREATE TABLE `user` (
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `role` varchar(50) NOT NULL
+  `role` varchar(50) NOT NULL,
+  `full_name` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `email`, `password`, `image`, `role`) VALUES
-(3, '', '', '', '56767562276_1625201284267.jpg', '');
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `image`, `role`, `full_name`) VALUES
+(3, '', '', '', '56767562276_1625201284267.jpg', '', ''),
+(4, 'awni', 'awni.rifai1998@gmail.com', '722e7450dc0c64c5e87ed11ed2c0ab99', '', '', ''),
+(5, 'ahmed', 'alrifai.awni@gmail.com', '652ca73251f20fe23c6b4a65db69f51d', '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -192,7 +210,6 @@ ALTER TABLE `category`
 --
 ALTER TABLE `order_summary`
   ADD PRIMARY KEY (`order_id`),
-  ADD KEY `order_summary_ibfk_1` (`user_checkout`),
   ADD KEY `order_summary_ibfk_2` (`user_id`);
 
 --
@@ -238,7 +255,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `order_summary`
 --
 ALTER TABLE `order_summary`
-  MODIFY `order_id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -262,7 +279,7 @@ ALTER TABLE `sub_category`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

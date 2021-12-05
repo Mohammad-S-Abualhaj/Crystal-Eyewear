@@ -1,5 +1,6 @@
 <?php
-    include("./includes/public-header.php");
+session_start();
+include("./includes/public-header.php");
 
     require_once "includes/db.php";
     if(isset($_GET['id'])){
