@@ -132,18 +132,8 @@ if(isset($_POST['country'])){
     $address_line=$_POST['address_line'];
     $counter=0;
     $comma=",";
-    $cart_after_shopping="";
-    $i=count($_SESSION["shopping_cart"]);
-    foreach($_SESSION["shopping_cart"] as $product_arr):
-        if($counter===$i-1){
-            $comma=" ";
-        }
-        $cart_after_shopping.="id:{$product_arr['product_id']} name:{$product_arr['product_name']}
-                  price:{$product_arr['product_price']} price_onsale:{$product_arr['product_sale_price']}{$comma}";
-        $counter++;
-    endforeach;
-
 //insert to user_checkout
+    $cart_after_shopping=json_encode($_SESSION["shopping_cart"]);
     crud($connection, "INSERT", "order_summary",
         ["checkout_street_address","checkout_city","checkout_country"
             ,"checkout_phone", "order_total_price","user_id","order_status","cart_after_shopping"],

@@ -2,6 +2,8 @@
 require_once  "includes/db.php";
 require_once  "includes/functions.php";
 session_start();
+
+
 $SESSION_TIMEOUT_MINUTES  =15;//minutes
 $EMPTY_BASKET_TIME        =30;//minutes
 
@@ -185,12 +187,13 @@ include("./includes/public-header.php");
                             <?php
                             $order_total=0;
                             foreach ($_SESSION['shopping_cart'] as $product):
-                                $order_total+=$product['product_sale_price']??$product['product_price'];
+                                $order_total+=($product['product_sale_price']??$product['product_price'])*$product['product_quantity'];
                                 ?>
                                 <tr class="cart-item">
-                                    <td class="product-name"><?php echo $product['product_name'] ?> <span class="product-quantity">× 1</span></td>
-                                    <td class="product-total">$<?php echo $product['product_sale_price']??$product['product_price'] ?></td>
+                                    <td class="product-name"><?php echo $product['product_name'] ?> <span class="product-quantity">× <?php echo $product['product_quantity']?></span></td>
+                                    <td class="product-total">$<?php echo ($product['product_sale_price']??$product['product_price'])*$product['product_quantity'] ?></td>
                                 </tr>
+
                             <?php endforeach;
                             $_SESSION['order_total']=$order_total;
                             ?>
