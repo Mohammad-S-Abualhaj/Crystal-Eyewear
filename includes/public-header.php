@@ -1,3 +1,10 @@
+<?php
+  if(isset($_POST['search_for_product'])){
+  $search_key = $_POST["search_for_product"];
+    header("Location:shop.php?search_key=$search_key");
+  }
+?>
+
 <?php $RELOAD_TIMEOUT_MINUTES=15*60;//minutes ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -71,8 +78,8 @@
                       <li class="number"><i class="fa fa-phone"></i><a href="tel://0123456789">+00 123 456 789</a></li>
                       <li class="email"><i class="fa fa-envelope"></i><a href="mailto://demo@example.com">demo@example.com</a></li>
                       <li class="account">
-                          <?php if(isset( $_SESSION['user_loggedin'])){?>
-                          <i class="fa fa-user"></i><a href="account-login.php"><?php echo $_SESSION['user_name']?? ""  ?></a>
+                          <?php if(isset( $_SESSION["user_loggedin"])){?>
+                          <i class="fa fa-user"></i><a href="account-login.php"><?php echo $_SESSION["user_name"]?? ""  ?></a>
                           <?php }else{?>
                           <i class="fa fa-user"></i><a href="account-login.php">Log in</a>
                           <?php } ?>
@@ -101,8 +108,8 @@
               </div>
               <div class="header-middle-align-center">
                 <div class="header-search-area">
-                  <form class="header-searchbox">
-                    <input type="search" class="form-control" placeholder="Search">
+                  <form class="header-searchbox" method="POST">
+                    <input type="search" class="form-control" placeholder="Search" name="search_for_product" oninput="search(this.value)">
                     <button class="btn-submit" type="submit"><i class="pe-7s-search"></i></button>
                   </form>
                 </div>

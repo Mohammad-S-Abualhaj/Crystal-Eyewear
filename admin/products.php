@@ -2,6 +2,7 @@
 include_once '../includes/db.php';
 $error_message = "";
 
+
 if (isset($_POST["submit"])) {
 	$product_name  = $_POST['product_name'];
 	$product_price  = $_POST['product_price'];
@@ -85,6 +86,7 @@ if ($_GET) {
 											<form action="" method="POST">
 												<input data-kt-user-table-filter=search class="form-control form-control-solid w-250px ps-14" placeholder="Search product by name" name="search_for_product" style="display: inline;">
 												<input type="submit" class="btn btn-primary" value="Search" name="searching_by_name">
+												<br>
 											</form>
 										</div>
 									</div>
@@ -257,14 +259,13 @@ if ($_GET) {
 														</td>
 													</tr>
 												<?php } ?>
+												
 												<?php } else {
 												$search_keyword = '%' . $_POST['search_for_product'] . '%';
 												$sql = $connection->prepare("SELECT * FROM ((products
 																	INNER JOIN category ON category.category_id = products.category_id)
 																	INNER JOIN sub_category ON sub_category.sub_category_id = products.sub_category_id)
 																	WHERE product_name LIKE '{$search_keyword}'");
-
-
 												$sql->execute();
 												$result2 = $sql->fetchAll(PDO::FETCH_ASSOC);
 												if (count($result2) === 0) {

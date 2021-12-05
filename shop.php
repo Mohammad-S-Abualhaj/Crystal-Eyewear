@@ -3,10 +3,19 @@ session_start();
 include("./includes/public-header.php");
 require_once "includes/db.php";
 
-
-$satatement=$connection->prepare("SELECT * FROM products INNER JOIN category ON products.category_id=category.category_id");
-$satatement->execute();
-$products=$satatement->fetchAll(PDO::FETCH_ASSOC);
+// searching for a product
+if (isset($_GET["search_key"])) {
+    $search_key = $_GET["search_key"];
+    $search_keyword = '%' . $search_key . '%';
+    $satatement = $connection->prepare("SELECT * FROM ((products
+        INNER JOIN category ON category.category_id = products.category_id)
+        INNER JOIN sub_category ON sub_category.sub_category_id = products.sub_category_id)
+        WHERE product_name LIKE '{$search_keyword}'");
+}else{
+    $satatement=$connection->prepare("SELECT * FROM products INNER JOIN category ON products.category_id=category.category_id");
+}
+    $satatement->execute();
+    $products=$satatement->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
     <main class="main-content">
@@ -73,7 +82,7 @@ $products=$satatement->fetchAll(PDO::FETCH_ASSOC);
     <div class="tab-pane fade show active" id="nav-grid" role="tabpanel" aria-labelledby="nav-grid-tab">
     <div class="row">
     <!--  Start inserting products    -->
-<?php foreach ($products as $product): ?>
+    <?php foreach ($products as $product): ?>
     <div class="col-sm-6 col-lg-4">
         <!--== Start Product Item ==-->
         <div class="product-item">
