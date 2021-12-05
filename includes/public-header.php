@@ -72,10 +72,10 @@
                       <li class="email"><i class="fa fa-envelope"></i><a href="mailto://demo@example.com">demo@example.com</a></li>
                       <li class="account">
                           <?php if(isset( $_SESSION['user_loggedin'])){?>
-                          <i class="fa fa-user"></i><a href="account-login.php"><?php echo $_SESSION['user_name']?? ""  ?></a>
+                          <i class="fa fa-user"></i><a href="account-login.php"><?php echo $_SESSION['user_name']??""?></a>
                           <?php }else{?>
                           <i class="fa fa-user"></i><a href="account-login.php">Log in</a>
-                          <?php } ?>a
+                          <?php } ?>
                       </li>
                     </ul>
                   </div>
