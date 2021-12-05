@@ -3,8 +3,6 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
-
-<!-- Mirrored from template.hasthemes.com/shome/shome/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Dec 2021 14:25:42 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
