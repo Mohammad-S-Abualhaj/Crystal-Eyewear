@@ -1,12 +1,14 @@
 <?php
-require_once "includes/db.php";
 session_start();
-if(isset($_GET['delete'])){
-    $id=$_GET['delete'];
-    $i=0;
-    foreach ($_SESSION['shopping_cart'] as $product){
-        if($product['product_id']===$id){
-            if(count($_SESSION['shopping_cart'])===1){
+require_once "includes/db.php";
+$cartCheck=isset($_SESSION['shopping_cart']);
+//delete the cart
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete'];
+    $i = 0;
+    foreach ($_SESSION['shopping_cart'] as $product) {
+        if ($product['product_id'] === $id) {
+            if (count($_SESSION['shopping_cart']) === 1) {
                 unset($_SESSION['shopping_cart']);
                 header("Location:shop-cart.php");
             }
@@ -16,40 +18,51 @@ if(isset($_GET['delete'])){
         $i++;
     }
 }
-
-
+//----------------------------------------------------------------
+//adding to the shopping cart
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
+    $quantity=$_GET['quantity']??1;
     //check if the product is already in the session
-    $check=false;
-    if(isset($_SESSION['shopping_cart'])) {
+    $check = false;
+    $products_counter=0;
+    if (isset($_SESSION['shopping_cart'])) {
+        //loop through all products in the session to check if it's excists
+
         foreach ($_SESSION['shopping_cart'] as $product) {
             if ($id === $product["product_id"]) {
                 $check = true;
+                $_SESSION['shopping_cart'][$products_counter]['product_quantity']=$quantity;
             }
+            $products_counter++;
         }
+    } else {
+        $check = false;
     }
-        else{
-            $check=false;
-        }
-
-
-            if(!$check){
-
-                $statement = $connection->prepare("SELECT * FROM products WHERE product_id=:id");
-                $statement->bindValue(":id", $id);
-                $statement->execute();
-                $product = $statement->fetch(PDO::FETCH_ASSOC);
-                $_SESSION['shopping_cart'][]= $product;
-
-            }
-
-        //add only if it's not stored in the database;
-
-
-
-
+    if (!$check) {
+        $statement = $connection->prepare("SELECT * FROM products WHERE product_id=:id");
+        $statement->bindValue(":id", $id);
+        $statement->execute();
+        $product = $statement->fetch(PDO::FETCH_ASSOC);
+        if ($product):
+            $_SESSION['shopping_cart'][] =$product;
+            $_SESSION['shopping_cart'][$products_counter]["product_quantity"]=(int)$quantity;
+            $products_counter++;
+        endif;
+    }
 }
+//-------------------------------------------
+//update shopping cart
+if(isset($_GET['update'])){
+    if($cartCheck):
+    $total_products=count($_SESSION['shopping_cart']);
+    for($i=0;$i<$total_products;$i++){
+        $product_id= $_SESSION['shopping_cart'][$i]['product_id'];
+        $_SESSION['shopping_cart'][$i]['product_quantity']=(int)$_GET["quantity{$product_id}"];
+    }
+    endif;
+}
+//
 include("./includes/public-header.php");
 
 ?>
@@ -81,7 +94,7 @@ include("./includes/public-header.php");
                 <div class="row">
                     <div class="col-md-12">
                         <div class="shopping-cart-form table-responsive">
-                            <form action="#" method="post">
+                            <form action="" method="get">
                                 <table class="table text-center">
                                     <thead>
                                     <tr>
@@ -94,52 +107,64 @@ include("./includes/public-header.php");
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php if(!isset($_SESSION['shopping_cart'])): ?>
+                                    <?php if (!isset($_SESSION['shopping_cart'])): ?>
                                         <h1>Your cart is empty</h1>
-                                    <?php endif;?>
+                                    <?php endif; ?>
 
                                     <?php
+                                    if (isset($_SESSION["shopping_cart"])):
+                                        $i=0;
+                                        foreach ($_SESSION["shopping_cart"] as $product):?>
+                                            <tr class="cart-product-item">
+                                                <td class="product-remove">
+                                                    <a href="shop-cart.php?delete=<?php echo $product['product_id'] ?>"><i
+                                                                class="fa fa-trash-o"></i></a>
+                                                </td>
+                                                <td class="product-thumb">
+                                                    <a href="single-product.php">
+                                                        <img src="assets/img/shop/product-mini/3.webp" width="90"
+                                                             height="110"
+                                                             alt="Image-HasTech">
+                                                    </a>
+                                                </td>
+                                                <td class="product-name">
+                                                    <h4 class="title"><a
+                                                                href="single-normal-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name'] ?></a>
+                                                    </h4>
+                                                </td>
+                                                <td class="product-price">
+                                                    <span class="price">$<?php echo $product['product_sale_price'] ?? $product['product_price'] ?></span>
+                                                </td>
+                                                <td class="product-quantity">
+                                                    <div><?php echo $product['product_quantity']?? "1"; ?></div>
+                                                    <div class="pro-qty">
+                                                        <input type="text" name="quantity<?php echo $product['product_id'];?>" class="quantity"
+                                                               title="Quantity" value="1">
+                                                    </div>
 
-                                    if(isset($_SESSION["shopping_cart"])):
-                                    foreach ($_SESSION["shopping_cart"] as $product):?>
-                                    <tr class="cart-product-item">
-                                        <td class="product-remove">
-                                            <a href="shop-cart.php?delete=<?php echo $product['product_id'] ?>"><i class="fa fa-trash-o"></i></a>
-                                        </td>
-                                        <td class="product-thumb">
-                                            <a href="single-product.php">
-                                                <img src="assets/img/shop/product-mini/3.webp" width="90" height="110"
-                                                     alt="Image-HasTech">
-                                            </a>
-                                        </td>
-                                        <td class="product-name">
-                                            <h4 class="title"><a href="single-normal-product.php?id=<?php echo $product['product_id']?>"><?php echo $product['product_name'] ?></a></h4>
-                                        </td>
-                                        <td class="product-price">
-                                            <span class="price">$<?php echo $product['product_sale_price']??$product['product_price'] ?></span>
-                                        </td>
-                                        <td class="product-quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" class="quantity" title="Quantity" value="1">
-                                            </div>
-                                        </td>
-                                        <td class="product-subtotal">
-                                            <span class="price">$<?php echo $product['product_sale_price']??$product['product_price'] ?></span>
-                                        </td>
-                                    </tr>
-                                    <?php endforeach;
+
+                                                </td>
+                                                <td class="product-subtotal">
+                                                    <span class="price">$<?php echo $product['product_sale_price'] ?? $product['product_price'] ?></span>
+                                                </td>
+                                            </tr>
+                                        <?php $i++; endforeach;
                                     endif;
                                     ?>
+
+
                                     <tr class="actions">
                                         <td class="border-0" colspan="6">
-                                            <button type="submit" class="update-cart" disabled>Update cart</button>
-                                            <button type="submit" class="clear-cart">Clear Cart</button>
+                                            <button type="submit" name="update" class="update-cart">Update cart</button>
+                                            <button type="" class="clear-cart">Clear Cart</button>
                                             <a href="shop.php" class="btn-theme btn-flat">Continue Shopping</a>
                                         </td>
                                     </tr>
+
                                     </tbody>
                                 </table>
                             </form>
+
                         </div>
                     </div>
                 </div>
