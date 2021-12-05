@@ -4,6 +4,8 @@
 include_once 'layouts/head.php';
 include_once '../../includes/db.php';
 
+
+
 if (isset($_GET['sub_category_id'])) {
 	$id = $_GET['sub_category_id'];
 	$stmt = $connection->prepare(
