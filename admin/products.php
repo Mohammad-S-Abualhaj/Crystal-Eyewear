@@ -208,6 +208,7 @@ if ($_GET) {
 												<th class=min-w-125px>percentage_price</th>
 												<th class=min-w-125px>Image</th>
 												<th class=min-w-125px>Description</th>
+												<th class=min-w-125px>Featured Products</th>
 												<th class=min-w-125px>Category</th>
 												<th class=min-w-125px>Sub-Category</th>
 											</tr>
