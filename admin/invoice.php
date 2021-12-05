@@ -18,6 +18,18 @@ $stmt = $connection->prepare(
 );
 $stmt->execute();
 $order_summary = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// $order_summary = $stmt->fetch(PDO::FETCH_ASSOC);
+// $invoice_info=$order_summary['cart_after_shopping'];
+// $x=json_decode($invoice_info);
+// echo "<pre>";
+// var_dump(json_decode($invoice_info));
+
+
+// die;
+
+
+
 $status_err='';
 if (isset($_POST['submit'])) {
 
