@@ -114,7 +114,10 @@ include("./includes/public-header.php");
                                     <?php
                                     if (isset($_SESSION["shopping_cart"])):
                                         $i=0;
-                                        foreach ($_SESSION["shopping_cart"] as $product):?>
+                                        $order_total=0;
+                                        foreach ($_SESSION["shopping_cart"] as $product):
+                                            $order_total+=($product['product_sale_price']??$product['product_price'])*$product['product_quantity'];
+                                            ?>
                                             <tr class="cart-product-item">
                                                 <td class="product-remove">
                                                     <a href="shop-cart.php?delete=<?php echo $product['product_id'] ?>"><i
@@ -122,7 +125,7 @@ include("./includes/public-header.php");
                                                 </td>
                                                 <td class="product-thumb">
                                                     <a href="single-product.php">
-                                                        <img src="assets/img/shop/product-mini/3.webp" width="90"
+                                                        <img src="<?php echo "admin/assets/media/products_images/{$product['product_image']}" ?>" width="90"
                                                              height="110"
                                                              alt="Image-HasTech">
                                                     </a>
@@ -133,7 +136,7 @@ include("./includes/public-header.php");
                                                     </h4>
                                                 </td>
                                                 <td class="product-price">
-                                                    <span class="price">$<?php echo $product['product_sale_price'] ?? $product['product_price'] ?></span>
+                                                        <span class="price">$<?php echo $product['product_sale_price'] ?? $product['product_price'] ?></span>
                                                 </td>
                                                 <td class="product-quantity">
                                                     <div><?php echo $product['product_quantity']?? "1"; ?></div>
@@ -145,7 +148,7 @@ include("./includes/public-header.php");
 
                                                 </td>
                                                 <td class="product-subtotal">
-                                                    <span class="price">$<?php echo $product['product_sale_price'] ?? $product['product_price'] ?></span>
+                                                    <span class="price">$<?php echo $order_total ?></span>
                                                 </td>
                                             </tr>
                                         <?php $i++; endforeach;

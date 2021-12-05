@@ -178,24 +178,23 @@
     </div>
     <div class="offcanvas-body">
       <ul class="aside-cart-product-list">
+          <?php
+          $order_total=0;
+          foreach ($_SESSION['shopping_cart'] as $product):
+              $order_total+=($product['product_sale_price']??$product['product_price'])*$product['product_quantity'];
+              ?>
+
         <li class="product-list-item">
           <a href="#/" class="remove">×</a>
           <a href="single-product.php">
-            <img src="assets/img/shop/product-mini/1.webp" width="90" height="110" alt="Image-HasTech">
-            <span class="product-title">Leather Mens Slipper</span>
+            <img src="<?php echo "admin/assets/media/products_images/{$product['product_image']}";?>" width="90" height="110" alt="Image-HasTech">
+            <span class="product-title"><?php echo $product['product_name'] ?></span>
           </a>
-          <span class="product-price">1 × £69.99</span>
+          <span class="product-price"><?php echo $product['product_quantity'] ?> × <?php echo $product['product_sale_price'] ?? $product['product_price'] ?></span>
         </li>
-        <li class="product-list-item">
-          <a href="#/" class="remove">×</a>
-          <a href="single-product.php">
-            <img src="assets/img/shop/product-mini/2.webp" width="90" height="110" alt="Image-HasTech">
-            <span class="product-title">Quickiin Mens shoes</span>
-          </a>
-          <span class="product-price">1 × £20.00</span>
-        </li>
+        <?php endforeach; ?>
       </ul>
-      <p class="cart-total"><span>Subtotal:</span><span class="amount">£89.99</span></p>
+      <p class="cart-total"><span>Subtotal:</span><span class="amount">$<?php echo $order_total; ?>></span></p>
       <a class="btn-theme" data-margin-bottom="10" href="shop-cart.php">View cart</a>
       <a class="btn-theme" href="shop-checkout.php">Checkout</a>
       <a class="d-block text-end lh-1" href="shop-checkout.php"><img src="assets/img/photos/paypal.webp" width="133" height="26" alt="Has-image"></a>
