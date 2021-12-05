@@ -9,6 +9,7 @@ if (isset($_POST["submit"])) {
 	$product_description = $_POST['product_description'];
 	$product_category  = $_POST['category'];
 	$product_sub_category  = $_POST['subcategory'];
+
 	$rand = rand(1, 99999);
 	$product_image = $rand . $_FILES["image"]["name"];
 	$destination = "assets/media/products_images/" . $rand . $_FILES["image"]["name"];
@@ -18,15 +19,14 @@ if (isset($_POST["submit"])) {
 	} else {
 		echo "<h1>image not uploaded</h1>";
 	}
-	$new_product_info = [
-		$product_name, $product_price, $product_percentage_price, $product_description,
-		$product_category, $product_sub_category, $product_image
-	];
+	if (!empty($_POST['featured'])) {
+		$featured_product  = $_POST['featured'];
+	}
 
 	$strt = $connection->prepare("INSERT INTO products (product_name, product_price, product_description, 
-	                             product_image,product_percentage_price, category_id, sub_category_id) 
+	                             product_image,product_percentage_price, category_id, sub_category_id, featured_products) 
 		                         VALUES ('{$product_name}',{$product_price},'{$product_description}','{$product_image}', 
-								 '{$product_percentage_price}','{$product_category}', '{$product_sub_category}')");
+								 '{$product_percentage_price}','{$product_category}', '{$product_sub_category}', '{$featured_product}')");
 
 	foreach ($new_product_info as $info) {
 		if ($info === "") {
@@ -150,7 +150,13 @@ if ($_GET) {
 																</div>
 																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Name</label><input name="product_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="sunglasses" required></div>
 																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Price </label><input type=number name="product_price" class="form-control form-control-solid mb-3 mb-lg-0" placeholder=90$ required></div>
-																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Percentage Price </label><input type=number name="product_percentage_price" class="form-control form-control-solid mb-3 mb-lg-0" placeholder=10% required></div>
+																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Percentage Price </label><input type=number name="product_percentage_price" class="form-control form-control-solid mb-3 mb-lg-0" placeholder=10%></div>
+																<div class="form-check my-5">
+																	<input class="form-check-input" type="checkbox" value="1" id="flexCheckChecked" name="featured">
+																	<label class="form-check-label" for="flexCheckChecked">
+																		featured product
+																	</label>
+																</div>
 																<div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Product Description</label><input type=text name="product_description" class="form-control form-control-solid mb-3 mb-lg-0" placeholder=add description required></div>
 																<div class=mb-7>
 																	<label class="required fs-6 fw-bold mb-2">Category</label>
@@ -224,6 +230,7 @@ if ($_GET) {
 														<td><?php echo $value["product_percentage_price"]; ?></td>
 														<td> <img src="assets/media/products_images/<?php echo $value["product_image"] ?>" alt="this is a beautiful image" width="100px" height="100px"></td>
 														<td><?php echo $value["product_description"]; ?></td>
+														<td><?php echo $value["featured_products"]; ?></td>
 														<td><?php echo $value["category_name"]; ?></td>
 														<td><?php echo $value["sub_category_name"]; ?></td>
 														<td class="pe-0 text-end">
@@ -249,21 +256,21 @@ if ($_GET) {
 														</td>
 													</tr>
 												<?php } ?>
-											<?php } else {
-											$search_keyword = '%' . $_POST['search_for_product'] . '%';
-											$sql = $connection->prepare("SELECT * FROM ((products
+												<?php } else {
+												$search_keyword = '%' . $_POST['search_for_product'] . '%';
+												$sql = $connection->prepare("SELECT * FROM ((products
 																	INNER JOIN category ON category.category_id = products.category_id)
 																	INNER JOIN sub_category ON sub_category.sub_category_id = products.sub_category_id)
 																	WHERE product_name LIKE '{$search_keyword}'");
 
 
-											$sql->execute();
-											$result2 = $sql->fetchAll(PDO::FETCH_ASSOC);
-											if (count($result2) === 0) {
-												echo "<h3 class='error_not_found'>No results found</h3>";
-												die();
-											}
-											foreach ($result2 as $key => $value) {
+												$sql->execute();
+												$result2 = $sql->fetchAll(PDO::FETCH_ASSOC);
+												if (count($result2) === 0) {
+													echo "<h3 class='error_not_found'>No results found</h3>";
+													die();
+												}
+												foreach ($result2 as $key => $value) {
 												?>
 												<tbody class="text-gray-600 fw-bold">
 													<tr>
@@ -273,6 +280,7 @@ if ($_GET) {
 														<td><?php echo $value["product_percentage_price"]; ?></td>
 														<td> <img src="assets/media/products_images/<?php echo $value["product_image"] ?>" alt="this is a beautiful image" width="100px" height="100px"></td>
 														<td><?php echo $value["product_description"]; ?></td>
+														<td><?php echo $value["featured_products"]; ?></td>
 														<td><?php echo $value["category_name"]; ?></td>
 														<td><?php echo $value["sub_category_name"]; ?></td>
 														<td class="pe-0 text-end">
@@ -297,16 +305,16 @@ if ($_GET) {
 															</a>
 														</td>
 													</tr>
-													
-													<?php } ?>
-													<?php } ?>
-													
+
+												<?php } ?>
+											<?php } ?>
+
 												</tbody>
-											</table>
-										</div>
-									</div>
+									</table>
 								</div>
 							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
