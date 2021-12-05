@@ -258,29 +258,25 @@ if ($_GET) {
 
 
 											$sql->execute();
-											$result2 = $sql->fetch(PDO::FETCH_ASSOC);
-											if (count($sql->fetchAll(PDO::FETCH_ASSOC)) === 0) {
+											$result2 = $sql->fetchAll(PDO::FETCH_ASSOC);
+											if (count($result2) === 0) {
 												echo "<h3 class='error_not_found'>No results found</h3>";
 												die();
 											}
 											foreach ($result2 as $key => $value) {
-												echo "<pre>";
-												print_r($value);
-											}
-											die();
-											?>
+												?>
 												<tbody class="text-gray-600 fw-bold">
 													<tr>
-														<td><?php echo $result2["product_id"]; ?></td>
-														<td><?php echo $result2["product_name"]; ?></td>
-														<td><?php echo $result2["product_price"]; ?></td>
-														<td><?php echo $result2["product_percentage_price"]; ?></td>
-														<td> <img src="assets/media/products_images/<?php echo $result2["product_image"] ?>" alt="this is a beautiful image" width="100px" height="100px"></td>
-														<td><?php echo $result2["product_description"]; ?></td>
-														<td><?php echo $result2["category_name"]; ?></td>
-														<td><?php echo $result2["sub_category_name"]; ?></td>
+														<td><?php echo $value["product_id"]; ?></td>
+														<td><?php echo $value["product_name"]; ?></td>
+														<td><?php echo $value["product_price"]; ?></td>
+														<td><?php echo $value["product_percentage_price"]; ?></td>
+														<td> <img src="assets/media/products_images/<?php echo $value["product_image"] ?>" alt="this is a beautiful image" width="100px" height="100px"></td>
+														<td><?php echo $value["product_description"]; ?></td>
+														<td><?php echo $value["category_name"]; ?></td>
+														<td><?php echo $value["sub_category_name"]; ?></td>
 														<td class="pe-0 text-end">
-															<a href="edit/product.php?product_id=<?php echo $result2["product_id"]; ?>" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+															<a href="edit/product.php?product_id=<?php echo $value["product_id"]; ?>" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
 																<span data-bs-toggle="tooltip" data-bs-trigger="hover" title="" data-bs-original-title="Edit" aria-describedby="tooltip35159">
 																	<span class="svg-icon svg-icon-3">
 																		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -290,7 +286,7 @@ if ($_GET) {
 																	</span>
 																</span>
 															</a>
-															<a href="products.php?product_id=<?php echo $result2["product_id"]; ?>" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="tooltip" title="" data-kt-delete="delete_row" data-bs-original-title="Delete" name="delete">
+															<a href="products.php?product_id=<?php echo $value["product_id"]; ?>" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="tooltip" title="" data-kt-delete="delete_row" data-bs-original-title="Delete" name="delete">
 																<span class="svg-icon svg-icon-3">
 																	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 																		<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="black"></path>
@@ -301,15 +297,16 @@ if ($_GET) {
 															</a>
 														</td>
 													</tr>
-
-												<?php } ?>
-
+													
+													<?php } ?>
+													<?php } ?>
+													
 												</tbody>
-									</table>
+											</table>
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
