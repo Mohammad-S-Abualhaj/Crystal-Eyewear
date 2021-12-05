@@ -106,11 +106,6 @@
                   <div class="shopping-search">
                     <button class="shopping-search-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#AsideOffcanvasSearch" aria-controls="AsideOffcanvasSearch"><i class="pe-7s-search icon"></i></button>
                   </div>
-                  <div class="shopping-wishlist">
-                    <a class="shopping-wishlist-btn" href="shop-wishlist.php">
-                      <i class="pe-7s-like icon"></i>
-                    </a>
-                  </div>
                   <div class="shopping-cart">
                     <button class="shopping-cart-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#AsideOffcanvasCart" aria-controls="offcanvasRightLabel">
                       <i class="pe-7s-shopbag icon"></i>
@@ -134,37 +129,9 @@
             <div class="header-align">
               <div class="header-navigation-area position-relative">
                 <ul class="main-menu nav">
-                  <li class="has-submenu"><a href="index.php"><span>Home</span></a>
-                    <ul class="submenu-nav">
-                    </ul>
-                  </li>
+                  <li><a href="index.php"><span>Home</span></a></li>
+                  <li ><a href="shop.php"><span>Shop</span></a> </li>
                   <li><a href="about-us.php"><span>About</span></a></li>
-                  <li class="has-submenu"><a href="#/"><span>Pages</span></a>
-                    <ul class="submenu-nav">
-                      <li><a href="account.php"><span>Account</span></a></li>
-                      <li><a href="account-login.php"><span>Login</span></a></li>
-                      <li><a href="account-register.php"><span>Register</span></a></li>
-                      <li><a href="page-not-found.php"><span>Page Not Found</span></a></li>
-                    </ul>
-                  </li>
-                  <li class="has-submenu position-static"><a href="shop.php"><span>Shop</span></a>
-                    <ul class="submenu-nav submenu-nav-mega column-3">
-                      <li class="mega-menu-item"><a href="#/" class="mega-title"><span>Shop Layout</span></a>
-                      </li>
-                      <li class="mega-menu-item"><a href="single-normal-product.php" class="mega-title"><span>Single Product</span></a>
-                      </li>
-                      <li class="mega-menu-item"><a href="#/" class="mega-title"><span>Others Pages</span></a>
-                        <ul>
-                          <li><a href="shop-cart.php"><span>Shopping Cart</span></a></li>
-                          <li><a href="shop-checkout.php"><span>Checkout</span></a></li>
-                          <li><a href="shop-wishlist.php"><span>Wishlist</span></a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="has-submenu"><a href="blog-left-sidebar"><span>Blog</span></a>
-                  </li>
-                  <li><a href="contact.php"><span>Contact</span></a></li>
                 </ul>
               </div>
             </div>

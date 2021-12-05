@@ -121,6 +121,7 @@ if(isset($_POST['country'])){
     $address_line=$_POST['address_line'];
     $counter=0;
     $comma=",";
+    $i= count($_SESSION["shopping_cart"]);
     foreach($_SESSION["shopping_cart"] as $product_arr):
         if($counter===$i-1){
             $comma=" ";
