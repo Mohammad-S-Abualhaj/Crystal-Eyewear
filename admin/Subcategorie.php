@@ -5,6 +5,7 @@ include_once '../includes/db.php';
 if (isset($_POST['add_sub_category_submit'])) {
     $rand = rand(1, 9999);
     $sub_cat_name = $_POST['sub_category_name'];
+	
     $sub_cat_desc = $_POST['sub_category_description'];
 	$cat_id=$_POST['category_id'];
     $destination =

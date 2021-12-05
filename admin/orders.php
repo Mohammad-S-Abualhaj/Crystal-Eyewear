@@ -13,9 +13,6 @@ $delete = $connection->prepare("DELETE FROM order_summary WHERE order_id ='{$id}
 		$delete->execute();
 		header('location:orders.php');
 	}
-// echo "<pre";
-// print_r($order_summary);
-// die;
 ?>
 
 <body id=kt_body class="header-fixed header-tablet-and-mobile-fixed aside-enabled aside-fixed" style=--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px>
@@ -63,7 +60,7 @@ $delete = $connection->prepare("DELETE FROM order_summary WHERE order_id ='{$id}
 													//  echo $order_data['order_status'];
 													 if($order_data['order_status']==="pending"){
 													echo '<span class="badge badge-light-warning">pending</span>';
-												 }
+												 }                            
 												 else if($order_data['order_status']==="Rejected"){
 													echo '<span class="badge badge-light-danger">Rejected</span>';
 												 }
@@ -76,7 +73,7 @@ $delete = $connection->prepare("DELETE FROM order_summary WHERE order_id ='{$id}
 												<td><?php echo $order_data['order_total_price'] ?></td>
 												<td><?php echo $order_data['date_of_creation'] ?></td>
 												<td class="pe-0 text-end">
-													<a href="invoice.php" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="tooltip" title="" data-kt-customer-payment-method="View" data-bs-original-title="View">
+													<a href="invoice.php?order_id=<?php echo $order_data['order_id']?>" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="tooltip" title="" data-kt-customer-payment-method="View" data-bs-original-title="View">
 														<span class="svg-icon svg-icon-muted svg-icon-3">
 															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 																<path d="M13 21H3C2.4 21 2 20.6 2 20V4C2 3.4 2.4 3 3 3H13C13.6 3 14 3.4 14 4V20C14 20.6 13.6 21 13 21Z" fill="black"></path>
