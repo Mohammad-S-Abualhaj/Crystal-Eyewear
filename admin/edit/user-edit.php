@@ -21,7 +21,7 @@
             $check = false;
             $emailError = "<span style='color:red'> Email cannot be empty </span>";
          }
-         if($check == true){
+      if($check == true){
    		$rand = rand(1,99999);
    		$userName  = $_POST["username"];
    		$userEmail = $_POST["email"];

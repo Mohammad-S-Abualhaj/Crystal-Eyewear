@@ -1,7 +1,26 @@
 <?php
    include_once '../includes/db.php';
+
+
+   $emailError ="";
+   $nameError  ="";
+   $passError  ="";
    
    if(isset($_POST["submit"])){
+      $check      = true;
+      if(empty($_POST["user_name"])){
+         $check = false;
+         $nameError = "<span style='color:red'> Name cannot be empty </span>";
+      }
+      if(empty($_POST["user_email"])){
+         $check = false;
+         $emailError = "<span style='color:red'> Email cannot be empty </span>";
+      }  
+      if(empty($_POST["password"])){
+         $check = false;
+         $passError = "<span style='color:red'> password cannot be empty </span>";
+      }
+   if($check == true){
    	$rand = rand(1,99999);
    	$userName  = $_POST["user_name"];
    	$userEmail = $_POST["user_email"];
@@ -20,7 +39,9 @@
    	VALUES ('{$userName}','{$userEmail}','{$password}','{$userRole}','{$userImage}')");
    	$strt->execute();
    	header("location:users.php");
+
    }
+}
    
    ?>
 <!DOCTYPE html>
@@ -108,8 +129,11 @@
                                                       <div class=form-text>Allowed file types: png, jpg, jpeg.</div>
                                                    </div>
                                                    <div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Full Name</label><input name= "user_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Full name" ></div>
+                                                   <div><?php echo $nameError?></div>
                                                    <div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Email</label><input type=email name=user_email class="form-control form-control-solid mb-3 mb-lg-0" placeholder=example@domain.com ></div>
+                                                   <div><?php echo $emailError?></div>
                                                    <div class="fv-row mb-7"><label class="required fw-bold fs-6 mb-2">Password</label><input type=password name=password class="form-control form-control-solid mb-3 mb-lg-0" placeholder=password ></div>
+                                                   <div><?php echo $passError?></div>
                                                    <div class=mb-7>
                                                       <label class="required fw-bold fs-6 mb-5">Role</label>
                                                       <div class="d-flex fv-row">
