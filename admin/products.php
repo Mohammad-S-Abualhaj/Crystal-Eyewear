@@ -17,7 +17,13 @@ if (isset($_POST["submit"])) {
 	} else {
 		echo "<h1>image not uploaded</h1>";
 	}
-
+	$new_product_info = [$product_name, $product_price, $product_percentage_price, $product_description,
+                        $product_category, $product_sub_category, $product_image];
+	foreach ($new_product_info as $info) {
+		if($info === ""){
+			
+		}
+	}					
 	$strt = $connection->prepare("INSERT INTO products (product_name, product_price, product_description, 
 	                             product_image,product_percentage_price, category_id, sub_category_id) 
 		                         VALUES ('{$product_name}',{$product_price},'{$product_description}','{$product_image}', 
