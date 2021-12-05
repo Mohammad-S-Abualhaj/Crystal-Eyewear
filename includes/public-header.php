@@ -71,9 +71,11 @@
                       <li class="number"><i class="fa fa-phone"></i><a href="tel://0123456789">+00 123 456 789</a></li>
                       <li class="email"><i class="fa fa-envelope"></i><a href="mailto://demo@example.com">demo@example.com</a></li>
                       <li class="account">
-                          <?php if(isset( $_SESSION['user_loggedin'])){?>
+                          <?php if(isset( $_SESSION['user_loggedin'])){
+                              if($_SESSION['user_loggedin']===true){
+                              ?>
                           <i class="fa fa-user"></i><a class="account" href="account.php"><?php echo $_SESSION['user_name']?? ""  ?></a>
-                          <?php }else{?>
+                          <?php } }else{?>
                           <i class="fa fa-user"></i><a href="account-login.php">Log in</a>
                           <?php } ?>
                       </li>
@@ -120,7 +122,15 @@
                   <div class="shopping-cart">
                     <button class="shopping-cart-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#AsideOffcanvasCart" aria-controls="offcanvasRightLabel">
                       <i class="pe-7s-shopbag icon"></i>
-                      <sup class="shop-count">02</sup>
+                      <sup class="shop-count"><?php  
+                      if (isset($_SESSION['shopping_cart'])) {
+                        echo count(($_SESSION['shopping_cart']));
+                      }
+                      else{
+                      echo 0;
+                    }
+
+                      ?></sup>
                     </button>
                   </div>
                   <button class="btn-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#AsideOffcanvasMenu" aria-controls="AsideOffcanvasMenu">

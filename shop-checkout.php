@@ -186,12 +186,20 @@ include("./includes/public-header.php");
                             <tbody class="table-body">
                             <?php
                             $order_total=0;
+                            $price=null;
+                           
                             foreach ($_SESSION['shopping_cart'] as $product):
-                                $order_total+=($product['product_sale_price']??$product['product_price'])*$product['product_quantity'];
+                                if ($product['product_sale_price']) {
+                                    $price=$product['product_sale_price'];
+                                }
+                                else{
+                                $price=$product['product_price'];
+                                }
+                                $order_total+=(int)($price)*$product['product_quantity'];
                                 ?>
                                 <tr class="cart-item">
                                     <td class="product-name"><?php echo $product['product_name'] ?> <span class="product-quantity">× <?php echo $product['product_quantity']?></span></td>
-                                    <td class="product-total">$<?php echo ($product['product_sale_price']??$product['product_price'])*$product['product_quantity'] ?></td>
+                                    <td class="product-total">$<?php echo (int)($price)*$product['product_quantity'] ?></td>
                                 </tr>
 
                             <?php endforeach;

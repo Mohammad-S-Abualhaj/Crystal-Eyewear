@@ -68,14 +68,12 @@ INNER JOIN sub_category ON products.sub_category_id = sub_category.sub_category_
                     <div class="prices">
                       <span class="price">$<?php echo $product['product_price'] ?></span>
                     </div>
+                    <form action="shop-cart.php" method="get">  
+                     <input type="hidden" name="id" value="<?php echo $product['product_id'] ?>">
                     <div class="product-quick-action">
                       <div class="qty-wrap">
                         <div class="pro-qty">
-                            <form action="shop-cart.php" method="get">
                                 <input type="text" name="quantity" title="Quantity" value="1">
-                                <input type="hidden" name="id" value="<?php echo $product['product_id'] ?>">
-
-
                         </div>
                       </div>
                       <button type="submit" class="btn-theme" >Add to Cart</button>

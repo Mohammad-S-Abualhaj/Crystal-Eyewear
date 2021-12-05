@@ -1,5 +1,20 @@
 <?php
     session_start();
+
+
+
+
+    if(!$_SESSION['user_loggedin']){
+      header("Location:index.php");
+      exit();
+  }
+  
+
+
+
+
+
+
     include_once 'includes/db.php';
     $id = (int)$_SESSION['user_id'];
   
@@ -7,8 +22,18 @@
       $stmt->execute();
       $edit_user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+
+      $order_stmt = $connection->prepare("SELECT * FROM order_summary WHERE user_id ={$id}");
+      $order_stmt->execute();
+      $order_info = $order_stmt->fetchAll(PDO::FETCH_ASSOC);
+     
+// echo "<pre>";
+// var_dump($order_info);
+// die;
+
    
     include("./includes/public-header.php");
+    
 ?>
 
 <main class="main-content">
@@ -49,7 +74,8 @@
                     <button class="nav-link" id="payment-method-tab" data-bs-toggle="tab" data-bs-target="#payment-method" type="button" role="tab" aria-controls="payment-method" aria-selected="false">Payment Method</button>
                     <button class="nav-link" id="address-edit-tab" data-bs-toggle="tab" data-bs-target="#address-edit" type="button" role="tab" aria-controls="address-edit" aria-selected="false">address</button>
                     <button class="nav-link" id="account-info-tab" data-bs-toggle="tab" data-bs-target="#account-info" type="button" role="tab" aria-controls="account-info" aria-selected="false">Account Details</button>
-                     <button class="nav-link" onclick="window.location.href='account-login.php'" type="button">Logout</button>
+                    <a class="nav-link" href="includes/logic.php?logout=true" >Logout</a>
+
                   </div>
                 </nav>
               </div>
@@ -79,27 +105,17 @@
                             </tr>
                           </thead>
                           <tbody>
+                            
+                          
+                            <?php foreach ($order_info as $info) {?>
                             <tr>
-                              <td>1</td>
-                              <td>Aug 22, 2018</td>
-                              <td>Pending</td>
-                              <td>$3000</td>
+                            <td><?php echo  $info['order_id'] ?></td>
+                              <td><?php echo  $info['date_of_creation'] ?></td>
+                              <td><?php echo  $info['order_status'] ?></td>
+                              <td><?php echo  $info['order_total_price'] ?></td>
                               <td><a href="shop-cart.php" class="check-btn sqr-btn ">View</a></td>
                             </tr>
-                            <tr>
-                              <td>2</td>
-                              <td>July 22, 2018</td>
-                              <td>Approved</td>
-                              <td>$200</td>
-                              <td><a href="shop-cart.php" class="check-btn sqr-btn ">View</a></td>
-                            </tr>
-                            <tr>
-                              <td>3</td>
-                              <td>June 12, 2017</td>
-                              <td>On Hold</td>
-                              <td>$990</td>
-                              <td><a href="shop-cart.php" class="check-btn sqr-btn ">View</a></td>
-                            </tr>
+                            <?php } ?>
                           </tbody>
                         </table>
                       </div>
@@ -118,6 +134,7 @@
                               <th>Download</th>
                             </tr>
                           </thead>
+
                           <tbody>
                             <tr>
                               <td>Haven - Free Real Estate PSD Template</td>

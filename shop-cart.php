@@ -57,11 +57,19 @@ if(isset($_GET['update'])){
     if($cartCheck):
     $total_products=count($_SESSION['shopping_cart']);
     for($i=0;$i<$total_products;$i++){
+        if($_SESSION['shopping_cart'][$i]['product_id'])
         $product_id= $_SESSION['shopping_cart'][$i]['product_id'];
+
+        //if(($_GET["quantity{$product_id}"]!==1)):
         $_SESSION['shopping_cart'][$i]['product_quantity']=(int)$_GET["quantity{$product_id}"];
+        //endif;
     }
+
     endif;
+    
 }
+// var_dump($_SESSION['shopping_cart']);
+// die;
 //
 include("./includes/public-header.php");
 
@@ -115,8 +123,16 @@ include("./includes/public-header.php");
                                     if (isset($_SESSION["shopping_cart"])):
                                         $i=0;
                                         $order_total=0;
+
                                         foreach ($_SESSION["shopping_cart"] as $product):
-                                            $order_total+=($product['product_sale_price']??$product['product_price'])*$product['product_quantity'];
+                                            $price=null;
+                                            if ($product['product_sale_price']) {
+                                                $price=$product['product_sale_price'];
+                                            }
+                                            else{
+                                            $price=$product['product_price'];
+                                            }
+                                            $order_total+=(int)($price)*$product['product_quantity'];
                                             ?>
                                             <tr class="cart-product-item">
                                                 <td class="product-remove">
@@ -132,16 +148,16 @@ include("./includes/public-header.php");
                                                 </td>
                                                 <td class="product-name">
                                                     <h4 class="title"><a
-                                                                href="single-normal-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name'] ?></a>
+                                                                href="single-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name'] ?></a>
                                                     </h4>
                                                 </td>
                                                 <td class="product-price">
-                                                        <span class="price">$<?php echo $product['product_sale_price'] ?? $product['product_price'] ?></span>
+                                                        <span class="price">$<?php echo $price;?></span>
                                                 </td>
                                                 <td class="product-quantity">
                                                     <div><?php echo $product['product_quantity']?? "1"; ?></div>
                                                     <div class="pro-qty">
-                                                        <input type="text" name="quantity<?php echo $product['product_id'];?>" class="quantity"
+                                                        <input type="text" name="quantity<?php echo $product['product_id'];?>" value="<?php echo $product['product_quantity']?>" class="quantity"
                                                                title="Quantity" value="1">
                                                     </div>
 

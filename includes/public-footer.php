@@ -119,22 +119,31 @@
     <div class="offcanvas-body">
       <ul class="aside-cart-product-list">
           <?php
-          $order_total=0;
-          foreach ($_SESSION['shopping_cart'] as $product):
-              $order_total+=($product['product_sale_price']??$product['product_price'])*$product['product_quantity'];
+          if(isset($_SESSION['shopping_cart'])):
+            $order_total=0;
+            $price=null;
+           
+            foreach ($_SESSION['shopping_cart'] as $product):
+                if ($product['product_sale_price']) {
+                    $price=$product['product_sale_price'];
+                }
+                else{
+                $price=$product['product_price'];
+                }
+                $order_total+=(int)($price)*$product['product_quantity'];
               ?>
 
         <li class="product-list-item">
-          <a href="#/" class="remove">×</a>
+<!--          <a href="" class="remove">×</a>-->
           <a href="single-product.php">
             <img src="<?php echo "admin/assets/media/products_images/{$product['product_image']}";?>" width="90" height="110" alt="Image-HasTech">
             <span class="product-title"><?php echo $product['product_name'] ?></span>
           </a>
-          <span class="product-price"><?php echo $product['product_quantity'] ?> × <?php echo $product['product_sale_price'] ?? $product['product_price'] ?></span>
+          <span class="product-price"><?php echo $product['product_quantity'] ?> × <?php echo $price ?></span>
         </li>
         <?php endforeach; ?>
       </ul>
-      <p class="cart-total"><span>Subtotal:</span><span class="amount">$<?php echo $order_total; ?>></span></p>
+      <p class="cart-total"><span>Subtotal:</span><span class="amount">$<?php echo $order_total; ?> </span></p>
       <a class="btn-theme" data-margin-bottom="10" href="shop-cart.php">View cart</a>
       <a class="btn-theme" href="shop-checkout.php">Checkout</a>
       <a class="d-block text-end lh-1" href="shop-checkout.php"><img src="assets/img/photos/paypal.webp" width="133" height="26" alt="Has-image"></a>
@@ -161,6 +170,7 @@
               <button class="search-button"><i class="fa fa-search"></i></button>
             </div>
           </form>
+            <?php endif;?>
         </div>
       </div>
     </div>
@@ -255,36 +265,36 @@
 
 </div>
 
-<!--=======================Javascript============================-->
+            <!--=======================Javascript============================-->
 
 
-<!--=== jQuery Modernizr Min Js ===-->
-<script src="assets/js/modernizr.js"></script>
-<!--=== jQuery Min Js ===-->
-<script src="assets/js/jquery-main.js"></script>
-<!--=== jQuery Migration Min Js ===-->
-<script src="assets/js/jquery-migrate.js"></script>
-<!--=== jQuery Popper Min Js ===-->
-<script src="assets/js/popper.min.js"></script>
-<!--=== jQuery Bootstrap Min Js ===-->
-<script src="assets/js/bootstrap.min.js"></script>
-<!--=== jQuery Ui Min Js ===-->
-<script src="assets/js/jquery-ui.min.js"></script>
-<!--=== jQuery Swiper Min Js ===-->
-<script src="assets/js/swiper.min.js"></script>
-<!--=== jQuery Fancybox Min Js ===-->
-<script src="assets/js/fancybox.min.js"></script>
-<!--=== jQuery Waypoint Js ===-->
-<script src="assets/js/waypoint.js"></script>
-<!--=== jQuery Parallax Min Js ===-->
-<script src="assets/js/parallax.min.js"></script>
-<!--=== jQuery Aos Min Js ===-->
-<script src="assets/js/aos.min.js"></script>
+            <!--=== jQuery Modernizr Min Js ===-->
+            <script src="assets/js/modernizr.js"></script>
+            <!--=== jQuery Min Js ===-->
+            <script src="assets/js/jquery-main.js"></script>
+            <!--=== jQuery Migration Min Js ===-->
+            <script src="assets/js/jquery-migrate.js"></script>
+            <!--=== jQuery Popper Min Js ===-->
+            <script src="assets/js/popper.min.js"></script>
+            <!--=== jQuery Bootstrap Min Js ===-->
+            <script src="assets/js/bootstrap.min.js"></script>
+            <!--=== jQuery Ui Min Js ===-->
+            <script src="assets/js/jquery-ui.min.js"></script>
+            <!--=== jQuery Swiper Min Js ===-->
+            <script src="assets/js/swiper.min.js"></script>
+            <!--=== jQuery Fancybox Min Js ===-->
+            <script src="assets/js/fancybox.min.js"></script>
+            <!--=== jQuery Waypoint Js ===-->
+            <script src="assets/js/waypoint.js"></script>
+            <!--=== jQuery Parallax Min Js ===-->
+            <script src="assets/js/parallax.min.js"></script>
+            <!--=== jQuery Aos Min Js ===-->
+            <script src="assets/js/aos.min.js"></script>
 
-<!--=== jQuery Custom Js ===-->
-<script src="assets/js/custom.js"></script>
-<!---       MAIN SCRIPT             -->
-<script src="js/main_apps.js"></script>
+            <!--=== jQuery Custom Js ===-->
+            <script src="assets/js/custom.js"></script>
+            <!---       MAIN SCRIPT             -->
+            <script src="js/main_apps.js"></script>
 
 
 </body>

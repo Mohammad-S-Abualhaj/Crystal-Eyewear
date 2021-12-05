@@ -141,7 +141,19 @@ if(isset($_POST['country'])){
          );
     unset($_SESSION["shopping_cart"]);
     header("Location:../shop.php");
+    exit();
 
+}
+//logout logic
+if(isset($_GET['logout'])){
+    session_start();
+    if($_GET['logout']==true){
+        unset($_SESSION['user_id']);
+        unset($_SESSION['user_name']);
+        unset($_SESSION['user_loggedin']);
+            header("Location:../index.php");
+        exit();
+    }
 }
 //----------------------------------------------------------kilani
 if(isset($_POST["account_kilani_submit"])){
