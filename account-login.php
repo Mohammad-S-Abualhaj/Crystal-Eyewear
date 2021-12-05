@@ -48,14 +48,8 @@
                     </div>
                   </div>
                   <div class="col-12">
-                    <div class="form-group account-info-group mb--0">
-                      <div class="rememberme-account">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                          <label class="form-check-label" for="defaultCheck1">Remember me</label>
-                        </div>
-                      </div>
-                      <a class="lost-password" href="#/">Lost your password?</a>
+                    <div class="form-group ">
+                     <span>Don't have account </span> <a class="lost-password" href="account-register.php">&nbsp;register </a>
                     </div>
                   </div>
                 </div>

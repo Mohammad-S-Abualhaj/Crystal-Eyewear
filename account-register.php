@@ -19,7 +19,7 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="form-group">
-                      <label for="username">name <span class="required">*</span></label>
+                      <label for="username">Username <span class="required">*</span></label>
                       <input id="username" class="form-control" name="username" type="text">
                         <?php if(isset($_GET["username"])):?>
                         <span class="text-danger"><?php echo $_GET["username"]; ?></span>
@@ -65,6 +65,11 @@
                   <div class="col-12">
                     <div class="form-group mb--0">
                       <button class="btn-register" type="submit" name="register_submit">Register</button>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group  mt-4">
+                     <span>If you have an account </span> <a class="lost-password" href="account-login.php">&nbsp;Login </a>
                     </div>
                   </div>
                 </div>

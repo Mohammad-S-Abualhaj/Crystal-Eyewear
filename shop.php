@@ -59,7 +59,7 @@ if (isset($_GET['sub_category_name'])) {
 <main class="main-content">
    <!--== Start Page Header Area Wrapper ==-->
    <div class="container ">
-      <div class="padding-15 page-header-area mb-5" data-bg-img="assets/img/photos/bg3.webp">
+      <div class="padding-15 .page-header-area2 mb-5" data-bg-img="assets/img/photos/bg3.webp">
       </div>
    </div>
    <!--== End Page Header Area Wrapper ==-->
