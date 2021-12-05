@@ -12,35 +12,33 @@
 <main class="main-content">
    <!--== Start Hero Area Wrapper ==-->
    <section class="home-slider-area">
-   <div class="container ">
-
-      <div class=" p-0 swiper-container home-slider-container default-slider-container">
-         <div class=" swiper-wrapper home-slider-wrapper slider-default">
-            <div class="swiper-slide">
-               <div class="slider-content-area slider-content-area-two" data-bg-img="assets/img/slider/slider-02.webp">
+      <div class="container ">
+         <div class=" p-0 swiper-container home-slider-container default-slider-container">
+            <div class=" swiper-wrapper home-slider-wrapper slider-default">
+               <div class="swiper-slide">
+                  <div class="slider-content-area slider-content-area-two" data-bg-img="assets/img/slider/slider-02.webp">
+                  </div>
+               </div>
+               <div class="swiper-slide">
+                  <div class="slider-content-area slider-content-area-two" data-bg-img="assets/img/slider/slider-04.webp">
+                  </div>
+               </div>
+               <div class="swiper-slide">
+                  <div class="slider-content-area slider-content-area-two" data-bg-img="assets/img/slider/slider-01.webp">
+                  </div>
                </div>
             </div>
-            <div class="swiper-slide">
-               <div class="slider-content-area slider-content-area-two" data-bg-img="assets/img/slider/slider-04.webp">
+            <!--== Add Swiper Arrows ==-->
+            <div class="swiper-btn-wrap">
+               <div class="swiper-btn-prev">
+                  <i class="pe-7s-angle-left"></i>
                </div>
-            </div>
-            <div class="swiper-slide">
-               <div class="slider-content-area slider-content-area-two" data-bg-img="assets/img/slider/slider-01.webp">
+               <div class="swiper-btn-next">
+                  <i class="pe-7s-angle-right"></i>
                </div>
             </div>
          </div>
-         <!--== Add Swiper Arrows ==-->
-         <div class="swiper-btn-wrap">
-            <div class="swiper-btn-prev">
-               <i class="pe-7s-angle-left"></i>
-            </div>
-            <div class="swiper-btn-next">
-               <i class="pe-7s-angle-right"></i>
-            </div>
-         </div>
       </div>
-      </div>
-
    </section>
    <!--== End Hero Area Wrapper ==-->
    <div class="feature-area">
@@ -109,7 +107,6 @@
          </div>
       </div>
    </div>
-
    <!--== Start Product Collection Area Wrapper ==-->
    <section class="product-area product-collection-area home_sc">
       <div class="container">
@@ -125,7 +122,7 @@
                         </div>
                      </div>
                      <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/1.webp"></div>
-                     <a class="banner-link-overlay" href="shop.php"></a>
+                     <a class="banner-link-overlay" href="shop.php?sub_category_name=<?php echo $products[0]['sub_category_name']["women"]?>"></a>
                   </div>
                </div>
                <!--== End Product Collection Item ==-->
@@ -182,13 +179,13 @@
          <div class="row">
             <!--== Start Product Item ==-->
             <?php foreach ($products as $product){
-               if ($product['product_featured']>0):
+               if ($product['featured_products']>0):
                 ?>
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-6 col-lg-4">
                <div class="product-item">
                   <div class="inner-content">
                      <div class="product-thumb">
-                        <a href="single-product.php">
+                        <a href="single-product.php?id=<?php echo $product['product_id'] ; ?>">
                         <img src="admin/assets/media/products_images/<?php echo $product['product_image']; ?>" width="270" height="274" alt="Image-HasTech">
                         </a>
                         <?php if ($product['product_percentage_price']>0): ?>
@@ -206,17 +203,17 @@
                      <div class="product-info">
                         <div class="category">
                            <ul>
-                              <li ><a href="shop.php"><?php echo $product['category_name'];?>/<?php echo $product['sub_category_name'];?></a></li>
+                              <li ><?php echo $product['category_name'] ; ?>/<a href="shop.php?sub_category_name=<?php echo $product['sub_category_name']; ?>"><?php echo $product['sub_category_name'] ; ?></a></li>
                            </ul>
                         </div>
-                        <h4 class="title"><a href="single-normal-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name']; ?></a></h4>
+                        <h4 class="title"><a href="single-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name']; ?></a></h4>
                         <div class="prices">
-                            <?php if ($product['product_percentage_price'] > 0){ ?>
+                           <?php if ($product['product_percentage_price'] > 0){ ?>
                            <span class="price-old">$<?php echo $product['product_price'] ?></span>
                            <span class="sep">-</span>
                            <span class="price">$
                            <?php echo $product['product_percentage_price'] * $product['product_price'] / 100 ;}
-                           else{?><span class="price">$ <?php echo $product['product_price'] ;}?></span>
+                              else{?><span class="price">$ <?php echo $product['product_price'] ;}?></span>
                         </div>
                      </div>
                   </div>
@@ -246,7 +243,6 @@
       </div>
    </section>
    <!--== End Divider Area Wrapper ==-->
- 
    <!--== Start Product Area Wrapper ==-->
    <section class="product-area product-best-seller-area home_sc mt-5 ">
       <div class="container">
@@ -264,13 +260,13 @@
          <div class="row">
             <!--== Start Product Item ==-->
             <?php foreach ($products as $product){
-               if ($product['product-best-seller']>0):
+               if ($product['product_best_seller']>0):
                 ?>
-            <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-6 col-lg-4">
                <div class="product-item">
                   <div class="inner-content">
                      <div class="product-thumb">
-                        <a href="single-product.php">
+                        <a href="single-product.php?id=<?php echo $product['product_id'] ; ?>">
                         <img src="admin/assets/media/products_images/<?php echo $product['product_image']; ?>" width="270" height="274" alt="Image-HasTech">
                         </a>
                         <?php if ($product['product_percentage_price']>0): ?>
@@ -288,17 +284,17 @@
                      <div class="product-info">
                         <div class="category">
                            <ul>
-                              <li ><a href="shop.php"><?php echo $product['category_name'];?>/<?php echo $product['sub_category_name'];?></a></li>
+                              <li ><?php echo $product['category_name'] ; ?>/<a href="shop.php?sub_category_name=<?php echo $product['sub_category_name']; ?>"><?php echo $product['sub_category_name'] ; ?></a></li>
                            </ul>
                         </div>
-                        <h4 class="title"><a href="single-normal-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name']; ?></a></h4>
+                        <h4 class="title"><a href="single-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name']; ?></a></h4>
                         <div class="prices">
-                            <?php if ($product['product_percentage_price'] > 0){ ?>
+                           <?php if ($product['product_percentage_price'] > 0){ ?>
                            <span class="price-old">$<?php echo $product['product_price'] ?></span>
                            <span class="sep">-</span>
                            <span class="price">$
                            <?php echo $product['product_percentage_price'] * $product['product_price'] / 100 ;}
-                           else{?><span class="price">$ <?php echo $product['product_price'] ;}?></span>
+                              else{?><span class="price">$ <?php echo $product['product_price'] ;}?></span>
                         </div>
                      </div>
                   </div>
