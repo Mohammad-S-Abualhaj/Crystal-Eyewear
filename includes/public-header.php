@@ -1,5 +1,11 @@
-<?php $RELOAD_TIMEOUT_MINUTES=15*60;
+<?php
+  if(isset($_POST['search_for_product'])){
+  $search_key = $_POST["search_for_product"];
+    header("Location:shop.php?search_key=$search_key");
+  }
 ?>
+
+<?php $RELOAD_TIMEOUT_MINUTES=15*60;//minutes ?>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -95,8 +101,8 @@
               </div>
               <div class="header-middle-align-center">
                 <div class="header-search-area">
-                  <form class="header-searchbox">
-                    <input type="search" class="form-control" placeholder="Search">
+                  <form class="header-searchbox" method="POST">
+                    <input type="search" class="form-control" placeholder="Search" name="search_for_product" oninput="search(this.value)">
                     <button class="btn-submit" type="submit"><i class="pe-7s-search"></i></button>
                   </form>
                 </div>

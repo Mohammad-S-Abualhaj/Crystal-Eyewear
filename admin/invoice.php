@@ -1,8 +1,61 @@
 <!DOCTYPE html>
 <html lang=en>
-<?php include_once 'layouts/head.php'; ?>
+<?php include_once 'layouts/head.php'; 
+include_once '../includes/db.php';
+$id=$_GET['order_id'];
+// $stmt = $connection->prepare("SELECT * FROM order_summary WHERE order_id ='{$id}'");
+// $stmt->execute();
+// $order_summary = $stmt->fetch(PDO::FETCH_ASSOC);
+// $invoice_info=$order_summary['cart_after_shopping'];
+// $x=json_decode($invoice_info);
+// echo "<pre>";
+// var_dump(json_decode($invoice_info));
 
-<body id=kt_body class="header-fixed header-tablet-and-mobile-fixed aside-enabled aside-fixed" style=--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px>
+// var_dump($x);
+// die;
+$stmt = $connection->prepare(
+	"SELECT * FROM order_summary INNER JOIN user ON user.id = order_summary.order_id WHERE order_id ='{$id}' "
+);
+$stmt->execute();
+$order_summary = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// $order_summary = $stmt->fetch(PDO::FETCH_ASSOC);
+// $invoice_info=$order_summary['cart_after_shopping'];
+// $x=json_decode($invoice_info);
+// echo "<pre>";
+// var_dump(json_decode($invoice_info));
+
+
+// die;
+
+
+
+$status_err='';
+if (isset($_POST['submit'])) {
+
+	$status_options = $_POST['status'];
+	
+	$check = 1;
+	if (empty($status_options)) {
+		$status_err = "you must choose status of the order";
+		$check = 0;
+	}
+	
+	
+	if ($check == 1) {
+
+
+		$update = $connection->prepare("UPDATE order_summary SET 
+									 order_status='{$status_options}'
+									  WHERE order_id={$id}");
+		$update->execute();
+	
+	}
+}
+?>
+
+<body id=kt_body class="header-fixed header-tablet-and-mobile-fixed aside-enabled aside-fixed" 
+style=--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px>
 	<div class="d-flex flex-column flex-root">
 		<div class="page d-flex flex-row flex-column-fluid">
 			<?php include_once 'layouts/aside.php'; ?>
@@ -44,7 +97,7 @@
 																			</a>
 																		</div>
 																	</td>
-																	<td class="pt-11 fs-5 pe-lg-6 text-dark fw-boldest "><a href=../../demo1/dist/apps/product-management/products/view.html>Emma Smith</a></td>
+																	<td class="pt-11 fs-5 pe-lg-6 text-dark fw-boldest "><a href=../../demo1/dist/apps/product-management/products/view.html><?php echo $order_summary['cart_after_shopping'] ?></a></td>
 																	<td class="pt-11 fs-5 pe-lg-6 text-dark fw-boldest">$3200.00</td>
 																</tr>
 															</tbody>
@@ -54,15 +107,15 @@
 														<div class="fw-bold fs-5 mb-3 text-dark00">Address Information</div>
 														<div class="d-flex flex-stack text-gray-800 mb-3 fs-6">
 															<div class="fw-bold pe-5">address line :</div>
-															<div class="text-end fw-norma">Barclays UK</div>
+															<div class="text-end fw-norma"><?php echo $order_summary['checkout_street_address'] ?></div>
 														</div>
 														<div class="d-flex flex-stack text-gray-800 mb-3 fs-6">
 															<div class="fw-bold pe-5">Country:</div>
-															<div class="text-end fw-norma">Barclays UK</div>
+															<div class="text-end fw-norma"><?php echo $order_summary['checkout_city'] ?></div>
 														</div>
 														<div class="d-flex flex-stack text-gray-800 fs-6">
 															<div class="fw-bold pe-5">City:</div>
-															<div class="text-end fw-norma">Barclays UK</div>
+															<div class="text-end fw-norma"><?php echo $order_summary['checkout_country'] ?></div>
 														</div>
 													</div>
 												</div>
@@ -70,27 +123,32 @@
 												
 												<div class="text-end pt-10">
 												<div class="fs-3 fw-bolder text-muted mb-3">Status</div>
-
-												<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Status" name="Status">
+												<form method="POST">
+												<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Status" name="status">
 																		<option value="">Select Status...</option>
-																		<option value="1">Successful</option>
-																		<option value="2">Pending</option>
-																		<option value="3">Rejected</option>
+																		<option value="Successful">Successful</option>
+																		<option value="Pending">Pending</option>
+																		<option value="Rejected">Rejected</option>
 																	</select>
+																	<span class="text-danger"><?php echo $status_err?></span>
+																	
+																	<button type="submit" name="submit" class="btn btn-primary m-3">submit</button>
+																	</form>
+
 													<div class="border-bottom w-100 my-3 my-lg-8"></div>
 													<div class="fs-3 fw-bolder text-muted mb-3">TOTAL AMOUNT</div>
-													<div class="fs-xl-2x fs-2 fw-boldest">$20,600.00</div>
+													<div class="fs-xl-2x fs-2 fw-boldest">$<?php echo $order_summary['order_total_price'] ?></div>
 													<div class="text-muted fw-bold">Taxes included</div>
 													<div class="border-bottom w-100 my-3 my-lg-8"></div>
 													<div class="fs-3 fw-bolder text-muted mb-3">Information</div>
 													<div class="text-gray-600 fs-6 fw-bold mb-3">Name</div>
-													<div class="fs-6 text-gray-800 fw-bold mb-8">Iris Watson.</div>
+													<div class="fs-6 text-gray-800 fw-bold mb-8"><?php echo $order_summary['username'] ?></div>
 													<div class="text-gray-600 fs-6 fw-bold mb-3">email</div>
-													<div class="fs-6 text-gray-800 fw-bold mb-8">admin@email.com</div>
+													<div class="fs-6 text-gray-800 fw-bold mb-8"><?php echo $order_summary['email'] ?></div>
 													<div class="text-gray-600 fs-6 fw-bold mb-3">Phone</div>
-													<div class="fs-6 text-gray-800 fw-bold mb-8">12345678</div>
+													<div class="fs-6 text-gray-800 fw-bold mb-8"><?php echo $order_summary['checkout_phone'] ?></div>
 													<div class="text-gray-600 fs-6 fw-bold mb-3">DATE</div>
-													<div class="fs-6 text-gray-800 fw-bold">12 May, 2020</div>
+													<div class="fs-6 text-gray-800 fw-bold"><?php echo $order_summary['date_of_creation'] ?></div>
 												</div>
 											</div>
 										</div>

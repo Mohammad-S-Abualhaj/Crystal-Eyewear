@@ -143,3 +143,68 @@ if(isset($_POST['country'])){
     header("Location:../shop.php");
 
 }
+//----------------------------------------------------------kilani
+if(isset($_POST["account_kilani_submit"])){
+
+ 
+    session_start();
+    $id = (int)$_SESSION['user_id'];
+    $stmt = $connection->prepare("SELECT * FROM user WHERE id={$id}");
+    $stmt->execute();
+    $edit_user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $check = true;
+    
+    $emailError    ="";
+    $nameError     ="";
+    $passError     ="";
+    $newPassError  ="";
+    $confError     ="";
+
+       if(empty($_POST["name"])){
+          $check = false;
+          $nameError = "<span style='color:red'> Name cannot be empty </span>";
+       }
+       if(empty($_POST["email"])){
+          $check = false;
+          $emailError = "<span style='color:red'> Email cannot be empty </span>";
+       }
+    if($check == true){
+        $userName  = $_POST["name"];
+        $userEmail = $_POST["email"];
+        $password = $_POST["password"];//current pass you need to compare it with pass in DB
+        $new_password=$_POST['newPass'];
+        $conf_password=$_POST['confPass'];
+    //define conf pass......done
+    //check if the password matches the user password stored in DB......done
+    $string="";
+    $dont_change_password=true;
+    if(!empty($_POST['password'])){
+        $new_encrypted_pass=md5($new_password);
+        $string=",password='{$new_encrypted_pass}'";
+        $dont_change_password=false;
+        
+    }
+    if(md5($password) != $edit_user["password"] && !$dont_change_password){
+        header('location:../account.php?error=password is inccorect');
+    }
+    if($new_password==="" &&  !$dont_change_password ){
+        header("location:../account.php?error=password is empty");
+    }
+    if($new_password != $conf_password && !$dont_change_password){
+        header('location:../account.php?error=passwords dont match');
+    }
+
+    $update = $connection->prepare("UPDATE user SET username ='{$userName}',email ='{$userEmail}'{$string} WHERE id=$id");
+    $update->execute();
+    $_SESSION['user_name']=$userName;
+    header("location:../account.php");
+    //false=>header error to the user password dont''macyt........done
+    //header('../account.php?error=password dont match').......done
+    //true check for pass new and pass confirm if they match.....done
+    //false header()......done
+    //true store the new pass in the dataabse =>already done
+
+    //error duplicate email
+         ///DONT GO OUT OF THE IF STATEMENT
+    }
+} 
