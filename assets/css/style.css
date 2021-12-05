@@ -361,7 +361,7 @@ table p {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top right;
-  padding: 140px 0 146px;
+  padding: 80px 0 170px;
 }
 @media only screen and (max-width: 1199px) {
   .page-header-area {
@@ -497,7 +497,9 @@ table p {
   border-color: #ff6600;
   color: #ff6600;
 }
-
+.account {
+  color: #f97b28 !important;
+}
 /*-------- Custom Font Style Css --------*/
 .font-weight-300 {
   font-weight: 300 !important;
@@ -6795,16 +6797,16 @@ table p {
 -----------------------------------------------------------------------
 */
 .divider-style1 {
-  padding: 90px 0 100px;
+  padding:60px 0 70px;
 }
 @media only screen and (max-width: 1199px) {
   .divider-style1 {
-    padding: 71px 0 80px;
+    padding: 50px 0 60px;
   }
 }
 @media only screen and (max-width: 767px) {
   .divider-style1 {
-    padding: 71px 0 70px;
+    padding: 50px 0 60px;
   }
 }
 .divider-style1 .divider-content {

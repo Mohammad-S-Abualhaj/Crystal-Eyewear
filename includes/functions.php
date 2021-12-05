@@ -261,7 +261,7 @@ function getPostData($post, $dataArr)
 //empty the basket after $basket time
 function session_timeout($time,$basket_time)
 {
-    session_start();
+
     if (!isset($_SESSION['start'])) {
         $_SESSION['start'] = time();
 

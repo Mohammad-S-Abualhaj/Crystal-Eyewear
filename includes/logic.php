@@ -3,11 +3,18 @@
 <?php
 //here the red line is not actually a red line it's just from the require
 if (isset($_POST["register_submit"])) {
-    $dataArr = getPostData($_POST, ['username', 'email', 'password', 'password_confirmation']);
+    $dataArr = getPostData($_POST, ['username', 'email', 'password', 'password_confirmation',"full_name"]);
     $username = $dataArr[0];
     $email = $dataArr[1];
     $password = $dataArr[2];
     $password_confirmation = $dataArr[3];
+    $full_name = $dataArr[4];
+    //full name check
+    if($full_name===""){
+        header("Location:../account-register.php?full_name=the name should not be empty");
+        exit;
+    }
+
     validate_password($password);
     validate_email($email);
     confirm_password($password, $password_confirmation);
@@ -23,8 +30,8 @@ if (isset($_POST["register_submit"])) {
     }
     //encrypt the password
     $password = md5($password);
-    checkRepetition_and_showUsers($connection, true, "user", ['email', 'password'], [$email, $password], "../account-register.php");
-    crud($connection, "INSERT", "user", ['username', 'email', 'password'], [$username, $email, $password]);
+    checkRepetition_and_showUsers($connection, true, "user", ['email','username'], [$email,$username], "../account-register.php");
+    crud($connection, "INSERT", "user", ['username', 'email', 'password','full_name'], [$username, $email, $password,$full_name]);
     header("Location:../account-login.php?register=success");
     exit();
 }
@@ -66,7 +73,11 @@ if (isset($_POST['login_submit']) || (isset($_POST['checkout_login']))) {
         }
         session_start();
         $_SESSION['user_loggedin'] = true;
-        $_SESSION['user_name']=$user_data['name'];
+        $_SESSION['user_name']=$user_data['username'];
+        $_SESSION['user_id']=$user_data['id'];
+        if (isset($_POST['login_submit'])) {
+            $url = "index.php";
+        }
         header("Location:../{$url}");
         exit();
     } elseif (validate_username($returned_array[0])) {
@@ -121,7 +132,8 @@ if(isset($_POST['country'])){
     $address_line=$_POST['address_line'];
     $counter=0;
     $comma=",";
-    $i= count($_SESSION["shopping_cart"]);
+    $cart_after_shopping="";
+    $i=count($_SESSION["shopping_cart"]);
     foreach($_SESSION["shopping_cart"] as $product_arr):
         if($counter===$i-1){
             $comma=" ";

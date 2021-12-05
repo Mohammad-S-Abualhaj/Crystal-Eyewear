@@ -1,22 +1,20 @@
 <!--== header master-page ==-->
 <?php
+   session_start();
    include("./includes/public-header.php");
    require_once "includes/db.php";
    $satatement=$connection->prepare("SELECT * FROM (( products INNER JOIN category ON products.category_id=category.category_id)
                                                                INNER JOIN sub_category ON products.sub_category_id=sub_category.sub_category_id)");
-   
-   
-   
    $satatement->execute();
    $products=$satatement->fetchAll(PDO::FETCH_ASSOC);
-   
-   
    ?>
 <!--== End Header Wrapper ==-->
 <main class="main-content">
    <!--== Start Hero Area Wrapper ==-->
    <section class="home-slider-area">
-      <div class="padding-15  container p-0 swiper-container home-slider-container default-slider-container">
+   <div class="container ">
+
+      <div class=" p-0 swiper-container home-slider-container default-slider-container">
          <div class=" swiper-wrapper home-slider-wrapper slider-default">
             <div class="swiper-slide">
                <div class="slider-content-area slider-content-area-two" data-bg-img="assets/img/slider/slider-02.webp">
@@ -41,6 +39,8 @@
             </div>
          </div>
       </div>
+      </div>
+
    </section>
    <!--== End Hero Area Wrapper ==-->
    <div class="feature-area">
@@ -211,14 +211,12 @@
                         </div>
                         <h4 class="title"><a href="single-normal-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name']; ?></a></h4>
                         <div class="prices">
-                           <div class="prices">
-                              <span class="price-old">$200</span>
-                              <span class="sep">-</span>
-                              <span class="price">$240.00</span>
-                           </div>
+                            <?php if ($product['product_percentage_price'] > 0){ ?>
                            <span class="price-old">$<?php echo $product['product_price'] ?></span>
                            <span class="sep">-</span>
-                           <span class="price">$<?php echo $product['product_sale_price']*$product['product_price'] ?></span>
+                           <span class="price">$
+                           <?php echo $product['product_percentage_price'] * $product['product_price'] / 100 ;}
+                           else{?><span class="price">$ <?php echo $product['product_price'] ;}?></span>
                         </div>
                      </div>
                   </div>
@@ -231,12 +229,12 @@
    </section>
    <!--== End Product Area Wrapper ==-->
    <!--== Start Divider Area Wrapper ==-->
-   <section class="bg-color-f2 position-relative z-index-1 home_sc">
+   <section class="bg-color-f2 position-relative z-index-1">
       <div class="container pt--0 pb--0">
          <div class="row divider-wrap divider-style1">
             <div class="col-lg-6">
                <div class="divider-content">
-                  <h4 class="sub-title title">Saving up to 70%</h4>
+                  <h4 class="title">Saving up to 70%</h4>
                   <p class="desc">Offer Available All Products</p>
                   <a class="btn-theme" href="shop.php">Shop Now</a>
                </div>
@@ -250,7 +248,7 @@
    <!--== End Divider Area Wrapper ==-->
  
    <!--== Start Product Area Wrapper ==-->
-   <section class="product-area product-best-seller-area home_sc home_sc">
+   <section class="product-area product-best-seller-area home_sc mt-5 ">
       <div class="container">
          <div class="row">
             <div class="col-12">
@@ -263,50 +261,52 @@
             </div>
          </div>
          <!--== Start Product Item ==-->
-         <?php foreach ($products as $product){
-            if ($product['product-best-seller']>0): 
-             ?>
-         <div class="col-sm-6 col-lg-3">
-            <div class="product-item">
-               <div class="inner-content">
-                  <div class="product-thumb">
-                     <a href="single-product.php">
-                     <img src="admin/assets/media/products_images/<?php echo $product['product_image']; ?>" width="270" height="274" alt="Image-HasTech">
-                     </a>
-                     <?php if ($product['product_percentage_price']>0): ?>
-                     <div class="product-flag">
-                        <ul>
-                           <li class="discount">-<?php echo $product['product_percentage_price']?>%</li>
-                        </ul>
-                     </div>
-                     <?php endif; ?>
-                     <div class="product-action">
-                        <a class="btn-product-cart" href="shop-cart.php"><i class="fa fa-shopping-cart"></i></a>
-                     </div>
-                     <a class="banner-link-overlay" href="shop.php"></a>
-                  </div>
-                  <div class="product-info">
-                     <div class="category">
-                        <ul>
-                           <li ><a href="shop.php"><?php echo $product['category_name'];?>/<?php echo $product['sub_category_name'];?></a></li>
-                        </ul>
-                     </div>
-                     <h4 class="title"><a href="single-normal-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name']; ?></a></h4>
-                     <div class="prices">
-                        <div class="prices">
-                           <span class="price-old">$200</span>
-                           <span class="sep">-</span>
-                           <span class="price">$240.00</span>
+         <div class="row">
+            <!--== Start Product Item ==-->
+            <?php foreach ($products as $product){
+               if ($product['product-best-seller']>0):
+                ?>
+            <div class="col-sm-6 col-lg-3">
+               <div class="product-item">
+                  <div class="inner-content">
+                     <div class="product-thumb">
+                        <a href="single-product.php">
+                        <img src="admin/assets/media/products_images/<?php echo $product['product_image']; ?>" width="270" height="274" alt="Image-HasTech">
+                        </a>
+                        <?php if ($product['product_percentage_price']>0): ?>
+                        <div class="product-flag">
+                           <ul>
+                              <li class="discount">-<?php echo $product['product_percentage_price']?>%</li>
+                           </ul>
                         </div>
-                        <span class="price-old">$<?php echo $product['product_price'] ?></span>
-                        <span class="sep">-</span>
-                        <span class="price">$<?php echo $product['product_sale_price']*$product['product_price'] ?></span>
+                        <?php endif; ?>
+                        <div class="product-action">
+                           <a class="btn-product-cart" href="shop-cart.php"><i class="fa fa-shopping-cart"></i></a>
+                        </div>
+                        <a class="banner-link-overlay" href="shop.php"></a>
+                     </div>
+                     <div class="product-info">
+                        <div class="category">
+                           <ul>
+                              <li ><a href="shop.php"><?php echo $product['category_name'];?>/<?php echo $product['sub_category_name'];?></a></li>
+                           </ul>
+                        </div>
+                        <h4 class="title"><a href="single-normal-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name']; ?></a></h4>
+                        <div class="prices">
+                            <?php if ($product['product_percentage_price'] > 0){ ?>
+                           <span class="price-old">$<?php echo $product['product_price'] ?></span>
+                           <span class="sep">-</span>
+                           <span class="price">$
+                           <?php echo $product['product_percentage_price'] * $product['product_price'] / 100 ;}
+                           else{?><span class="price">$ <?php echo $product['product_price'] ;}?></span>
+                        </div>
                      </div>
                   </div>
                </div>
             </div>
+            <?php endif;}?>
+            <!--== End prPduct Item ==-->
          </div>
-         <?php endif;}?>
          <!--== End prPduct Item ==-->
       </div>
    </section>

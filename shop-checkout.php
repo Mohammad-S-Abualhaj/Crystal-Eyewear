@@ -1,15 +1,14 @@
 <?php
 require_once  "includes/db.php";
 require_once  "includes/functions.php";
+session_start();
 $SESSION_TIMEOUT_MINUTES  =15;//minutes
 $EMPTY_BASKET_TIME        =30;//minutes
 
 session_timeout($SESSION_TIMEOUT_MINUTES,$EMPTY_BASKET_TIME);
 $cart_after_shopping="";
 if(isset($_SESSION["shopping_cart"])):
-    
 $i=count($_SESSION["shopping_cart"] );
-
 endif;
 $check_login = $_SESSION['user_loggedin'] ?? null;
 $check_cart  =$_SESSION['shopping_cart']  ?? null;

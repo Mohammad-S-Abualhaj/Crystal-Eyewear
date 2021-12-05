@@ -47,6 +47,15 @@
                         <?php endif; ?>
                     </div>
                   </div>
+                    <div class="col-12">
+                    <div class="form-group">
+                      <label for="full_name">Full Name<span class="required">*</span></label>
+                      <input id="full_name" class="form-control" name="full_name" type="text">
+                        <?php if(isset($_GET["full_name"])):?>
+                        <span class="text-danger"><?php echo $_GET["full_name"]; ?></span>
+                        <?php endif; ?>
+                    </div>
+                  </div>
                   <div class="col-12">
                     <div class="form-group">
                       <label for="email">Email address <span class="required">*</span></label>
@@ -89,5 +98,5 @@
     <!--== End My Account Area Wrapper ==-->
   </main>
 <?php
-    include("./includes/public-footer.php");
+    require_once("./includes/public-footer.php");
 ?>

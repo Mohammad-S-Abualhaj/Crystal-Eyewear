@@ -1,4 +1,5 @@
-<?php $RELOAD_TIMEOUT_MINUTES=15*60;//minutes ?>
+<?php $RELOAD_TIMEOUT_MINUTES=15*60;
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -39,12 +40,7 @@
 
     <!--== Main Style CSS ==-->
     <link href="assets/css/style.css" rel="stylesheet" />
-    
 
-    <!--[if lt IE 9]>
-    <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>
@@ -70,7 +66,13 @@
                     <ul>
                       <li class="number"><i class="fa fa-phone"></i><a href="tel://0123456789">+00 123 456 789</a></li>
                       <li class="email"><i class="fa fa-envelope"></i><a href="mailto://demo@example.com">demo@example.com</a></li>
-                      <li class="account"><i class="fa fa-user"></i><a href="account-login.php">Account</a></li>
+                      <li class="account">
+                          <?php if(isset( $_SESSION['user_loggedin'])){?>
+                          <i class="fa fa-user"></i><a class="account" href="account.php"><?php echo $_SESSION['user_name']?? ""  ?></a>
+                          <?php }else{?>
+                          <i class="fa fa-user"></i><a href="account-login.php">Log in</a>
+                          <?php }?>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -106,6 +108,11 @@
                   <div class="shopping-search">
                     <button class="shopping-search-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#AsideOffcanvasSearch" aria-controls="AsideOffcanvasSearch"><i class="pe-7s-search icon"></i></button>
                   </div>
+                  <div class="shopping-wishlist">
+                    <a class="shopping-wishlist-btn" href="shop-wishlist.php">
+                      <i class="pe-7s-like icon"></i>
+                    </a>
+                  </div>
                   <div class="shopping-cart">
                     <button class="shopping-cart-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#AsideOffcanvasCart" aria-controls="offcanvasRightLabel">
                       <i class="pe-7s-shopbag icon"></i>
@@ -130,8 +137,9 @@
               <div class="header-navigation-area position-relative">
                 <ul class="main-menu nav">
                   <li><a href="index.php"><span>Home</span></a></li>
-                  <li ><a href="shop.php"><span>Shop</span></a> </li>
+                  <li><a href="Shop.php"><span>Shop</span></a></li>
                   <li><a href="about-us.php"><span>About</span></a></li>
+                  <li><a href="shop-cart.php"><span>Shopping Cart</span></a></li>
                 </ul>
               </div>
             </div>
