@@ -1,6 +1,7 @@
 <?php
 require_once  "includes/db.php";
 require_once  "includes/functions.php";
+session_start();
 $SESSION_TIMEOUT_MINUTES  =15;//minutes
 $EMPTY_BASKET_TIME        =30;//minutes
 
