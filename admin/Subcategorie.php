@@ -34,12 +34,14 @@ if ($_GET) {
 		
 		$remove_product_erorr=true;
 	}
+		 else if($num_of_products==0){
+		
+			$delete = $connection->prepare(
+				"DELETE FROM sub_category WHERE sub_category_id ={$id}");
+				$delete->execute();
+	 }
 	
-	else{
-    $delete = $connection->prepare(
-        "DELETE FROM sub_category WHERE sub_category_id ={$id}");
-		$delete->execute();
-		}
+	
     
 }
 $stmt = $connection->prepare('SELECT * FROM sub_category');
@@ -173,6 +175,7 @@ include_once 'layouts/head.php';
 														<h4 class="alert-heading">This subcategory has related products, in order to delete this subcategory you must delete all the products that related to it</h4>
 													  </div>
 													<?php } ?>
+												
 													
 														
 													
@@ -186,6 +189,7 @@ include_once 'layouts/head.php';
 												<th class=min-w-125px>Subcategory Image</th>
 												<th class=min-w-125px>Category</th>
 												<th class=min-w-125px>Subcategory </th>
+												<th class=min-w-125px>Description</th>
 												
 
 												<th class="text-end min-w-100px">Actions</th>
@@ -206,7 +210,7 @@ include_once 'layouts/head.php';
 												</td>
 												<td><?php echo $sub_cat['category_name']; ?></td>
 												<td><?php echo $sub_cat['sub_category_name']; ?></td>
-												
+												<td><?php echo $sub_cat['sub_category_description']; ?></td>
 
 												<td class="pe-0 text-end">
 													<a href="edit/edit_subcategorie.php?sub_category_id=<?php echo $sub_cat['sub_category_id']; ?>" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">

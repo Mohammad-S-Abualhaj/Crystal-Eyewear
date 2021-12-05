@@ -37,10 +37,10 @@ if ($_GET) {
 	if($num_of_categories>0){
 		$remove_category_erorr=true;
 	}
-	else if($num_of_categories==0){
+	// else if($num_of_categories==0){
 		
-		$remove_category_erorr1=true;
-	}
+	// 	$remove_category_erorr1=true;
+	// }
 	else{
 		$delete = $connection->prepare("DELETE FROM category WHERE category_id ='{$id}'");
 		$delete->execute();
