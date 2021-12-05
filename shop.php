@@ -1,6 +1,8 @@
 <?php
 include("./includes/public-header.php");
 require_once "includes/db.php";
+
+
 $satatement=$connection->prepare("SELECT * FROM products INNER JOIN category ON products.category_id=category.category_id");
 $satatement->execute();
 $products=$satatement->fetchAll(PDO::FETCH_ASSOC);

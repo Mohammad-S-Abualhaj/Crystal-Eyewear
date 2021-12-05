@@ -2,10 +2,10 @@
    
     //define html elements
     const fullName=document.querySelector('#username');
+    const fullNameNew=document.querySelector('#full_name');
     const password=document.querySelector('#password');
     const email=document.querySelector('#email');
     const passwordConfirmation=document.querySelector('#password_confirmation');
-   
     const btnRegister=document.querySelector('.btn-register');
     const btnLogin=document.querySelector('.btn-login');
     const signupForm=document.getElementById('form');
@@ -115,6 +115,16 @@
                 }
 
             }
+            if(type==='fullname'){
+                if(!validateUsername(el.value)){
+                    fullNameCheck=false;
+                    throw new Error('The name is not valid')
+                }
+                else{
+                    fullNameCheck=true;
+                }
+
+            }
             //?Orange Mobile check
            if(type==="mobile"){
                 if(!validateMobile(el.value)){
@@ -176,6 +186,13 @@ function submitForm(form) {
 
 
     function signupValidation(){
+        
+        
+        fullNameNew.addEventListener('blur',()=>{
+            checkEmpty('fullname',fullNameNew);
+            
+
+        })
         fullName.addEventListener('blur',()=>{
             checkEmpty('username',fullName);
 
@@ -193,10 +210,16 @@ function submitForm(form) {
             checkEmpty('passwordConfirmation',passwordConfirmation);
         })
         btnRegister.addEventListener('click',(e)=>{
-
-            const validate=emailCheck && passwordCheck && fullNameCheck && passwordConfirmationCheck;
-
-            if(!validate){
+        
+            const check1= checkEmpty('username',fullName);
+            const check2=checkEmpty('fullname',fullNameNew);
+            //const check2=checkEmpty('username',fullNameNew);
+            const check3=checkEmpty('password',password);
+            const check4= checkEmpty('email',email);
+            const check5= checkEmpty('passwordConfirmation',passwordConfirmation);
+            const check=check1 && check2 && check4 && check3 && check5;
+            console.log(check);
+            if(!check){
                 e.preventDefault();
             }
             else{
