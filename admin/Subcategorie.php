@@ -2,11 +2,6 @@
 <html lang=en>
 <?php 
 include_once '../includes/db.php';
-// $id = 2;
-
-// echo "<pre>";
-
-// die;
 if (isset($_POST['add_sub_category_submit'])) {
     $rand = rand(1, 9999);
     $sub_cat_name = $_POST['sub_category_name'];
@@ -39,6 +34,7 @@ if ($_GET) {
 		
 		$remove_product_erorr=true;
 	}
+	
 	else{
     $delete = $connection->prepare(
         "DELETE FROM sub_category WHERE sub_category_id ={$id}");
@@ -50,32 +46,16 @@ $stmt = $connection->prepare('SELECT * FROM sub_category');
 $stmt->execute();
 $sub_cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
 $stmt_cat = $connection->prepare('SELECT * FROM category');
 $stmt_cat->execute();
 $cats = $stmt_cat->fetchAll(PDO::FETCH_ASSOC);
-
-
-
 
 $sql = $connection->prepare(" SELECT * FROM sub_category INNER JOIN category ON category.category_id = sub_category.category_id ");
 										$sql->execute();
 									$result = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 
-// 		echo "<pre>";							
-// var_dump($result);
-// die;
-
-
-
 include_once 'layouts/head.php';
-
-
-
-
-
-
 ?>
 
 <body id=kt_body class="header-fixed header-tablet-and-mobile-fixed aside-enabled aside-fixed" style=--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px>
@@ -190,7 +170,7 @@ include_once 'layouts/head.php';
 								<div class="card-body pt-0">
 								<?php if (isset($remove_product_erorr)) {?>
 														<div class="alert alert-danger" role="alert">
-														<h4 class="alert-heading">You must delete all products from that related sub categores</h4>
+														<h4 class="alert-heading">This subcategory has related products, in order to delete this subcategory you must delete all the products that related to it</h4>
 													  </div>
 													<?php } ?>
 													
@@ -251,7 +231,7 @@ include_once 'layouts/head.php';
 														</span>
 													</a>
 													<?php }?>
-													<!-- <span class="aleart"></span> -->
+													
 													
 
 												</td>
