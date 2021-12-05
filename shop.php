@@ -5,18 +5,21 @@ require_once "includes/db.php";
 
 if (isset($_GET['search_key'])) {
    $search_key = '%' . $_GET['search_key'] . '%';
-   $statement = $connection->prepare("SELECT IFNULL (SELECT * FROM ((products
-                                          INNER JOIN category ON category.category_id = products.category_id)
-                                          INNER JOIN sub_category ON sub_category.sub_category_id = products.sub_category_id)
-                                          WHERE product_name LIKE '{$search_key}', 'No products found')");
+   $satatement = $connection->prepare("SELECT * FROM ((products
+                              INNER JOIN category ON category.category_id = products.category_id)
+                              INNER JOIN sub_category ON sub_category.sub_category_id = products.sub_category_id)
+                              WHERE product_name LIKE '{$search_key}'");
 } else {
-   $statement = $connection->prepare("SELECT * FROM (( products 
-                                        INNER JOIN category ON products.category_id=category.category_id)
+   $satatement = $connection->prepare("SELECT * FROM (( products INNER JOIN category ON products.category_id=category.category_id)
                                         INNER JOIN sub_category ON products.sub_category_id=sub_category.sub_category_id)");
 }
-$statement->execute();
-$products = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+$satatement->execute();
+$products = $satatement->fetchAll(PDO::FETCH_ASSOC);
+if (count($products) === 0) {
+   echo "<h3 class='error_not_found'>No results found</h3>";
+   die();
+}
 $satcategory = $connection->prepare("SELECT * FROM category");
 $satcategory->execute();
 $category = $satcategory->fetchAll(PDO::FETCH_ASSOC);
@@ -37,18 +40,18 @@ $y = array_count_values($u);
 
 if (isset($_GET['category_name'])) {
    $name = $_GET['category_name'];
-   $statement = $connection->prepare("SELECT * FROM  products INNER JOIN category ON products.category_id=category.category_id
+   $satatement = $connection->prepare("SELECT * FROM  products INNER JOIN category ON products.category_id=category.category_id
     INNER JOIN sub_category ON products.sub_category_id=sub_category.sub_category_id WHERE category_name='$name'");
-   $statement->execute();
-   $productcategory = $statement->fetchAll(PDO::FETCH_ASSOC);
+   $satatement->execute();
+   $productcategory = $satatement->fetchAll(PDO::FETCH_ASSOC);
    $products = $productcategory;
 }
 if (isset($_GET['sub_category_name'])) {
    $name = $_GET['sub_category_name'];
-   $statement = $connection->prepare("SELECT * FROM  products INNER JOIN category ON products.category_id=category.category_id
-      INNER JOIN sub_category ON products.sub_category_id=sub_category.sub_category_id WHERE category_name='$name' AND sub_category_name='$name'");
-   $statement->execute();
-   $productsubcategory = $statement->fetchAll(PDO::FETCH_ASSOC);
+   $satatement = $connection->prepare("SELECT * FROM  products INNER JOIN category ON products.category_id=category.category_id
+    INNER JOIN sub_category ON products.sub_category_id=sub_category.sub_category_id WHERE category_name='$name' AND sub_category_name='$name'");
+   $satatement->execute();
+   $productsubcategory = $satatement->fetchAll(PDO::FETCH_ASSOC);
    $products = $productsubcategory;
 }
 
@@ -86,47 +89,47 @@ if (isset($_GET['sub_category_name'])) {
                            <div class="row">
                               <!--== Start Product Item ==-->
                               <?php
-                                 foreach ($products as $product) { ?>
-                                    <div class="col-sm-6 col-lg-4">
-                                       <div class="product-item">
-                                          <div class="inner-content">
-                                             <div class="product-thumb">
-                                                <a href="single-product.php?product_id=<?php echo $product['product_id']; ?>">
-                                                   <img src="admin/assets/media/products_images/<?php echo $product['product_image']; ?>" width="270" height="274" alt="Image-HasTech">
-                                                </a>
-                                                <?php if ($product['product_percentage_price'] > 0) : ?>
-                                                   <div class="product-flag">
-                                                      <ul>
-                                                         <li class="discount">-<?php echo $product['product_percentage_price'] ?>%</li>
-                                                      </ul>
-                                                   </div>
-                                                <?php endif; ?>
-                                                <div class="product-action">
-                                                   <a class="btn-product-cart" href="shop-cart.php"><i class="fa fa-shopping-cart"></i></a>
-                                                </div>
-                                                <a class="banner-link-overlay" href="shop.php"></a>
-                                             </div>
-                                             <div class="product-info">
-                                                <div class="category">
+                              foreach ($products as $product) { ?>
+                                 <div class="col-sm-6 col-lg-4">
+                                    <div class="product-item">
+                                       <div class="inner-content">
+                                          <div class="product-thumb">
+                                             <a href="single-product.php?product_id=<?php echo $product['product_id']; ?>">
+                                                <img src="admin/assets/media/products_images/<?php echo $product['product_image']; ?>" width="270" height="274" alt="Image-HasTech">
+                                             </a>
+                                             <?php if ($product['product_percentage_price'] > 0) : ?>
+                                                <div class="product-flag">
                                                    <ul>
-                                                      <li><a href="shop.php?category_name=<?php echo $product['category_name']; ?>"><?php echo $product['category_name']; ?></a>/<a href="shop.php?sub_category_name=<?php echo $product['sub_category_name']; ?>"><?php echo $product['sub_category_name']; ?></a></li>
+                                                      <li class="discount">-<?php echo $product['product_percentage_price'] ?>%</li>
                                                    </ul>
                                                 </div>
-                                                <h4 class="title"><a href="single-normal-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name']; ?></a></h4>
-                                                <div class="prices">
-                                                   <?php if ($product['product_percentage_price'] > 0) { ?>
-                                                      <span class="price-old">$<?php echo $product['product_price'] ?></span>
-                                                      <span class="sep">-</span>
-                                                      <span class="price">$
-                                                      <?php echo $product['product_percentage_price'] * $product['product_price'] / 100;
-                                                   } else { ?><span class="price">$ <?php echo $product['product_price'];
-                                                                              } ?></span>
-                                                </div>
+                                             <?php endif; ?>
+                                             <div class="product-action">
+                                                <a class="btn-product-cart" href="shop-cart.php"><i class="fa fa-shopping-cart"></i></a>
+                                             </div>
+                                             <a class="banner-link-overlay" href="shop.php"></a>
+                                          </div>
+                                          <div class="product-info">
+                                             <div class="category">
+                                                <ul>
+                                                   <li><a href="shop.php?category_name=<?php echo $product['category_name']; ?>"><?php echo $product['category_name']; ?></a>/<a href="shop.php?sub_category_name=<?php echo $product['sub_category_name']; ?>"><?php echo $product['sub_category_name']; ?></a></li>
+                                                </ul>
+                                             </div>
+                                             <h4 class="title"><a href="single-normal-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name']; ?></a></h4>
+                                             <div class="prices">
+                                                <?php if ($product['product_percentage_price'] > 0) { ?>
+                                                   <span class="price-old">$<?php echo $product['product_price'] ?></span>
+                                                   <span class="sep">-</span>
+                                                   <span class="price">$
+                                                   <?php echo $product['product_percentage_price'] * $product['product_price'] / 100;
+                                                } else { ?><span class="price">$ <?php echo $product['product_price'];
+                                                                                 } ?></span>
                                              </div>
                                           </div>
                                        </div>
                                     </div>
-                                 <?php } ?>
+                                 </div>
+                              <?php } ?>
                               <!--== End product Item ==-->
                            </div>
                         </div>

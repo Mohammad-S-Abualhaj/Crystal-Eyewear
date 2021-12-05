@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2021 at 02:25 PM
+-- Generation Time: Dec 05, 2021 at 07:38 PM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- PHP Version: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -88,7 +88,7 @@ CREATE TABLE `products` (
   `product_price` int(10) NOT NULL,
   `product_image` varchar(255) NOT NULL,
   `product_on_sale` tinyint(1) NOT NULL DEFAULT 0,
-  `product_new_arraival` tinyint(1) NOT NULL DEFAULT 0,
+  `product_best_seller` tinyint(1) NOT NULL DEFAULT 0,
   `featured_products` tinyint(1) NOT NULL DEFAULT 0,
   `product_sale_price` int(10) DEFAULT NULL,
   `product_percentage_price` int(10) DEFAULT NULL,
@@ -100,11 +100,11 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `product_price`, `product_image`, `product_on_sale`, `product_new_arraival`, `featured_products`, `product_sale_price`, `product_percentage_price`, `category_id`, `sub_category_id`) VALUES
-(44, 'Tom Ford FT0371 ANOUSHKA 01B', 'Only founded in 2005, Tom Ford has constructed an expansive fashion empire in an unbelievably short amount of time, revolutionising fashion with sharp designs that focus on the small details. The Tom Ford Anoushka sunglasses, on the other hand are anythin', 242, '46940product_1.jpg', 0, 0, 1, NULL, 20, 4, 2),
-(45, 'SmartBuy Collection Brette SB-928D', 'These Brette sunglasses come in a stylish Gold , paired with fantastic Brown lenses to give you a great look for this season. The frame is made of Metal , while the lenses are made of durable and high-grade Plastic . SmartBuy Collection Brette sunglasses ', 39, '94813544491_1618571905448.jpg', 0, 0, 0, NULL, 70, 4, 2),
-(46, 'Ray-Ban RB3016 Clubmaster W0366', 'Did you know that you can transform your style from ordinary to creative, unique,  and fashionable in just a few seconds? The Ray-Ban RB3016 Clubmaster has these seemingly  magical qualities that can instantly give you a great sense of fashion, intrigue, ', 161, '7734752168_1599492409983.jpg', 0, 0, 1, NULL, 10, 4, 2),
-(47, 'Ray-Ban RB3025 Aviator Gradient 001/51', 'Founded in 1937, Ray Ban offers almost 100 years of expertise with designing the perfect  sunglasses with the Aviators and Wayfarer being the two most iconic designs. Ray Ban has  been the go to brand for many years when you want to make sure that you loo', 176, '9214452178_1599492623850.jpg', 0, 0, 1, NULL, 10, 4, 2),
+INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `product_price`, `product_image`, `product_on_sale`, `product_best_seller`, `featured_products`, `product_sale_price`, `product_percentage_price`, `category_id`, `sub_category_id`) VALUES
+(44, 'Tom Ford FT0371 ANOUSHKA 01B', 'Only founded in 2005, Tom Ford has constructed an expansive fashion empire in an unbelievably short amount of time, revolutionising fashion with sharp designs that focus on the small details. The Tom Ford Anoushka sunglasses, on the other hand are anythin', 242, '46940product_1.jpg', 0, 0, 1, 0, 20, 4, 2),
+(45, 'SmartBuy Collection Brette SB-928D', 'These Brette sunglasses come in a stylish Gold , paired with fantastic Brown lenses to give you a great look for this season. The frame is made of Metal , while the lenses are made of durable and high-grade Plastic . SmartBuy Collection Brette sunglasses ', 39, '94813544491_1618571905448.jpg', 0, 1, 0, NULL, 70, 4, 2),
+(46, 'Ray-Ban RB3016 Clubmaster W0366', 'Did you know that you can transform your style from ordinary to creative, unique,  and fashionable in just a few seconds? The Ray-Ban RB3016 Clubmaster has these seemingly  magical qualities that can instantly give you a great sense of fashion, intrigue, ', 161, '7734752168_1599492409983.jpg', 0, 1, 1, NULL, 10, 4, 2),
+(47, 'Ray-Ban RB3025 Aviator Gradient 001/51', 'Founded in 1937, Ray Ban offers almost 100 years of expertise with designing the perfect  sunglasses with the Aviators and Wayfarer being the two most iconic designs. Ray Ban has  been the go to brand for many years when you want to make sure that you loo', 176, '9214452178_1599492623850.jpg', 0, 1, 1, NULL, 10, 4, 2),
 (48, 'SmartBuy Collection Skye SS-CP121E', 'SmartBuy Collection Skye sunglasses are great for any occasion. The perfect color combination  of Milky Tortoise and Smoke Grey make this pair a great addition to any outfit. Made from  Injected Plastic and with a 2 year warranty, these stylish sunglasses', 39, '24903544538_1622173969566.jpg', 0, 0, 0, NULL, 50, 4, 2),
 (49, 'SmartBuy Collection Reeses SS-915E', 'Want to update your look? Grab a pair of these fantastic SmartBuy Collection Reeses  sunglasses in Silver . Order your SmartBuy Collection Reeses sunglasses from SmartBuyGlasses  and know that you have a 24 month backed warranty.', 39, '89562544524_1622173969556.jpg', 0, 0, 1, NULL, 0, 4, 2),
 (50, 'Arise Collective Thiva 95249 C1', 'The stylish Arise Collective Thiva sunglasses are made with the finest materials  and superior craftsmanship. The frame is made from a classic Plastic whilst the lenses  are made of durable and high grade Grey . UV protection Cat 2 and above is offered fo', 59, '85971530496_1599509874533.jpg', 0, 0, 1, NULL, 0, 4, 4),
@@ -183,18 +183,19 @@ CREATE TABLE `user` (
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `role` varchar(50) NOT NULL
+  `role` varchar(50) NOT NULL,
+  `full_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `email`, `password`, `image`, `role`) VALUES
-(3, 'efsfgsrrcddrds', '', '', '21637', '1'),
-(4, '', 'abdallh@dff.com', '3Utaia$HFBC25MjpXP', '40442', '1'),
-(5, 'abdallh', 'abdallh.samman@gmail.com', '2ca8a24b2238bc9e9800398c707eb91e', '', ''),
-(6, 'abdallh', 'abdallh1.samman@gmail.com', '390d823d83c74537c50bfaaca0420045', '', '');
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `image`, `role`, `full_name`) VALUES
+(3, 'efsfgsrrcddrds', '', '', '21637', '1', ''),
+(4, '', 'abdallh@dff.com', '3Utaia$HFBC25MjpXP', '40442', '1', ''),
+(5, 'abdallh', 'abdallh.samman@gmail.com', '2ca8a24b2238bc9e9800398c707eb91e', '', '', ''),
+(6, 'abdallh', 'abdallh1.samman@gmail.com', '390d823d83c74537c50bfaaca0420045', '', '', '');
 
 --
 -- Indexes for dumped tables
