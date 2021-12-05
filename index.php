@@ -212,7 +212,7 @@
                            <span class="price-old">$<?php echo $product['product_price'] ?></span>
                            <span class="sep">-</span>
                            <span class="price">$
-                           <?php echo $product['product_percentage_price'] * $product['product_price'] / 100 ;}
+                           <?php echo  ($product['product_price'])*(100- $product['product_percentage_price']) / 100;}
                               else{?><span class="price">$ <?php echo $product['product_price'] ;}?></span>
                         </div>
                      </div>
@@ -293,7 +293,7 @@
                            <span class="price-old">$<?php echo $product['product_price'] ?></span>
                            <span class="sep">-</span>
                            <span class="price">$
-                           <?php echo $product['product_percentage_price'] * $product['product_price'] / 100 ;}
+                           <?php echo  ($product['product_price'])*(100- $product['product_percentage_price']) / 100;}
                               else{?><span class="price">$ <?php echo $product['product_price'] ;}?></span>
                         </div>
                      </div>

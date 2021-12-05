@@ -29,7 +29,7 @@ $satsub_category->execute();
 $sub_category = $satsub_category->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($products as $product) {
-   $x[] = $product['category_name'];
+$x[] = $product['category_name'];
 }
 $z = array_count_values($x);
 foreach ($products as $product) {
@@ -94,7 +94,7 @@ if (isset($_GET['sub_category_name'])) {
                                     <div class="product-item">
                                        <div class="inner-content">
                                           <div class="product-thumb">
-                                             <a href="single-product.php?product_id=<?php echo $product['product_id']; ?>">
+                                             <a href="single-product.php?id=<?php echo $product['product_id']; ?>">
                                                 <img src="admin/assets/media/products_images/<?php echo $product['product_image']; ?>" width="270" height="274" alt="Image-HasTech">
                                              </a>
                                              <?php if ($product['product_percentage_price'] > 0) : ?>
@@ -121,7 +121,7 @@ if (isset($_GET['sub_category_name'])) {
                                                    <span class="price-old">$<?php echo $product['product_price'] ?></span>
                                                    <span class="sep">-</span>
                                                    <span class="price">$
-                                                   <?php echo $product['product_percentage_price'] * $product['product_price'] / 100;
+                                                   <?php echo  ($product['product_price'])*(100- $product['product_percentage_price']) / 100;
                                                 } else { ?><span class="price">$ <?php echo $product['product_price'];
                                                                                  } ?></span>
                                              </div>

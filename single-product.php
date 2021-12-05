@@ -9,9 +9,11 @@ include("./includes/public-header.php");
         $statement->bindParam(':id',$id);
         $statement->execute();
         $product=$statement->fetch(PDO::FETCH_ASSOC);
-
-
     }
+
+$satatement = $connection->prepare("SELECT * FROM products INNER JOIN category ON products.category_id=category.category_id
+INNER JOIN sub_category ON products.sub_category_id = sub_category.sub_category_id");
+
 ?>
   <main class="main-content">
     <!--== Start Page Header Area Wrapper ==-->
@@ -31,28 +33,8 @@ include("./includes/public-header.php");
                     <div class="swiper-container single-product-thumb single-product-thumb-slider">
                       <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                          <a class="lightbox-image" data-fancybox="gallery" href="assets/img/shop/product-single/1.webp">
-                            <img src="assets/img/shop/product-single/1.webp" width="570" height="541" alt="Image-HasTech">
-                          </a>
-                        </div>
-                        <div class="swiper-slide">
-                          <a class="lightbox-image" data-fancybox="gallery" href="assets/img/shop/product-single/2.webp">
-                            <img src="assets/img/shop/product-single/2.webp" width="570" height="541" alt="Image-HasTech">
-                          </a>
-                        </div>
-                        <div class="swiper-slide">
-                          <a class="lightbox-image" data-fancybox="gallery" href="assets/img/shop/product-single/3.webp">
-                            <img src="assets/img/shop/product-single/3.webp" width="570" height="541" alt="Image-HasTech">
-                          </a>
-                        </div>
-                        <div class="swiper-slide">
-                          <a class="lightbox-image" data-fancybox="gallery" href="assets/img/shop/product-single/4.webp">
-                            <img src="assets/img/shop/product-single/4.webp" width="570" height="541" alt="Image-HasTech">
-                          </a>
-                        </div>
-                        <div class="swiper-slide">
-                          <a class="lightbox-image" data-fancybox="gallery" href="assets/img/shop/product-single/5.webp">
-                            <img src="assets/img/shop/product-single/5.webp" width="570" height="541" alt="Image-HasTech">
+                          <a class="lightbox-image" data-fancybox="gallery" href="admin/assets/media/products_images/<?php echo $product['product_image']; ?>">
+                            <img src="admin/assets/media/products_images/<?php echo $product['product_image']; ?>" width="570" height="541" alt="<?php echo $product['product_description'] ?>">
                           </a>
                         </div>
                       </div>
@@ -82,23 +64,10 @@ include("./includes/public-header.php");
                 <div class="col-xl-6">
                   <!--== Start Product Info Area ==-->
                   <div class="product-single-info">
-                    <h3 class="main-title">Leather Mens Slipper</h3>
+                    <h3 class="main-title"><?php echo $product['product_name'] ?></h3>
                     <div class="prices">
-                      <span class="price">$20.19</span>
+                      <span class="price">$<?php echo $product['product_price'] ?></span>
                     </div>
-                    <div class="rating-box-wrap">
-                      <div class="rating-box">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                      </div>
-                      <div class="review-status">
-                        <a href="javascript:void(0)">(5 Customer Review)</a>
-                      </div>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do eiusmll tempor incididunt ut labore et dolore magna aliqua. Ut enim ad mill veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exet commodo consequat. Duis aute irure dolor</p>
                     <div class="product-quick-action">
                       <div class="qty-wrap">
                         <div class="pro-qty">
@@ -112,19 +81,6 @@ include("./includes/public-header.php");
                       <button type="submit" class="btn-theme" >Add to Cart</button>
                     </div>
                       </form>
-                    <div class="product-wishlist-compare">
-                      <a href="shop-wishlist.php"><i class="pe-7s-like"></i>Add to Wishlist</a>
-                      <a href="shop-compare.php"><i class="pe-7s-shuffle"></i>Add to Compare</a>
-                    </div>
-                    <div class="product-info-footer">
-                      <h6 class="code"><span>Code :</span>Ch-256xl</h6>
-                      <div class="social-icons">
-                        <span>Share</span>
-                        <a href="#/"><i class="fa fa-facebook"></i></a>
-                        <a href="#/"><i class="fa fa-dribbble"></i></a>
-                        <a href="#/"><i class="fa fa-pinterest-p"></i></a>
-                      </div>
-                    </div>
                   </div>
                   <!--== End Product Info Area ==-->
                 </div>
@@ -138,24 +94,18 @@ include("./includes/public-header.php");
             <div class="product-review-tabs-content">
               <ul class="nav product-tab-nav" id="ReviewTab" role="tablist">
                 <li role="presentation">
-                  <a class="active" id="information-tab" data-bs-toggle="pill" href="#information" role="tab" aria-controls="information" aria-selected="true">Information</a>
-                </li>
-                <li role="presentation">
-                  <a id="description-tab" data-bs-toggle="pill" href="#description" role="tab" aria-controls="description" aria-selected="false">Description</a>
+                  <a class="active" id="description-tab" data-bs-toggle="pill" href="#description" role="tab" aria-controls="description" aria-selected="false">Description</a>
                 </li>
                 <li role="presentation">
                   <a id="reviews-tab" data-bs-toggle="pill" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews <span>(05)</span></a>
                 </li>
               </ul>
               <div class="tab-content product-tab-content" id="ReviewTabContent">
-                <div class="tab-pane fade show active" id="information" role="tabpanel" aria-labelledby="information-tab">
-                  <div class="product-information">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adlo minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in tun tuni reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserun mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rel aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
-                  </div>
-                </div>
-                <div class="tab-pane fade" id="description" role="tabpanel" aria-labelledby="description-tab">
+      
+                <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
                   <div class="product-description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adlo minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in tun tuni reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserun mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rel aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
+                  <p><?php echo $product['product_description'] ?></p>
+
                   </div>
                 </div>
                 <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
@@ -163,14 +113,6 @@ include("./includes/public-header.php");
                     <div class="review-content-header">
                       <h3>Customer Reviews</h3>
                       <div class="review-info">
-                        <ul class="review-rating">
-                          <li class="fa fa-star"></li>
-                          <li class="fa fa-star"></li>
-                          <li class="fa fa-star"></li>
-                          <li class="fa fa-star"></li>
-                          <li class="fa fa-star-o"></li>
-                        </ul>
-                        <span class="review-caption">Based on 5 reviews</span>
                         <span class="review-write-btn">Write a review</span>
                       </div>
                     </div>
@@ -191,18 +133,6 @@ include("./includes/public-header.php");
                               <div class="form-group">
                                 <label for="for_email">Email</label>
                                 <input id="for_email" class="form-control" type="email" placeholder="john.smith@example.com">
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <span class="title">Rating</span>
-                                <ul class="review-rating">
-                                  <li class="fa fa-star-o"></li>
-                                  <li class="fa fa-star-o"></li>
-                                  <li class="fa fa-star-o"></li>
-                                  <li class="fa fa-star-o"></li>
-                                  <li class="fa fa-star-o"></li>
-                                </ul>
                               </div>
                             </div>
                             <div class="col-md-12">
@@ -229,7 +159,6 @@ include("./includes/public-header.php");
                     <!--== End Reviews Form Item ==-->
 
                     <div class="reviews-content-body">
-                      <!--== Start Reviews Content Item ==-->
                       <div class="review-item">
                         <ul class="review-rating">
                           <li class="fa fa-star"></li>
@@ -243,80 +172,9 @@ include("./includes/public-header.php");
                         <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                         <a href="#/">Report as Inappropriate</a>
                       </div>
-                      <!--== End Reviews Content Item ==-->
-
-                      <!--== Start Reviews Content Item ==-->
-                      <div class="review-item">
-                        <ul class="review-rating">
-                          <li class="fa fa-star"></li>
-                          <li class="fa fa-star-o"></li>
-                          <li class="fa fa-star-o"></li>
-                          <li class="fa fa-star-o"></li>
-                          <li class="fa fa-star-o"></li>
-                        </ul>
-                        <h3 class="title">Low Quality</h3>
-                        <h5 class="sub-title"><span>Oliv hala</span> no <span>Sep 30, 2018</span></h5>
-                        <p>My Favorite White Sneakers From Splurge To Save the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
-                        <a href="#/">Report as Inappropriate</a>
-                      </div>
-                      <!--== End Reviews Content Item ==-->
-
-                      <!--== Start Reviews Content Item ==-->
-                      <div class="review-item">
-                        <ul class="review-rating">
-                          <li class="fa fa-star"></li>
-                          <li class="fa fa-star"></li>
-                          <li class="fa fa-star"></li>
-                          <li class="fa fa-star"></li>
-                          <li class="fa fa-star"></li>
-                        </ul>
-                        <h3 class="title">Excellent services!</h3>
-                        <h5 class="sub-title"><span>Halk Marron</span> no <span>Sep 30, 2018</span></h5>
-                        <p>The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-                        <a href="#/">Report as Inappropriate</a>
-                      </div>
-                      <!--== End Reviews Content Item ==-->
-
-                      <!--== Start Reviews Content Item ==-->
-                      <div class="review-item">
-                        <ul class="review-rating">
-                          <li class="fa fa-star"></li>
-                          <li class="fa fa-star"></li>
-                          <li class="fa fa-star"></li>
-                          <li class="fa fa-star-o"></li>
-                          <li class="fa fa-star-o"></li>
-                        </ul>
-                        <h3 class="title">Price is very high</h3>
-                        <h5 class="sub-title"><span>Musa</span> no <span>Sep 30, 2018</span></h5>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-                        <a href="#/">Report as Inappropriate</a>
-                      </div>
-                      <!--== End Reviews Content Item ==-->
-
-                      <!--== Start Reviews Content Item ==-->
-                      <div class="review-item">
-                        <ul class="review-rating">
-                          <li class="fa fa-star"></li>
-                          <li class="fa fa-star"></li>
-                          <li class="fa fa-star"></li>
-                          <li class="fa fa-star"></li>
-                          <li class="fa fa-star-o"></li>
-                        </ul>
-                        <h3 class="title">Normal</h3>
-                        <h5 class="sub-title"><span>Muhammad</span> no <span>Sep 30, 2018</span></h5>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</p>
-                        <a href="#/">Report as Inappropriate</a>
-                      </div>
-                      <!--== End Reviews Content Item ==-->
+             
                     </div>
 
-                    <!--== Start Reviews Pagination Item ==-->
-                    <div class="review-pagination">
-                      <span class="pagination-pag">1</span>
-                      <span class="pagination-pag">2</span>
-                      <span class="pagination-next">Next »</span>
-                    </div>
-                    <!--== End Reviews Pagination Item ==-->
                   </div>
                 </div>
               </div>
