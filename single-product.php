@@ -15,8 +15,7 @@
         $second_statement=$connection->prepare("SELECT * FROM products WHERE sub_category_id= {$sub_id}");
         $second_statement->execute();
         $related_products=$second_statement->fetchAll(PDO::FETCH_ASSOC);
-
-
+        
         $product_review=$connection->prepare("SELECT * FROM product_review WHERE product_id={$id}");
         $product_review->execute();
         $review=$product_review->fetchAll(PDO::FETCH_ASSOC);   
