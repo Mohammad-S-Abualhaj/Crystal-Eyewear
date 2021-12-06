@@ -47,7 +47,6 @@ if (isset($_POST["user_name"])) {
 
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang=en>
@@ -59,13 +58,6 @@ if (isset($_POST["user_name"])) {
         <?php include_once 'layouts/aside.php'; ?>
         <div class="wrapper d-flex flex-column flex-row-fluid" id=kt_wrapper>
             <?php include_once 'layouts/header.php'; ?>
-            <!-- ERROR ADD USER  -->
-            <?php
-            if(isset($_GET['email'])){?>
-                <div class="email_error"></div>
-            <?php } ?>
-
-            ?>
         </div>
         </div>
             <div class="content d-flex flex-column flex-column-fluid" id=kt_content>
@@ -358,7 +350,7 @@ if (isset($_POST["user_name"])) {
     <!--end::Svg Icon-->
 </div>
 <script>
-    var hostUrl = "assets/";
+
 </script>
 <script src="../js/main_app.js"></script>
 <!--begin::Javascript-->
