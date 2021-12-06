@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once("./includes/public-header.php");
 require_once "includes/db.php";
 if (isset($_GET['search_key'])) {
    $search_key = '%' . $_GET['search_key'] . '%';
@@ -16,12 +17,13 @@ $satatement->execute();
 $products = $satatement->fetchAll(PDO::FETCH_ASSOC);
 
 if (count($products) === 0) {
+
    echo "<div class='error_not_found'>
          <div><i class='fas fa-search'></i></div>
          No result found
          <p>Try rephrasing your search term. Be less specific or double check the spelling.</p>
          </div>";
-   include("./includes/public-footer.php");
+   include_once("./includes/public-footer.php");
    exit;
 }
 
@@ -32,17 +34,11 @@ $satsub_category->execute();
 $sub_category = $satsub_category->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($products as $product) {
-<<<<<<< HEAD
- 
-$x[] = $product['category_name'];
-$u[] = $product['sub_category_name'];
-=======
    $x[] = $product['category_name'];
 }
 $z = array_count_values($x);
 foreach ($products as $product) {
    $u[] = $product['sub_category_name'];
->>>>>>> bd1b365ae147918b9947e6ba30dbd71b3b895ebc
 }
 $y = array_count_values($u);
 $z = array_count_values($x);
@@ -77,7 +73,7 @@ if (isset($_GET['sub_category_name'])) {
 
 }
 
-include("./includes/public-header.php");
+
 ?>
 <main class="main-content">
    <!--== Start Page Header Area Wrapper ==-->

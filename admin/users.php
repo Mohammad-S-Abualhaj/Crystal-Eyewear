@@ -65,7 +65,7 @@ if (isset($_POST["user_name"])) {
                 <div class="email_error"></div>
             <?php } ?>
 
-            ?>
+            
         </div>
         </div>
             <div class="content d-flex flex-column flex-column-fluid" id=kt_content>
