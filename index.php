@@ -122,7 +122,7 @@
                         </div>
                      </div>
                      <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/1.webp"></div>
-                     <a class="banner-link-overlay" href="http://localhost/Crystal-Eyewear/shop.php?sub_category_name=eyeglasess%20women"></a>
+                     <a class="banner-link-overlay" href="shop.php?sub_category_name=women"></a>
                   </div>
                </div>
                <!--== End Product Collection Item ==-->
@@ -133,12 +133,12 @@
                   <div class="inner-content">
                      <div class="product-collection-content">
                         <div class="content">
-                           <h3 class="title"><a href="http://localhost/Crystal-Eyewear/shop.php?sub_category_name=eyeglasess%20man">men glasses</a></h3>
+                           <h3 class="title"><a href="shop.php?sub_category_name=men">men glasses</a></h3>
                            <h4 class="price">From $30.00</h4>
                         </div>
                      </div>
                      <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/2.webp"></div>
-                     <a class="banner-link-overlay" href="shop.php"></a>
+                     <a class="banner-link-overlay" href="shop.php?sub_category_name=men"></a>
                   </div>
                </div>
                <!--== End Product Collection Item ==-->
@@ -149,12 +149,12 @@
                   <div class="inner-content">
                      <div class="product-collection-content">
                         <div class="content">
-                           <h3 class="title"><a href="shop.php">kids glasses</a></h3>
+                           <h3 class="title"><a href="shop.php?sub_category_name=kids">kids glasses</a></h3>
                            <h4 class="price">From $35.00</h4>
                         </div>
                      </div>
                      <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/3.webp"></div>
-                     <a class="banner-link-overlay" href="http://localhost/Crystal-Eyewear/shop.php?sub_category_name=eyeglasess%20kids"></a>
+                     <a class="banner-link-overlay" href="shop.php?sub_category_name=kids"></a>
                   </div>
                </div>
                <!--== End Product Collection Item ==-->
