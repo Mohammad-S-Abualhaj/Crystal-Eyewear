@@ -51,17 +51,6 @@ if (isset($_POST["user_name"])) {
 <!DOCTYPE html>
 <html lang=en>
 <?php include_once 'layouts/head.php'; ?>
-<<<<<<< HEAD
-<body id=kt_body class="header-fixed header-tablet-and-mobile-fixed aside-enabled aside-fixed" style=--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px>
-	<div class="d-flex flex-column flex-root">
-		<div class="page d-flex flex-row flex-column-fluid">
-			<?php include_once 'layouts/aside.php'; ?>
-			<div class="wrapper d-flex flex-column flex-row-fluid" id=kt_wrapper>
-				<?php include_once 'layouts/header.php'; ?>
-				<div class="content d-flex flex-column flex-column-fluid" id=kt_content>
-					<div class="post d-flex flex-column-fluid" id=kt_post>
-						<div id=kt_content_container class=container-xxl>
-=======
 <body id=kt_body class="header-fixed header-tablet-and-mobile-fixed aside-enabled aside-fixed"
       style=--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px>
 <div class="d-flex flex-column flex-root">
@@ -81,7 +70,6 @@ if (isset($_POST["user_name"])) {
             <div class="content d-flex flex-column flex-column-fluid" id=kt_content>
                 <div class="post d-flex flex-column-fluid" id=kt_post>
                     <div id=kt_content_container class=container-xxl>
->>>>>>> 5635a56b758263f4c1ca67d16a86fa376067ec2d
                         <div class=card>
                             <div class="card-header border-0 pt-6">
                                 <div class=card-title>

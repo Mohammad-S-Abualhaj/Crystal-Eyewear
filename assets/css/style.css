@@ -4469,16 +4469,19 @@ Common CSS
     margin-bottom: 40px;
     padding: 11px 29px 10px 30px;
 }
-
+span.price-old {
+  font-weight: 300;
+  text-decoration: line-through;
+  color: #666;
+}
+span.price {
+  color: #f60;
+}
 @media only screen and (max-width: 767px) {
     .shop-top-bar {
         -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     }
-}
-
-.shop-top-bar .shop-top-left {
-    width: 180px;
 }
 
 @media only screen and (max-width: 1199px) {

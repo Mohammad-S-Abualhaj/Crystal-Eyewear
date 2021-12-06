@@ -1,26 +1,40 @@
 <?php
    session_start();
 
-   
        require_once "includes/db.php";
+
        if(isset($_GET['id'])){
-           $id=$_GET['id'];
-           $statement = $connection->prepare("SELECT * FROM products INNER JOIN category ON products.category_id=category.category_id
-   INNER JOIN sub_category ON products.sub_category_id = sub_category.sub_category_id WHERE product_id=:id");
-           $statement->bindParam(':id',$id);
-           $statement->execute();
-           $product=$statement->fetch(PDO::FETCH_ASSOC);
-           $sub_id=(int)$product['sub_category_id'];
-           $second_statement=$connection->prepare("SELECT * FROM products WHERE sub_category_id= {$sub_id}");
-           $second_statement->execute();
-           $related_products=$second_statement->fetchAll(PDO::FETCH_ASSOC);
-       }
+        $id=$_GET['id'];
+        $statement = $connection->prepare("SELECT * FROM products INNER JOIN category ON products.category_id=category.category_id
+        INNER JOIN sub_category ON products.sub_category_id = sub_category.sub_category_id WHERE product_id=:id");
+        $statement->bindParam(':id',$id);
+        $statement->execute();
+        $product=$statement->fetch(PDO::FETCH_ASSOC);
 
-include("./includes/public-header.php");
+        $sub_id=(int)$product['sub_category_id'];
+        $second_statement=$connection->prepare("SELECT * FROM products WHERE sub_category_id= {$sub_id}");
+        $second_statement->execute();
+        $related_products=$second_statement->fetchAll(PDO::FETCH_ASSOC);
 
 
+        $product_review=$connection->prepare("SELECT * FROM product_review WHERE product_id={$id}");
+        $product_review->execute();
+        $review=$product_review->fetchAll(PDO::FETCH_ASSOC);   
+}
 
-   
+if (isset($_POST["post"])) {
+  $id=$_GET['id'];
+  $userName = $_POST["review_title"];
+  $userEmail = $_POST["review_comments"];
+  $strt = $connection->prepare("INSERT INTO product_review (review_title,review_comments ,product_id )
+  VALUES ('{$userName}','{$userEmail}','{$id}')");
+  $strt->execute();
+  header("location:single-product.php?id={$id}");
+
+} 
+
+
+    include("./includes/public-header.php");
    ?>
 <main class="main-content">
    <!--== Start Page Header Area Wrapper ==-->
@@ -127,35 +141,23 @@ include("./includes/public-header.php");
                            <div class="reviews-form-area">
                               <h4 class="title">Write a review</h4>
                               <div class="reviews-form-content">
-                                 <form action="#">
+                                 <form action="#" method="post">
                                     <div class="row">
                                        <div class="col-md-12">
                                           <div class="form-group">
-                                             <label for="for_name">Name</label>
-                                             <input id="for_name" class="form-control" type="text" placeholder="Enter your name">
-                                          </div>
-                                       </div>
-                                       <div class="col-md-12">
-                                          <div class="form-group">
-                                             <label for="for_email">Email</label>
-                                             <input id="for_email" class="form-control" type="email" placeholder="john.smith@example.com">
-                                          </div>
-                                       </div>
-                                       <div class="col-md-12">
-                                          <div class="form-group">
                                              <label for="for_review-title">Review Title</label>
-                                             <input id="for_review-title" class="form-control" type="text" placeholder="Give your review a title">
+                                             <input id="for_review-title" name="review_title" class="form-control" type="text" placeholder="Give your review a title">
                                           </div>
                                        </div>
                                        <div class="col-md-12">
                                           <div class="form-group">
-                                             <label for="for_comment">Body of Review (1500)</label>
-                                             <textarea id="for_comment" class="form-control" placeholder="Write your comments here"></textarea>
+                                             <label for="for_comment">Body of Review</label>
+                                             <textarea id="for_comment" name="review_comments" class="form-control" placeholder="Write your comments here"></textarea>
                                           </div>
                                        </div>
                                        <div class="col-md-12">
                                           <div class="form-submit-btn">
-                                             <button type="submit" class="btn-submit">Post comment</button>
+                                             <button type="submit" name="post" class="btn-submit">Post comment</button>
                                           </div>
                                        </div>
                                     </div>
@@ -164,19 +166,14 @@ include("./includes/public-header.php");
                            </div>
                            <!--== End Reviews Form Item ==-->
                            <div class="reviews-content-body">
+                             <?php  
+                            
+                             foreach ($review as $key) {?>
                               <div class="review-item">
-                                 <ul class="review-rating">
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star"></li>
-                                 </ul>
-                                 <h3 class="title">Awesome shipping service!</h3>
-                                 <h5 class="sub-title"><span>Nantu Nayal</span> no <span>Sep 30, 2018</span></h5>
-                                 <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                 <a href="#/">Report as Inappropriate</a>
+                                 <h3 class="title"> <?php echo $key["review_title"]  ?></h3>
+                                 <p><?php echo $key["review_comments"]  ?> </p>
                               </div>
+                              <?php } ?>
                            </div>
                         </div>
                      </div>
@@ -234,7 +231,7 @@ include("./includes/public-header.php");
 
                                              <h4 class="title"><a href="single-product.php?id=<?php echo $related['product_id'] ?>"><?php echo $related['product_name']; ?></a></h4>
                                              <div class="prices">
-                                                <?php if ($related['product_percentage_price'] > 0) { ?>
+                                                <?php if ($related['product_percentage_price'] > 0){?>
                                                    <span class="price-old">$<?php echo $related['product_price'] ?></span>
                                                    <span class="sep">-</span>
                                                    <span class="price">$

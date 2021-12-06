@@ -1,5 +1,6 @@
 
-<?php require_once "includes/public-header.php"?>
+<?php require_once "includes/public-header.php";
+?>
   <!--== End Header Wrapper ==-->
   <main class="main-content">
     <!--== Start My Account Area Wrapper ==-->

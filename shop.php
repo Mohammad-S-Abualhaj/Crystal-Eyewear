@@ -111,13 +111,6 @@ if (isset($_GET['sub_category_name'])) {
                         <div class="shop-top-left">
                            <p class="pagination-line"><a href="shop.html"><?php echo count($products) ?></a> Product Found </p>
                         </div>
-                        <div class="shop-top-center">
-                           <nav class="product-nav">
-                              <div class="nav nav-tabs" id="nav-tab" role="tablist">
-
-                              </div>
-                           </nav>
-                        </div>
                      </div>
                   </div>
                   <div class="col-12">
