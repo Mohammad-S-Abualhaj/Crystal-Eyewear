@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 include_once("./includes/public-header.php");
 
 require_once "includes/db.php";

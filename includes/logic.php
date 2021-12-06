@@ -83,6 +83,7 @@ if (isset($_POST['login_submit']) || (isset($_POST['checkout_login']))) {
             exit();
         }
         //-----------------------------------
+        $_SESSION['admin_loggedin']=false;
         $_SESSION['user_loggedin'] = true;
         $_SESSION['user_name']=$user_data['username'];
         $_SESSION['user_id']=$user_data['id'];
@@ -127,6 +128,7 @@ if (isset($_POST['login_submit']) || (isset($_POST['checkout_login']))) {
             header("Location:../admin");
             exit();
         }
+        $_SESSION['admin_loggedin']=false;
         $_SESSION['user_loggedin'] = true;
         $_SESSION['user_name']=$user_data['username'];
         $_SESSION['user_id']=$user_data['id'];
@@ -170,6 +172,7 @@ if(isset($_GET['logout'])){
         unset($_SESSION['user_id']);
         unset($_SESSION['user_name']);
         unset($_SESSION['user_loggedin']);
+        unset( $_SESSION['admin_loggedin']);
             header("Location:../index.php");
         exit();
     }
@@ -238,4 +241,12 @@ if(isset($_POST["account_kilani_submit"])){
     //error duplicate email
          ///DONT GO OUT OF THE IF STATEMENT
     }
-} 
+}
+//logout admin
+if(isset($_POST['log_out_adminDash'])){
+    session_start();
+    $_SESSION['admin_loggedin']=false;
+    unset($_SESSION['admin_loggedin']);
+    header('location:../index.php');
+    exit();
+}

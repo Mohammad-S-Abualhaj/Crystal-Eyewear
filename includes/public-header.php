@@ -72,6 +72,12 @@ if (isset($_POST['search_for_product'])) {
                       <ul>
                         <li class="number"><i class="fa fa-phone"></i><a href="tel://0123456789">+00 123 456 789</a></li>
                         <li class="email"><i class="fa fa-envelope"></i><a href="mailto://demo@example.com">demo@example.com</a></li>
+                         <?php if(isset( $_SESSION['admin_loggedin'])){
+                             if( $_SESSION['admin_loggedin']===true){?>
+                                 <li class="account">
+                                     <i class="fa fa-unlock"></i><a href="admin/index.php">Go to admin</a>
+                                 </li>
+                                 <?php }} ?>
                         <li class="account">
                           <?php if (isset($_SESSION['user_loggedin'])) {
                             if ($_SESSION['user_loggedin'] === true) {
@@ -82,6 +88,7 @@ if (isset($_POST['search_for_product'])) {
                             <i class="fa fa-user"></i><a href="account-login.php">Log in</a>
                           <?php } ?>
                         </li>
+
                       </ul>
                     </div>
                   </div>
