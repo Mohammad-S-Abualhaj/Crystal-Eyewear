@@ -118,11 +118,11 @@
                      <div class="product-collection-content">
                         <div class="content">
                            <h3 class="title"><a href="shop.php">Women glasses</a></h3>
-                           <h4 class="price">From $39.00</h4>
+                           <h4 class="price">From $95.00</h4>
                         </div>
                      </div>
                      <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/1.webp"></div>
-                     <a class="banner-link-overlay" href="shop.php"></a>
+                     <a class="banner-link-overlay" href="shop.php?sub_category_name=<?php echo $products[0]['sub_category_name']["women"]?? ""?>"></a>
                   </div>
                </div>
                <!--== End Product Collection Item ==-->
@@ -134,7 +134,7 @@
                      <div class="product-collection-content">
                         <div class="content">
                            <h3 class="title"><a href="shop.php">men glasses</a></h3>
-                           <h4 class="price">From $30.00</h4>
+                           <h4 class="price">From $90.00</h4>
                         </div>
                      </div>
                      <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/2.webp"></div>
@@ -150,7 +150,7 @@
                      <div class="product-collection-content">
                         <div class="content">
                            <h3 class="title"><a href="shop.php">kids glasses</a></h3>
-                           <h4 class="price">From $25.00</h4>
+                           <h4 class="price">From $82.00</h4>
                         </div>
                      </div>
                      <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/3.webp"></div>
@@ -196,8 +196,8 @@
                         </div>
                         <?php endif; ?>
                         <div class="product-action">
-                           <a class="btn-product-cart" href="shop-cart.php?id=<?php echo $product['product_id']?>&quantity=1"><i class="fa fa-shopping-cart"></i></a>
-                        </div>
+                                                <a class="btn-product-cart" href="shop-cart.php?id=<?php echo $product['product_id'] ?>&quantity=1&shop=true"><i class="fa fa-shopping-cart"></i></a>
+                                             </div>
                         <a class="banner-link-overlay" href="shop.php"></a>
                      </div>
                      <div class="product-info">
@@ -277,8 +277,8 @@
                         </div>
                         <?php endif; ?>
                         <div class="product-action">
-                           <a class="btn-product-cart" href="shop-cart.php"><i class="fa fa-shopping-cart"></i></a>
-                        </div>
+                                                <a class="btn-product-cart" href="shop-cart.php?id=<?php echo $product['product_id'] ?>&quantity=1&shop=true"><i class="fa fa-shopping-cart"></i></a>
+                                             </div>
                         <a class="banner-link-overlay" href="shop.php"></a>
                      </div>
                      <div class="product-info">
