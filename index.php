@@ -122,11 +122,7 @@
                         </div>
                      </div>
                      <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/1.webp"></div>
-<<<<<<< HEAD
                      <a class="banner-link-overlay" href="shop.php?sub_category_name=<?php echo $products[0]['sub_category_name']["women"]?? ""?>"></a>
-=======
-                     <a class="banner-link-overlay" href="shop.php?sub_category_name=<?php echo $products[0]['sub_category_name']["women"] ?? "" ?>"></a>
->>>>>>> 06526296d3c5fe133c2018b0162b986c039bcc7d
                   </div>
                </div>
                <!--== End Product Collection Item ==-->
@@ -200,7 +196,7 @@
                         </div>
                         <?php endif; ?>
                         <div class="product-action">
-                           <a class="btn-product-cart" href="shop-cart.php"><i class="fa fa-shopping-cart"></i></a>
+                           <a class="btn-product-cart" href="shop-cart.php?id=<?php echo $product['product_id']?>&quantity=1"><i class="fa fa-shopping-cart"></i></a>
                         </div>
                         <a class="banner-link-overlay" href="shop.php"></a>
                      </div>

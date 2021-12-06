@@ -77,7 +77,7 @@ if(isset($_GET['update'])){
         $_SESSION['shopping_cart'][$i]['product_quantity']=(int)$_GET["quantity{$product_id}"];
         //endif;
     }
-     
+
 
     endif;
 
