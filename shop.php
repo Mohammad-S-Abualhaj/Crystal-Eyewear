@@ -1,6 +1,10 @@
 <?php
 session_start();
+
 include_once("./includes/public-header.php");
+
+   
+
 require_once "includes/db.php";
 if (isset($_GET['search_key'])) {
    $search_key = '%' . $_GET['search_key'] . '%';
