@@ -78,15 +78,18 @@ if (isset($_POST['search_for_product'])) {
                                      <i class="fa fa-unlock"></i><a href="admin/index.php">Go to admin</a>
                                  </li>
                                  <?php }} ?>
-                        <li class="account">
-                          <?php if (isset($_SESSION['user_loggedin'])) {
-                            if ($_SESSION['user_loggedin'] === true) {
-                          ?>
-                              <i class="fa fa-user"></i><a class="account" href="account.php"><?php echo $_SESSION['user_name'] ?? ""  ?></a>
-                            <?php }
-                          } else { ?>
-                            <i class="fa fa-user"></i><a href="account-login.php">Log in</a>
-                          <?php } ?>
+                        <li class="account"> 
+                          <?php
+                          $session_check= $_SESSION['user_loggedin']?? null;
+                          $loggin_check= $_SESSION['user_loggedin'];
+                          if ( $session_check && $loggin_check) {?>
+                          <i class="fa fa-user"></i><a class="account" ref="account.php"><?php echo $_SESSION['user_name'] ?? ""  ?></a>
+
+                          <?php }else{?>  
+
+                             <i class="fa fa-user"></i><a href="account-login.php">Log in</a>
+                       <?php } ?>
+                         
                         </li>
 
                       </ul>
