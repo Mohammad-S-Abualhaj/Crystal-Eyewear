@@ -175,11 +175,13 @@ include("./includes/public-header.php");
                             $price=null;
                            
                             foreach ($_SESSION['shopping_cart'] as $product):
-                                if ($product['product_sale_price']) {
-                                    $price=$product['product_sale_price'];
+                                if ($product["product_percentage_price"]) {
+                                    $price=$product['product_price']-((int)$product['product_price'])*(((int)$product['product_percentage_price'])*0.01);
+                                    $price=(int)($price);
+
                                 }
                                 else{
-                                $price=$product['product_price'];
+                                    $price=$product['product_price'];
                                 }
                                 $order_total+=(int)($price)*$product['product_quantity'];
                                 ?>

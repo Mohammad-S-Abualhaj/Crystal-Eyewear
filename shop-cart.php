@@ -1,7 +1,9 @@
 <?php
 session_start();
+
 require_once "includes/db.php";
 $cartCheck=isset($_SESSION['shopping_cart']);
+
 //clear cart
 if($cartCheck){
     if(isset($_GET['clear_cart'])){
@@ -56,6 +58,7 @@ if (isset($_GET['id'])) {
         if ($product):
             $_SESSION['shopping_cart'][] =$product;
             $_SESSION['shopping_cart'][$products_counter]["product_quantity"]=(int)$quantity;
+
             $products_counter++;
         endif;
     }
@@ -141,12 +144,15 @@ include("./includes/public-header.php");
                                     <?php
                                     if (isset($_SESSION["shopping_cart"])):
                                         $i=0;
-                                        $order_total=0;
+
 
                                         foreach ($_SESSION["shopping_cart"] as $product):
-                                            $price=null;
-                                            if ($product['product_sale_price']) {
-                                                $price=$product['product_sale_price'];
+                                            $price=0;
+                                            $order_total=0;
+                                            if ($product["product_percentage_price"]) {
+                                                $price=$product['product_price']-((int)$product['product_price'])*(((int)$product['product_percentage_price'])*0.01);
+                                                $price=(int)$price;
+
                                             }
                                             else{
                                             $price=$product['product_price'];
