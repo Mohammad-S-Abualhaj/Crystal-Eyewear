@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2021 at 07:38 PM
+-- Generation Time: Dec 06, 2021 at 06:03 PM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 7.3.31
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -52,7 +52,7 @@ CREATE TABLE `order_summary` (
   `order_id` int(5) NOT NULL,
   `order_status` varchar(255) NOT NULL,
   `order_total_price` varchar(50) NOT NULL,
-  `cart_after_shopping` varchar(500) NOT NULL,
+  `cart_after_shopping` longtext NOT NULL,
   `user_checkout` int(5) NOT NULL,
   `user_id` int(5) NOT NULL,
   `checkout_street_address` varchar(100) NOT NULL,
@@ -68,12 +68,7 @@ CREATE TABLE `order_summary` (
 --
 
 INSERT INTO `order_summary` (`order_id`, `order_status`, `order_total_price`, `cart_after_shopping`, `user_checkout`, `user_id`, `checkout_street_address`, `checkout_city`, `checkout_country`, `checkout_phone`, `checkout_total_price`, `date_of_creation`) VALUES
-(1, 'pending', '242', 'id:44 name:Tom Ford FT0371 ANOUSHKA 01B\r\n                  price:242 price_onsale:,', 0, 5, 'fdsggf', '56', 'Jordan', 776879500, 0, '2021-12-04 21:36:45'),
-(2, 'pending', '98', 'id:45 name:SmartBuy Collection Brette SB-928D\r\n                  price:39 price_onsale:,id:50 name:Arise Collective Thiva 95249 C1\r\n                  price:59 price_onsale:,', 0, 5, 'dfghj56lkjh', '8787', 'Jordan', 776879500, 0, '2021-12-04 21:38:32'),
-(3, 'pending', '242', 'id:44 name:Tom Ford FT0371 ANOUSHKA 01B\r\n                  price:242 price_onsale:,', 0, 5, 'fdsggf', 'dsffsdg', 'Jordan', 776879500, 0, '2021-12-05 07:51:14'),
-(4, 'pending', '242', 'id:44 name:Tom Ford FT0371 ANOUSHKA 01B\r\n                  price:242 price_onsale:,', 0, 5, 'fdsggf', 'dsffsdg', 'Jordan', 776879500, 0, '2021-12-05 07:51:55'),
-(5, 'pending', '242', 'id:44 name:Tom Ford FT0371 ANOUSHKA 01B\r\n                  price:242 price_onsale:,', 0, 5, 'fdsggf', 'dsffsdg', 'Jordan', 776879500, 0, '2021-12-05 08:42:42'),
-(6, 'pending', '242', 'id:44 name:Tom Ford FT0371 ANOUSHKA 01B\r\n                  price:242 price_onsale:,', 0, 5, 'fdsggf', 'dsffsdg', 'Jordan', 776879500, 0, '2021-12-05 08:43:42');
+(10, 'pending', '193', '[{\"product_id\":\"44\",\"product_name\":\"Tom Ford FT0371 ANOUSHKA 01B\",\"product_description\":\"Only founded in 2005, Tom Ford has constructed an expansive fashion empire in an unbelievably short amount of time, revolutionising fashion with sharp designs that focus on the small details. The Tom Ford Anoushka sunglasses, on the other hand are anythin\",\"product_price\":\"242\",\"product_image\":\"46940product_1.jpg\",\"product_on_sale\":\"0\",\"product_best_seller\":\"0\",\"featured_products\":\"1\",\"product_sale_price\":\"0\",\"product_percentage_price\":\"20\",\"category_id\":\"4\",\"sub_category_id\":\"2\",\"product_quantity\":\"1\"}]', 0, 10, 'Shafa', 'Amman', 'Jordan', 795102339, 0, '2021-12-06 16:35:30');
 
 -- --------------------------------------------------------
 
@@ -142,8 +137,17 @@ CREATE TABLE `product_review` (
   `review_title` varchar(50) NOT NULL,
   `review_rating` varchar(50) NOT NULL,
   `review_comments` varchar(500) NOT NULL,
-  `products_id` int(5) NOT NULL
+  `product_id` int(5) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product_review`
+--
+
+INSERT INTO `product_review` (`review_id`, `review_title`, `review_rating`, `review_comments`, `product_id`, `user_id`, `date_created`) VALUES
+(1, 'Very bad', '', 'the [regofmk, ', 45, 16, '2021-12-06 16:20:30');
 
 -- --------------------------------------------------------
 
@@ -192,10 +196,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `email`, `password`, `image`, `role`, `full_name`) VALUES
-(3, 'efsfgsrrcddrds', '', '', '21637', '1', ''),
-(4, '', 'abdallh@dff.com', '3Utaia$HFBC25MjpXP', '40442', '1', ''),
-(5, 'abdallh', 'abdallh.samman@gmail.com', '2ca8a24b2238bc9e9800398c707eb91e', '', '', ''),
-(6, 'abdallh', 'abdallh1.samman@gmail.com', '390d823d83c74537c50bfaaca0420045', '', '', '');
+(5, 'Abdallh Samman', 'abdall.samman@gmail.com', '235f2e61ce2713dc462fbea6f6d0bc06', '', '', ''),
+(10, 'abdallhh', 'abdallhh.samman@gmail.com', '2ca8a24b2238bc9e9800398c707eb91e', '', '', 'abdallhh'),
+(12, 'awni', 'alrifai@gmail.com', 'Awnirifai@2020', '91243', '1', ''),
+(15, 'awniRifai', 'awni.rifai1998@gmail.com', '71dde1e8044b58eb46a59f68ef1ce3f3', '', '1', ''),
+(16, 'awnirif', 'alrifai.awni98@gmail.com', '722e7450dc0c64c5e87ed11ed2c0ab99', '', '', 'awni');
 
 --
 -- Indexes for dumped tables
@@ -228,7 +233,8 @@ ALTER TABLE `products`
 --
 ALTER TABLE `product_review`
   ADD PRIMARY KEY (`review_id`),
-  ADD KEY `product_review_ibfk_1` (`products_id`);
+  ADD KEY `product_review_ibfk_1` (`product_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `sub_category`
@@ -258,7 +264,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `order_summary`
 --
 ALTER TABLE `order_summary`
-  MODIFY `order_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `order_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -270,7 +276,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `product_review`
 --
 ALTER TABLE `product_review`
-  MODIFY `review_id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `review_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `sub_category`
@@ -282,7 +288,7 @@ ALTER TABLE `sub_category`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables
@@ -305,7 +311,8 @@ ALTER TABLE `products`
 -- Constraints for table `product_review`
 --
 ALTER TABLE `product_review`
-  ADD CONSTRAINT `product_review_ibfk_1` FOREIGN KEY (`products_id`) REFERENCES `products` (`product_id`);
+  ADD CONSTRAINT `product_review_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`),
+  ADD CONSTRAINT `product_review_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `sub_category`
