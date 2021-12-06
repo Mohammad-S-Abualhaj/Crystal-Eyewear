@@ -1,10 +1,7 @@
 <?php
 session_start();
-echo json_encode($_SESSION["shopping_cart"][0]);
-die;
 include("./includes/public-header.php");
 require_once "includes/db.php";
-
 if (isset($_GET['search_key'])) {
    $search_key = '%' . $_GET['search_key'] . '%';
    $satatement = $connection->prepare("SELECT * FROM ((products
