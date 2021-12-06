@@ -268,6 +268,7 @@ function session_timeout($time,$basket_time)
     }
     if (time() > $_SESSION['start'] + $time*60) {
         $_SESSION['user_loggedin'] = false;
+        $_SESSION['admin_loggedin']= false;
         $_SESSION['start'] = time();
     }
     if (time() > $_SESSION['start'] + $basket_time*60) {

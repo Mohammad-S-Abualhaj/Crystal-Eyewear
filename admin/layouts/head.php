@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <head>
     <base href="">
     <title>Metronic - the world's #1 selling Bootstrap Admin Theme Ecosystem for HTML, Vue, React, Angular &amp; Laravel by Keenthemes</title>

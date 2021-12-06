@@ -1,7 +1,6 @@
 <?php
 session_start();
-
-
+include_once("./includes/public-header.php");
 
 require_once "includes/db.php";
 if (isset($_GET['search_key'])) {
@@ -29,21 +28,16 @@ if (count($products) === 0) {
    exit;
 }
 
-
-
 $satsub_category = $connection->prepare("SELECT * FROM sub_category");
 $satsub_category->execute();
 $sub_category = $satsub_category->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($products as $product) {
    $x[] = $product['category_name'];
-}
-$z = array_count_values($x);
-foreach ($products as $product) {
    $u[] = $product['sub_category_name'];
-}
-$y = array_count_values($u);
-$z = array_count_values($x);
+   }
+   $z = array_count_values($x);
+   $y = array_count_values($u);
 
 
 if (isset($_GET['category_name'])) {
@@ -55,7 +49,6 @@ if (isset($_GET['category_name'])) {
    $products = $productcategory;
 }
 
-
 if (isset($_GET['category_name'])) {
    $name = $_GET['category_name'];
    $satatement = $connection->prepare("SELECT sub_category_name FROM sub_category INNER JOIN category  ON sub_category.category_id= category.category_id   WHERE category_name='$name'");
@@ -63,7 +56,6 @@ if (isset($_GET['category_name'])) {
    $subctcategory = $satatement->fetchAll(PDO::FETCH_ASSOC);
    $category = $subctcategory; 
 }
-
 
 if (isset($_GET['sub_category_name'])) {
    $sub_category_name = $_GET['sub_category_name'];
@@ -75,7 +67,6 @@ if (isset($_GET['sub_category_name'])) {
 
 }
 
-include_once("./includes/public-header.php");
 ?>
 <main class="main-content">
    <!--== Start Page Header Area Wrapper ==-->
@@ -91,13 +82,38 @@ include_once("./includes/public-header.php");
                <div class="row">
                   <div class="col-12">
                      <div class="shop-top-bar">
+                         <div class="bi-text-indent-left">
+                             <?php
+                             $bread_crumbs="";
+                             $category_check=isset($_GET['category_name']);
+                             $categoryCrumb=$_GET['category_name']??"";
+                             $sub_category_check=isset($_GET['sub_category_name']);
+                             $sub_categoryCrumb=($_GET['sub_category_name'])??"";
+                             if($category_check){
+
+                                 $_SESSION['category']=$categoryCrumb;
+                                 $bread_crumbs="shop > {$categoryCrumb}";
+                             }
+                             elseif($sub_category_check){
+                                 $categoryCrumb=$_SESSION['category']?? "";
+                                 $bread_crumbs="shop >  {$categoryCrumb} > {$sub_categoryCrumb}";
+                             }
+                             else{
+                                 $_SESSION['category']="";
+                                 $bread_crumbs="shop";
+                             }
+                             echo $bread_crumbs;
+
+
+                             ?>
+                         </div>
                         <div class="shop-top-left">
                            <p class="pagination-line"><a href="shop.html"><?php echo count($products) ?></a> Product Found </p>
                         </div>
                         <div class="shop-top-center">
                            <nav class="product-nav">
                               <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                 <button class="nav-link active" id="nav-grid-tab" data-bs-toggle="tab" data-bs-target="#nav-grid" type="button" role="tab" aria-controls="nav-grid" aria-selected="true"><i class="fa fa-th"></i></button>
+
                               </div>
                            </nav>
                         </div>
@@ -153,59 +169,13 @@ include_once("./includes/public-header.php");
                               <!--== End product Item ==-->
                            </div>
                         </div>
-                        <div class="tab-pane fade" id="nav-list" role="tabpanel" aria-labelledby="nav-list-tab">
-                           <div class="row">
-                              <div class="col-md-12">
-                                 <!--== Start Product Item ==-->
-                                 <div class="product-item product-list-item">
-                                    <div class="inner-content">
-                                       <div class="product-thumb">
-                                          <a href="single-product.html">
-                                             <img src="assets/img/shop/list-1.webp" width="322" height="360" alt="Image-HasTech">
-                                          </a>
-                                          <div class="product-flag">
-                                             <ul>
-                                                <li class="discount">-10%</li>
-                                             </ul>
-                                          </div>
-                                          <div class="product-action">
-                                             <a class="btn-product-wishlist" href="shop-wishlist.html"><i class="fa fa-heart"></i></a>
-                                             <a class="btn-product-cart" href="shop-cart.html"><i class="fa fa-shopping-cart"></i></a>
-                                             <button type="button" class="btn-product-quick-view-open">
-                                                <i class="fa fa-arrows"></i>
-                                             </button>
-                                             <a class="btn-product-compare" href="shop-compare.html"><i class="fa fa-random"></i></a>
-                                          </div>
-                                          <a class="banner-link-overlay" href="shop.html"></a>
-                                       </div>
-                                       <div class="product-info">
-                                          <div class="category">
-                                             <ul>
-                                                <li><a href="shop.html">Men</a></li>
-                                                <li class="sep">/</li>
-                                                <li><a href="shop.html">Women</a></li>
-                                             </ul>
-                                          </div>
-                                          <h4 class="title"><a href="single-product.html">Leather Mens Slipper</a></h4>
-                                          <div class="prices">
-                                             <span class="price-old">$300</span>
-                                             <span class="sep">-</span>
-                                             <span class="price">$240.00</span>
-                                          </div>
-                                          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem quo, rerum rem soluta quisquam, repellat is deleniti omnis culpa ea quis provident dolore esse, offici modi dolorem nam cum eligendi enim!</p>
-                                          <a class="btn-theme btn-sm" href="shop-cart.html">Add To Cart</a>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <!--== End prPduct Item ==-->
-                              </div>
-                           </div>
-                        </div>
                      </div>
                   </div>
                </div>
             </div>
+
             <div class="col-xl-3">
+
                <div class="shop-sidebar">
 
 
