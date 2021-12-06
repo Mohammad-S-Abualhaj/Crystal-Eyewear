@@ -15,18 +15,20 @@
         $second_statement=$connection->prepare("SELECT * FROM products WHERE sub_category_id= {$sub_id}");
         $second_statement->execute();
         $related_products=$second_statement->fetchAll(PDO::FETCH_ASSOC);
-        
-        $product_review=$connection->prepare("SELECT * FROM product_review WHERE product_id={$id}");
+
+
+        $product_review=$connection->prepare("SELECT * FROM product_review inner JOIN user ON product_review.user_id=user.id WHERE product_id={$id}");
         $product_review->execute();
         $review=$product_review->fetchAll(PDO::FETCH_ASSOC);   
 }
 
 if (isset($_POST["post"])) {
   $id=$_GET['id'];
-  $userName = $_POST["review_title"];
-  $userEmail = $_POST["review_comments"];
-  $strt = $connection->prepare("INSERT INTO product_review (review_title,review_comments ,product_id )
-  VALUES ('{$userName}','{$userEmail}','{$id}')");
+  $user_id=$_POST['user_id'];
+  $review_title = $_POST["review_title"];
+  $review_comments = $_POST["review_comments"];
+  $strt = $connection->prepare("INSERT INTO product_review (review_title,review_comments ,product_id,user_id )
+  VALUES ('{$review_title}','{$review_comments}',{$id},{$user_id})");
   $strt->execute();
   header("location:single-product.php?id={$id}");
 
@@ -137,42 +139,52 @@ if (isset($_POST["post"])) {
                               </div>
                            </div>
                            <!--== Start Reviews Form Item ==-->
-                           <div class="reviews-form-area">
-                              <h4 class="title">Write a review</h4>
-                              <div class="reviews-form-content">
-                                 <form action="#" method="post">
-                                    <div class="row">
-                                       <div class="col-md-12">
-                                          <div class="form-group">
-                                             <label for="for_review-title">Review Title</label>
-                                             <input id="for_review-title" name="review_title" class="form-control" type="text" placeholder="Give your review a title">
-                                          </div>
-                                       </div>
-                                       <div class="col-md-12">
-                                          <div class="form-group">
-                                             <label for="for_comment">Body of Review</label>
-                                             <textarea id="for_comment" name="review_comments" class="form-control" placeholder="Write your comments here"></textarea>
-                                          </div>
-                                       </div>
-                                       <div class="col-md-12">
-                                          <div class="form-submit-btn">
-                                             <button type="submit" name="post" class="btn-submit">Post comment</button>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </form>
-                              </div>
-                           </div>
+
+                               <div class="reviews-form-area">
+                                    <?php if(!isset($_SESSION['user_id'])) {?>
+                                   <div class=" h3 my-4">You need to sign in in order to write a review</div> <?php }?>
+                                   <?php if(isset($_SESSION['user_id'])) {
+                                   if($_SESSION['user_loggedin']===true){?>
+                                   <h4 class="title">Write a review</h4>
+                                   <div class="reviews-form-content">
+                                       <form action="#" method="post">
+                                           <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id'] ?>">
+                                           <div class="row">
+                                               <div class="col-md-12">
+                                                   <div class="form-group">
+                                                       <label for="for_review-title">Review Title</label>
+                                                       <input id="for_review-title" name="review_title" class="form-control" type="text" placeholder="Give your review a title">
+                                                   </div>
+                                               </div>
+                                               <div class="col-md-12">
+                                                   <div class="form-group">
+                                                       <label for="for_comment">Body of Review</label>
+                                                       <textarea id="for_comment" name="review_comments" class="form-control" placeholder="Write your comments here"></textarea>
+                                                   </div>
+                                               </div>
+                                               <div class="col-md-12">
+                                                   <div class="form-submit-btn">
+                                                       <button type="submit" name="post" class="btn-submit">Post comment</button>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </form>
+                                   </div>
+                               </div>
+                            <?php }}?>
                            <!--== End Reviews Form Item ==-->
                            <div class="reviews-content-body">
                              <?php  
-                            
+                            if(isset($review)){
                              foreach ($review as $key) {?>
                               <div class="review-item">
-                                 <h3 class="title"> <?php echo $key["review_title"]  ?></h3>
+                                  <h3><i class="fa fa-user m-3"></i><?php echo $key['username']?></h3>
+                                  <small class="text-muted"><?php echo $key["date_created"] ?></small>
+                                 <h3 class="title"><span class="font-weight-900">title:</span>  <?php echo $key["review_title"]  ?></h3>
                                  <p><?php echo $key["review_comments"]  ?> </p>
                               </div>
-                              <?php } ?>
+                              <?php }} ?>
+                               <div class="alert-light">There is no review for this product</div>
                            </div>
                         </div>
                      </div>
@@ -182,6 +194,7 @@ if (isset($_POST["post"])) {
          </div>
       </div>
    </section>
+
    <!--== End Product Single Area Wrapper ==-->
    <!--== Start Product Area Wrapper ==-->
    <section class="product-area product-best-seller-area">
