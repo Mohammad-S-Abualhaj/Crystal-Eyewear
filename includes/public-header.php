@@ -136,6 +136,7 @@ if (isset($_POST['search_for_product'])) {
                                                 }
 
                                                 ?></sup>
+                                                
                       </button>
                     </div>
                     <button class="btn-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#AsideOffcanvasMenu" aria-controls="AsideOffcanvasMenu">
