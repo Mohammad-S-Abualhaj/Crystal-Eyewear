@@ -86,7 +86,7 @@ if (isset($_POST['search_for_product'])) {
                           <?php
                           $session_check= $_SESSION['user_loggedin']?? null;
                           if ( $session_check) {?>
-                          <i class="fa fa-user"></i><a class="account" ref="account.php"><?php echo $_SESSION['user_name'] ?? ""  ?></a>
+                          <i class="fa fa-user"></i><a class="account" href="account.php"><?php echo $_SESSION['user_name'] ?? ""  ?></a>
 
                           <?php }else{?>  
 
