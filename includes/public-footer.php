@@ -295,6 +295,7 @@
             <script src="assets/js/custom.js"></script>
             <!---       MAIN SCRIPT             -->
             <script src="js/main_apps.js"></script>
+            
 
 
 </body>

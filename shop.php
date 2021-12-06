@@ -1,8 +1,6 @@
 <?php
 session_start();
-include("./includes/public-header.php");
 require_once "includes/db.php";
-
 if (isset($_GET['search_key'])) {
    $search_key = '%' . $_GET['search_key'] . '%';
    $satatement = $connection->prepare("SELECT * FROM ((products
@@ -16,9 +14,15 @@ if (isset($_GET['search_key'])) {
 
 $satatement->execute();
 $products = $satatement->fetchAll(PDO::FETCH_ASSOC);
+
 if (count($products) === 0) {
-   echo "<h3 class='error_not_found'>No results found</h3>";
-   die();
+   echo "<div class='error_not_found'>
+         <div><i class='fas fa-search'></i></div>
+         No result found
+         <p>Try rephrasing your search term. Be less specific or double check the spelling.</p>
+         </div>";
+   include("./includes/public-footer.php");
+   exit;
 }
 
 
@@ -28,9 +32,17 @@ $satsub_category->execute();
 $sub_category = $satsub_category->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($products as $product) {
+<<<<<<< HEAD
  
 $x[] = $product['category_name'];
 $u[] = $product['sub_category_name'];
+=======
+   $x[] = $product['category_name'];
+}
+$z = array_count_values($x);
+foreach ($products as $product) {
+   $u[] = $product['sub_category_name'];
+>>>>>>> bd1b365ae147918b9947e6ba30dbd71b3b895ebc
 }
 $y = array_count_values($u);
 $z = array_count_values($x);
@@ -65,6 +77,7 @@ if (isset($_GET['sub_category_name'])) {
 
 }
 
+include("./includes/public-header.php");
 ?>
 <main class="main-content">
    <!--== Start Page Header Area Wrapper ==-->
@@ -114,7 +127,7 @@ if (isset($_GET['sub_category_name'])) {
                                                 </div>
                                              <?php endif; ?>
                                              <div class="product-action">
-                                                <a class="btn-product-cart" href="shop-cart.php?id=<?php echo $product['product_id']?>&quantity=1"><i class="fa fa-shopping-cart"></i></a>
+                                                <a class="btn-product-cart" href="shop-cart.php?id=<?php echo $product['product_id'] ?>&quantity=1&shop=true"><i class="fa fa-shopping-cart"></i></a>
                                              </div>
                                              <a class="banner-link-overlay" href="shop.php"></a>
                                           </div>
@@ -130,9 +143,9 @@ if (isset($_GET['sub_category_name'])) {
                                                    <span class="price-old">$<?php echo $product['product_price'] ?></span>
                                                    <span class="sep">-</span>
                                                    <span class="price">$
-                                                   <?php echo  ($product['product_price'])*(100- $product['product_percentage_price']) / 100;
+                                                   <?php echo ($product['product_price']) * (100 - $product['product_percentage_price']) / 100;
                                                 } else { ?><span class="price">$ <?php echo $product['product_price'];
-                                                                                 } ?></span>
+                                                                              } ?></span>
                                              </div>
                                           </div>
                                        </div>
@@ -237,3 +250,6 @@ if (isset($_GET['sub_category_name'])) {
 <?php
 include("./includes/public-footer.php");
 ?>
+<script>
+   <?php ?>
+</script>
