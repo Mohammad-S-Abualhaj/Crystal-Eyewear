@@ -58,15 +58,24 @@ if (isset($_GET['id'])) {
         if ($product):
             $_SESSION['shopping_cart'][] =$product;
             $_SESSION['shopping_cart'][$products_counter]["product_quantity"]=(int)$quantity;
-
             $products_counter++;
             if(isset($_GET['shop'])){
                 header("location:shop.php");
                 exit();
             }
 
+
         endif;
+
     }
+    else{
+        if(isset($_GET['shop'])){
+            header("location:shop.php");
+            exit();
+        }
+
+    }
+
 }
 //-------------------------------------------
 //update shopping cart
@@ -120,7 +129,7 @@ include("./includes/public-header.php");
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 
         <!--== End Page Header Area Wrapper ==-->
 
