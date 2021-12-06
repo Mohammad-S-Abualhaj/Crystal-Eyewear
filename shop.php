@@ -18,7 +18,12 @@ $satatement->execute();
 $products = $satatement->fetchAll(PDO::FETCH_ASSOC);
 
 if (count($products) === 0) {
-   echo "<h3 class='error_not_found'>No results found</h3>";
+   echo "<div class='error_not_found'>
+         <div><i class='fas fa-search'></i></div>
+         No result found
+         <p>Try rephrasing your search term. Be less specific or double check the spelling.</p>
+         </div>";
+   include("./includes/public-footer.php");
    exit;
 }
 $satcategory = $connection->prepare("SELECT * FROM category");
