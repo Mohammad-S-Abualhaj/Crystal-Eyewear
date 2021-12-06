@@ -36,7 +36,6 @@ include("./includes/public-header.php");
                         <!--== Start Product Thumbnail Area ==-->
                         <div class="product-single-thumb product-single-thumb-normal">
                            <div class="swiper-container single-product-thumb single-product-thumb-slider">
-                               <div class="text-center"><?php echo "shop > {$product['category_name']} > {$product['sub_category_name']} " ?></div>
                               <div class="swiper-wrapper">
                                  <div class="swiper-slide">
                                     <a class="lightbox-image" data-fancybox="gallery" href="admin/assets/media/products_images/<?php echo $product['product_image']; ?>">
@@ -70,10 +69,17 @@ include("./includes/public-header.php");
                      <div class="col-xl-6">
                         <!--== Start Product Info Area ==-->
                         <div class="product-single-info">
+                            <div class="text-center breadcrumb"><?php echo "shop > {$product['category_name']} > {$product['sub_category_name']} " ?></div>
                            <h3 class="main-title"><?php echo $product['product_name'] ?></h3>
-                           <div class="prices">
-                              <span class="price">$<?php echo $product['product_price'] ?></span>
-                           </div>
+                            <div class="prices">
+                                <?php if ($product['product_percentage_price'] > 0) { ?>
+                                <span class="price-old">$<?php echo $product['product_price'] ?></span>
+                                <span class="sep">-</span>
+                                <span class="price">$
+                                                   <?php echo ($product['product_price']) * (100 - $product['product_percentage_price']) / 100;
+                                                   } else { ?><span class="price">$ <?php echo $product['product_price'];
+                                        } ?></span>
+                            </div>
                            <form action="shop-cart.php" method="get">
                            <input type="hidden" name="id" value="<?php echo $product['product_id'] ?>">
                            <div class="product-quick-action">
@@ -220,7 +226,7 @@ include("./includes/public-header.php");
                                                 </div>
                                              <?php endif; ?>
                                              <div class="product-action">
-                                                <a class="btn-product-cart" href="shop-cart.php?<?php echo $related['product_id'] ?>&quantity=1"><i class="fa fa-shopping-cart"></i></a>
+                                                <a class="btn-product-cart" href="shop-cart.php?id=<?php echo $related['product_id'] ?>&quantity=1&shop=true"><i class="fa fa-shopping-cart"></i></a>
                                              </div>
                                              <a class="banner-link-overlay" href="shop.php"></a>
                                           </div>
