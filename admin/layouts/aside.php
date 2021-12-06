@@ -168,11 +168,7 @@
             <!--end::Svg Icon-->
         </a>
     </div>
-    <div class="aside-footer flex-column-auto pt-5 pb-7 px-5" id="kt_aside_footer">
-
-        <form action="../includes/logic.php" method="post">
-        <button type="submit" name="log_out_adminDash" class=" d-block fw-bold h4 rounded m-auto w-75 p-2 py-4 btn-outline-dark">log out</button>
-    </div>
+ 
     </form>
     <!--end::Footer-->
 </div>
