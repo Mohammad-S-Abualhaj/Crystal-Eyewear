@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(!$_SESSION['user_loggedin'] || !$_SESSION['admin_loggedin']){
+    if(!$_SESSION['user_loggedin'] && !$_SESSION['admin_loggedin']){
       header("Location:index.php");
       exit();
   }
