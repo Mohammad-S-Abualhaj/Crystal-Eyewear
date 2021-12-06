@@ -75,125 +75,6 @@
     </section>
     <!--== End Divider Area Wrapper ==-->
 
-    <!--== Start Team Area Wrapper ==-->
-    <section class="team-area">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <div class="section-title text-center">
-              <h3 class="title">Our Team</h3>
-              <div class="desc">
-                <p>There are many variations of passages of Lorem Ipsum available</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row" style="align-content:center">
-        <div class="col-sm-6 col-lg-4">
-            <!--== Start Team Item ==-->
-            <div class="team-item">
-              <div class="inner-content">
-                <div class="thumb">
-                  <a href="about-us.php"><img src="assets/img/team/1.webp" width="270" height="270" alt="Image-HasTech"></a>
-                  <div class="member-icons">
-                    <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
-                    <a href="https://dribbble.com/" target="_blank" rel="noopener"><i class="fa fa-dribbble"></i></a>
-                    <a href="https://www.pinterest.com/" target="_blank" rel="noopener"><i class="fa fa-pinterest-p"></i></a>
-                  </div>
-                </div>
-                <div class="content">
-                  <h4 class="title"><a href="about-us.php">Jander Durham</a></h4>
-                  <p>Team Member</p>
-                </div>
-              </div>
-            </div>
-            <!--== End Team Item ==-->
-          </div>
-          <div class="col-sm-6 col-lg-4">
-            <!--== Start Team Item ==-->
-            <div class="team-item">
-              <div class="inner-content">
-                <div class="thumb">
-                  <a href="about-us.php"><img src="assets/img/team/1.webp" width="270" height="270" alt="Image-HasTech"></a>
-                  <div class="member-icons">
-                    <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
-                    <a href="https://dribbble.com/" target="_blank" rel="noopener"><i class="fa fa-dribbble"></i></a>
-                    <a href="https://www.pinterest.com/" target="_blank" rel="noopener"><i class="fa fa-pinterest-p"></i></a>
-                  </div>
-                </div>
-                <div class="content">
-                  <h4 class="title"><a href="about-us.php">Jander Durham</a></h4>
-                  <p>Team Member</p>
-                </div>
-              </div>
-            </div>
-            <!--== End Team Item ==-->
-          </div>
-          <div class="col-sm-6 col-lg-4">
-            <!--== Start Team Item ==-->
-            <div class="team-item">
-              <div class="inner-content">
-                <div class="thumb">
-                  <a href="about-us.php"><img src="assets/img/team/2.webp" width="270" height="270" alt="Image-HasTech"></a>
-                  <div class="member-icons">
-                    <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
-                    <a href="https://dribbble.com/" target="_blank" rel="noopener"><i class="fa fa-dribbble"></i></a>
-                    <a href="https://www.pinterest.com/" target="_blank" rel="noopener"><i class="fa fa-pinterest-p"></i></a>
-                  </div>
-                </div>
-                <div class="content">
-                  <h4 class="title"><a href="about-us.php">Jaren Hammer</a></h4>
-                  <p>Team Member</p>
-                </div>
-              </div>
-            </div>
-            <!--== End Team Item ==-->
-          </div>
-          <div class="col-sm-6 col-lg-4">
-            <!--== Start Team Item ==-->
-            <div class="team-item">
-              <div class="inner-content">
-                <div class="thumb">
-                  <a href="about-us.php"><img src="assets/img/team/3.webp" width="270" height="270" alt="Image-HasTech"></a>
-                  <div class="member-icons">
-                    <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
-                    <a href="https://dribbble.com/" target="_blank" rel="noopener"><i class="fa fa-dribbble"></i></a>
-                    <a href="https://www.pinterest.com/" target="_blank" rel="noopener"><i class="fa fa-pinterest-p"></i></a>
-                  </div>
-                </div>
-                <div class="content">
-                  <h4 class="title"><a href="about-us.php">Nurdan Denkel</a></h4>
-                  <p>Team Member</p>
-                </div>
-              </div>
-            </div>
-            <!--== End Team Item ==-->
-          </div>
-          <div class="col-sm-6 col-lg-4">
-            <!--== Start Team Item ==-->
-            <div class="team-item">
-              <div class="inner-content">
-                <div class="thumb">
-                  <a href="about-us.php"><img src="assets/img/team/4.webp" width="270" height="270" alt="Image-HasTech"></a>
-                  <div class="member-icons">
-                    <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
-                    <a href="https://dribbble.com/" target="_blank" rel="noopener"><i class="fa fa-dribbble"></i></a>
-                    <a href="https://www.pinterest.com/" target="_blank" rel="noopener"><i class="fa fa-pinterest-p"></i></a>
-                  </div>
-                </div>
-                <div class="content">
-                  <h4 class="title"><a href="about-us.php">Monroe Bond</a></h4>
-                  <p>Team Member</p>
-                </div>
-              </div>
-            </div>
-            <!--== End Team Item ==-->
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--== End Team Area Wrapper ==-->
-
     <!--== Start Testimonial Area Wrapper ==-->
     <section class="testimonial-area bg-color-f2 position-relative z-index-1">
       <div class="container">
@@ -202,7 +83,7 @@
             <div class="section-title text-center">
               <h3 class="title">Client Feedback</h3>
               <div class="desc">
-                <p>There are many variations of passages of Lorem Ipsum available</p>
+                <p>These are real customer reviwes from people who love our website</p>
               </div>
             </div>
           </div>
@@ -216,13 +97,15 @@
                   <div class="testimonial-item">
                     <div class="testi-inner-content">
                       <div class="testi-thumb">
-                        <img src="assets/img/testimonial/1.webp" width="90" height="90" alt="Image-HasTech">
+                        <img src="assets/img/testimonial/Alaa.png" width="90" height="90" alt="Image-HasTech">
                       </div>
                       <div class="testi-content">
-                        <p>Lorem ipsum dolor sit amel adipiscing elit, sed do eiusll tempor incididunt ut laborj et dolore magna.</p>
+                        <p>The shipping was very fast and the package came well secured 
+                          so it arrived in perfect condition! 
+                          I love the quality of the glasses and can not wait .</p>
                         <div class="testi-author">
                           <div class="testi-info">
-                            <span class="name"><a href="about-us.php">Jaren Hammer</a></span>
+                            <span class="name"><a href="about-us.php">Ala'a Mohammad</a></span>
                           </div>
                         </div>
                         <div class="testi-quote"><img src="assets/img/icons/quote1.webp" width="62" height="44" alt="Image-HasTech"></div>
@@ -236,13 +119,15 @@
                   <div class="testimonial-item">
                     <div class="testi-inner-content">
                       <div class="testi-thumb">
-                        <img src="assets/img/testimonial/2.webp" width="90" height="90" alt="Image-HasTech">
+                        <img src="assets/img/testimonial/salameh.jfif" width="90" height="90" alt="Image-HasTech">
                       </div>
                       <div class="testi-content">
-                        <p>Lorem ipsum dolor sit amel adipiscing elit, sed do eiusll tempor incididunt ut laborj et dolore magna.</p>
+                        <p>I loved the 2 pairs that I purchased through Crystal-Eyewear' website.
+                           The packaging was thoughtful, with the drawstring pouches, 
+                           </p>
                         <div class="testi-author">
                           <div class="testi-info">
-                            <span class="name"><a href="about-us.php">Dorian Cordova</a></span>
+                            <span class="name"><a href="about-us.php">Salameh Yasin</a></span>
                           </div>
                         </div>
                         <div class="testi-quote"><img src="assets/img/icons/quote1.webp" width="62" height="44" alt="Image-HasTech"></div>
