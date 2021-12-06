@@ -175,7 +175,6 @@
                                        <th class=min-w-125px>ID</th>
                                        <th class=min-w-125px>Full Name</th>
                                        <th class=min-w-125px>Email</th>
-                                       <th class=min-w-125px>Image</th>
                                        <th class=min-w-125px>Role</th>
                                     </tr>
                                  </thead>
@@ -191,7 +190,6 @@
                                        <td><?php echo $user["id"];?></td>
                                        <td><?php echo $user["username"];?></td>
                                        <td><?php echo $user["email"];?></td>
-                                       <td> <img src="assets/media/avatars/<?php echo $user["image"] ?>" alt="this is a beautiful image" width="100px" height="100px"></td>
                                        <td><?php if($user["role"] == 1){
                                           echo "Admin";
                                           }else{
