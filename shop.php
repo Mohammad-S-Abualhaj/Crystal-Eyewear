@@ -105,7 +105,7 @@ if (isset($_GET['sub_category_name'])) {
                                                 </div>
                                              <?php endif; ?>
                                              <div class="product-action">
-                                                <a class="btn-product-cart" href="shop-cart.php?id=<?php echo $product['product_id']?>&quantity=1"><i class="fa fa-shopping-cart"></i></a>
+                                                <a class="btn-product-cart" href="shop-cart.php?id=<?php echo $product['product_id']?>&quantity=1&shop=true"><i class="fa fa-shopping-cart"></i></a>
                                              </div>
                                              <a class="banner-link-overlay" href="shop.php"></a>
                                           </div>
