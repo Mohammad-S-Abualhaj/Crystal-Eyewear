@@ -42,7 +42,7 @@ function validateCountry(country) {
 }
 
 function validateFullName(name) {
-    return (/^([\w]{3,3})+\s+([\w\s]{3,})+$/i).test(name)
+    return (/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g).test(name)
 
 }
 
@@ -52,7 +52,7 @@ function validatePassword(pass) {
 }
 
 function validateUsername(username) {
-    return /^[a-zA-Z0-9_]{2,}[a-zA-Z]+[0-9]*$/.test(username);
+    return /^[a-zA-Z0-9_.]{2,}[a-zA-Z]+[0-9]*$/.test(username);
 }
 let emailCheck = false;
 let phoneCheck = false;
