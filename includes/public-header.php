@@ -77,7 +77,11 @@ if (isset($_POST['search_for_product'])) {
                                  <li class="account">
                                      <i class="fa fa-unlock"></i><a href="admin/index.php">Go to admin</a>
                                  </li>
-                                 <?php }} ?>
+                                 <?php }
+                             
+
+
+                         } ?>
                         <li class="account"> 
                           <?php
                           $session_check= $_SESSION['user_loggedin']?? null;

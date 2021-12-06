@@ -124,8 +124,7 @@ if (isset($_POST['login_submit']) || (isset($_POST['checkout_login']))) {
         session_start();
         if($user_data['role']==="1"){
             $_SESSION['admin_loggedin']=true;
-            $_SESSION['user_name']=$user_data['username'];
-            $_SESSION['user_id']=$user_data['id'];
+           $_SESSION['user_loggedin']=false;
             $_SESSION['admin-name']=$user_data['username'];
             header("Location:../admin");
             exit();
@@ -249,6 +248,8 @@ if(isset($_POST['log_out_adminDash'])){
     session_start();
     $_SESSION['admin_loggedin']=false;
     unset($_SESSION['admin_loggedin']);
+    unset($_SESSION['user_loggedin']);
+    unset($_SESSION['admin_name']);
     header('location:../index.php');
     exit();
 }
