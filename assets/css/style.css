@@ -10655,11 +10655,6 @@ span.price {
     width: 100%;
 }
 
-.account-area .container {
-    padding-top: 95px;
-    padding-bottom: 100px;
-}
-
 @media only screen and (max-width: 1199px) {
     .account-area .container {
         padding-top: 70px;
