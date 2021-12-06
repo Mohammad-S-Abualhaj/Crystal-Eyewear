@@ -182,7 +182,7 @@ include("./includes/public-header.php");
                                                     <a href="single-product.php">
                                                         <img src="<?php echo "admin/assets/media/products_images/{$product['product_image']}" ?>" width="90"
                                                              height="110"
-                                                             alt="Image-HasTech">
+                                                             alt="<?php echo $product['product_description']; ?>">
                                                     </a>
                                                 </td>
                                                 <td class="product-name">

@@ -8,55 +8,17 @@ $stmt = $connection->prepare(
 );
 $stmt->execute();
 $order_summary = $stmt->fetch(PDO::FETCH_ASSOC);
-
-
 $invoice_info = $order_summary['cart_after_shopping'];
-// foreach ($invoice_info as $product ) {
 $products = json_decode($invoice_info);
-
-
-// 	echo "<pre>";
-// 	print_r($products);
-
-// die;
-
-// 	foreach ($products as $product) {
-// 	echo "<pre>";
-// 	print_r($product);
-// 	}
-// die;
-
-
-
-
-// $order_summary = $stmt->fetch(PDO::FETCH_ASSOC);
-
-// $order_summary = $stmt->fetch(PDO::FETCH_ASSOC);
-// $invoice_info=$order_summary['cart_after_shopping'];
-// $x=json_decode($invoice_info);
-// echo "<pre>";
-// var_dump(json_decode($invoice_info));
-
-
-// die;
-
-
-
 $status_err = '';
 if (isset($_POST['submit'])) {
-
 	$status_options = $_POST['status'];
-
 	$check = 1;
 	if (empty($status_options)) {
 		$status_err = "you must choose status of the order";
 		$check = 0;
 	}
-
-
 	if ($check == 1) {
-
-
 		$update = $connection->prepare("UPDATE order_summary SET 
 									 order_status='{$status_options}'
 									  WHERE order_id={$id}");

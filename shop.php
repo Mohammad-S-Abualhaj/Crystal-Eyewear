@@ -124,7 +124,7 @@ if (isset($_GET['sub_category_name'])) {
                                        <div class="inner-content">
                                           <div class="product-thumb">
                                              <a href="single-product.php?id=<?php echo $product['product_id']; ?>">
-                                                <img src="admin/assets/media/products_images/<?php echo $product['product_image']; ?>" width="270" height="274" alt="Image-HasTech">
+                                                <img src="admin/assets/media/products_images/<?php echo $product['product_image']; ?>" width="270" height="274" alt="<?php echo $product['product_description'];?>">
                                              </a>
                                              <?php if ($product['product_percentage_price'] > 0) : ?>
                                                 <div class="product-flag">
