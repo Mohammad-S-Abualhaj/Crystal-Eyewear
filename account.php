@@ -27,8 +27,9 @@
 ?>
 
 <main class="main-content">
+  <div class="container">
     <!--== Start Page Header Area Wrapper ==-->
-    <div class="page-header-area" data-bg-img="assets/img/photos/bg3.webp">
+    <div class="page-header-area" data-bg-img="">
       <div class="container pt--0 pb--0">
         <div class="row">
           <div class="col-12">
@@ -75,7 +76,7 @@
                     <div class="myaccount-content">
                       <h3>Dashboard</h3>
                       <div class="welcome">
-                        <p>Hello, <strong>Alex Tuntuni</strong> (If Not <strong>Tuntuni !</strong><a href="account-login.php" class="logout"> Logout</a>)</p>
+                        <p>Hello, <strong><?php echo $_SESSION["user_name"]??"Admin" ?></strong> (If Not <strong><?php echo $_SESSION["user_name"]??"Admin" ?></strong><a href="account-login.php" class="logout"> Logout</a>)</p>
                       </div>
                       <p>From your account dashboard. you can easily check & view your recent orders, manage your shipping and billing addresses and edit your password and account details.</p>
                     </div>
