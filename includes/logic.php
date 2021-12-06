@@ -1,6 +1,7 @@
 <?php require_once "db.php"; ?>
 <?php require_once "functions.php" ?>
 <?php
+
 //here the red line is not actually a red line it's just from the require
 if (isset($_POST["register_submit"])) {
     $dataArr = getPostData($_POST, ['username', 'email', 'password', 'password_confirmation',"full_name"]);
@@ -71,7 +72,17 @@ if (isset($_POST['login_submit']) || (isset($_POST['checkout_login']))) {
             header("Location:../{$url}?password=password is wrong");
             exit();
         }
+        //login succeeded;
         session_start();
+        //Admin login
+        if($user_data['role']==="1"){
+            $_SESSION['admin_loggedin']=true;
+            $_SESSION['user_name']=$user_data['username'];
+            $_SESSION['user_id']=$user_data['id'];
+            header("Location:../admin");
+            exit();
+        }
+        //-----------------------------------
         $_SESSION['user_loggedin'] = true;
         $_SESSION['user_name']=$user_data['username'];
         $_SESSION['user_id']=$user_data['id'];
@@ -93,6 +104,7 @@ if (isset($_POST['login_submit']) || (isset($_POST['checkout_login']))) {
         $statement->execute();
         $user_data = $statement->fetch(PDO::FETCH_ASSOC);
 
+
         //return error that the email doesn't exist
         if (!$user_data) {
             header("Location:../{$url}?username=username doesn't exist");
@@ -108,6 +120,13 @@ if (isset($_POST['login_submit']) || (isset($_POST['checkout_login']))) {
         //--------------------------------------------------------
         //LOGIN SUCCEEDED
         session_start();
+        if($user_data['role']==="1"){
+            $_SESSION['admin_loggedin']=true;
+            $_SESSION['user_name']=$user_data['username'];
+            $_SESSION['user_id']=$user_data['id'];
+            header("Location:../admin");
+            exit();
+        }
         $_SESSION['user_loggedin'] = true;
         $_SESSION['user_name']=$user_data['username'];
         $_SESSION['user_id']=$user_data['id'];
