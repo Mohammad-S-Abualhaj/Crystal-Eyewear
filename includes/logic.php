@@ -78,6 +78,7 @@ if (isset($_POST['login_submit']) || (isset($_POST['checkout_login']))) {
         if($user_data['role']==="1"){
             $_SESSION['admin_loggedin']=true;
             $_SESSION['user_name']=$user_data['username'];
+            $_SESSION['admin-name']=$user_data['username'];
             $_SESSION['user_id']=$user_data['id'];
             header("Location:../admin");
             exit();
@@ -125,6 +126,7 @@ if (isset($_POST['login_submit']) || (isset($_POST['checkout_login']))) {
             $_SESSION['admin_loggedin']=true;
             $_SESSION['user_name']=$user_data['username'];
             $_SESSION['user_id']=$user_data['id'];
+            $_SESSION['admin-name']=$user_data['username'];
             header("Location:../admin");
             exit();
         }
