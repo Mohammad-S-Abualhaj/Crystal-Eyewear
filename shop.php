@@ -3,8 +3,6 @@ session_start();
 
 include_once("./includes/public-header.php");
 
-   
-
 require_once "includes/db.php";
 if (isset($_GET['search_key'])) {
    $search_key = '%' . $_GET['search_key'] . '%';
@@ -31,21 +29,16 @@ if (count($products) === 0) {
    exit;
 }
 
-
-
 $satsub_category = $connection->prepare("SELECT * FROM sub_category");
 $satsub_category->execute();
 $sub_category = $satsub_category->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($products as $product) {
    $x[] = $product['category_name'];
-}
-$z = array_count_values($x);
-foreach ($products as $product) {
    $u[] = $product['sub_category_name'];
-}
-$y = array_count_values($u);
-$z = array_count_values($x);
+   }
+   $z = array_count_values($x);
+   $y = array_count_values($u);
 
 
 if (isset($_GET['category_name'])) {
@@ -57,7 +50,6 @@ if (isset($_GET['category_name'])) {
    $products = $productcategory;
 }
 
-
 if (isset($_GET['category_name'])) {
    $name = $_GET['category_name'];
    $satatement = $connection->prepare("SELECT sub_category_name FROM sub_category INNER JOIN category  ON sub_category.category_id= category.category_id   WHERE category_name='$name'");
@@ -65,7 +57,6 @@ if (isset($_GET['category_name'])) {
    $subctcategory = $satatement->fetchAll(PDO::FETCH_ASSOC);
    $category = $subctcategory; 
 }
-
 
 if (isset($_GET['sub_category_name'])) {
    $sub_category_name = $_GET['sub_category_name'];
@@ -76,7 +67,6 @@ if (isset($_GET['sub_category_name'])) {
    $products = $category;
 
 }
-
 
 ?>
 <main class="main-content">

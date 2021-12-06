@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include("./includes/public-header.php");
 ?>
   <main class="main-content">

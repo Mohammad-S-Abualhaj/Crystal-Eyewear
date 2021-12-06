@@ -204,13 +204,13 @@ if ($_GET) {
 									<table class="table align-middle table-row-dashed fs-6 gy-5" id=kt_table_users>
 										<thead>
 											<tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
-												<th class=min-w-125px>ID</th>
-												<th class=min-w-125px>Name</th>
-												<th class=min-w-125px>price</th>
-												<th class=min-w-125px>percentage_price</th>
+												<th class=min-w-50px>ID</th>
+												<th class=min-w-150px>Name</th>
+												<th class=min-w-50px>price</th>
+												<th class=min-w-70px>discount</th>
 												<th class=min-w-125px>Image</th>
 												<th class=min-w-125px>Description</th>
-												<th class=min-w-125px>Featured Products</th>
+												<th class=min-w-70px>Featured</th>
 												<th class=min-w-125px>Category</th>
 												<th class=min-w-125px>Sub-Category</th>
 											</tr>
@@ -232,7 +232,7 @@ if ($_GET) {
 														<td><?php echo $value["product_price"]; ?></td>
 														<td><?php echo $value["product_percentage_price"]; ?></td>
 														<td> <img src="assets/media/products_images/<?php echo $value["product_image"] ?>" alt="this is a beautiful image" width="100px" height="100px"></td>
-														<td><?php echo $value["product_description"]; ?></td>
+														<td class="descr"><?php echo $value["product_description"]; ?></td>
 														<td><?php echo $value["featured_products"]; ?></td>
 														<td><?php echo $value["category_name"]; ?></td>
 														<td><?php echo $value["sub_category_name"]; ?></td>
@@ -281,7 +281,7 @@ if ($_GET) {
 														<td><?php echo $value["product_price"]; ?></td>
 														<td><?php echo $value["product_percentage_price"]; ?></td>
 														<td> <img src="assets/media/products_images/<?php echo $value["product_image"] ?>" alt="this is a beautiful image" width="100px" height="100px"></td>
-														<td><?php echo $value["product_description"]; ?></td>
+														<td class="descr"><?php echo $value["product_description"]; ?></td>
 														<td><?php echo $value["featured_products"]; ?></td>
 														<td><?php echo $value["category_name"]; ?></td>
 														<td><?php echo $value["sub_category_name"]; ?></td>
