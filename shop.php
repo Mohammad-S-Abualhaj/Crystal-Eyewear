@@ -16,9 +16,10 @@ if (isset($_GET['search_key'])) {
 
 $satatement->execute();
 $products = $satatement->fetchAll(PDO::FETCH_ASSOC);
+
 if (count($products) === 0) {
    echo "<h3 class='error_not_found'>No results found</h3>";
-   die();
+   exit;  
 }
 $satcategory = $connection->prepare("SELECT * FROM category");
 $satcategory->execute();
@@ -64,7 +65,7 @@ if (isset($_GET['sub_category_name'])) {
    </div>
    <!--== End Page Header Area Wrapper ==-->
    <section class="product-area product-default-area mt-5">
-      <div class="container">
+      <div class="container hidden_container">
          <div class="row flex-xl-row-reverse justify-content-between">
             <div class="col-xl-9">
                <div class="row">
