@@ -1108,14 +1108,17 @@ table p {
 -----------------------------------------------------------------------
 */
 .section-title {
+ 
   margin-bottom: 57px;
 }
 @media only screen and (max-width: 1199px) {
   .section-title {
+    margin-top: 10% !important;
     margin-bottom: 47px;
   }
 }
 .section-title .title {
+  margin-top: 10% !important;
   font-size: 48px;
   margin-bottom: 26px;
   line-height: 0.8;

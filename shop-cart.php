@@ -112,7 +112,7 @@ include("./includes/public-header.php");
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 
         <!--== End Page Header Area Wrapper ==-->
 
