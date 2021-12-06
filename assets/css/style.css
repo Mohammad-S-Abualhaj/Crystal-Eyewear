@@ -1289,19 +1289,22 @@ Common CSS
 */
 
 .section-title {
-    margin-bottom: 57px;
+ 
+  margin-bottom: 57px;
 }
 
 @media only screen and (max-width: 1199px) {
-    .section-title {
-        margin-bottom: 47px;
-    }
+  .section-title {
+    margin-top: 10% !important;
+    margin-bottom: 47px;
+  }
 }
 
 .section-title .title {
-    font-size: 48px;
-    margin-bottom: 26px;
-    line-height: 0.8;
+  margin-top: 10% !important;
+  font-size: 48px;
+  margin-bottom: 26px;
+  line-height: 0.8;
 }
 
 @media only screen and (max-width: 1199px) {

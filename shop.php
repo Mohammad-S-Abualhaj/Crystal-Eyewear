@@ -1,6 +1,5 @@
 <?php
 session_start();
-include("./includes/public-header.php");
 require_once "includes/db.php";
 if (isset($_GET['search_key'])) {
    $search_key = '%' . $_GET['search_key'] . '%';
@@ -60,6 +59,7 @@ if (isset($_GET['sub_category_name'])) {
    $products = $productsubcategory;
 }
 
+include("./includes/public-header.php");
 ?>
 <main class="main-content">
    <!--== Start Page Header Area Wrapper ==-->
