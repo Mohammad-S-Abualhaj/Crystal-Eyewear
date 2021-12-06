@@ -124,11 +124,7 @@ if (isset($_POST['search_for_product'])) {
                     <div class="shopping-search">
                       <button class="shopping-search-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#AsideOffcanvasSearch" aria-controls="AsideOffcanvasSearch"><i class="pe-7s-search icon"></i></button>
                     </div>
-                    <div class="shopping-wishlist">
-                      <a class="shopping-wishlist-btn" href="shop-wishlist.php">
-                        <i class="pe-7s-like icon"></i>
-                      </a>
-                    </div>
+                    
                     <div class="shopping-cart">
                       <button class="shopping-cart-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#AsideOffcanvasCart" aria-controls="offcanvasRightLabel">
                         <i class="pe-7s-shopbag icon"></i>
