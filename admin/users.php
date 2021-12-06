@@ -64,20 +64,6 @@ if (isset($_POST["user_name"])) {
                         <div class=card>
                             <div class="card-header border-0 pt-6">
                                 <div class=card-title>
-                                    <div class="d-flex align-items-center position-relative my-1">
-                                    <span class="svg-icon svg-icon-1 position-absolute ms-6">
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none">
-                                          <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1"
-                                                transform="rotate(45 17.0365 15.1223)" fill="black"/>
-                                          <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
-                                                fill="black"/>
-                                       </svg>
-                                    </span>
-                                        <input data-kt-user-table-filter=search
-                                               class="form-control form-control-solid w-250px ps-14"
-                                               placeholder="Search user">
-                                    </div>
                                 </div>
                                 <div class=card-toolbar>
                                     <div class="d-flex justify-content-end" data-kt-user-table-toolbar=base>
@@ -153,37 +139,6 @@ if (isset($_POST["user_name"])) {
                                                              data-kt-scroll-dependencies=#kt_modal_add_user_header
                                                              data-kt-scroll-wrappers=#kt_modal_add_user_scroll
                                                              data-kt-scroll-offset=300px>
-                                                            <div class="fv-row mb-7">
-                                                                <label class="d-block fw-bold fs-6 mb-5">Avatar</label>
-                                                                <div class="image-input image-input-outline"
-                                                                     data-kt-image-input=true
-                                                                     style="background-image: url(assets/media/avatars/blank.png)">
-                                                                    <div class="image-input-wrapper w-125px h-125px"
-                                                                         style="background-image: url(<?php ?>)"></div>
-                                                                    <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                                           data-kt-image-input-action=change
-                                                                           data-bs-toggle=tooltip title="Change avatar"><i
-                                                                                class="bi bi-pencil-fill fs-7"></i>
-                                                                        <input type="file" name="image"
-                                                                               accept=".png, .jpg, .jpeg"
-                                                                               class="form-control-file"> <input
-                                                                                type=hidden
-                                                                                name="avatar_remove"></label><span
-                                                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                                            data-kt-image-input-action=cancel
-                                                                            data-bs-toggle=tooltip
-                                                                            title="Cancel avatar"><i
-                                                                                class="bi bi-x fs-2"></i></span> <span
-                                                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                                            data-kt-image-input-action=remove
-                                                                            data-bs-toggle=tooltip
-                                                                            title="Remove avatar"><i
-                                                                                class="bi bi-x fs-2"></i></span>
-                                                                </div>
-                                                                <div class=form-text>Allowed file types: png, jpg,
-                                                                    jpeg.
-                                                                </div>
-                                                            </div>
                                                             <div class="fv-row mb-7"><label
                                                                         class="required fw-bold fs-6 mb-2">Full
                                                                     Name</label><input name="user_name"
@@ -263,7 +218,6 @@ if (isset($_POST["user_name"])) {
                                         <th class=min-w-125px>ID</th>
                                         <th class=min-w-125px>Full Name</th>
                                         <th class=min-w-125px>Email</th>
-                                        <th class=min-w-125px>Image</th>
                                         <th class=min-w-125px>Role</th>
                                     </tr>
                                     </thead>
