@@ -118,11 +118,11 @@
                      <div class="product-collection-content">
                         <div class="content">
                            <h3 class="title"><a href="shop.php">Women glasses</a></h3>
-                           <h4 class="price">From $95.00</h4>
+                           <h4 class="price">From $39.00</h4>
                         </div>
                      </div>
                      <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/1.webp"></div>
-                     <a class="banner-link-overlay" href="shop.php?sub_category_name=<?php echo $products[0]['sub_category_name']["women"]?? ""?>"></a>
+                     <a class="banner-link-overlay" href="shop.php"></a>
                   </div>
                </div>
                <!--== End Product Collection Item ==-->
@@ -134,7 +134,7 @@
                      <div class="product-collection-content">
                         <div class="content">
                            <h3 class="title"><a href="shop.php">men glasses</a></h3>
-                           <h4 class="price">From $90.00</h4>
+                           <h4 class="price">From $30.00</h4>
                         </div>
                      </div>
                      <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/2.webp"></div>
@@ -150,7 +150,7 @@
                      <div class="product-collection-content">
                         <div class="content">
                            <h3 class="title"><a href="shop.php">kids glasses</a></h3>
-                           <h4 class="price">From $82.00</h4>
+                           <h4 class="price">From $25.00</h4>
                         </div>
                      </div>
                      <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/3.webp"></div>
