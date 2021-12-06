@@ -3,10 +3,12 @@
 <?php include_once 'layouts/head.php';
 include_once '../includes/db.php';
 $stmt = $connection->prepare(
-	"SELECT * FROM order_summary INNER JOIN user ON user.id = order_summary.order_id "
+	"SELECT * FROM order_summary INNER JOIN user ON user.id = order_summary.user_id "
 );
 $stmt->execute();
 $order_summary = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// var_dump($order_summary);
+// die;
 if($_GET){
 	$id=$_GET['order_id'];
 $delete = $connection->prepare("DELETE FROM order_summary WHERE order_id ='{$id}'");
@@ -59,7 +61,7 @@ $delete = $connection->prepare("DELETE FROM order_summary WHERE order_id ='{$id}
 													<?php
 													//  echo $order_data['order_status'];
 													 if($order_data['order_status']==="pending"){
-													echo '<span class="badge badge-light-warning">pending</span>';
+													echo '<span class="badge badge-light-warning">Pending</span>';
 												 }                            
 												 else if($order_data['order_status']==="Rejected"){
 													echo '<span class="badge badge-light-danger">Rejected</span>';

@@ -10,7 +10,7 @@
               <div class="about-widget-wrap">
                 <div class="widget-logo-area">
                   <a href="index.php">
-                    <img class="logo-main" src="assets/img/logo-light.webp" width="131" height="34" alt="Logo" />
+                    <img class="logo-main" src="assets/img/logo.webp" width="131" height="34" alt="Logo" />
                   </a>
                 </div>
                 <p class="desc">Lorem ipsum dolor sit amet consl adipisi elit, sed do eiusmod templ incididunt ut labore</p>

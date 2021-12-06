@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+include_once("./includes/public-header.php");
+
+   
+
 require_once "includes/db.php";
 if (isset($_GET['search_key'])) {
    $search_key = '%' . $_GET['search_key'] . '%';
@@ -16,17 +21,17 @@ $satatement->execute();
 $products = $satatement->fetchAll(PDO::FETCH_ASSOC);
 
 if (count($products) === 0) {
+
    echo "<div class='error_not_found'>
          <div><i class='fas fa-search'></i></div>
          No result found
          <p>Try rephrasing your search term. Be less specific or double check the spelling.</p>
          </div>";
-   include("./includes/public-footer.php");
+   include_once("./includes/public-footer.php");
    exit;
 }
-$satcategory = $connection->prepare("SELECT * FROM category");
-$satcategory->execute();
-$category = $satcategory->fetchAll(PDO::FETCH_ASSOC);
+
+
 
 $satsub_category = $connection->prepare("SELECT * FROM sub_category");
 $satsub_category->execute();
@@ -40,6 +45,7 @@ foreach ($products as $product) {
    $u[] = $product['sub_category_name'];
 }
 $y = array_count_values($u);
+$z = array_count_values($x);
 
 
 if (isset($_GET['category_name'])) {
@@ -50,16 +56,28 @@ if (isset($_GET['category_name'])) {
    $productcategory = $satatement->fetchAll(PDO::FETCH_ASSOC);
    $products = $productcategory;
 }
-if (isset($_GET['sub_category_name'])) {
-   $name = $_GET['sub_category_name'];
-   $satatement = $connection->prepare("SELECT * FROM  products INNER JOIN category ON products.category_id=category.category_id
-    INNER JOIN sub_category ON products.sub_category_id=sub_category.sub_category_id WHERE category_name='$name' AND sub_category_name='$name'");
+
+
+if (isset($_GET['category_name'])) {
+   $name = $_GET['category_name'];
+   $satatement = $connection->prepare("SELECT sub_category_name FROM sub_category INNER JOIN category  ON sub_category.category_id= category.category_id   WHERE category_name='$name'");
    $satatement->execute();
-   $productsubcategory = $satatement->fetchAll(PDO::FETCH_ASSOC);
-   $products = $productsubcategory;
+   $subctcategory = $satatement->fetchAll(PDO::FETCH_ASSOC);
+   $category = $subctcategory; 
 }
 
-include("./includes/public-header.php");
+
+if (isset($_GET['sub_category_name'])) {
+   $sub_category_name = $_GET['sub_category_name'];
+   $satatement = $connection->prepare("SELECT * FROM  products INNER JOIN category ON products.category_id=category.category_id
+    INNER JOIN sub_category ON products.sub_category_id=sub_category.sub_category_id WHERE sub_category_name='$sub_category_name'");
+   $satatement->execute();
+   $category = $satatement->fetchAll(PDO::FETCH_ASSOC);
+   $products = $category;
+
+}
+
+
 ?>
 <main class="main-content">
    <!--== Start Page Header Area Wrapper ==-->
@@ -82,7 +100,6 @@ include("./includes/public-header.php");
                            <nav class="product-nav">
                               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                  <button class="nav-link active" id="nav-grid-tab" data-bs-toggle="tab" data-bs-target="#nav-grid" type="button" role="tab" aria-controls="nav-grid" aria-selected="true"><i class="fa fa-th"></i></button>
-                                 <button class="nav-link" id="nav-list-tab" data-bs-toggle="tab" data-bs-target="#nav-list" type="button" role="tab" aria-controls="nav-list" aria-selected="false"><i class="fa fa-list"></i></button>
                               </div>
                            </nav>
                         </div>
@@ -192,22 +209,34 @@ include("./includes/public-header.php");
             </div>
             <div class="col-xl-3">
                <div class="shop-sidebar">
+
+
+                
+
+
+                  <?php if (isset($_GET['category_name'])) {?>
                   <div class="shop-sidebar-category">
+                     <h4 class="sidebar-title">Sub Category</h4>
+                     <div class="sidebar-brand">
+                        <ul class="brand-list mb--0">
+                           <?php
+                           foreach ( $category as $cat) {  ?>
+                              <li> <a href="shop.php?sub_category_name=<?php echo $cat['sub_category_name']; ?>"><?php echo $cat['sub_category_name']; ?></a></li>
+                           <?php } ?>
+                        </ul>
+                     </div>
+                  </div>
+                  <?php } ?>
+
+
+                  
+
+                  <div class=" shop-sidebar-brand">
                      <h4 class="sidebar-title">Categories</h4>
                      <div class="sidebar-category">
                         <ul class="category-list mb--0">
                            <?php foreach ($z as $cat => $count) { ?>
                               <li> <a href="shop.php?category_name=<?php echo $cat; ?>"><?php echo $cat; ?><span>(<?php echo $count; ?>)</span></a></li>
-                           <?php } ?>
-                        </ul>
-                     </div>
-                  </div>
-                  <div class="shop-sidebar-brand">
-                     <h4 class="sidebar-title">Sub Category</h4>
-                     <div class="sidebar-brand">
-                        <ul class="brand-list mb--0">
-                           <?php foreach ($y as $cat => $count) { ?>
-                              <li> <a href="shop.php?sub_category_name=<?php echo $cat; ?>,category_name=<?php echo $cat; ?>"><?php echo $cat; ?><span>(<?php echo $count; ?>)</span></a></li>
                            <?php } ?>
                         </ul>
                      </div>
