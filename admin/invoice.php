@@ -14,6 +14,7 @@ $invoice_info = $order_summary['cart_after_shopping'];
 // foreach ($invoice_info as $product ) {
 $products = json_decode($invoice_info);
 
+
 // 	echo "<pre>";
 // 	print_r($products);
 
