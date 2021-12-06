@@ -135,7 +135,7 @@
 
         <li class="product-list-item">
 <!--          <a href="" class="remove">×</a>-->
-          <a href="single-product.php">
+          <a href="single-product.php?id=<?php echo $product['product_id'] ?>">
             <img src="<?php echo "admin/assets/media/products_images/{$product['product_image']}";?>" width="90" height="110" alt="Image-HasTech">
             <span class="product-title"><?php echo $product['product_name'] ?></span>
           </a>
@@ -146,7 +146,7 @@
       <p class="cart-total"><span>Subtotal:</span><span class="amount">$<?php echo $order_total; ?> </span></p>
       <a class="btn-theme" data-margin-bottom="10" href="shop-cart.php">View cart</a>
       <a class="btn-theme" href="shop-checkout.php">Checkout</a>
-      <a class="d-block text-end lh-1" href="shop-checkout.php"><img src="assets/img/photos/paypal.webp" width="133" height="26" alt="Has-image"></a>
+
     </div>
   </div>
   <!--== End Aside Cart Menu ==-->

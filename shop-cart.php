@@ -2,6 +2,15 @@
 session_start();
 require_once "includes/db.php";
 $cartCheck=isset($_SESSION['shopping_cart']);
+//clear cart
+if($cartCheck){
+    if(isset($_GET['clear_cart'])){
+        unset($_SESSION['shopping_cart']);
+        header("Location: shop-cart.php");
+        exit();
+    }
+
+}
 //delete the cart
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
@@ -54,6 +63,10 @@ if (isset($_GET['id'])) {
 //-------------------------------------------
 //update shopping cart
 if(isset($_GET['update'])){
+    if(!$cartCheck){
+        header("location: shop-cart.php");
+        exit();
+    }
     if($cartCheck):
     $total_products=count($_SESSION['shopping_cart']);
     for($i=0;$i<$total_products;$i++){
@@ -64,8 +77,10 @@ if(isset($_GET['update'])){
         $_SESSION['shopping_cart'][$i]['product_quantity']=(int)$_GET["quantity{$product_id}"];
         //endif;
     }
+     
 
     endif;
+
     
 }
 // var_dump($_SESSION['shopping_cart']);
@@ -179,7 +194,7 @@ include("./includes/public-header.php");
                                     <tr class="actions">
                                         <td class="border-0" colspan="6">
                                             <button type="submit" name="update" class="update-cart">Update cart</button>
-                                            <button type="" class="clear-cart">Clear Cart</button>
+                                           <button type="button"> <a  href="shop-cart.php?clear_cart=true" class="clear-cart">Clear Cart</a></button>
                                             <a href="shop.php" >Continue Shopping</a>
                                         </td>
 

@@ -122,7 +122,7 @@
                         </div>
                      </div>
                      <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/1.webp"></div>
-                     <a class="banner-link-overlay" href="shop.php?sub_category_name=<?php echo $products[0]['sub_category_name']["women"]?>"></a>
+                     <a class="banner-link-overlay" href="shop.php?sub_category_name=<?php echo $products[0]['sub_category_name']["women"]?? ""?>"></a>
                   </div>
                </div>
                <!--== End Product Collection Item ==-->
@@ -191,7 +191,7 @@
                         <?php if ($product['product_percentage_price']>0): ?>
                         <div class="product-flag">
                            <ul>
-                              <li class="discount">-<?php echo $product['product_percentage_price']?>%</li>
+                              <li class="discount">-<?php echo $product['product_percentage_price']?? "" ?>%</li>
                            </ul>
                         </div>
                         <?php endif; ?>

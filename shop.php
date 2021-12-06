@@ -105,7 +105,7 @@ if (isset($_GET['sub_category_name'])) {
                                                 </div>
                                              <?php endif; ?>
                                              <div class="product-action">
-                                                <a class="btn-product-cart" href="shop-cart.php"><i class="fa fa-shopping-cart"></i></a>
+                                                <a class="btn-product-cart" href="shop-cart.php?id=<?php echo $product['product_id']?>&quantity=1"><i class="fa fa-shopping-cart"></i></a>
                                              </div>
                                              <a class="banner-link-overlay" href="shop.php"></a>
                                           </div>
@@ -115,7 +115,7 @@ if (isset($_GET['sub_category_name'])) {
                                                    <li><a href="shop.php?category_name=<?php echo $product['category_name']; ?>"><?php echo $product['category_name']; ?></a>/<a href="shop.php?sub_category_name=<?php echo $product['sub_category_name']; ?>"><?php echo $product['sub_category_name']; ?></a></li>
                                                 </ul>
                                              </div>
-                                             <h4 class="title"><a href="single-normal-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name']; ?></a></h4>
+                                             <h4 class="title"><a href="single-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name']; ?></a></h4>
                                              <div class="prices">
                                                 <?php if ($product['product_percentage_price'] > 0) { ?>
                                                    <span class="price-old">$<?php echo $product['product_price'] ?></span>
