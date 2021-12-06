@@ -204,18 +204,6 @@ include("./includes/public-header.php");
                         </table>
                         <div class="shop-payment-method">
                             <div id="PaymentMethodAccordion">
-                                <div class="card">
-                                    <div class="card-header" id="check_payments3">
-                                        <h5 class="title" data-bs-toggle="collapse" data-bs-target="#itemThree" aria-controls="itemTwo" aria-expanded="false">Cash on delivery</h5>
-                                    </div>
-                                    <div id="itemThree" class="collapse" aria-labelledby="check_payments3" data-bs-parent="#PaymentMethodAccordion">
-                                        <div class="card-body">
-                                            <p>Pay with cash upon delivery.</p>
-                                        </div>
-                                        <!--== End Billing Accordion ==-->
-                                    </div>
-                                </div>
-
                                 <button type="submit" name="submit_order" class="btn-theme">Place order</button>
                             </div>
                   </form>
