@@ -35,7 +35,9 @@
                         <!--begin::Menu wrapper-->
                         <div class="cursor-pointer symbol symbol-30px symbol-md-40px fs-6 fw-bolder" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
 
-                            Max Smith
+                            <?php
+                            echo $_SESSION['admin-name']??"";
+                            ?>
                             <img class=" ms-2" src="assets/media/avatars/150-26.jpg" alt="user" />
                         </div>
 

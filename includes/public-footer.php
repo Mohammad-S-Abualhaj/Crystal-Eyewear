@@ -13,7 +13,7 @@
                     <img class="logo-main" src="assets/img/logo.webp" width="131" height="34" alt="Logo" />
                   </a>
                 </div>
-                <p class="desc">Lorem ipsum dolor sit amet consl adipisi elit, sed do eiusmod templ incididunt ut labore</p>
+                <p class="desc">Through the following links you can access our social media pages. Enjoy!!!</p>
                 <div class="social-icons">
                   <a href="https://www.facebook.com/" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a>
                   <a href="https://dribbble.com/" target="_blank" rel="noopener"><i class="fa fa-dribbble"></i></a>
@@ -27,17 +27,17 @@
           <div class="col-md-6 col-lg-3">
             <!--== Start widget Item ==-->
             <div class="widget-item widget-services-item">
-              <h4 class="widget-title">Services</h4>
+              <h4 class="widget-title">Company partners</h4>
               <h4 class="widget-collapsed-title collapsed" data-bs-toggle="collapse" data-bs-target="#widgetId-1">Services</h4>
               <div id="widgetId-1" class="collapse widget-collapse-body">
                 <div class="collapse-body">
                   <div class="widget-menu-wrap">
                     <ul class="nav-menu">
-                      <li><a href="contact.php">Home monitoring</a></li>
-                      <li><a href="contact.php">Air Filters</a></li>
-                      <li><a href="contact.php">Professional installation</a></li>
-                      <li><a href="contact.php">Smart Buildings</a></li>
-                      <li><a href="contact.php">For contractors</a></li>
+                      <li><a href="https://www.glasses.com/">glasses.com</a></li>
+                      <li><a href="https://www.zennioptical.com/">zennioptical.com</a></li>
+                      <li><a href="https://www.glassesdirect.co.uk/">glassesdirect.co</a></li>
+                      <li><a href="https://www.sunglasshut.com/">sunglasshut</a></li>
+                      <li><a href="https://www.ray-ban.com">ray-ban.com</a></li>
                     </ul>
                   </div>
                 </div>
@@ -96,7 +96,7 @@
       <div class="container pt--0 pb--0">
         <div class="row">
           <div class="col-md-7 col-lg-6">
-            <p class="copyright">© 2021 Shome. Made with <i class="fa fa-heart"></i> by <a target="_blank" href="https://themeforest.net/user/codecarnival/portfolio">Codecarnival.</a></p>
+            <p class="copyright">© 2021 Crystal-Eywear. Made with <i class="fa fa-heart"></i> by <a target="_blank" href="/index.php">Crystals.</a></p>
           </div>
           <div class="col-md-5 col-lg-6">
             <div class="payment">
