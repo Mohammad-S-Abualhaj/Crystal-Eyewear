@@ -1,20 +1,25 @@
 <?php
    session_start();
-   include("./includes/public-header.php");
+
    
        require_once "includes/db.php";
        if(isset($_GET['id'])){
            $id=$_GET['id'];
-           $statement=$connection->prepare("SELECT * from products INNER JOIN category ON products.category_id=category.category_id WHERE product_id=:id ");
+           $statement = $connection->prepare("SELECT * FROM products INNER JOIN category ON products.category_id=category.category_id
+   INNER JOIN sub_category ON products.sub_category_id = sub_category.sub_category_id WHERE product_id=:id");
            $statement->bindParam(':id',$id);
            $statement->execute();
            $product=$statement->fetch(PDO::FETCH_ASSOC);
+           $sub_id=(int)$product['sub_category_id'];
+           $second_statement=$connection->prepare("SELECT * FROM products WHERE sub_category_id= {$sub_id}");
+           $second_statement->execute();
+           $related_products=$second_statement->fetchAll(PDO::FETCH_ASSOC);
        }
-   
-   $satatement = $connection->prepare("SELECT * FROM products INNER JOIN category ON products.category_id=category.category_id
-   INNER JOIN sub_category ON products.sub_category_id = sub_category.sub_category_id");
-   $satatement->execute();
-   $products = $satatement->fetchAll(PDO::FETCH_ASSOC);
+
+include("./includes/public-header.php");
+
+
+
    
    ?>
 <main class="main-content">
@@ -64,10 +69,17 @@
                      <div class="col-xl-6">
                         <!--== Start Product Info Area ==-->
                         <div class="product-single-info">
+                            <div class="text-center breadcrumb"><?php echo "shop > {$product['category_name']} > {$product['sub_category_name']} " ?></div>
                            <h3 class="main-title"><?php echo $product['product_name'] ?></h3>
-                           <div class="prices">
-                              <span class="price">$<?php echo $product['product_price'] ?></span>
-                           </div>
+                            <div class="prices">
+                                <?php if ($product['product_percentage_price'] > 0) { ?>
+                                <span class="price-old">$<?php echo $product['product_price'] ?></span>
+                                <span class="sep">-</span>
+                                <span class="price">$
+                                                   <?php echo ($product['product_price']) * (100 - $product['product_percentage_price']) / 100;
+                                                   } else { ?><span class="price">$ <?php echo $product['product_price'];
+                                        } ?></span>
+                            </div>
                            <form action="shop-cart.php" method="get">
                            <input type="hidden" name="id" value="<?php echo $product['product_id'] ?>">
                            <div class="product-quick-action">
@@ -195,42 +207,39 @@
                      <div class="swiper-wrapper">
 
                      <?php
-                       foreach ($products as $product) { ?>
+                       foreach ($related_products as $related) {?>
 
                         <div class="swiper-slide">
                            <!--== Start Product Item ==-->
                            <div class="product-item">
                                        <div class="inner-content">
                                           <div class="product-thumb">
-                                             <a href="single-product.php?id=<?php echo $product['product_id']; ?>">
-                                                <img src="admin/assets/media/products_images/<?php echo $product['product_image']; ?>" width="270" height="274" alt="Image-HasTech">
+
+                                             <a href="single-product.php?id=<?php echo $related['product_id']; ?>">
+                                                <img src="admin/assets/media/products_images/<?php echo $related['product_image']; ?>" width="270" height="274" alt="Image-HasTech">
                                              </a>
-                                             <?php if ($product['product_percentage_price'] > 0) : ?>
+                                             <?php if ($related['product_percentage_price'] > 0) : ?>
                                                 <div class="product-flag">
                                                    <ul>
-                                                      <li class="discount">-<?php echo $product['product_percentage_price'] ?>%</li>
+                                                      <li class="discount">-<?php echo $related['product_percentage_price'] ?>%</li>
                                                    </ul>
                                                 </div>
                                              <?php endif; ?>
                                              <div class="product-action">
-                                                <a class="btn-product-cart" href="shop-cart.php"><i class="fa fa-shopping-cart"></i></a>
+                                                <a class="btn-product-cart" href="shop-cart.php?id=<?php echo $related['product_id'] ?>&quantity=1&shop=true"><i class="fa fa-shopping-cart"></i></a>
                                              </div>
                                              <a class="banner-link-overlay" href="shop.php"></a>
                                           </div>
                                           <div class="product-info">
-                                             <div class="category">
-                                                <ul>
-                                                   <li><a href="shop.php?category_name=<?php echo $product['category_name']; ?>"><?php echo $product['category_name']; ?></a>/<a href="shop.php?sub_category_name=<?php echo $product['sub_category_name']; ?>"><?php echo $product['sub_category_name']; ?></a></li>
-                                                </ul>
-                                             </div>
-                                             <h4 class="title"><a href="single-normal-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name']; ?></a></h4>
+
+                                             <h4 class="title"><a href="single-product.php?id=<?php echo $related['product_id'] ?>"><?php echo $related['product_name']; ?></a></h4>
                                              <div class="prices">
-                                                <?php if ($product['product_percentage_price'] > 0) { ?>
-                                                   <span class="price-old">$<?php echo $product['product_price'] ?></span>
+                                                <?php if ($related['product_percentage_price'] > 0) { ?>
+                                                   <span class="price-old">$<?php echo $related['product_price'] ?></span>
                                                    <span class="sep">-</span>
                                                    <span class="price">$
-                                                   <?php echo  ($product['product_price'])*(100- $product['product_percentage_price']) / 100;
-                                                } else { ?><span class="price">$ <?php echo $product['product_price'];
+                                                   <?php echo  ($related['product_price'])*(100- $related['product_percentage_price']) / 100;
+                                                } else { ?><span class="price">$ <?php echo $related['product_price'];
                                                                                  } ?></span>
                                              </div>
                                           </div>

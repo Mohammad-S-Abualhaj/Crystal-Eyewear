@@ -83,13 +83,38 @@ if (isset($_GET['sub_category_name'])) {
                <div class="row">
                   <div class="col-12">
                      <div class="shop-top-bar">
+                         <div class="bi-text-indent-left">
+                             <?php
+                             $bread_crumbs="";
+                             $category_check=isset($_GET['category_name']);
+                             $categoryCrumb=$_GET['category_name']??"";
+                             $sub_category_check=isset($_GET['sub_category_name']);
+                             $sub_categoryCrumb=($_GET['sub_category_name'])??"";
+                             if($category_check){
+
+                                 $_SESSION['category']=$categoryCrumb;
+                                 $bread_crumbs="shop > {$categoryCrumb}";
+                             }
+                             elseif($sub_category_check){
+                                 $categoryCrumb=$_SESSION['category']?? "";
+                                 $bread_crumbs="shop >  {$categoryCrumb} > {$sub_categoryCrumb}";
+                             }
+                             else{
+                                 $_SESSION['category']="";
+                                 $bread_crumbs="shop";
+                             }
+                             echo $bread_crumbs;
+
+
+                             ?>
+                         </div>
                         <div class="shop-top-left">
                            <p class="pagination-line"><a href="shop.html"><?php echo count($products) ?></a> Product Found </p>
                         </div>
                         <div class="shop-top-center">
                            <nav class="product-nav">
                               <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                 <button class="nav-link active" id="nav-grid-tab" data-bs-toggle="tab" data-bs-target="#nav-grid" type="button" role="tab" aria-controls="nav-grid" aria-selected="true"><i class="fa fa-th"></i></button>
+
                               </div>
                            </nav>
                         </div>
@@ -149,7 +174,9 @@ if (isset($_GET['sub_category_name'])) {
                   </div>
                </div>
             </div>
+
             <div class="col-xl-3">
+
                <div class="shop-sidebar">
 
 

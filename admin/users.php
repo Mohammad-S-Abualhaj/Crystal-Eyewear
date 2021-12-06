@@ -47,7 +47,6 @@ if (isset($_POST["user_name"])) {
 
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang=en>
@@ -370,7 +369,7 @@ if (isset($_POST["user_name"])) {
     <!--end::Svg Icon-->
 </div>
 <script>
-    var hostUrl = "assets/";
+
 </script>
 <script src="../js/main_app.js"></script>
 <!--begin::Javascript-->
