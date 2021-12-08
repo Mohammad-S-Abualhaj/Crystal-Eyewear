@@ -1,13 +1,15 @@
 <!--== header master-page ==-->
 <?php
-   session_start();
-   include("./includes/public-header.php");
-   require_once "includes/db.php";
-   $satatement=$connection->prepare("SELECT * FROM (( products INNER JOIN category ON products.category_id=category.category_id)
-                                                               INNER JOIN sub_category ON products.sub_category_id=sub_category.sub_category_id)");
-   $satatement->execute();
-   $products=$satatement->fetchAll(PDO::FETCH_ASSOC);
-   ?>
+session_start();
+include("./includes/public-header.php");
+require_once "includes/db.php";
+$satatement = $connection->prepare("SELECT * FROM (( products INNER JOIN category ON products.category_id=category.category_id)
+                                                               INNER JOIN sub_category ON products.sub_category_id=sub_category.sub_category_id)
+                                                               ORDER BY product_price ASC;");
+$satatement->execute();
+$products = $satatement->fetchAll(PDO::FETCH_ASSOC);
+
+?>
 <!--== End Header Wrapper ==-->
 <main class="main-content">
    <!--== Start Hero Area Wrapper ==-->
@@ -118,49 +120,84 @@
                      <div class="product-collection-content">
                         <div class="content">
                            <h3 class="title"><a href="shop.php">Women glasses</a></h3>
-                           <h4 class="price">From $40.00</h4>
+                           <!-- find the minimum price for women glasses -->
+                           <h4 class="price">From $<?php
+                                                   $count = 0;
+                                                   foreach ($products as $product) {
+                                                      if ($product['sub_category_name'] === 'eyeglasess women' || $product['sub_category_name'] === 'sunglasess women') {
+                                                         echo $product['product_price'];
+                                                         $count++;
+                                                         if ($count > 0) {
+                                                            break;
+                                                         }
+                                                      }
+                                                   }
+                                                   ?></h4>
                         </div>
+                        <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/1.webp"></div>
+                        <a class="banner-link-overlay" href="shop.php"></a>
                      </div>
-                     <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/1.webp"></div>
-                     <a class="banner-link-overlay" href="shop.php"></a>
                   </div>
+                  <!--== End Product Collection Item ==-->
                </div>
-               <!--== End Product Collection Item ==-->
-            </div>
-            <div class="col-lg-4 col-md-6">
-               <!--== Start Product Collection Item ==-->
-               <div class="product-collection">
-                  <div class="inner-content">
-                     <div class="product-collection-content">
-                        <div class="content">
-                           <h3 class="title"><a href="shop.php?sub_category_name=men">men glasses</a></h3>
-                           <h4 class="price">From $30.00</h4>
+               <div class="col-lg-4 col-md-6">
+                  <!--== Start Product Collection Item ==-->
+                  <div class="product-collection">
+                     <div class="inner-content">
+                        <div class="product-collection-content">
+                           <div class="content">
+                              <h3 class="title"><a href="shop.php?sub_category_name=men">men glasses</a></h3>
+                              <!-- find the minimum price for men glasses -->
+                              <h4 class="price">From $<?php
+                                                      $count = 0;
+                                                      foreach ($products as $product) {
+                                                         if ($product['sub_category_name'] === 'eyeglasess man' || $product['sub_category_name'] === 'sunglasess men') {
+                                                            echo $product['product_price'];
+                                                            $count++;
+                                                            if ($count > 0) {
+                                                               break;
+                                                            }
+                                                         }
+                                                      }
+                                                      ?></h4>
+                           </div>
                         </div>
+                        <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/2.webp"></div>
+                        <a class="banner-link-overlay" href="shop.php"></a>
                      </div>
-                     <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/2.webp"></div>
-                     <a class="banner-link-overlay" href="shop.php"></a>
                   </div>
+                  <!--== End Product Collection Item ==-->
                </div>
-               <!--== End Product Collection Item ==-->
-            </div>
-            <div class="col-lg-4 col-md-6">
-               <!--== Start Product Collection Item ==-->
-               <div class="product-collection">
-                  <div class="inner-content">
-                     <div class="product-collection-content">
-                        <div class="content">
-                           <h3 class="title"><a href="shop.php?sub_category_name=kids">kids glasses</a></h3>
-                           <h4 class="price">From $35.00</h4>
+               <div class="col-lg-4 col-md-6">
+                  <!--== Start Product Collection Item ==-->
+                  <div class="product-collection">
+                     <div class="inner-content">
+                        <div class="product-collection-content">
+                           <div class="content">
+                              <h3 class="title"><a href="shop.php?sub_category_name=kids">kids glasses</a></h3>
+                              <!-- find the minimum price for kids glasses -->
+                              <h4 class="price">From $<?php
+                                                      $count = 0;
+                                                      foreach ($products as $product) {
+                                                         if ($product['sub_category_name'] === 'eyeglasess kids' || $product['sub_category_name'] === 'sunglasess kids') {
+                                                            echo $product['product_price'];
+                                                            $count++;
+                                                            if ($count > 0) {
+                                                               break;
+                                                            }
+                                                         }
+                                                      }
+                                                      ?></h4>
+                           </div>
                         </div>
+                        <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/3.webp"></div>
+                        <a class="banner-link-overlay" href="shop.php"></a>
                      </div>
-                     <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/3.webp"></div>
-                     <a class="banner-link-overlay" href="shop.php"></a>
                   </div>
+                  <!--== End Product Collection Item ==-->
                </div>
-               <!--== End Product Collection Item ==-->
             </div>
          </div>
-      </div>
    </section>
    <!--== End Product Collection Area Wrapper ==-->
    <!--== Start Product Area Wrapper ==-->
@@ -178,48 +215,50 @@
          </div>
          <div class="row">
             <!--== Start Product Item ==-->
-            <?php foreach ($products as $product){
-               if ($product['featured_products']>0):
-                ?>
-            <div class="col-sm-6 col-lg-4">
-               <div class="product-item">
-                  <div class="inner-content">
-                     <div class="product-thumb">
-                        <a href="single-product.php?id=<?php echo $product['product_id'] ; ?>">
-                        <img src="admin/assets/media/products_images/<?php echo $product['product_image']; ?>" width="270" height="274" alt="<?php echo $product['product_description']; ?>">
-                        </a>
-                        <?php if ($product['product_percentage_price']>0): ?>
-                        <div class="product-flag">
-                           <ul>
-                              <li class="discount">-<?php echo $product['product_percentage_price']?? "" ?>%</li>
-                           </ul>
-                        </div>
-                        <?php endif; ?>
-                        <div class="product-action">
-                                                <a class="btn-product-cart" href="shop-cart.php?id=<?php echo $product['product_id'] ?>&quantity=1&shop=true"><i class="fa fa-shopping-cart"></i></a>
-                                             </div>
-                        <a class="banner-link-overlay" href="shop.php"></a>
-                     </div>
-                     <div class="product-info">
-                        <div class="category">
-                           <ul>
-                              <li ><?php echo $product['category_name'] ; ?>/<a href="shop.php?sub_category_name=<?php echo $product['sub_category_name']; ?>"><?php echo $product['sub_category_name'] ; ?></a></li>
-                           </ul>
-                        </div>
-                        <h4 class="title"><a href="single-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name']; ?></a></h4>
-                        <div class="prices">
-                           <?php if ($product['product_percentage_price'] > 0){ ?>
-                           <span class="price-old">$<?php echo $product['product_price'] ?></span>
-                           <span class="sep">-</span>
-                           <span class="price">$
-                           <?php echo  ($product['product_price'])*(100- $product['product_percentage_price']) / 100;}
-                              else{?><span class="price">$ <?php echo $product['product_price'] ;}?></span>
+            <?php foreach ($products as $product) {
+               if ($product['featured_products'] > 0) :
+            ?>
+                  <div class="col-sm-6 col-lg-4">
+                     <div class="product-item">
+                        <div class="inner-content">
+                           <div class="product-thumb">
+                              <a href="single-product.php?id=<?php echo $product['product_id']; ?>">
+                                 <img src="admin/assets/media/products_images/<?php echo $product['product_image']; ?>" width="270" height="274" alt="<?php echo $product['product_description']; ?>">
+                              </a>
+                              <?php if ($product['product_percentage_price'] > 0) : ?>
+                                 <div class="product-flag">
+                                    <ul>
+                                       <li class="discount">-<?php echo $product['product_percentage_price'] ?? "" ?>%</li>
+                                    </ul>
+                                 </div>
+                              <?php endif; ?>
+                              <div class="product-action">
+                                 <a class="btn-product-cart" href="shop-cart.php?id=<?php echo $product['product_id'] ?>&quantity=1&shop=true"><i class="fa fa-shopping-cart"></i></a>
+                              </div>
+                              <a class="banner-link-overlay" href="shop.php"></a>
+                           </div>
+                           <div class="product-info">
+                              <div class="category">
+                                 <ul>
+                                    <li><?php echo $product['category_name']; ?>/<a href="shop.php?sub_category_name=<?php echo $product['sub_category_name']; ?>"><?php echo $product['sub_category_name']; ?></a></li>
+                                 </ul>
+                              </div>
+                              <h4 class="title"><a href="single-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name']; ?></a></h4>
+                              <div class="prices">
+                                 <?php if ($product['product_percentage_price'] > 0) { ?>
+                                    <span class="price-old">$<?php echo $product['product_price'] ?></span>
+                                    <span class="sep">-</span>
+                                    <span class="price">$
+                                    <?php echo ($product['product_price']) * (100 - $product['product_percentage_price']) / 100;
+                                 } else { ?><span class="price">$ <?php echo $product['product_price'];
+                                                               } ?></span>
+                              </div>
+                           </div>
                         </div>
                      </div>
                   </div>
-               </div>
-            </div>
-            <?php endif;}?>
+            <?php endif;
+            } ?>
             <!--== End prPduct Item ==-->
          </div>
       </div>
@@ -259,48 +298,50 @@
          <!--== Start Product Item ==-->
          <div class="row">
             <!--== Start Product Item ==-->
-            <?php foreach ($products as $product){
-               if ($product['product_best_seller']>0):
-                ?>
-            <div class="col-sm-6 col-lg-4">
-               <div class="product-item">
-                  <div class="inner-content">
-                     <div class="product-thumb">
-                        <a href="single-product.php?id=<?php echo $product['product_id'] ; ?>">
-                        <img src="admin/assets/media/products_images/<?php echo $product['product_image']; ?>" width="270" height="274" alt="<?php echo $product['product_description']; ?>">
-                        </a>
-                        <?php if ($product['product_percentage_price']>0): ?>
-                        <div class="product-flag">
-                           <ul>
-                              <li class="discount">-<?php echo $product['product_percentage_price']?>%</li>
-                           </ul>
-                        </div>
-                        <?php endif; ?>
-                        <div class="product-action">
-                                                <a class="btn-product-cart" href="shop-cart.php?id=<?php echo $product['product_id'] ?>&quantity=1&shop=true"><i class="fa fa-shopping-cart"></i></a>
-                                             </div>
-                        <a class="banner-link-overlay" href="shop.php"></a>
-                     </div>
-                     <div class="product-info">
-                        <div class="category">
-                           <ul>
-                              <li ><?php echo $product['category_name'] ; ?>/<a href="shop.php?sub_category_name=<?php echo $product['sub_category_name']; ?>"><?php echo $product['sub_category_name'] ; ?></a></li>
-                           </ul>
-                        </div>
-                        <h4 class="title"><a href="single-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name']; ?></a></h4>
-                        <div class="prices">
-                           <?php if ($product['product_percentage_price'] > 0){ ?>
-                           <span class="price-old">$<?php echo $product['product_price'] ?></span>
-                           <span class="sep">-</span>
-                           <span class="price">$
-                           <?php echo  ($product['product_price'])*(100- $product['product_percentage_price']) / 100;}
-                              else{?><span class="price">$ <?php echo $product['product_price'] ;}?></span>
+            <?php foreach ($products as $product) {
+               if ($product['product_best_seller'] > 0) :
+            ?>
+                  <div class="col-sm-6 col-lg-4">
+                     <div class="product-item">
+                        <div class="inner-content">
+                           <div class="product-thumb">
+                              <a href="single-product.php?id=<?php echo $product['product_id']; ?>">
+                                 <img src="admin/assets/media/products_images/<?php echo $product['product_image']; ?>" width="270" height="274" alt="<?php echo $product['product_description']; ?>">
+                              </a>
+                              <?php if ($product['product_percentage_price'] > 0) : ?>
+                                 <div class="product-flag">
+                                    <ul>
+                                       <li class="discount">-<?php echo $product['product_percentage_price'] ?>%</li>
+                                    </ul>
+                                 </div>
+                              <?php endif; ?>
+                              <div class="product-action">
+                                 <a class="btn-product-cart" href="shop-cart.php?id=<?php echo $product['product_id'] ?>&quantity=1&shop=true"><i class="fa fa-shopping-cart"></i></a>
+                              </div>
+                              <a class="banner-link-overlay" href="shop.php"></a>
+                           </div>
+                           <div class="product-info">
+                              <div class="category">
+                                 <ul>
+                                    <li><?php echo $product['category_name']; ?>/<a href="shop.php?sub_category_name=<?php echo $product['sub_category_name']; ?>"><?php echo $product['sub_category_name']; ?></a></li>
+                                 </ul>
+                              </div>
+                              <h4 class="title"><a href="single-product.php?id=<?php echo $product['product_id'] ?>"><?php echo $product['product_name']; ?></a></h4>
+                              <div class="prices">
+                                 <?php if ($product['product_percentage_price'] > 0) { ?>
+                                    <span class="price-old">$<?php echo $product['product_price'] ?></span>
+                                    <span class="sep">-</span>
+                                    <span class="price">$
+                                    <?php echo ($product['product_price']) * (100 - $product['product_percentage_price']) / 100;
+                                 } else { ?><span class="price">$ <?php echo $product['product_price'];
+                                                               } ?></span>
+                              </div>
+                           </div>
                         </div>
                      </div>
                   </div>
-               </div>
-            </div>
-            <?php endif;}?>
+            <?php endif;
+            } ?>
             <!--== End prPduct Item ==-->
          </div>
          <!--== End prPduct Item ==-->
@@ -310,5 +351,5 @@
 </main>
 <!--== footer master-page ==-->
 <?php
-   include("./includes/public-footer.php");  
-   ?>
+include("./includes/public-footer.php");
+?>
