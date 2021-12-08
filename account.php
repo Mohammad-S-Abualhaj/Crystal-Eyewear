@@ -6,7 +6,8 @@
   }
 
     include_once 'includes/db.php';
-    $id = (int)$_SESSION['user_id'];
+    $id = $_SESSION['user_id']??null ;
+
   
       $stmt = $connection->prepare("SELECT * FROM user WHERE id={$id}");
       $stmt->execute();
