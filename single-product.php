@@ -140,11 +140,15 @@ if (isset($_POST["post"])) {
                            </div>
                            <!--== Start Reviews Form Item ==-->
 
+
+                     
+
+
                                <div class="reviews-form-area">
                                     <?php
                                     $loggedin=$_SESSION['user_loggedin']?? null;
                                     if(!$loggedin) {?>
-                                   <div class=" h3 my-4">You need to sign in as a user in order to write a review</div> <?php }?>
+                                   <div class=" h4 review-write-btn my-4">You need to sign in as a user in order to write a review</div> <?php }?>
                                    <?php if(isset($_SESSION['user_id'])) {
 
                                    if($loggedin){?>
@@ -179,6 +183,7 @@ if (isset($_POST["post"])) {
                            <div class="reviews-content-body">
                              <?php  
                             if(isset($review)){
+<<<<<<< HEAD
                              foreach ($review as $key) {
                                  $random_number=rand(1,80);
                                  $array_gender=["men","women"];
@@ -198,6 +203,13 @@ if (isset($_POST["post"])) {
                                   </div>
 
 
+=======
+                             foreach ($review as $key) {?>
+                              <div class="review-item">
+                              <h3 class="title"> <?php echo $key["review_title"]  ?></h3>
+                              <h5 class="sub-title"><span><?php echo $key['username']?></span> no <span><?php echo $key["date_created"] ?></span></h5>
+                                 <p><?php echo $key["review_comments"]  ?> </p>
+>>>>>>> 05fbe9c6225928d0bb318c19206a2055f6c33339
                               </div>
                               <?php }} else{ ?>
                                <div class="alert-light">There is no review for this product</div><?php } ?>
