@@ -20,8 +20,11 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="form-group">
+
                       <label for="username">Username <span class="required">*</span></label>
+
                       <input id="username" class="form-control" name="username" type="text">
+
                         <?php if(isset($_GET["username"])):?>
                         <span class="text-danger"><?php echo $_GET["username"]; ?></span>
                         <?php endif; ?>
@@ -31,6 +34,7 @@
                     <div class="form-group">
                       <label for="full_name">Name<span class="required">*</span></label>
                       <input id="full_name" class="form-control" name="full_name" type="text">
+                        <small class="form-text text-muted mx-4 d-block">The name should be consisted of two parts </small>
                         <?php if(isset($_GET["full_name"])):?>
                         <span class="text-danger"><?php echo $_GET["full_name"]; ?></span>
                         <?php endif; ?>
@@ -48,7 +52,9 @@
                   <div class="col-12">
                     <div class="form-group">
                       <label for="password">Password <span class="required">*</span></label>
+
                       <input id="password" class="form-control" name="password" type="password">
+                        <small class="form-text text-muted mx-4 d-block">password should be 8 characters with uppercase,special character </small>
                         <?php if(isset($_GET["password"])):?>
                             <span class="text-danger"><?php echo $_GET["password"]; ?></span>
                         <?php endif; ?>

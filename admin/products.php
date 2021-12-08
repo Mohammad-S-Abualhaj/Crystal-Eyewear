@@ -170,21 +170,21 @@ if ($_GET) {
 																		$result1 = $sql1->fetchAll(PDO::FETCH_ASSOC);
 																		foreach ($result1 as $category) {
 																		?>
-																			<option value="<?php echo $category['category_id'] ?>"><?php echo $category['category_name'] ?></option>;
+																			<option class="category<?php echo $category['category_id'] ?>"  value="<?php echo $category['category_id'] ?>"><?php echo $category['category_name'] ?></option>;
 																		<?php } ?>
 																	</select>
 																</div>
 																<div class=mb-7>
 																	<label class="required fs-6 fw-bold mb-2">Subcategory</label>
 																	<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Sub Category" name="subcategory" required>
-																		<option value="">Select Category...</option>
+																		<option class="" value="">Select Category...</option>
 																		<?php
 																		$sql2 = $connection->prepare("SELECT * FROM sub_category");
 																		$sql2->execute();
 																		$result2 = $sql2->fetchAll(PDO::FETCH_ASSOC);
 																		foreach ($result2 as $sub_category) {
 																		?>
-																			<option value="<?php echo $sub_category['sub_category_id'] ?>"><?php echo $sub_category['sub_category_name'] ?></option>;
+																			<option class="category<?php echo $sub_category['category_id'] ?>" value="<?php echo $sub_category['sub_category_id'] ?>"><?php echo $sub_category['sub_category_name'] ?></option>;
 																		<?php } ?>
 																	</select>
 																</div>

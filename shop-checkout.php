@@ -110,7 +110,7 @@ include("./includes/public-header.php");
                     <div class="alert alert-danger" role="alert">
                       Your Shopping cart is empty please fill it and come back!
                     </div>
-                    <a href="shop.php" class="d-block w-25 btn btn-outline-danger m-auto">GO back to the shop</a>
+                    <a href="shop.php" class="d-block w-25 my-5 btn btn-outline-danger m-auto">GO back to the shop</a>
                 <?php endif; ?>
           <?php if($check_login && $check_cart): ?>
         <div class="row">

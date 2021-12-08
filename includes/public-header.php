@@ -46,6 +46,8 @@ if (isset($_POST['search_for_product'])) {
   <!--== Main Style CSS ==-->
   <link href="assets/css/style.css" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/update.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/new_styles.css">
 
 </head>
 
