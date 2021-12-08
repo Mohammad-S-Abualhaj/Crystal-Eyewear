@@ -71,7 +71,7 @@
                   </div>
                   <div class="col-12">
                     <div class="form-group mb--0">
-                      <button class="btn-register" type="submit" name="register_submit">Register</button>
+                      <button class="btn-register"  type="submit" name="register_submit">Register</button>
                     </div>
                   </div>
                   <div class="col-12">

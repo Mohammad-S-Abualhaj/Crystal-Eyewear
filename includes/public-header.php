@@ -90,10 +90,12 @@ if (isset($_POST['search_for_product'])) {
                         <li class="account"> 
                           <?php
                           $session_check= $_SESSION['user_loggedin']?? null;
+                          $admin_loggedin=$_SESSION['admin_loggedin']??null;
                           if ( $session_check) {?>
                           <i class="fa fa-user"></i><a class="account" href="account.php"><?php echo $_SESSION['user_name'] ?? ""  ?></a>
 
-                          <?php }elseif(!isset($_SESSION['admin_loggedin'])){?>
+                          <?php }
+                          elseif(!$admin_loggedin){?>
 
                              <i class="fa fa-user"></i><a href="account-login.php">Log in</a>
                        <?php } ?>
