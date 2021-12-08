@@ -134,8 +134,9 @@ $products = $satatement->fetchAll(PDO::FETCH_ASSOC);
                                                    }
                                                    ?></h4>
                         </div>
+                     </div>
                         <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/1.webp"></div>
-                        <a class="banner-link-overlay" href="shop.php"></a>
+                        <a class="banner-link-overlay" href="shop.php?sub_category_name=eyeglasess%20women"></a>
                      </div>
                   </div>
                   <!--== End Product Collection Item ==-->
@@ -146,7 +147,7 @@ $products = $satatement->fetchAll(PDO::FETCH_ASSOC);
                      <div class="inner-content">
                         <div class="product-collection-content">
                            <div class="content">
-                              <h3 class="title"><a href="shop.php?sub_category_name=men">men glasses</a></h3>
+                              <h3 class="title"><a href="shop.php">men glasses</a></h3>
                               <!-- find the minimum price for men glasses -->
                               <h4 class="price">From $<?php
                                                       $count = 0;
@@ -163,7 +164,7 @@ $products = $satatement->fetchAll(PDO::FETCH_ASSOC);
                            </div>
                         </div>
                         <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/2.webp"></div>
-                        <a class="banner-link-overlay" href="shop.php"></a>
+                        <a class="banner-link-overlay" href="shop.php?sub_category_name=eyeglasess%20man"></a>
                      </div>
                   </div>
                   <!--== End Product Collection Item ==-->
@@ -191,7 +192,7 @@ $products = $satatement->fetchAll(PDO::FETCH_ASSOC);
                            </div>
                         </div>
                         <div class="product-collection-thumb" data-bg-img="assets/img/shop/collection/3.webp"></div>
-                        <a class="banner-link-overlay" href="shop.php"></a>
+                        <a class="banner-link-overlay" href="shop.php?sub_category_name=eyeglasess%20kids"></a>
                      </div>
                   </div>
                   <!--== End Product Collection Item ==-->
