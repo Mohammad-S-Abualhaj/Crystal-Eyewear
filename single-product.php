@@ -178,6 +178,20 @@ if (isset($_POST["post"])) {
                                </div>
                             <?php }}?>
                            <!--== End Reviews Form Item ==-->
+<<<<<<< HEAD
+                           <div class="reviews-content-body">
+                             <?php  
+                            if(isset($review)){
+                             foreach ($review as $key) {?>
+                              <div class="review-item">
+                              <h3 class="title"> <?php echo $key["review_title"]  ?></h3>
+                              <h5 class="sub-title"><span><?php echo $key['username']?></span> no <span><?php echo $key["date_created"] ?></span></h5>
+                                 <p><?php echo $key["review_comments"]  ?> </p>
+                              </div>
+                              <?php }} else{ ?>
+                               <div class="alert-light">There is no review for this product</div><?php } ?>
+                           </div>
+=======
 
                            </div>
                          <div class="reviews-content-body">
@@ -208,6 +222,7 @@ if (isset($_POST["post"])) {
                                      </div>
                                  <?php }} else{ ?>
                                  <div class="alert-light">There is no review for this product</div><?php } ?>
+>>>>>>> 5d7dd728092562cbd51473b0a5cf3f0c0e68bf69
                         </div>
                      </div>
                   </div>
