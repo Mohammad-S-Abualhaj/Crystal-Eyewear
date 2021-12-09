@@ -156,7 +156,8 @@ $products = json_decode($invoice_info);
                       <h3> info for Order Number (<?php echo $order_summary['order_id']?>) </h3>
                     
                       <?php }?>
-                      <div class="myaccount-table table-responsive text-center">
+                        <?php if(isset($_GET['order_id'])){ ?>
+                      <div class="myaccount-table orders_details_table table-responsive text-center">
                         <table class="table table-bordered">
                           <thead class="thead-light">
                             <tr>
@@ -169,7 +170,7 @@ $products = json_decode($invoice_info);
                             </tr>
                           </thead>
                           <tbody>
-                           <?php if(isset($_GET['order_id'])){ ?>
+
                             <tr>
                          
                             <?php foreach ($products as $product) {?>
@@ -191,9 +192,10 @@ $products = json_decode($invoice_info);
                            
                             
                           </tbody>
-                          <?php }?>
+
                         </table>
                       </div>
+                        <?php }?>
                     </div>
                 
 

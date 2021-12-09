@@ -121,7 +121,7 @@ if (isset($_POST["post"])) {
                         <a class="active" id="description-tab" data-bs-toggle="pill" href="#description" role="tab" aria-controls="description" aria-selected="false">Description</a>
                      </li>
                      <li role="presentation">
-                        <a id="reviews-tab" data-bs-toggle="pill" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews <span>(<?php echo count($review)?? "" ?>)</span></a>
+                        <a id="reviews-tab" class="review_comment_button" data-bs-toggle="pill" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews <span>(<?php echo count($review)?? "" ?>)</span></a>
                      </li>
                   </ul>
                   <div class="tab-content product-tab-content" id="ReviewTabContent">
@@ -197,7 +197,7 @@ if (isset($_POST["post"])) {
 
 
                                          <div class="tab-content w-auto h-auto  product-tab-content" id="ReviewTabContent">
-                                             <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                                             <div class="tab-pane  fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
                                                  <div class="product-description">
                                                      <div class=""><?php echo $key["review_comments"]  ?> </div>
                                                  </div>

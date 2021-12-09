@@ -202,7 +202,7 @@ include("./includes/public-header.php");
                                                 $order_total += (int)($price) * $product['product_quantity'];
                                                 ?>
                                                 <tr class="cart-item">
-                                                    <td class="product-name"><?php echo $product['product_name'] ?>
+                                                    <td class="product-name"><?php echo substr($product['product_name'], 0, 12 )?>.....
                                                         <span class="product-quantity">× <?php echo $product['product_quantity'] ?></span>
                                                     </td>
                                                     <td class="product-total">

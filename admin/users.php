@@ -222,7 +222,7 @@ if (isset($_POST["user_name"])) {
                                     </tr>
                                     </thead>
                                     <?php
-                                    $sql = $connection->prepare("SELECT * FROM user");
+                                    $sql = $connection->prepare("SELECT * FROM user ORDER BY role DESC");
                                     $sql->execute();
                                     $result = $sql->fetchAll(PDO::FETCH_ASSOC);
                                     foreach ($result
